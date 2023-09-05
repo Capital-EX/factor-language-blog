@@ -1,0 +1,57 @@
+body {
+    font-size: larger
+}
+
+pre,
+code {
+    font-size: medium
+}
+
+p>code {
+    background-color: #dcdcdc;
+    padding: 0 .3em
+}
+
+figure {
+    text-align: center
+}
+
+figure img {
+    max-width: 25em
+}
+
+figcaption {
+    font-style: italic
+}
+
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column
+}
+
+body div {
+    max-width: 40em
+}
+
+pre {
+    padding: 1em;
+    white-space: break-spaces
+}
+
+blockquote {
+    font-style: italic;
+    display: flex;
+    flex-direction: column
+}
+
+blockquote>p {
+    max-width: 35em;
+    margin: .25em
+}
+
+blockquote>p::before {
+    position: absolute;
+    margin-left: -1em;
+    content: "> "
+}
