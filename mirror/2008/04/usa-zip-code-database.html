@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html dir='ltr'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/55013136-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='../../favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='usa-zip-code-database.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Factor: a practical stack language - RSS" href="http://factor-language.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="https://www.blogger.com/feeds/17087850/posts/default" />
+
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/178963615813507134/comments/default" />
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<meta content='http://factor-language.blogspot.com/2008/04/usa-zip-code-database.html' property='og:url'/>
+<meta content='USA Zip code database' property='og:title'/>
+<meta content='Recently someone posted a freely available Zip code database  on reddit. The database is in CSV format. Phil Dawes  contributed a CSV parser...' property='og:description'/>
+<title>Factor: a practical stack language: USA Zip code database</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Stretch Denim Light
+Designer: Darren Delaye
+URL:      www.DarrenDelaye.com
+Date:     11 Jul 2006
+-----------------------------------------------
+*/
+body {
+background: #ffffff;
+margin: 0;
+padding: 0px;
+font: x-small Verdana, Arial;
+text-align: center;
+color: #333333;
+font-size/* */:/**/small;
+font-size: /**/small;
+}
+a:link {
+color: #336699;
+}
+a:visited {
+color: #336699;
+}
+a img {
+border-width: 0;
+}
+#outer-wrapper {
+font: normal normal 100% Verdana, Arial, Sans-serif;;
+}
+/* Header
+----------------------------------------------- */
+#header-wrapper {
+margin:0;
+padding: 0;
+background-color: #c4e1ff;
+text-align: left;
+}
+#header {
+margin: 0 2%;
+background-color: #c4e1ff;
+color: #003366;
+padding: 0;
+font: normal normal 210% Verdana, Arial, Sans-serif;;
+position: relative;
+}
+h1.title {
+padding-top: 38px;
+margin: 0 1% .1em;
+line-height: 1.2em;
+font-size: 100%;
+}
+h1.title a, h1.title a:visited {
+color: #003366;
+text-decoration: none;
+}
+#header .description {
+display: block;
+margin: 0 1%;
+padding: 0 0 40px;
+line-height: 1.4em;
+font-size: 50%;
+}
+/* Content
+----------------------------------------------- */
+.clear {
+clear: both;
+}
+#content-wrapper {
+margin: 0 2%;
+padding: 0 0 15px;
+text-align: left;
+background-color: #ffffff;
+border: 1px solid #ffffff;
+border-top: 0;
+}
+#main-wrapper {
+margin-left: 1%;
+width: 64%;
+float: left;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+margin-right: 1%;
+width: 29%;
+float: right;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2, h3 {
+margin: 0;
+}
+/* Posts
+----------------------------------------------- */
+.date-header {
+margin: 1.5em 0 0;
+font-weight: normal;
+color: #999999;
+font-size: 100%;
+}
+.post {
+margin: 0 0 1.5em;
+padding-bottom: 1.5em;
+}
+.post-title {
+margin: 0;
+padding: 0;
+font-size: 125%;
+font-weight: bold;
+line-height: 1.1em;
+}
+.post-title a, .post-title a:visited, .post-title strong {
+text-decoration: none;
+color: #333333;
+font-weight: bold;
+}
+.post div {
+margin: 0 0 .75em;
+line-height: 1.3em;
+}
+.post-footer {
+margin: -.25em 0 0;
+color: #333333;
+font-size: 87%;
+}
+.post-footer .span {
+margin-right: .3em;
+}
+.post img, table.tr-caption-container {
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin: 1em 20px;
+}
+.post blockquote p {
+margin: .75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin: 1em 0;
+color: #999999;
+}
+#comments h4 strong {
+font-size: 110%;
+}
+#comments-block {
+margin: 1em 0 1.5em;
+line-height: 1.3em;
+}
+#comments-block dt {
+margin: .5em 0;
+}
+#comments-block dd {
+margin: .25em 0 0;
+}
+#comments-block dd.comment-footer {
+margin: -.25em 0 2em;
+line-height: 1.4em;
+font-size: 78%;
+}
+#comments-block dd p {
+margin: 0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar h2 {
+margin: 1.6em 0 .5em;
+padding: 4px 5px;
+background-color: #ffffff;
+font-size: 100%;
+color: #333333;
+}
+.sidebar ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.sidebar li {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: .5em;
+padding-left: 15px;
+text-indent: -15px;
+line-height: 1.5em;
+}
+.sidebar {
+color: #333333;
+line-height:1.3em;
+}
+.sidebar .widget {
+margin-bottom: 1em;
+}
+.sidebar .widget-content {
+margin: 0 5px;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font-weight: bold;
+line-height: 1.6em;
+font-size: 78%;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+clear: both;
+text-align: center;
+color: #333333;
+}
+#footer .widget {
+margin:.5em;
+padding-top: 20px;
+font-size: 85%;
+line-height: 1.5em;
+text-align: left;
+}
+/** Page structure tweaks for layout editor wireframe */
+body#layout #header {
+width: 750px;
+}
+
+--></style>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' rel='stylesheet'/></noscript>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body>
+<div class='navbar section' id='navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d17087850\x26blogName\x3dFactor:+a+practical+stack+language\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dBLUE\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://factor-language.blogspot.com/search\x26blogLocale\x3den_US\x26v\x3d2\x26homepageUrl\x3dhttp://factor-language.blogspot.com/\x26targetPostID\x3d178963615813507134\x26blogPostOrPageUrl\x3dhttp://factor-language.blogspot.com/2008/04/usa-zip-code-database.html\x26vt\x3d-2658658427830975970',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id='outer-wrapper'><div id='wrap2'>
+<!-- skip links for text browsers -->
+<span id='skiplinks' style='display:none;'>
+<a href='usa-zip-code-database.html#main'>skip to main </a> |
+      <a href='usa-zip-code-database.html#sidebar'>skip to sidebar</a>
+</span>
+<div id='header-wrapper'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='../../index.html'>
+Factor: a practical stack language
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span><a href="http://factorcode.org/slava">Slava Pestov</a>'s weblog, primarily about <a href="http://factorcode.org">Factor</a>.</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id='content-wrapper'>
+<div id='crosscol-wrapper' style='text-align:center'>
+<div class='crosscol no-items section' id='crosscol'></div>
+</div>
+<div id='main-wrapper'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Tuesday, April 29, 2008</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='178963615813507134' itemprop='postId'/>
+<a name='178963615813507134'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+USA Zip code database
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-178963615813507134' itemprop='description articleBody'>
+Recently someone posted a <a href="http://mappinghacks.com/2008/04/28/civicspace-zip-code-database/">freely available Zip code database</a> on reddit. The database is in CSV format.<br /><br /><a href="http://www.phildawes.net/blog/">Phil Dawes</a> contributed a CSV parser to Factor a few days ago, and I thought this would be the perfect use-case to test out the parser.<br /><br />I added the library to <code>extra/usa-cities</code>. It begins with the usual boilerplate:<br /><pre>USING: io.files io.encodings.ascii sequences sequences.lib<br />math.parser combinators kernel memoize csv symbols inspector<br />words accessors math.order sorting ;<br />IN: usa-cities</pre><br />Then, we define some singleton types for the various states of the union. While this isn't strictly necessary, it allows us to write generic words which dispatch on states; for example, I'm sure Doug's <code>taxes</code> library could use this:<br /><pre>SINGLETONS: AK AL AR AS AZ CA CO CT DC DE FL GA HI IA ID IL IN<br />KS KY LA MA MD ME MI MN MO MS MT NC ND NE NH NJ NM NV NY OH OK<br />OR PA PR RI SC SD TN TX UT VA VI VT WA WI WV WY ;<br /><br />: states ( -- seq )<br />    {<br />        AK AL AR AS AZ CA CO CT DC DE FL GA HI IA ID IL IN KS KY<br />        LA MA MD ME MI MN MO MS MT NC ND NE NH NJ NM NV NY OH OK<br />        OR PA PR RI SC SD TN TX UT VA VI VT WA WI WV WY<br />    } ; inline<br /><br />ERROR: no-such-state name ;<br /><br />M: no-such-state summary drop "No such state" ;<br /><br />MEMO: string>state ( string -- state )<br />    dup states [ word-name = ] with find nip<br />    [ ] [ no-such-state ] ?if ;</pre><br />Next up, we define a data type storing rows from the CSV database:<br /><pre>TUPLE: city<br />first-zip name state latitude longitude gmt-offset dst-offset ;</pre><br />Now a word which reads the database, parses it as CSV, and then parses each column into a specific data type:<br /><pre>MEMO: cities ( -- seq )<br />    "resource:extra/usa-cities/zipcode.csv" ascii &lt;file-reader><br />    csv rest-slice [<br />        7 firstn {<br />            [ string>number ]<br />            [ ]<br />            [ string>state ]<br />            [ string>number ]<br />            [ string>number ]<br />            [ string>number ]<br />            [ string>number ]<br />        } spread city boa<br />    ] map ;</pre><br />This word is tricky; some notes on its workings:<br /><ul><li>We begin by opening a stream for reading from the CSV file with ASCII encoding.</li><li>The <code>csv</code> word reads CSV data from a stream.</li><li>The first line of the file consists of column headings and not actual data, so we ignore it by using the non-copying variant of <code>rest</code>, <code>rest-slice</code> (recall that the primary sequence type in Factor is an array, so removing the first element makes a copy; a slice is a virtual sequence presenting a view of a subsequence of an array).</li><li>The <code>spread</code> combinator takes a sequence of quotations, <code>Q1,...,QN</code>, and <i>n</i> values from the stack, <code>X1,...XN</code>, and outputs <code>Q1[X1],...,QN[XN]</code>. In this case we're taking the first 7 elements of each row of CSV data (each row has exactly 7 columns so in effect we're pushing every element of the sequence on the stack), then using <code>spread</code> to convert some columns from their initial text format into something more useful to us; a state singleton or a number.</li><li>Finally, we use <code>city boa</code> to construct a city tuple "by order of arguments"; this slurps the 7 stack values and stores them into a new instance of <code>city</code> (note that the definition of the <code>city</code> type has exactly 7 slots and they are defined in the same order as the columns of the file).</li><li>Finally, we <code>map</code> over the sequence of rows to perform the above steps on each row of the file. The result is a sequence of <code>city</code> instances.</li></ul><br />The word is memoized so of course it will only load the database once.<br /><br />We can now define words to query it:<br /><pre>MEMO: cities-named ( name -- cities )<br />    cities [ name>> = ] with filter ;<br /><br />MEMO: cities-named-in ( name state -- cities )<br />    cities [<br />        tuck [ name>> = ] [ state>> = ] 2bi* and<br />    ] with with filter ;<br /><br />: find-zip-code ( code -- city )<br />    cities [ first-zip>> &lt;=> ] binsearch* ;</pre><br />Now, let's look at some examples.<br /><br />First, let's look up my Zip code:<br /><pre>( scratchpad ) 55406 find-zip-code .<br />T{ city f 55406 "Minneapolis" MN 44.938615 -93.22082 -6 1 }</pre><br />And another famous Zip code:<br /><pre>( scratchpad ) 90210 find-zip-code .<br />T{ city f 90210 "Beverly Hills" CA 34.088808 -118.40612 -8 1 }</pre><br />How many states have a city named "Minneapolis"?<br /><pre>( scratchpad ) "Minneapolis" cities-named [ state>> ] map prune .<br />V{ NC MN KS }</pre><br />What is the possible range of Zip codes for Austin?<br /><pre>( scratchpad ) "Austin" TX cities-named-in [ first-zip>> ] map [ infimum . ] [ supremum . ] bi<br />73301<br />78972</pre><br />There are many possible applications for this library, including form validation in web apps. It could be extended further: if the database was loaded into a quadtree sorted by latitude/longitude, you could perform queries such as finding all towns within 50 miles of a given city.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2008/04/usa-zip-code-database.html' itemprop='url'/>
+<a class='timestamp-link' href='usa-zip-code-database.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2008-04-29T21:45:00-04:00'>9:45 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=178963615813507134' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=178963615813507134&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=178963615813507134&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=178963615813507134&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=178963615813507134&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=178963615813507134&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=178963615813507134&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+<div class='comments' id='comments'>
+<a name='comments'></a>
+<h4>No comments:</h4>
+<div id='Blog1_comments-block-wrapper'>
+<dl class='avatar-comment-indent' id='comments-block'>
+</dl>
+</div>
+<p class='comment-footer'>
+<a href='https://www.blogger.com/comment.g?blogID=17087850&postID=178963615813507134' onclick=''>Post a Comment</a>
+</p>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='../05/io-changes-and-process-pipeline-support.html' id='Blog1_blog-pager-newer-link' title='Newer Post'>Newer Post</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='addendum-to-new-http-server-part-2.html' id='Blog1_blog-pager-older-link' title='Older Post'>Older Post</a>
+</span>
+<a class='home-link' href='../../index.html'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='post-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://factor-language.blogspot.com/feeds/178963615813507134/comments/default' target='_blank' type='application/atom+xml'>Post Comments (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+<div id='sidebar-wrapper'>
+<div class='sidebar section' id='sidebar'><div class='widget BlogArchive' data-version='1' id='BlogArchive1'>
+<h2>Older Posts</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/index.html'>
+2010
+</a>
+<span class='post-count' dir='ltr'>(18)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/index.html'>
+2009
+</a>
+<span class='post-count' dir='ltr'>(35)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../index.html'>
+2008
+</a>
+<span class='post-count' dir='ltr'>(96)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+<ul class='posts'>
+<li><a href='usa-zip-code-database.html'>USA Zip code database</a></li>
+<li><a href='addendum-to-new-http-server-part-2.html'>An addendum to &quot;The new HTTP server, part 2&quot;</a></li>
+<li><a href='write-once-run-anywhere.html'>Write once, run anywhere</a></li>
+<li><a href='new-http-server-part-2.html'>The new HTTP server, part 2</a></li>
+<li><a href='performance-improvements.html'>Performance improvements</a></li>
+<li><a href='my-top-8-shell-commands.html'>My top 8 shell commands</a></li>
+<li><a href='multi-touch-gestures-in-factor-ui.html'>Multi-touch gestures in the Factor UI</a></li>
+<li><a href='improvements-to-iomonitors-faster.html'>Improvements to io.monitors; faster refresh-all</a></li>
+<li><a href='golden-rule-of-programming.html'>The golden rule of writing comments</a></li>
+<li><a href='multi-methods-and-hooks.html'>Multi-methods and hooks</a></li>
+<li><a href='gc-fixes-and-improvements.html'>GC fixes and improvements</a></li>
+<li><a href='inheritance-is-done.html'>Inheritance is done</a></li>
+<li><a href='converting-table-to-tree.html'>Converting a table to a tree</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(17)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/index.html'>
+2007
+</a>
+<span class='post-count' dir='ltr'>(141)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(10)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(21)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/index.html'>
+2006
+</a>
+<span class='post-count' dir='ltr'>(207)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(30)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(25)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(22)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(26)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/index.html'>
+2005
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div><div class='widget Feed' data-version='1' id='Feed2'>
+<h2>Recent Factor Commits</h2>
+<div class='widget-content' id='Feed2_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://gitweb.factorcode.org/gitweb.cgi?p=factor.git;a=atom'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget Feed' data-version='1' id='Feed1'>
+<h2>Planet Factor</h2>
+<div class='widget-content' id='Feed1_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://planet.factorcode.org/feed.xml'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget LinkList' data-version='1' id='LinkList1'>
+<h2>Links</h2>
+<div class='widget-content'>
+<ul>
+<li><a href='http://twitter.com/slava_pestov'>@slava_pestov</a></li>
+<li><a href='http://factorcode.org/slava/'>My home page</a></li>
+<li><a href='http://factorcode.org/'>Factor programming language</a></li>
+<li><a href='http://concatenative.org/'>Concatenative language wiki</a></li>
+<li><a href='http://planet.factorcode.org/'>Planet Factor</a></li>
+</ul>
+<div class='clear'></div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class='clear'>&#160;</div>
+</div>
+<!-- end content-wrapper -->
+<div id='footer-wrapper'>
+<div class='footer no-items section' id='footer'></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/940443484-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY5r19eQLLtA19pik40VSzCoRXf_3A:1693933048459';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d17087850','//factor-language.blogspot.com/2008/04/usa-zip-code-database.html','17087850');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '17087850', 'title': 'Factor: a practical stack language', 'url': 'http://factor-language.blogspot.com/2008/04/usa-zip-code-database.html', 'canonicalUrl': 'http://factor-language.blogspot.com/2008/04/usa-zip-code-database.html', 'homepageUrl': 'http://factor-language.blogspot.com/', 'searchUrl': 'http://factor-language.blogspot.com/search', 'canonicalHomepageUrl': 'http://factor-language.blogspot.com/', 'blogspotFaviconUrl': 'http://factor-language.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en-US', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Factor: a practical stack language - RSS\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/17087850/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/178963615813507134/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/591781cadcbb8744', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'item', 'postId': '178963615813507134', 'pageName': 'USA Zip code database', 'pageTitle': 'Factor: a practical stack language: USA Zip code database'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'isResponsive': false, 'isAlternateRendering': false, 'isCustom': false}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'USA Zip code database', 'description': 'Recently someone posted a freely available Zip code database  on reddit. The database is in CSV format. Phil Dawes  contributed a CSV parser...', 'url': 'http://factor-language.blogspot.com/2008/04/usa-zip-code-database.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 178963615813507134}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1333563935-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/3268905543-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed2', 'sidebar', document.getElementById('Feed2'), {'title': 'Recent Factor Commits', 'showItemDate': true, 'showItemAuthor': true, 'feedUrl': 'http://gitweb.factorcode.org/gitweb.cgi?p\x3dfactor.git;a\x3datom', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed1', 'sidebar', document.getElementById('Feed1'), {'title': 'Planet Factor', 'showItemDate': true, 'showItemAuthor': false, 'feedUrl': 'http://planet.factorcode.org/feed.xml', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList1', 'sidebar', document.getElementById('LinkList1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>

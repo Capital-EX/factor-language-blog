@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html dir='ltr'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/55013136-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='../../favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='survey-of-domain-specific-languages-in.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Factor: a practical stack language - RSS" href="http://factor-language.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="https://www.blogger.com/feeds/17087850/posts/default" />
+
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/2579054926441220099/comments/default" />
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<meta content='http://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html' property='og:url'/>
+<meta content='A survey of domain-specific languages in Factor' property='og:title'/>
+<meta content='Factor has good support for implementing mini-languages as libraries. In this post I&#39;ll describe the general techniques and look at some spe...' property='og:description'/>
+<title>Factor: a practical stack language: A survey of domain-specific languages in Factor</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Stretch Denim Light
+Designer: Darren Delaye
+URL:      www.DarrenDelaye.com
+Date:     11 Jul 2006
+-----------------------------------------------
+*/
+body {
+background: #ffffff;
+margin: 0;
+padding: 0px;
+font: x-small Verdana, Arial;
+text-align: center;
+color: #333333;
+font-size/* */:/**/small;
+font-size: /**/small;
+}
+a:link {
+color: #336699;
+}
+a:visited {
+color: #336699;
+}
+a img {
+border-width: 0;
+}
+#outer-wrapper {
+font: normal normal 100% Verdana, Arial, Sans-serif;;
+}
+/* Header
+----------------------------------------------- */
+#header-wrapper {
+margin:0;
+padding: 0;
+background-color: #c4e1ff;
+text-align: left;
+}
+#header {
+margin: 0 2%;
+background-color: #c4e1ff;
+color: #003366;
+padding: 0;
+font: normal normal 210% Verdana, Arial, Sans-serif;;
+position: relative;
+}
+h1.title {
+padding-top: 38px;
+margin: 0 1% .1em;
+line-height: 1.2em;
+font-size: 100%;
+}
+h1.title a, h1.title a:visited {
+color: #003366;
+text-decoration: none;
+}
+#header .description {
+display: block;
+margin: 0 1%;
+padding: 0 0 40px;
+line-height: 1.4em;
+font-size: 50%;
+}
+/* Content
+----------------------------------------------- */
+.clear {
+clear: both;
+}
+#content-wrapper {
+margin: 0 2%;
+padding: 0 0 15px;
+text-align: left;
+background-color: #ffffff;
+border: 1px solid #ffffff;
+border-top: 0;
+}
+#main-wrapper {
+margin-left: 1%;
+width: 64%;
+float: left;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+margin-right: 1%;
+width: 29%;
+float: right;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2, h3 {
+margin: 0;
+}
+/* Posts
+----------------------------------------------- */
+.date-header {
+margin: 1.5em 0 0;
+font-weight: normal;
+color: #999999;
+font-size: 100%;
+}
+.post {
+margin: 0 0 1.5em;
+padding-bottom: 1.5em;
+}
+.post-title {
+margin: 0;
+padding: 0;
+font-size: 125%;
+font-weight: bold;
+line-height: 1.1em;
+}
+.post-title a, .post-title a:visited, .post-title strong {
+text-decoration: none;
+color: #333333;
+font-weight: bold;
+}
+.post div {
+margin: 0 0 .75em;
+line-height: 1.3em;
+}
+.post-footer {
+margin: -.25em 0 0;
+color: #333333;
+font-size: 87%;
+}
+.post-footer .span {
+margin-right: .3em;
+}
+.post img, table.tr-caption-container {
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin: 1em 20px;
+}
+.post blockquote p {
+margin: .75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin: 1em 0;
+color: #999999;
+}
+#comments h4 strong {
+font-size: 110%;
+}
+#comments-block {
+margin: 1em 0 1.5em;
+line-height: 1.3em;
+}
+#comments-block dt {
+margin: .5em 0;
+}
+#comments-block dd {
+margin: .25em 0 0;
+}
+#comments-block dd.comment-footer {
+margin: -.25em 0 2em;
+line-height: 1.4em;
+font-size: 78%;
+}
+#comments-block dd p {
+margin: 0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar h2 {
+margin: 1.6em 0 .5em;
+padding: 4px 5px;
+background-color: #ffffff;
+font-size: 100%;
+color: #333333;
+}
+.sidebar ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.sidebar li {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: .5em;
+padding-left: 15px;
+text-indent: -15px;
+line-height: 1.5em;
+}
+.sidebar {
+color: #333333;
+line-height:1.3em;
+}
+.sidebar .widget {
+margin-bottom: 1em;
+}
+.sidebar .widget-content {
+margin: 0 5px;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font-weight: bold;
+line-height: 1.6em;
+font-size: 78%;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+clear: both;
+text-align: center;
+color: #333333;
+}
+#footer .widget {
+margin:.5em;
+padding-top: 20px;
+font-size: 85%;
+line-height: 1.5em;
+text-align: left;
+}
+/** Page structure tweaks for layout editor wireframe */
+body#layout #header {
+width: 750px;
+}
+
+--></style>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' rel='stylesheet'/></noscript>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body>
+<div class='navbar section' id='navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d17087850\x26blogName\x3dFactor:+a+practical+stack+language\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dBLUE\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://factor-language.blogspot.com/search\x26blogLocale\x3den_US\x26v\x3d2\x26homepageUrl\x3dhttp://factor-language.blogspot.com/\x26targetPostID\x3d2579054926441220099\x26blogPostOrPageUrl\x3dhttp://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html\x26vt\x3d-1024190029162295550',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id='outer-wrapper'><div id='wrap2'>
+<!-- skip links for text browsers -->
+<span id='skiplinks' style='display:none;'>
+<a href='survey-of-domain-specific-languages-in.html#main'>skip to main </a> |
+      <a href='survey-of-domain-specific-languages-in.html#sidebar'>skip to sidebar</a>
+</span>
+<div id='header-wrapper'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='../../index.html'>
+Factor: a practical stack language
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span><a href="http://factorcode.org/slava">Slava Pestov</a>'s weblog, primarily about <a href="http://factorcode.org">Factor</a>.</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id='content-wrapper'>
+<div id='crosscol-wrapper' style='text-align:center'>
+<div class='crosscol no-items section' id='crosscol'></div>
+</div>
+<div id='main-wrapper'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Wednesday, September 30, 2009</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='2579054926441220099' itemprop='postId'/>
+<a name='2579054926441220099'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+A survey of domain-specific languages in Factor
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-2579054926441220099' itemprop='description articleBody'>
+Factor has good support for implementing mini-languages as libraries. In this post I'll describe the general techniques and look at some specific examples. I don't claim any of this is original research -- Lisp and Forth programmers have been doing DSLs for decades, and recently the Ruby, Haskell and even Java communities are discovering some of these concepts and adding a few of their own to the mix. However, I believe Factor brings some interesting incremental improvements to the table, and the specific combination of capabilities found in Factor is unique.<br /><br /><h3>Preliminaries</h3><br />How does one embed a mini-language in Factor? Let us look at what goes on when a source file is parsed:<br /><ul><li>The parser reads the input program. This consists of definitions and top-level forms. The parser constructs syntax trees, and adds definitions to the dictionary. The result of parsing is the set of top-level forms in the file.</li><li>The compiler is run with all changed definitions. The compiler essentially takes syntax trees as input, and produces machine code as output. Once the compiler finishes compiling the new definitions, they are added to the VM's code heap and may be executed.</li><li>The top level forms in the file are run, if any.</li></ul><br />In Factor, all of these stages are extensible. Note that all of this happens when the source file is loaded into memory -- Factor is biased towards compile-time meta-programming.<br /><br /><h4>Extending the parser with parsing words</h4><br />Parsing words which execute at parse time can be defined. Parsing words can take over the parser entirely and parse custom syntax. All of Factor's standard syntax, such as <a href="http://docs.factorcode.org/content/word-__colon__,syntax.html">:</a> for defining words and <a href="http://factor-language.blogspot.com/2009/09/[">[</a> for reading a quotation, is actually parsing words defined in the <a href="http://docs.factorcode.org/content/vocab-syntax.html">syntax</a> vocabulary. Commonly-used libraries such as <a href="http://docs.factorcode.org/content/vocab-memoize.html">memoize</a> and <a href="http://docs.factorcode.org/content/vocab-specialized-arrays.html">specialized-arrays</a> add their own parsing words for custom definitions and data types. These don't qualify as domain-specific languages since they're too trivial, but they're very useful.<br /><br /><h4>Homoiconic syntax</h4><br />In most mainstream languages, the data types found in the syntax tree are quite different from the data types you operate on at runtime. For example, consider the following Java program:<br /><pre>if(x < 3) { return x + 3; } else { return foo(x); }</pre><br />This might parse into something like<br /><pre>IfNode(<br />    condition: LessThan(Identifier(x),Integer(3))<br />    trueBranch: ReturnNode(Add(Identifier(x),Integer(3)))<br />    falseBranch: ReturnNode(MethodCall(foo,Identifier(x)))<br />)</pre><br />You cannot work with an "if node" in your program, the identifier <code>x</code> does not exist at runtime, and so on.<br /><br />In Factor and Lisp, the parser constructs objects such as strings, numbers and lists directly, and identifiers (known as symbols in Lisp, and words in Factor) are first-class types. Consider the following Factor code,<br /><pre>x 3 &lt; [ x 3 + ] [ x foo ] if</pre><br />This parses as a quotation of 6 elements,<br /><ul><li>The word <code>x</code></li><li>The integer 3</li><li>The word <code>&lt;</code><li>A quotation with three elements, <code>x</code>, <code>3</code>, and <code>+</code></li><li>A quotation with two elements, <code>x</code>, and <code>foo</code></li><li>The word <code>if</code></li></ul><br />An array literal, like <code>{ 1 2 3 }</code>, parses as an array of three integers; not an AST node representing an array with three child AST nodes representing integers.<br /><br />The flipside of homoiconic syntax is being able to print out (almost) any data in a form that can be parsed back in; in Factor, the <a href="http://docs.factorcode.org/content/word-.,prettyprint.html">.</a> word does this.<br /><br />What homoiconic syntax gives you as a library author is the ability to write mini-languages without writing a parser. Since you can input almost any data type wth literal syntax, you can program your mini-language in parse trees directly. The mini-language can process nested arrays, quotations, tuples and words instead of parsing a string representation first.<br /></li><br /><br /><h4>Compile-time macros</h4><br />All of Factor's data types, including quotations and words, can be constructed at runtime. Factor also supports <a href="http://docs.factorcode.org/content/vocab-macros.html">compile-time macros</a> in the Lisp sense, but unlike Lisp where they are used to prevent evaluation, a Factor macro is called just like an ordinary word, except the parameters have to be compile-time literals. The macro evaluates to a quotation, and the quotation is compiled in place of the macro call.<br /><br />Everything that can be done with macros can also be done by constructing quotations at runtime and using <a href="http://docs.factorcode.org/content/word-call(,syntax.html">call(</a> -- macros just provide a speed boost.<br /><br /><h3>Parsing word-based DSLs</h3><br />Many DSLs have a parsing word as their main entry point. The parsing word either takes over the parser completely to parse custom syntax, or it defines some new words and then lets the main parser take over again.<br /><br /><h4>Local variables</h4><br />A common misconception among people taking a casual look at Factor is that it doesn't offer any form of lexical scoping or named values at all. For example, Reg Braithwaite authoritatively states on <a href="http://weblog.raganwald.com/2008/03/tool-time.html">his weblog</a>:<br /><blockquote><i>the Factor programming language imposes a single, constraining set of rules on the programmer: programmers switching to Factor must relinquish their local variables to gain Factor&#8217;s higher-order programming power.</i></blockquote><br />In fact, Factor supports lexically scoped local variables via the <a href="http://docs.factorcode.org/content/vocab-locals.html">locals</a> vocabulary. and this library is used throughout the codebase. It looks like in a default image, about 1% of all words use lexical variables.<br /><br />The locals vocabulary implements a set of parsing words which augment the standard defining words. For example, <a href="http://docs.factorcode.org/content/word-__colon____colon__,locals.html">::</a> reads a word definition where input arguments are stored in local variables, instead of being on the stack:<br /><pre>:: lerp ( a b c -- d )<br />    a c *<br />    b 1 c - *<br />    + ;</pre><br />The locals vocabulary also supports "let" statements, lambdas with full lexical closure semantics, and mutable variables. The locals vocabulary compiles lexical variable usage down to stack shuffling, and <a href="http://docs.factorcode.org/content/word-curry,kernel.html">curry</a> calls (for constructing quotations that close over a variable). This makes it quite efficient, especially since in many cases the Factor compiler can eliminate the closure construction using escape analysis. The choice of whether or not to use locals is one that can be made purely on a stylistic basis, since it has very little effect on performance.<br /><br /><h4>Parsing expression grammars</h4><br /><a href="http://en.wikipedia.org/wiki/Parsing_expression_grammar">Parsing expression grammars</a> describe a certain class of languages, as well as a formalism for parsing these languages.<br /><br /><a href="http://bluishcoder.co.nz">Chris Double</a> implemented a PEG library in Factor. The <a href="http://docs.factorcode.org/content/vocab-peg.html">peg</a> vocabulary offers a combinator-style interface for constructing parsers, and <a href="http://www.bluishcoder.co.nz/2008/04/factor-parsing-dsl.html">peg.ebnf</a> builds on top of this and defines a declarative syntax for specifying parsers.<br /><br />A simple example of a PEG grammar can be found in Chris Double's <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=extra/peg/pl0;hb=HEAD">peg.pl0</a> vocabulary. More elaborate examples can be found in <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=extra/peg/javascript;hb=HEAD">peg.javascript</a> (JavaScript parser by Chris Double) and <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=extra/smalltalk;hb=HEAD">smalltalk.parser</a> (Smalltalk parser by me).<br /><br />One downside of PEGs is that they have some performance problems; the standard formulation has exponential runtime in the worst case, and the "Packrat" variant that Factor uses runs in linear time but also linear space. For heavy-duty parsing, it appears as if LL and LR parsers are best, and it would be nice if Factor had an implementation of such a parser generator.<br /><br />However, PEGs are still useful for simple parsing tasks and prototyping. They are used throughout the Factor codebase for many things, including but not limited to:<br /><ul><li>Parsing regular expressions in the <a href="http://docs.factorcode.org/content/vocab-regexp.html">regexp</a> vocabulary (<a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/regexp/parser;hb=HEAD">source</a>)</li><li>Parsing URLs in the <a href="http://docs.factorcode.org/content/vocab-urls.html">urls</a> vocabulary (<a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/urls;hb=HEAD">source</a>)</li><li>Parsing HTTP headers in the <a href="http://docs.factorcode.org/content/vocab-http.server.html">http.server</a> and <a href="http://docs.factorcode.org/content/vocab-http.client.html">http.client</a> vocabularies (<a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/http/parsers;hb=HEAD">source</a>)</li></ul><br />PEGs can also be used in conjunction with parsing words to embed source code written with custom grammars in Factor source files directly. The next DSL is an example of that.<br /><br /><h4>Infix expressions</h4><br />Philipp Brüschweiler's <a href="http://docs.factorcode.org/content/vocab-infix.html">infix</a> vocabulary defines a parsing word which parses an infix math expression using PEGs. The result is then compiled down to <a href="http://docs.factorcode.org/content/vocab-locals.html">locals</a>, which in turn compile down to stack code.<br /><br />Here is a word which solves a quadratic equation <code>ax^2 + bx + c = 0</code> using the quadratic formula. Infix expressions can only return one value, so this word computes the first root only:<br /><pre>USING: infix locals ;<br /><br />:: solve-quadratic ( a b c -- r )<br />    [infix (-b + sqrt(b*b-4*a*c))/2*a infix] ;</pre><br />Note that we're using two mini-languages here; <code>::</code> begins a definition with named parameters stored in local variables, and <code>[infix</code> parses an infix expression which can access these local variables.<br /><br /><h4>XML literals</h4><br /><a href="http://useless-factor.blogspot.com">Daniel Ehrenberg's</a> XML library defines a convenient syntax for constructing XML documents. Dan describes it in detail in <a href="http://useless-factor.blogspot.com/2009/01/factor-supports-xml-literal-syntax.html">a blog post</a>, with plenty of examples, so I won't repeat it here. The neat thing here is that by adding a pair of parsing words, <code>[XML</code> and <code>&lt;XML</code>, he was able to integrate XML snippets into Factor, with parse-time well-formedness checking, no less.<br /><br /><a href="http://docs.factorcode.org/content/vocab-xml.html">Dan's XML library</a> is now used throughout the Factor codebase, particularly in the web framework, for both parsing and generating XML. For example, the <a href="http://concatenative.org">concatenative.org wiki</a> uses a markup language called "farkup". The <a href="http://concatenative.org/wiki/view/Farkup">farkup</a> markup language, developed by Dan, <a href="http://code-factor.blogspot.com">Doug Coleman</a> and myself, makes heavy use of XML literals. Farkup is implemented by first parsing the markup into an abstract syntax tree, and then converting this to HTML using a recursive tree walk that builds XML literals. We avoid constructing XML and HTML through raw string concatenation; instead we use XML literals everywhere now. This results in <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/farkup;hb=HEAD">cleaner, more secure code</a>.<br /><br />Compare the design of our farkup library with <a href="http://code.unicoders.org/browser/django/trunk/contrib/markdown.py">markdown.py</a> used by <a href="http://reddit.com">reddit.com</a>. The latter is implemented with a series of regular expression hacks and lots of ad-hoc string processing which attempts to produce something resembling HTML in the end. New markup injection attacks are found all the time; there was a particularly clever one involving a JavaScript worm that knocked reddit right down a few days ago. I don't claim that Farkup is 100% secure by any means, and certainly it has had an order of magnitude less testing, but without a doubt centralizing XHTML generation makes it much easier to audit and identify potential injection problems.<br /><br /><h4>C library interface</h4><br />Our C library interface (or FFI) was quite low-level initially but after a ton of work by Alex Chapman, Joe Groff, and myself, it has quite a DSLish flavor. C library bindings resemble C header files on mushrooms. Here is a taste:<br /><pre>TYPEDEF: int cairo_bool_t<br /><br />CONSTANT: CAIRO_CONTENT_COLOR HEX: 1000<br />CONSTANT: CAIRO_CONTENT_ALPHA HEX: 2000<br />CONSTANT: CAIRO_CONTENT_COLOR_ALPHA HEX: 3000<br /><br />STRUCT: cairo_matrix_t<br />    { xx double }<br />    { yx double }<br />    { xy double }<br />    { yy double }<br />    { x0 double }<br />    { y0 double } ;<br />    <br />FUNCTION: void<br />cairo_transform ( cairo_t* cr, cairo_matrix_t* matrix ) ;</pre><br />The Factor compiler generates stubs for calling C functions on the fly from these declarative descriptions; there is no C code generator and no dependency on a C compiler. In fact, C library bindings are so easy to write that for many contributors, it is their first project in Factor. When <a href="http://code-factor.blogspot.com">Doug Coleman</a> first got involved in Factor, he began by writing a PostgreSQL binding, followed by an implementation of the MD5 checksum. Both libraries have been heavily worked on since then are still in use.<br /><br />For complete examples of FFI usage, check out any of the following:<br /><ul><li><a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/unix;hb=HEAD">unix</a> - POSIX bindings</li><li><a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/windows;hb=HEAD">windows</a> - Windows API bindings</li><li><a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/db/sqlite/ffi;hb=HEAD">db.sqlite.ffi</a> - SQLite bindings</li><li><a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/opengl/gl;hb=HEAD">opengl.gl</a> - OpenGL bindings</li></ul><br />There are many more usages of the FFI of course. Since Factor has a minimal VM, all I/O, graphics and interaction with the outside world in general is done with the FFI. Search the Factor source tree for source files that use the <a href="http://docs.factorcode.org/content/vocab-alien.syntax.html">alien.syntax</a> vocabulary.<br /><br /><h4>GPU shaders</h4><br /><a href="http://duriansoftware.com">Joe Groff</a> cooked up a nice DSL for passing uniform parameters to pixel and vertex shaders. In his <a href="http://duriansoftware.com/joe/Spring-cleaning.html">blog post</a>, Joe writes:<br /><blockquote><i>The library makes it easy to load and interactively update shaders, define binary formats for GPU vertex buffers, and feed parameters to shader code using Factor objects. </i></blockquote><br />Here is a snippet from the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=extra/gpu/demos/raytrace;hb=HEAD">gpu.demos.raytrace</a> demo:<br /><pre>GLSL-SHADER-FILE: raytrace-vertex-shader vertex-shader "raytrace.v.glsl"<br />GLSL-SHADER-FILE: raytrace-fragment-shader fragment-shader "raytrace.f.glsl"<br />GLSL-PROGRAM: raytrace-program<br />    raytrace-vertex-shader raytrace-fragment-shader ;<br /><br />UNIFORM-TUPLE: sphere-uniforms<br />    { "center" vec3-uniform  f }<br />    { "radius" float-uniform f }<br />    { "color"  vec4-uniform  f } ;<br /><br />UNIFORM-TUPLE: raytrace-uniforms<br />    { "mv-inv-matrix"    mat4-uniform f }<br />    { "fov"              vec2-uniform f }<br />    <br />    { "spheres"          sphere-uniforms 4 }<br /><br />    { "floor-height"     float-uniform f }<br />    { "floor-color"      vec4-uniform 2 }<br />    { "background-color" vec4-uniform f }<br />    { "light-direction"  vec3-uniform f } ;</pre><br />The <a href="http://docs.factorcode.org/content/word-GLSL-SHADER-FILE__colon__,gpu.shaders.html">GLSL-SHADER-FILE:</a> parsing word tells Factor to load a GLSL shader program. The GPU framework automatically checks the file for modification, reloading it if necessary.<br /><br />The <a href="http://docs.factorcode.org/content/word-UNIFORM-TUPLE__colon__,gpu.render.html">UNIFORM-TUPLE:</a> parsing word defines a new tuple class, together with methods which destructure the tuple and bind textures and uniform parameters. Uniform parameters are named as such because they define values which remain constant at every pixel or vertex that the shader program operates on.<br /><br /><h4>Instruction definitions in the compiler</h4><br />This one is rather obscure and technical, but it has made my job easier over the last few weeks. <a href="eliminating-some-boilerplate-in.html">I blogged about it already</a>.<br /><br /><h3>Other examples</h3><br />The next set of DSLs don't involve parsing words as much as just clever tricks with evaluation semantics.<br /><br /><h4>Inverse</h4><br /><a href="http://useless-factor.blogspot.com">Daniel Ehrenberg's</a> <a href="http://docs.factorcode.org/content/vocab-inverse.html">inverse</a> library implements a form of pattern matching by computing the inverse of a Factor quotation. The fundamental combinator, <a href="http://docs.factorcode.org/content/word-undo,inverse.html">undo</a>, takes a Factor quotation, and executes it "in reverse". So if there is a constructed tuple on the stack, undoing the constructor will leave the slots on the stack. If the top of the stack doesn't match anything that the constructor could've produced, then the inverse fails, and pattern matching can move on to the next clause. This library works by introspecting quotations and the words they contain. Dan gives many details and examples in <a href="http://www.scribd.com/doc/12803254/Pattern-matching-in-concatenative-languages">his paper on inverse</a>.<br /><br /><h4>Help system</h4><br /><a href="http://docs.factorcode.org/content/article-help.html">Factor's help system</a> uses an s-expression-like markup language. Help markup is parsed by the Factor parser without any special parsing words. A markup element is an array where the first element is a distinguished word and the rest are parameters. Examples:<br /><pre>"This is " { $strong "not" } " a good idea"<br /><br />{ $list<br />    "milk"<br />    "flour"<br />    "eggs"<br />}<br /><br />{ $link "help" }</pre><br />This markup is rendered either directly on the Factor UI (like in this <a href="http://factorcode.org/factor-windows7.png">screenshot</a>) or via HTML, as on the <a href="http://docs.factorcode.org">docs.factorcode.org</a> site.<br /><br />The nice thing about being able to view help in the UI environment is the sheer interactive nature of it. Unlike something like javadoc, there is no offline processing step which takes your source file and spits out rendered markup. You just load a vocabulary into your Factor instance and the documentation is available instantly. You can look at the help for any documented word by simply typing something like <pre>\ append help</pre> in the UI listener. While working on your own vocabulary, you can reload changes to the documentation and see them appear instantly in the UI's help browser.<br /><br />Finally, it is worth mentioning that because of the high degree of semantic information encoded in documentation, many kinds of mistakes can be caught in an automated fashion. The <a href="http://docs.factorcode.org/content/article-help.lint.html">help lint</a> tool finds inconsistencies between the actual parameters that a function takes, and the documented parameters, as well as code examples that don't evaluate to what the documentation claims they evaluate to, and a few other things.<br /><br />You won't find a lot of comments in Factor source, because the help system is much more useful. Instead of plain-text comments that can go out of date, why not have rich text with hyperlinks and semantic information?<br /><br />For examples of help markup, look at any file whose name ends with <code>-docs.factor</code> in the Factor source tree. There are plenty.<br /><br /><h4>x86 and PowerPC assemblers</h4><br />I put this one last since its not really a DSL at all, just a nice API. The lowest level of Factor's compiler generates machine code from the compiler's intermediate form in a CPU-specific way. The CPU backends for x86 and PowerPC use the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/cpu/x86/assembler;hb=HEAD">cpu.x86.assembler</a> and <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/cpu/ppc/assembler;hb=HEAD">cpu.ppc.assembler</a> vocabularies for this, respectively. The way the assemblers work is that they define a set of words corresponding to CPU instructions. Instruction words takes operands from the stack -- which are objects representing registers, immediate values, and in the case of the x86, addressing modes. They then combine the operands and the instruction into a binary opcode, and add it to a byte vector stored in a dynamically-scoped variable. So instead of calling methods on, and passing around, an 'assembler object' as you would in say, a JIT coded in C++, you wrap the code generation in a call to Factor's <a href="http://docs.factorcode.org/content/word-make,make.html">make</a> word, and simply invoke instruction words therein. The result looks like assembler source, except it is postfix. Here is an x86 example:<br /><pre>[<br />    EAX ECX ADD<br />    XMM0 XMM1 HEX: ff SHUFPS<br />    AL 7 OR<br />    RAX 15 [+] RDI MOV<br />] B{ } make .</pre><br />When evaluated, the above will print out the following;<br /><pre>B{ 1 200 15 198 193 255 131 200 7 72 137 120 15 }</pre><br />Of course, <a href="http://docs.factorcode.org/content/word-B{,syntax.html">B{</a> is the homoiconic syntax for a byte array. Note the way indirect memory operands are constructed; first, we push the register (<code>RAX</code>) then the displacement (here the constant 15, but register displacement is supported by x86 too). Then we call a word <code>[+]</code> which constructs an object representing the addressing mode <code>[RAX+15]</code>.<br /><br />The rationale for choosing this somewhat funny syntax for indirect operands (there is also a <code>[]</code> word for memory loads without a displacement), rather than some kind of parser hack that allows one to write <code>[RAX]</code> or <code>[R14+RDI]</code> directly, is that in reality the compiler only rarely deals with hard-coded register assignments. Instead, the register allocator makes decisions a level above, and passes them to the code generator. Here is a typical compiler code generation template from the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/cpu/x86/x86.factor;hb=HEAD">cpu.x86</a> vocabulary:<br /><pre>M:: x86 %check-nursery ( label temp1 temp2 -- )<br />    temp1 load-zone-ptr<br />    temp2 temp1 cell [+] MOV<br />    temp2 1024 ADD<br />    temp1 temp1 3 cells [+] MOV<br />    temp2 temp1 CMP<br />    label JLE ;</pre><br />Here, I'm using the locals vocabulary together with the assembler. The <code>temp1</code> and <code>temp2</code> parameters are registers and <code>label</code> is, as its name implies, a label to jump to. This snippet generates machine code that checks whether or not the new object allocation area has enough space; if so, it jumps to the label, otherwise it falls through (code to save live registers and call the GC is generated next). The <code>load-zone-ptr</code> word is like an assembler macro here; it takes a register and generates some more code with it.<br /><br />The PowerPC assembler is a tad more interesting. Since the x86 instruction set is so complex, with many addressing modes and so on, the x86 assembler is implemented in a rather tedious manner. Obvious duplication is abstracted out. However, there is a lot of case-by-case code for different groups of instructions, with no coherent underlying abstraction allowing the instruction set to be described in a declarative way.<br /><br />On PowerPC, the situation is better. Since the instruction set is a lot more regular (fixed width instructions, only a few distinct instruction formats, no addressing modes), the PowerPC assembler itself is built using a DSL specifically for describing PowerPC instructions:<br /><pre>D: ADDI 14<br />D: ADDIC 12<br />D: ADDIC. 13<br />D: ADDIS 15<br />D: CMPI 11<br />D: CMPLI 10<br />...</pre><br />The PowerPC instruction format DSL is defined in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/cpu/ppc/assembler/backend;hb=HEAD">cpu.ppc.assembler.backend</a> vocabulary, and as a result the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/cpu/ppc/assembler/assembler.factor;hb=HEAD">cpu.ppc.assembler</a> vocabulary itself is mostly trivial.<br /><br /><h3>Last words</h3><br />Usually my blog posts describe recent progress in the Factor implementation, and I tend to write about what I'm working on right now. I'm currently working on code generation for SIMD vector instructions in the Factor compiler. I was going to blog about this instead, but decided not to do it until the SIMD implementation and API settles down some more.<br /><br />With this post I decided to try something a bit different, and instead just describe an aspect of Factor that interests to me, without any of it being particularly breaking news. If you've been following Factor development closely, there is literally nothing in this post that you would not have seen already, however I figured people who don't track the project so closely might appreciate a general survey like this. I'm also thinking of writing a post describing Factor's various high-level I/O libraries. I'd appreciate any feedback, suggestions and ideas on this matter.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html' itemprop='url'/>
+<a class='timestamp-link' href='survey-of-domain-specific-languages-in.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2009-09-30T23:52:00-04:00'>11:52 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=2579054926441220099' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=2579054926441220099&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2579054926441220099&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2579054926441220099&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2579054926441220099&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2579054926441220099&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2579054926441220099&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+<div class='comments' id='comments'>
+<a name='comments'></a>
+<h4>10 comments:</h4>
+<div id='Blog1_comments-block-wrapper'>
+<dl class='avatar-comment-indent' id='comments-block'>
+<dt class='comment-author ' id='c8077001241982122594'>
+<a name='c8077001241982122594'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/17557923197983461835" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-8077001241982122594-17557923197983461835"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Paul Moore">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/17557923197983461835' rel='nofollow'>Paul Moore</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-8077001241982122594'>
+<p>
+Nice article. I&#39;d certainly be interested in followups along these lines.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html?showComment=1254399622925#c8077001241982122594' title='comment permalink'>
+8:20 AM
+</a>
+<span class='item-control blog-admin pid-941133708'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=8077001241982122594' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c1055703771975518205'>
+<a name='c1055703771975518205'></a>
+<div class="avatar-image-container vcard"><span dir="ltr"><a href="https://www.blogger.com/profile/13132345822387028437" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-1055703771975518205-13132345822387028437"><img src="https://resources.blogblog.com/img/blank.gif" width="35" height="35" class="delayLoad" style="display: none;" longdesc="//2.bp.blogspot.com/_VfQ4Jf2RGPw/SaLxpXRgodI/AAAAAAAAAAM/7nq9aEldF2g/S45-s35/217905842_095b0d071a_m.jpg" alt="" title="Reginald Braithwaite">
+
+<noscript><img src="http://2.bp.blogspot.com/_VfQ4Jf2RGPw/SaLxpXRgodI/AAAAAAAAAAM/7nq9aEldF2g/S45-s35/217905842_095b0d071a_m.jpg" width="35" height="35" class="photo" alt=""></noscript></a></span></div>
+<a href='https://www.blogger.com/profile/13132345822387028437' rel='nofollow'>Reginald Braithwaite</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-1055703771975518205'>
+<p>
+Slava authoritatively states in this post that Reg Braithwaite authoritatively states on his weblog that programmers switching to Factor must relinquish their local variables. In fact, Reg Braithwaite was not authoritative because Factor supports lexically scoped local variables via the locals vocabulary, which in turn means that Slava was not authoritative in claiming that Reg Braithwaite was an authority on Factor.<br /><br />:-)
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html?showComment=1254408968975#c1055703771975518205' title='comment permalink'>
+10:56 AM
+</a>
+<span class='item-control blog-admin pid-1190444007'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=1055703771975518205' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c474767479790477582'>
+<a name='c474767479790477582'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Brad C.">
+
+</span></div>
+Brad C.
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-474767479790477582'>
+<p>
+This article is a really nice overview of Factor&#39;s DSL landscape, both in terms of the tools available for DSL construction, as well as what&#39;s been built with them. This is one thing that&#39;s got me excited about the language from the beginning.<br /><br />Your article has also finally cleared up my understanding of compile-time macros. And, while initially scared of trying any FFI stuff, I&#39;m now realize there&#39;s no reason.<br /><br />It&#39;s also great to see amassed the number of vocabs using DSL tools. I knew of many, but now it&#39;s easy to know where to look for some inspiration and example implementations using the different tools, and how they can be combined, such as in infix&#39;s combo of new syntax and PEGs.<br /><br />I would absolutely welcome a detailing of Factors I/O. Thanks.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html?showComment=1254421234945#c474767479790477582' title='comment permalink'>
+2:20 PM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=474767479790477582' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c2987866802540772869'>
+<a name='c2987866802540772869'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/03072242299988314846" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-2987866802540772869-03072242299988314846"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Jeff">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/03072242299988314846' rel='nofollow'>Jeff</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-2987866802540772869'>
+<p>
+Just wanted to say that articles like this are definitely great for those of us on the fringe, I know a couple other guys who tend to keep up with Factor too.  I&#39;ve only gotten to play with words for a couple weekends, but one of these days I&#39;d like to try building some simple audio software to take it out for a real spin.  How do you think it would be to write DSP code in Factor?
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html?showComment=1254430259890#c2987866802540772869' title='comment permalink'>
+4:50 PM
+</a>
+<span class='item-control blog-admin pid-467570019'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=2987866802540772869' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c2659866189344433288'>
+<a name='c2659866189344433288'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-2659866189344433288'>
+<p>
+I enjoy this type of post. It fires me up to spend more time in the listener and browser. Is there a quick way to print all the docs?
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html?showComment=1254445076824#c2659866189344433288' title='comment permalink'>
+8:57 PM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=2659866189344433288' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author blog-author' id='c4044862620649137940'>
+<a name='c4044862620649137940'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/02768382790667979877" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-4044862620649137940-02768382790667979877"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Slava Pestov">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/02768382790667979877' rel='nofollow'>Slava Pestov</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-4044862620649137940'>
+<p>
+Paul: it would be cool if you&#39;d revive your LPEG implementation :-)
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html?showComment=1254457290864#c4044862620649137940' title='comment permalink'>
+12:21 AM
+</a>
+<span class='item-control blog-admin pid-561774689'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=4044862620649137940' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c5485344749972367681'>
+<a name='c5485344749972367681'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Hank">
+
+</span></div>
+Hank
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-5485344749972367681'>
+<p>
+Is there any chance of factor targeting something for embedded systems (ARM would be great, and Cell too? Please).<br /><br />*That* would be absolutely great. I suppose we could drop down to bare metal, like Forth (tweaking interrupts, etc), and at the same time having the sophisticated constructs Factor has.<br /><br />It would rock. Seriously.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html?showComment=1254528035624#c5485344749972367681' title='comment permalink'>
+8:00 PM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=5485344749972367681' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c9202183188960576652'>
+<a name='c9202183188960576652'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/13139649768846209971" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-9202183188960576652-13139649768846209971"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Stephen Veit">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/13139649768846209971' rel='nofollow'>Stephen Veit</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-9202183188960576652'>
+<p>
+This a great overview of the varied DSLs in Factor. I am very excited about learning Factor.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html?showComment=1254760325132#c9202183188960576652' title='comment permalink'>
+12:32 PM
+</a>
+<span class='item-control blog-admin pid-1805172788'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=9202183188960576652' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c1576561538652819496'>
+<a name='c1576561538652819496'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/00543756015532593050" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-1576561538652819496-00543756015532593050"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="darrell moddy">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/00543756015532593050' rel='nofollow'>darrell moddy</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-1576561538652819496'>
+<span class='deleted-comment'>This comment has been removed by the author.</span>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html?showComment=1279101344076#c1576561538652819496' title='comment permalink'>
+5:55 AM
+</a>
+<span class='item-control blog-admin '>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=1576561538652819496' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c3070546015941042236'>
+<a name='c3070546015941042236'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/00543756015532593050" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-3070546015941042236-00543756015532593050"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="darrell moddy">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/00543756015532593050' rel='nofollow'>darrell moddy</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-3070546015941042236'>
+<span class='deleted-comment'>This comment has been removed by the author.</span>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html?showComment=1279101344077#c3070546015941042236' title='comment permalink'>
+5:55 AM
+</a>
+<span class='item-control blog-admin '>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=3070546015941042236' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+</dl>
+</div>
+<p class='comment-footer'>
+<a href='https://www.blogger.com/comment.g?blogID=17087850&postID=2579054926441220099' onclick=''>Post a Comment</a>
+</p>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='../10/improved-write-barriers-in-factors.html' id='Blog1_blog-pager-newer-link' title='Newer Post'>Newer Post</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='advanced-floating-point-features.html' id='Blog1_blog-pager-older-link' title='Older Post'>Older Post</a>
+</span>
+<a class='home-link' href='../../index.html'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='post-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://factor-language.blogspot.com/feeds/2579054926441220099/comments/default' target='_blank' type='application/atom+xml'>Post Comments (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+<div id='sidebar-wrapper'>
+<div class='sidebar section' id='sidebar'><div class='widget BlogArchive' data-version='1' id='BlogArchive1'>
+<h2>Older Posts</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/index.html'>
+2010
+</a>
+<span class='post-count' dir='ltr'>(18)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../index.html'>
+2009
+</a>
+<span class='post-count' dir='ltr'>(35)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+<ul class='posts'>
+<li><a href='survey-of-domain-specific-languages-in.html'>A survey of domain-specific languages in Factor</a></li>
+<li><a href='advanced-floating-point-features.html'>Advanced floating point features: exceptions, roun...</a></li>
+<li><a href='eliminating-some-boilerplate-in.html'>Eliminating some boilerplate in the compiler</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/index.html'>
+2008
+</a>
+<span class='post-count' dir='ltr'>(96)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(17)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/index.html'>
+2007
+</a>
+<span class='post-count' dir='ltr'>(141)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(10)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(21)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/index.html'>
+2006
+</a>
+<span class='post-count' dir='ltr'>(207)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(30)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(25)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(22)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(26)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/index.html'>
+2005
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div><div class='widget Feed' data-version='1' id='Feed2'>
+<h2>Recent Factor Commits</h2>
+<div class='widget-content' id='Feed2_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://gitweb.factorcode.org/gitweb.cgi?p=factor.git;a=atom'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget Feed' data-version='1' id='Feed1'>
+<h2>Planet Factor</h2>
+<div class='widget-content' id='Feed1_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://planet.factorcode.org/feed.xml'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget LinkList' data-version='1' id='LinkList1'>
+<h2>Links</h2>
+<div class='widget-content'>
+<ul>
+<li><a href='http://twitter.com/slava_pestov'>@slava_pestov</a></li>
+<li><a href='http://factorcode.org/slava/'>My home page</a></li>
+<li><a href='http://factorcode.org/'>Factor programming language</a></li>
+<li><a href='http://concatenative.org/'>Concatenative language wiki</a></li>
+<li><a href='http://planet.factorcode.org/'>Planet Factor</a></li>
+</ul>
+<div class='clear'></div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class='clear'>&#160;</div>
+</div>
+<!-- end content-wrapper -->
+<div id='footer-wrapper'>
+<div class='footer no-items section' id='footer'></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/940443484-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY6GLyeEy5ZGyZ30cvvywrJieLonOw:1693932675403';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d17087850','//factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html','17087850');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '17087850', 'title': 'Factor: a practical stack language', 'url': 'http://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html', 'canonicalUrl': 'http://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html', 'homepageUrl': 'http://factor-language.blogspot.com/', 'searchUrl': 'http://factor-language.blogspot.com/search', 'canonicalHomepageUrl': 'http://factor-language.blogspot.com/', 'blogspotFaviconUrl': 'http://factor-language.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en-US', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Factor: a practical stack language - RSS\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/17087850/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/2579054926441220099/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/591781cadcbb8744', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'item', 'postId': '2579054926441220099', 'pageName': 'A survey of domain-specific languages in Factor', 'pageTitle': 'Factor: a practical stack language: A survey of domain-specific languages in Factor'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'isResponsive': false, 'isAlternateRendering': false, 'isCustom': false}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'A survey of domain-specific languages in Factor', 'description': 'Factor has good support for implementing mini-languages as libraries. In this post I\x27ll describe the general techniques and look at some spe...', 'url': 'http://factor-language.blogspot.com/2009/09/survey-of-domain-specific-languages-in.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 2579054926441220099}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1333563935-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/3268905543-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed2', 'sidebar', document.getElementById('Feed2'), {'title': 'Recent Factor Commits', 'showItemDate': true, 'showItemAuthor': true, 'feedUrl': 'http://gitweb.factorcode.org/gitweb.cgi?p\x3dfactor.git;a\x3datom', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed1', 'sidebar', document.getElementById('Feed1'), {'title': 'Planet Factor', 'showItemDate': true, 'showItemAuthor': false, 'feedUrl': 'http://planet.factorcode.org/feed.xml', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList1', 'sidebar', document.getElementById('LinkList1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>

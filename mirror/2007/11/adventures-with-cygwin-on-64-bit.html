@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html dir='ltr'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/55013136-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='../../favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='adventures-with-cygwin-on-64-bit.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Factor: a practical stack language - RSS" href="http://factor-language.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="https://www.blogger.com/feeds/17087850/posts/default" />
+
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/2935684339489864699/comments/default" />
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<meta content='http://factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html' property='og:url'/>
+<meta content='Adventures with Cygwin on 64-bit Windows' property='og:title'/>
+<meta content='Warning : this is a rant. If you don&#39;t like rants, skip this post and look at my previous post, which is a lot more substantial than this on...' property='og:description'/>
+<title>Factor: a practical stack language: Adventures with Cygwin on 64-bit Windows</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Stretch Denim Light
+Designer: Darren Delaye
+URL:      www.DarrenDelaye.com
+Date:     11 Jul 2006
+-----------------------------------------------
+*/
+body {
+background: #ffffff;
+margin: 0;
+padding: 0px;
+font: x-small Verdana, Arial;
+text-align: center;
+color: #333333;
+font-size/* */:/**/small;
+font-size: /**/small;
+}
+a:link {
+color: #336699;
+}
+a:visited {
+color: #336699;
+}
+a img {
+border-width: 0;
+}
+#outer-wrapper {
+font: normal normal 100% Verdana, Arial, Sans-serif;;
+}
+/* Header
+----------------------------------------------- */
+#header-wrapper {
+margin:0;
+padding: 0;
+background-color: #c4e1ff;
+text-align: left;
+}
+#header {
+margin: 0 2%;
+background-color: #c4e1ff;
+color: #003366;
+padding: 0;
+font: normal normal 210% Verdana, Arial, Sans-serif;;
+position: relative;
+}
+h1.title {
+padding-top: 38px;
+margin: 0 1% .1em;
+line-height: 1.2em;
+font-size: 100%;
+}
+h1.title a, h1.title a:visited {
+color: #003366;
+text-decoration: none;
+}
+#header .description {
+display: block;
+margin: 0 1%;
+padding: 0 0 40px;
+line-height: 1.4em;
+font-size: 50%;
+}
+/* Content
+----------------------------------------------- */
+.clear {
+clear: both;
+}
+#content-wrapper {
+margin: 0 2%;
+padding: 0 0 15px;
+text-align: left;
+background-color: #ffffff;
+border: 1px solid #ffffff;
+border-top: 0;
+}
+#main-wrapper {
+margin-left: 1%;
+width: 64%;
+float: left;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+margin-right: 1%;
+width: 29%;
+float: right;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2, h3 {
+margin: 0;
+}
+/* Posts
+----------------------------------------------- */
+.date-header {
+margin: 1.5em 0 0;
+font-weight: normal;
+color: #999999;
+font-size: 100%;
+}
+.post {
+margin: 0 0 1.5em;
+padding-bottom: 1.5em;
+}
+.post-title {
+margin: 0;
+padding: 0;
+font-size: 125%;
+font-weight: bold;
+line-height: 1.1em;
+}
+.post-title a, .post-title a:visited, .post-title strong {
+text-decoration: none;
+color: #333333;
+font-weight: bold;
+}
+.post div {
+margin: 0 0 .75em;
+line-height: 1.3em;
+}
+.post-footer {
+margin: -.25em 0 0;
+color: #333333;
+font-size: 87%;
+}
+.post-footer .span {
+margin-right: .3em;
+}
+.post img, table.tr-caption-container {
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin: 1em 20px;
+}
+.post blockquote p {
+margin: .75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin: 1em 0;
+color: #999999;
+}
+#comments h4 strong {
+font-size: 110%;
+}
+#comments-block {
+margin: 1em 0 1.5em;
+line-height: 1.3em;
+}
+#comments-block dt {
+margin: .5em 0;
+}
+#comments-block dd {
+margin: .25em 0 0;
+}
+#comments-block dd.comment-footer {
+margin: -.25em 0 2em;
+line-height: 1.4em;
+font-size: 78%;
+}
+#comments-block dd p {
+margin: 0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar h2 {
+margin: 1.6em 0 .5em;
+padding: 4px 5px;
+background-color: #ffffff;
+font-size: 100%;
+color: #333333;
+}
+.sidebar ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.sidebar li {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: .5em;
+padding-left: 15px;
+text-indent: -15px;
+line-height: 1.5em;
+}
+.sidebar {
+color: #333333;
+line-height:1.3em;
+}
+.sidebar .widget {
+margin-bottom: 1em;
+}
+.sidebar .widget-content {
+margin: 0 5px;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font-weight: bold;
+line-height: 1.6em;
+font-size: 78%;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+clear: both;
+text-align: center;
+color: #333333;
+}
+#footer .widget {
+margin:.5em;
+padding-top: 20px;
+font-size: 85%;
+line-height: 1.5em;
+text-align: left;
+}
+/** Page structure tweaks for layout editor wireframe */
+body#layout #header {
+width: 750px;
+}
+
+--></style>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' rel='stylesheet'/></noscript>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body>
+<div class='navbar section' id='navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d17087850\x26blogName\x3dFactor:+a+practical+stack+language\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dBLUE\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://factor-language.blogspot.com/search\x26blogLocale\x3den_US\x26v\x3d2\x26homepageUrl\x3dhttp://factor-language.blogspot.com/\x26targetPostID\x3d2935684339489864699\x26blogPostOrPageUrl\x3dhttp://factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html\x26vt\x3d3600515463101029457',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id='outer-wrapper'><div id='wrap2'>
+<!-- skip links for text browsers -->
+<span id='skiplinks' style='display:none;'>
+<a href='adventures-with-cygwin-on-64-bit.html#main'>skip to main </a> |
+      <a href='adventures-with-cygwin-on-64-bit.html#sidebar'>skip to sidebar</a>
+</span>
+<div id='header-wrapper'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='../../index.html'>
+Factor: a practical stack language
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span><a href="http://factorcode.org/slava">Slava Pestov</a>'s weblog, primarily about <a href="http://factorcode.org">Factor</a>.</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id='content-wrapper'>
+<div id='crosscol-wrapper' style='text-align:center'>
+<div class='crosscol no-items section' id='crosscol'></div>
+</div>
+<div id='main-wrapper'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Friday, November 23, 2007</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='2935684339489864699' itemprop='postId'/>
+<a name='2935684339489864699'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+Adventures with Cygwin on 64-bit Windows
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-2935684339489864699' itemprop='description articleBody'>
+<b>Warning</b>: this is a rant. If you don't like rants, skip this post and look at my previous post, which is a lot more substantial than this one.<br /><br />So at <a href="http://useless-factor.blogspot.com/2007/11/factorcon-mn-2007-post-mortem.html">FactorCon 2007</a>, Doug and I experimented with getting Factor going on 64-bit Windows XP. The Factor compiler and FFI is ready to go, and it should be an easy port in theory, but the only problem is that we have to compile the VM (which is written in C). And this isn't trivial at all. Here is what we found:<br /><ul><li>First of all, Factor compiled with 32-bit Cygwin runs in 32-bit mode under "WoW emulation", however certain features don't work, for example UDP support. This is a bug in Windows and there's nothing we can do; a C testcase demonstrates the problem quite clearly. The problem is not present in 64-bit mode.</li><li>Cygwin also ships with broken implementations of certain C runtime functions, such as <code>_osf_openhandle()</code>. We have a <a href="http://paste.lisp.org/display/51305">testcase which fails in Cygwin and works in Visual Studio</a> (I reported the bug to the Cygwin guys.)</li><li>32-bit Mingw is highly unstable on 64-bit Windows -- you need an obscure workaround just to get it to run at all -- however it does not suffer from the <code>_osf_openhandle()</code> bug. The UDP sockets problem is still there since its a Windows bug, not specific to Cygwin or Factor.</li><li>There's a 64-bit Mingw port in progress, however we were unable to get it to work. Using optimization flags crashes gcc; without optimization flags gcc produces a non-functioning binary, and PE Explorer claims this binary is corrupt.</li><li>There are no plans at all to port Cygwin to 64-bit Windows.</li></ul><br />So the executive summary is that we're pretty much fucked when it comes to 64-bit Windows support, and all because I made a serious miscalculation and used GNU C extensions in the VM. I should have stuck with semi-portable C and then we could use Visual Studio...<br /><br />If we could compile the Factor VM as a 64-bit binary, then porting the rest of Factor would be trivial; after all, we support Windows, and we support AMD64, and we're awesome programmers. However, the GNU hippies fucked up once again and failed to deliver -- AMD64 chips have been out since 2004 and Windows XP x64 edition was released at the start of 2005, but at the end of 2007, <b>more than two years later</b>, there is still no stable 64-bit GNU toolchain available for Windows.<br /><br />I realize that this is all just people's hobbies, they work on Cygwin/Mingw in their spare time, I shouldn't expect timely releases or stability of any sort, etc. But hell, if you GNU people want "world domination", if you want us to stop using Mac OS X, Windows and other commercial software, if you want market share greater than 0.00001%, if you want people to take GNU and Linux seriously, <b>get to work and fix your shit.</b> Thank you.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html' itemprop='url'/>
+<a class='timestamp-link' href='adventures-with-cygwin-on-64-bit.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2007-11-23T17:01:00-05:00'>5:01 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=2935684339489864699' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=2935684339489864699&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2935684339489864699&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2935684339489864699&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2935684339489864699&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2935684339489864699&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2935684339489864699&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+<div class='comments' id='comments'>
+<a name='comments'></a>
+<h4>9 comments:</h4>
+<div id='Blog1_comments-block-wrapper'>
+<dl class='avatar-comment-indent' id='comments-block'>
+<dt class='comment-author ' id='c1833349753043379552'>
+<a name='c1833349753043379552'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-1833349753043379552'>
+<p>
+Slava-<BR/><BR/>On behalf of the Cygwin folk (I am not one), let me say "Fuck You".<BR/><BR/>There, now that that's out of the way, I'll elaborate. Cygwin has made my life on Windows platforms sooo much more pleasant than it would otherwise have been, I have nothing but gratitude for them. <BR/><BR/>Concern about the availability of cygwin is one reason I went and bought my latest Win machine <B>before</B> Vista came out. And I guess I'm not going to go 64 bit any time soon either. <BR/><BR/>You made the decision to go with windows, and we all know that windows charges ahead before they really should. Heck, they've been selling an OS without a decent shell or set of GNU utilities for years. If you really want cygwin to go 64bit, you've got three choices that I can see - 1) Do it yourself (okay, I know that's impractical), 2) Pay someone to do it, or 3) Contact your vendor (msoft), and ask what they will do the help bring it about.<BR/><BR/>[Wasn't msoft providing a set of Unix tool a while ago (2-3 years)? Maybe they're providing them for 64bit as well?]<BR/><BR/>I'm sorry to be so nasty, but I don't like seeing the cygwin folk treated so rudely. They've done too much for me in the past.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html?showComment=1195897680000#c1833349753043379552' title='comment permalink'>
+4:48 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=1833349753043379552' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c8596515372565622136'>
+<a name='c8596515372565622136'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-8596515372565622136'>
+<p>
+Or you could get your fat ass from the couch and scratch your needs with your own hand - and get involved in those GNU world domination plans :)
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html?showComment=1195901040000#c8596515372565622136' title='comment permalink'>
+5:44 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=8596515372565622136' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c121746066268127726'>
+<a name='c121746066268127726'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-121746066268127726'>
+<p>
+But isn't "not creating a usable compiler for 64-bit windows" actually <B>helping</B> their goal of "wanting you to stop using Mac OS X, Windows and other commercial software"?
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html?showComment=1195922160000#c121746066268127726' title='comment permalink'>
+11:36 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=121746066268127726' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author blog-author' id='c5046388787301911296'>
+<a name='c5046388787301911296'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/02768382790667979877" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-5046388787301911296-02768382790667979877"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Slava Pestov">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/02768382790667979877' rel='nofollow'>Slava Pestov</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-5046388787301911296'>
+<p>
+to the first anonymous: "fuck you" is not an appropriate thing to say to your users. I'm glad you're not a cygwin developer, because if a cygwin developer told his users "fuck you" then many people would re-evaluate whether they want to use cygwin or not. I don't care about the GNU command line or anything like that. I spend most of my screen time switching between jEdit and Factor. jEdit already has a Console plugin which provides a very powerful command line. I do care about the GNU compiler toolchain, though.<BR/><BR/>to the last anonymous: the lack of a GNU toolchain for 64-bit Windows won't influence me one way or another to use or not to use Linux. I use Linux for server tasks and don't see myself switching to anything else there.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html?showComment=1195947000000#c5046388787301911296' title='comment permalink'>
+6:30 PM
+</a>
+<span class='item-control blog-admin pid-561774689'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=5046388787301911296' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author blog-author' id='c7701642203972222928'>
+<a name='c7701642203972222928'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/02768382790667979877" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-7701642203972222928-02768382790667979877"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Slava Pestov">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/02768382790667979877' rel='nofollow'>Slava Pestov</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-7701642203972222928'>
+<p>
+Also, FWIW, cygwin works on vista.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html?showComment=1195947300000#c7701642203972222928' title='comment permalink'>
+6:35 PM
+</a>
+<span class='item-control blog-admin pid-561774689'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=7701642203972222928' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c1364918903637562532'>
+<a name='c1364918903637562532'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-1364918903637562532'>
+<p>
+Slava I agree with you from a technical, and consumer perspective.  I purchased a 64bit PC with 4GB ram, a 4850 video card, and a 64bit OS thinking that the world had to be ready in 2008.  Unfortunately 64bit users don't have native Flash in Linux 64, and Win 64 users don't have native Cygwin.  Sure there are workarounds in both cases, but if I could pay for a native 64bit version of either product I would.  Yeah, sorry some of us can't code.  Its sad that games developers are taking 64bit more seriously than other developers.  I certainly lack the skill to develop it.  Thanks for writing this article and shedding light on this annoyance.<BR/><BR/>BA<BR/>Cleveland, Ohio
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html?showComment=1217465580000#c1364918903637562532' title='comment permalink'>
+8:53 PM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=1364918903637562532' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c2688794916227907395'>
+<a name='c2688794916227907395'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-2688794916227907395'>
+<p>
+The way it works is this: you notice gcc, etc.. don't work nice on 64bit Windows, you are a kick ass programmer and you need it to work, so you fix it and send them patches, they integrate it... then I enjoy ;-)<BR/><BR/>And you get to learn something about compiler guts on the way.  This is the development model.  Though the easier path is probably to take out the GNU extensions and build with VC.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html?showComment=1218828900000#c2688794916227907395' title='comment permalink'>
+3:35 PM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=2688794916227907395' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c2817713724567662655'>
+<a name='c2817713724567662655'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-2817713724567662655'>
+<p>
+Agree on the Cygwin/x64-vista thing, quite annoying.<BR/><BR/>There are lots of other Cygwin bugs - as soon as you start running multiple Cygwin processes in parallel, it completely breaks down, for example.  Especially bigger apps such as Bash will fail completely within a very short time.  That's also been the situation for years.<BR/><BR/>The most problematic issue surrounding Cygwin, in my opinion, is that there's no bug tracker for the product, so the issues linger on for years.  The main developers are handling bug reports on the mailing list, but in an extremely arrogant and derisive way, effectively scaring off anyone who wants to help find bugs.  Ultimately this results in loads of stuff going unfixed for years.  Only if you're willing to wade through a gazillion emails worth of mailing list postings are you going to know that the product is ripe with unfixed issues.<BR/><BR/>Anyway, a solution that I did not like much to begin with (not open source), but which has turned out to work just GREAT for us is to use MKS Toolkit.  It's payware, but it's infinitely better than Cygwin.  It has a single outstanding bug which annoys me like hell, and product support is just about as bad as for Cygwin, but at least the thing works 99.9% of the time.  Well worth a try!<BR/><BR/>It comes with a GNU toolchain, too, AFAIK.<BR/><BR/>Best of luck with the project.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html?showComment=1227554940000#c2817713724567662655' title='comment permalink'>
+2:29 PM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=2817713724567662655' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c6565940870127847975'>
+<a name='c6565940870127847975'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-6565940870127847975'>
+<p>
+To the above poster: I'm not sure what your problem is with bash and multiple processes in Cygwin, but I've had a bash instance running in an XTerm on my Windows desktop for years (for months at a time without a restart) and it's still doing just fine.<BR/><BR/>I do a lot of serious work in Cygwin, including building and maintaining a large software system made up of hundreds of small utilities, whose primary target platform is Linux.  Everything works great on Cygwin for me, always has.  People over here can't stop raving about it.<BR/><BR/>That said, I couldn't agree more about the lack of bug-tracking and general grumpiness.  That is a peeve.  Meh, you get what you pay for.<BR/><BR/>It would be fun to start a 64-bit project (maybe a fork?) but we'd a need a fair number of enthusiastic, knowledgeable people to get started.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html?showComment=1236709920000#c6565940870127847975' title='comment permalink'>
+2:32 PM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=6565940870127847975' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+</dl>
+</div>
+<p class='comment-footer'>
+<a href='https://www.blogger.com/comment.g?blogID=17087850&postID=2935684339489864699' onclick=''>Post a Comment</a>
+</p>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='process-launcher-parser-combinators-and.html' id='Blog1_blog-pager-newer-link' title='Newer Post'>Newer Post</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='deploying-stand-alone-applications-on.html' id='Blog1_blog-pager-older-link' title='Older Post'>Older Post</a>
+</span>
+<a class='home-link' href='../../index.html'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='post-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://factor-language.blogspot.com/feeds/2935684339489864699/comments/default' target='_blank' type='application/atom+xml'>Post Comments (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+<div id='sidebar-wrapper'>
+<div class='sidebar section' id='sidebar'><div class='widget BlogArchive' data-version='1' id='BlogArchive1'>
+<h2>Older Posts</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/index.html'>
+2010
+</a>
+<span class='post-count' dir='ltr'>(18)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/index.html'>
+2009
+</a>
+<span class='post-count' dir='ltr'>(35)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/index.html'>
+2008
+</a>
+<span class='post-count' dir='ltr'>(96)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(17)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../index.html'>
+2007
+</a>
+<span class='post-count' dir='ltr'>(141)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+<ul class='posts'>
+<li><a href='factor-091-benchmarks.html'>Factor 0.91 benchmarks</a></li>
+<li><a href='process-launcher-parser-combinators-and.html'>The process launcher, parser combinators, and /bin/sh</a></li>
+<li><a href='adventures-with-cygwin-on-64-bit.html'>Adventures with Cygwin on 64-bit Windows</a></li>
+<li><a href='deploying-stand-alone-applications-on.html'>Deploying stand-alone applications on Windows</a></li>
+<li><a href='converting-file-from-big-endian-to.html'>Converting a file from big endian to little endian...</a></li>
+<li><a href='cgi-support-in-factor-http-server.html'>CGI support in the Factor HTTP server</a></li>
+<li><a href='improved-process-launcher.html'>Improved process launcher</a></li>
+<li><a href='windows-ce-native-io.html'>Windows CE native I/O</a></li>
+<li><a href='network-clipboard-tool-written-in.html'>Network clipboard tool written in Factor</a></li>
+<li><a href='windows-ce-pocket-console-crash-when.html'>Windows CE Pocket Console crash when writing long ...</a></li>
+<li><a href='asus-eee-pc.html'>Asus Eee PC</a></li>
+<li><a href='lie-algebra-cohomology-and-cellphones.html'>Lie algebra cohomology and cellphones</a></li>
+<li><a href='problems-with-flushing-instruction.html'>Problems with flushing the instruction cache on No...</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(10)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(21)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/index.html'>
+2006
+</a>
+<span class='post-count' dir='ltr'>(207)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(30)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(25)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(22)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(26)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/index.html'>
+2005
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div><div class='widget Feed' data-version='1' id='Feed2'>
+<h2>Recent Factor Commits</h2>
+<div class='widget-content' id='Feed2_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://gitweb.factorcode.org/gitweb.cgi?p=factor.git;a=atom'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget Feed' data-version='1' id='Feed1'>
+<h2>Planet Factor</h2>
+<div class='widget-content' id='Feed1_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://planet.factorcode.org/feed.xml'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget LinkList' data-version='1' id='LinkList1'>
+<h2>Links</h2>
+<div class='widget-content'>
+<ul>
+<li><a href='http://twitter.com/slava_pestov'>@slava_pestov</a></li>
+<li><a href='http://factorcode.org/slava/'>My home page</a></li>
+<li><a href='http://factorcode.org/'>Factor programming language</a></li>
+<li><a href='http://concatenative.org/'>Concatenative language wiki</a></li>
+<li><a href='http://planet.factorcode.org/'>Planet Factor</a></li>
+</ul>
+<div class='clear'></div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class='clear'>&#160;</div>
+</div>
+<!-- end content-wrapper -->
+<div id='footer-wrapper'>
+<div class='footer no-items section' id='footer'></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/940443484-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY6_K8e5t7XFZHrfHCCv5uoJUnvmcQ:1693932978240';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d17087850','//factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html','17087850');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '17087850', 'title': 'Factor: a practical stack language', 'url': 'http://factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html', 'canonicalUrl': 'http://factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html', 'homepageUrl': 'http://factor-language.blogspot.com/', 'searchUrl': 'http://factor-language.blogspot.com/search', 'canonicalHomepageUrl': 'http://factor-language.blogspot.com/', 'blogspotFaviconUrl': 'http://factor-language.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en-US', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Factor: a practical stack language - RSS\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/17087850/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/2935684339489864699/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/591781cadcbb8744', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'item', 'postId': '2935684339489864699', 'pageName': 'Adventures with Cygwin on 64-bit Windows', 'pageTitle': 'Factor: a practical stack language: Adventures with Cygwin on 64-bit Windows'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'isResponsive': false, 'isAlternateRendering': false, 'isCustom': false}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Adventures with Cygwin on 64-bit Windows', 'description': 'Warning : this is a rant. If you don\x27t like rants, skip this post and look at my previous post, which is a lot more substantial than this on...', 'url': 'http://factor-language.blogspot.com/2007/11/adventures-with-cygwin-on-64-bit.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 2935684339489864699}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1333563935-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/3268905543-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed2', 'sidebar', document.getElementById('Feed2'), {'title': 'Recent Factor Commits', 'showItemDate': true, 'showItemAuthor': true, 'feedUrl': 'http://gitweb.factorcode.org/gitweb.cgi?p\x3dfactor.git;a\x3datom', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed1', 'sidebar', document.getElementById('Feed1'), {'title': 'Planet Factor', 'showItemDate': true, 'showItemAuthor': false, 'feedUrl': 'http://planet.factorcode.org/feed.xml', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList1', 'sidebar', document.getElementById('LinkList1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>

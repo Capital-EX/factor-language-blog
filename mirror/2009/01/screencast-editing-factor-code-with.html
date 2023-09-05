@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html dir='ltr'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/55013136-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='../../favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='screencast-editing-factor-code-with.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Factor: a practical stack language - RSS" href="http://factor-language.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="https://www.blogger.com/feeds/17087850/posts/default" />
+
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/5093740367740996661/comments/default" />
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<meta content='http://factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html' property='og:url'/>
+<meta content='Screencast: editing Factor code with Emacs and FUEL' property='og:title'/>
+<meta content='For the last few months, Jose A. Ortega Ruiz has been working on the Factor mode for Emacs, which was originally written by Eduardo Cavazos....' property='og:description'/>
+<title>Factor: a practical stack language: Screencast: editing Factor code with Emacs and FUEL</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Stretch Denim Light
+Designer: Darren Delaye
+URL:      www.DarrenDelaye.com
+Date:     11 Jul 2006
+-----------------------------------------------
+*/
+body {
+background: #ffffff;
+margin: 0;
+padding: 0px;
+font: x-small Verdana, Arial;
+text-align: center;
+color: #333333;
+font-size/* */:/**/small;
+font-size: /**/small;
+}
+a:link {
+color: #336699;
+}
+a:visited {
+color: #336699;
+}
+a img {
+border-width: 0;
+}
+#outer-wrapper {
+font: normal normal 100% Verdana, Arial, Sans-serif;;
+}
+/* Header
+----------------------------------------------- */
+#header-wrapper {
+margin:0;
+padding: 0;
+background-color: #c4e1ff;
+text-align: left;
+}
+#header {
+margin: 0 2%;
+background-color: #c4e1ff;
+color: #003366;
+padding: 0;
+font: normal normal 210% Verdana, Arial, Sans-serif;;
+position: relative;
+}
+h1.title {
+padding-top: 38px;
+margin: 0 1% .1em;
+line-height: 1.2em;
+font-size: 100%;
+}
+h1.title a, h1.title a:visited {
+color: #003366;
+text-decoration: none;
+}
+#header .description {
+display: block;
+margin: 0 1%;
+padding: 0 0 40px;
+line-height: 1.4em;
+font-size: 50%;
+}
+/* Content
+----------------------------------------------- */
+.clear {
+clear: both;
+}
+#content-wrapper {
+margin: 0 2%;
+padding: 0 0 15px;
+text-align: left;
+background-color: #ffffff;
+border: 1px solid #ffffff;
+border-top: 0;
+}
+#main-wrapper {
+margin-left: 1%;
+width: 64%;
+float: left;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+margin-right: 1%;
+width: 29%;
+float: right;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2, h3 {
+margin: 0;
+}
+/* Posts
+----------------------------------------------- */
+.date-header {
+margin: 1.5em 0 0;
+font-weight: normal;
+color: #999999;
+font-size: 100%;
+}
+.post {
+margin: 0 0 1.5em;
+padding-bottom: 1.5em;
+}
+.post-title {
+margin: 0;
+padding: 0;
+font-size: 125%;
+font-weight: bold;
+line-height: 1.1em;
+}
+.post-title a, .post-title a:visited, .post-title strong {
+text-decoration: none;
+color: #333333;
+font-weight: bold;
+}
+.post div {
+margin: 0 0 .75em;
+line-height: 1.3em;
+}
+.post-footer {
+margin: -.25em 0 0;
+color: #333333;
+font-size: 87%;
+}
+.post-footer .span {
+margin-right: .3em;
+}
+.post img, table.tr-caption-container {
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin: 1em 20px;
+}
+.post blockquote p {
+margin: .75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin: 1em 0;
+color: #999999;
+}
+#comments h4 strong {
+font-size: 110%;
+}
+#comments-block {
+margin: 1em 0 1.5em;
+line-height: 1.3em;
+}
+#comments-block dt {
+margin: .5em 0;
+}
+#comments-block dd {
+margin: .25em 0 0;
+}
+#comments-block dd.comment-footer {
+margin: -.25em 0 2em;
+line-height: 1.4em;
+font-size: 78%;
+}
+#comments-block dd p {
+margin: 0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar h2 {
+margin: 1.6em 0 .5em;
+padding: 4px 5px;
+background-color: #ffffff;
+font-size: 100%;
+color: #333333;
+}
+.sidebar ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.sidebar li {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: .5em;
+padding-left: 15px;
+text-indent: -15px;
+line-height: 1.5em;
+}
+.sidebar {
+color: #333333;
+line-height:1.3em;
+}
+.sidebar .widget {
+margin-bottom: 1em;
+}
+.sidebar .widget-content {
+margin: 0 5px;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font-weight: bold;
+line-height: 1.6em;
+font-size: 78%;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+clear: both;
+text-align: center;
+color: #333333;
+}
+#footer .widget {
+margin:.5em;
+padding-top: 20px;
+font-size: 85%;
+line-height: 1.5em;
+text-align: left;
+}
+/** Page structure tweaks for layout editor wireframe */
+body#layout #header {
+width: 750px;
+}
+
+--></style>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' rel='stylesheet'/></noscript>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body>
+<div class='navbar section' id='navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d17087850\x26blogName\x3dFactor:+a+practical+stack+language\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dBLUE\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://factor-language.blogspot.com/search\x26blogLocale\x3den_US\x26v\x3d2\x26homepageUrl\x3dhttp://factor-language.blogspot.com/\x26targetPostID\x3d5093740367740996661\x26blogPostOrPageUrl\x3dhttp://factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html\x26vt\x3d6588238405286265597',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id='outer-wrapper'><div id='wrap2'>
+<!-- skip links for text browsers -->
+<span id='skiplinks' style='display:none;'>
+<a href='screencast-editing-factor-code-with.html#main'>skip to main </a> |
+      <a href='screencast-editing-factor-code-with.html#sidebar'>skip to sidebar</a>
+</span>
+<div id='header-wrapper'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='../../index.html'>
+Factor: a practical stack language
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span><a href="http://factorcode.org/slava">Slava Pestov</a>'s weblog, primarily about <a href="http://factorcode.org">Factor</a>.</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id='content-wrapper'>
+<div id='crosscol-wrapper' style='text-align:center'>
+<div class='crosscol no-items section' id='crosscol'></div>
+</div>
+<div id='main-wrapper'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Sunday, January 11, 2009</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='5093740367740996661' itemprop='postId'/>
+<a name='5093740367740996661'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+Screencast: editing Factor code with Emacs and FUEL
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-5093740367740996661' itemprop='description articleBody'>
+For the last few months, Jose A. Ortega Ruiz has been working on the Factor mode for Emacs, which was originally written by Eduardo Cavazos. Jose has extended the mode considerably, and renamed it to FUEL, "Factor's Ultimate Emacs Library". FUEL extends Eduardo's Factor mode with features inspired by <a href="http://common-lisp.net/project/slime/">SLIME</a>. Among them, we have:<br /><ul><li>Syntax highlighting, auto indent, s-expression navigation</li><li>Word completion</li><li>Jumping to definitions</li><li>Listing word usages</li><li>Some refactoring commands: extract word and extract vocab</li><li>Lots more; see the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=misc/fuel/README;h=f722b18598f3d8b39b7b4791f0c9bfcb89e6350a;hb=HEAD">documentation</a></ul>Some of FUEL's features duplicate functionality found in the Factor UI, but really, they're complementary; the backend code is the same (it's all written in Factor, and FUEL interogates a running Factor instance using reflection APIs).<br /><br />I decided to record a screencast to demonstrate some of the more interesting capabilities offered by FUEL. You can watch it at <a href="http://blip.tv/file/1658806">factor.blip.tv</a>. Make sure to full-screen it so you can read the text on my screen.<br /><br />Formerly I would use <a href="http://jedit.org">jEdit</a> to edit Factor code. Once FUEL started to become more mature, I decided to bite the bullet and learn Emacs. So indeed, after writing my own text editor, and using it for almost 11 years, I've decided to switch, because of FUEL. That's how compelling FUEL is! FUEL's <code>M-.</code> feature, which jumps to the word at the caret, and its automatic display of stack effects in the status bar, are huge productivity boosters in themselves, but FUEL offers much more than that.<br /><br />jEdit used to have something like FUEL, in the form of the now-obsolete <a href="http://factorcode.org/jedit/">jEdit Factor plugin</a>. I could have continued maintaining this plugin, but really, I don't want to run any Java applications on my computer, if possible. I'm disappointed by Sun's latest antics (abandoning Swing for the last 7 years or so; bundling Yahoo and MSN adware with the Windows JRE), and Apple's half-hearted support for Java (really it's Sun's fault; why don't they develop the Mac OS X JRE?). Now that I've switched to Emacs and FUEL for editing Factor code, I can boycott Java entirely and never run a Java application again.<br /><br />Of course, eventually I want to write a syntax-aware editor for Factor, in Factor. Until then, FUEL provides an adequate approximation.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html' itemprop='url'/>
+<a class='timestamp-link' href='screencast-editing-factor-code-with.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2009-01-11T22:52:00-05:00'>10:52 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=5093740367740996661' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=5093740367740996661&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5093740367740996661&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5093740367740996661&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5093740367740996661&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5093740367740996661&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5093740367740996661&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+<div class='comments' id='comments'>
+<a name='comments'></a>
+<h4>9 comments:</h4>
+<div id='Blog1_comments-block-wrapper'>
+<dl class='avatar-comment-indent' id='comments-block'>
+<dt class='comment-author ' id='c1241562883003198459'>
+<a name='c1241562883003198459'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/13637191794150667952" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-1241562883003198459-13637191794150667952"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="ebb">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/13637191794150667952' rel='nofollow'>ebb</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-1241562883003198459'>
+<p>
+FUEL looks awesome.  Thanks for the demo.<BR/><BR/>Here's an emacs tip for you:<BR/>C-h C-v ring-bell-function
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html?showComment=1231739580000#c1241562883003198459' title='comment permalink'>
+12:53 AM
+</a>
+<span class='item-control blog-admin pid-1548154925'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=1241562883003198459' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c4644930787575206069'>
+<a name='c4644930787575206069'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-4644930787575206069'>
+<p>
+Thanks for taking the time to show off FUEL. It definitely has fueled my interest to learn factor. With jEdit given the boot, the Slava-fan and the Emacs-fan in me can co-exist peacefully :D<BR/><BR/>As for Factor, I wish it would enter the shootout as I expect it to take up a spot near SBCL. I also expect it to win the code-size contest coz I haven't seen anything more compact (and at times equally mind numbing).<BR/><BR/>Cheers!
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html?showComment=1231754160000#c4644930787575206069' title='comment permalink'>
+4:56 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=4644930787575206069' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c2456424876889747852'>
+<a name='c2456424876889747852'></a>
+<div class="avatar-image-container vcard"><span dir="ltr"><a href="https://www.blogger.com/profile/16569074120665954195" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-2456424876889747852-16569074120665954195"><img src="https://resources.blogblog.com/img/blank.gif" width="35" height="35" class="delayLoad" style="display: none;" longdesc="//blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhNZxT7xLopTkrPO0OxV9J_TMPfrsL2jLq0DhwmLTdUS_OBg__Hnt7eeyGodRvMZcUpoWA7RU2X81L2ipuLn97AAHytt7pX4PJlks22Ti2slQ5SsmWJaLxhOpkPbn7Uqw/s45-c/normal_picture_1.jpg" alt="" title="Tarun Elankath">
+
+<noscript><img src="http://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhNZxT7xLopTkrPO0OxV9J_TMPfrsL2jLq0DhwmLTdUS_OBg__Hnt7eeyGodRvMZcUpoWA7RU2X81L2ipuLn97AAHytt7pX4PJlks22Ti2slQ5SsmWJaLxhOpkPbn7Uqw/s45-c/normal_picture_1.jpg" width="35" height="35" class="photo" alt=""></noscript></a></span></div>
+<a href='https://www.blogger.com/profile/16569074120665954195' rel='nofollow'>Tarun Elankath</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-2456424876889747852'>
+<p>
+Hi Slava,<BR/><BR/>I was one of your JEdit users. I only recently stumbled across Factor. Will you be writing a book on this anytime soon? Somehow, I couldn't wrap my head around the language yet. (some of us poor mortals need hand holding)
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html?showComment=1231793940000#c2456424876889747852' title='comment permalink'>
+3:59 PM
+</a>
+<span class='item-control blog-admin pid-508459192'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=2456424876889747852' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c8604215700108027916'>
+<a name='c8604215700108027916'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-8604215700108027916'>
+<p>
+Slava, you sound very bitter about Java indeed - but I guess sooner or later somebody will implement Factor on the JVM. All cool languages end up with JVM implementations - JRuby, Jython, a couple of lisps and schemes, Clojure, Sacala etc. If this trend continues soon there will be JmallTalk and Jactor...And if no Jactor appears it just means that Factor ain't cool enough :-)
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html?showComment=1231801380000#c8604215700108027916' title='comment permalink'>
+6:03 PM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=8604215700108027916' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c6716486861307025421'>
+<a name='c6716486861307025421'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-6716486861307025421'>
+<p>
+I agree that fuel is amazing, and decreases the factor barrier to entry, at least for emacs users.<BR/><BR/>My two wish-list items for fuel:<BR/><BR/>1) Can the command key-strokes be simplified? It seems that the slime commands are generally simpler. See<BR/>http://www.pchristensen.com/slimecommands.pdf<BR/><BR/>2) I'd love to have the slime command "M-," which would "return from definition to examined symbol". This would be kind of a reverse "M-." . Then M-. could open the definition in the current window, greatly reducing the window clutter.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html?showComment=1231806420000#c6716486861307025421' title='comment permalink'>
+7:27 PM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=6716486861307025421' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c3460380459935229860'>
+<a name='c3460380459935229860'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-3460380459935229860'>
+<p>
+The HolonForth interface is pretty simplistic compared to the Factor UI, and I don't think it has much to offer in new features, but I'll just throw it in to see if it has any features of merit for Factor.<BR/><BR/>http://www.holonforth.com/new/holon.html<BR/><BR/>I really don't see anything new, but the way the GUI is set up may be of interest.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html?showComment=1232041140000#c3460380459935229860' title='comment permalink'>
+12:39 PM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=3460380459935229860' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c1106448146247444218'>
+<a name='c1106448146247444218'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/06878304110114458885" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-1106448146247444218-06878304110114458885"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Unknown">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/06878304110114458885' rel='nofollow'>Unknown</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-1106448146247444218'>
+<p>
+The screencast is very nice, what tool did you use to record it ?<BR/><BR/>It would have been a little bit better if you had uses KeyCastr as well, so we could see what you were typing! Cheers
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html?showComment=1232841120000#c1106448146247444218' title='comment permalink'>
+6:52 PM
+</a>
+<span class='item-control blog-admin pid-624680105'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=1106448146247444218' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c7146931909534541202'>
+<a name='c7146931909534541202'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-7146931909534541202'>
+<p>
+I think <a href="http://www.wlkgame.com" rel="nofollow">wow gold</a> and <a href="http://www.wotlkgolds.com/wow-gold.asp" rel="nofollow">world of warcraft gold</a>
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html?showComment=1247635138301#c7146931909534541202' title='comment permalink'>
+1:18 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=7146931909534541202' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c3004010168835571984'>
+<a name='c3004010168835571984'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="G-G">
+
+</span></div>
+G-G
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-3004010168835571984'>
+<p>
+&quot;So indeed, after writing my own text editor, and using it for almost 11 years, I&#39;ve decided to switch, because of FUEL. That&#39;s how compelling FUEL is! FUEL&#39;s M-. feature, which jumps to the word at the caret, and its automatic display of stack effects in the status bar, are huge productivity boosters in themselves, but FUEL offers much more than that.&quot;<br /><br />Just wait until you find out about the Org Mode. :-)
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html?showComment=1268087616006#c3004010168835571984' title='comment permalink'>
+5:33 PM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=3004010168835571984' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+</dl>
+</div>
+<p class='comment-footer'>
+<a href='https://www.blogger.com/comment.g?blogID=17087850&postID=5093740367740996661' onclick=''>Post a Comment</a>
+</p>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='bug-in-intel-video-driver-version-24.html' id='Blog1_blog-pager-newer-link' title='Newer Post'>Newer Post</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='java-7-too-little-too-late.html' id='Blog1_blog-pager-older-link' title='Older Post'>Older Post</a>
+</span>
+<a class='home-link' href='../../index.html'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='post-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://factor-language.blogspot.com/feeds/5093740367740996661/comments/default' target='_blank' type='application/atom+xml'>Post Comments (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+<div id='sidebar-wrapper'>
+<div class='sidebar section' id='sidebar'><div class='widget BlogArchive' data-version='1' id='BlogArchive1'>
+<h2>Older Posts</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/index.html'>
+2010
+</a>
+<span class='post-count' dir='ltr'>(18)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../index.html'>
+2009
+</a>
+<span class='post-count' dir='ltr'>(35)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+<ul class='posts'>
+<li><a href='rendering-unicode-text-to-opengl.html'>Rendering Unicode text to an OpenGL texture using ...</a></li>
+<li><a href='unicode-font-rendering-in-factor-ui-on.html'>Unicode font rendering in the Factor UI on Mac OS X</a></li>
+<li><a href='bug-in-intel-video-driver-version-24.html'>Bug in Intel video driver version 2.4 for Linux fi...</a></li>
+<li><a href='screencast-editing-factor-code-with.html'>Screencast: editing Factor code with Emacs and FUEL</a></li>
+<li><a href='java-7-too-little-too-late.html'>Java 7: too little, too late</a></li>
+<li><a href='advantages-of-concatenative-and-stack.html'>Advantages of concatenative and stack-based languages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/index.html'>
+2008
+</a>
+<span class='post-count' dir='ltr'>(96)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(17)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/index.html'>
+2007
+</a>
+<span class='post-count' dir='ltr'>(141)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(10)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(21)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/index.html'>
+2006
+</a>
+<span class='post-count' dir='ltr'>(207)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(30)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(25)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(22)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(26)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/index.html'>
+2005
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div><div class='widget Feed' data-version='1' id='Feed2'>
+<h2>Recent Factor Commits</h2>
+<div class='widget-content' id='Feed2_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://gitweb.factorcode.org/gitweb.cgi?p=factor.git;a=atom'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget Feed' data-version='1' id='Feed1'>
+<h2>Planet Factor</h2>
+<div class='widget-content' id='Feed1_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://planet.factorcode.org/feed.xml'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget LinkList' data-version='1' id='LinkList1'>
+<h2>Links</h2>
+<div class='widget-content'>
+<ul>
+<li><a href='http://twitter.com/slava_pestov'>@slava_pestov</a></li>
+<li><a href='http://factorcode.org/slava/'>My home page</a></li>
+<li><a href='http://factorcode.org/'>Factor programming language</a></li>
+<li><a href='http://concatenative.org/'>Concatenative language wiki</a></li>
+<li><a href='http://planet.factorcode.org/'>Planet Factor</a></li>
+</ul>
+<div class='clear'></div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class='clear'>&#160;</div>
+</div>
+<!-- end content-wrapper -->
+<div id='footer-wrapper'>
+<div class='footer no-items section' id='footer'></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/940443484-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY5qJ_5w4OigIPsjADXkNYNAwtdEhg:1693932900241';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d17087850','//factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html','17087850');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '17087850', 'title': 'Factor: a practical stack language', 'url': 'http://factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html', 'canonicalUrl': 'http://factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html', 'homepageUrl': 'http://factor-language.blogspot.com/', 'searchUrl': 'http://factor-language.blogspot.com/search', 'canonicalHomepageUrl': 'http://factor-language.blogspot.com/', 'blogspotFaviconUrl': 'http://factor-language.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en-US', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Factor: a practical stack language - RSS\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/17087850/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/5093740367740996661/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/591781cadcbb8744', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'item', 'postId': '5093740367740996661', 'pageName': 'Screencast: editing Factor code with Emacs and FUEL', 'pageTitle': 'Factor: a practical stack language: Screencast: editing Factor code with Emacs and FUEL'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'isResponsive': false, 'isAlternateRendering': false, 'isCustom': false}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Screencast: editing Factor code with Emacs and FUEL', 'description': 'For the last few months, Jose A. Ortega Ruiz has been working on the Factor mode for Emacs, which was originally written by Eduardo Cavazos....', 'url': 'http://factor-language.blogspot.com/2009/01/screencast-editing-factor-code-with.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 5093740367740996661}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1333563935-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/3268905543-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed2', 'sidebar', document.getElementById('Feed2'), {'title': 'Recent Factor Commits', 'showItemDate': true, 'showItemAuthor': true, 'feedUrl': 'http://gitweb.factorcode.org/gitweb.cgi?p\x3dfactor.git;a\x3datom', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed1', 'sidebar', document.getElementById('Feed1'), {'title': 'Planet Factor', 'showItemDate': true, 'showItemAuthor': false, 'feedUrl': 'http://planet.factorcode.org/feed.xml', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList1', 'sidebar', document.getElementById('LinkList1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>

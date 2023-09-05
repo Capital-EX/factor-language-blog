@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html dir='ltr'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/55013136-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='../../favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='index.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Factor: a practical stack language - RSS" href="http://factor-language.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="https://www.blogger.com/feeds/17087850/posts/default" />
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<meta content='http://factor-language.blogspot.com/2009/05/' property='og:url'/>
+<meta content='Factor: a practical stack language' property='og:title'/>
+<meta content='&lt;a href=&quot;http://factorcode.org/slava&quot;&gt;Slava Pestov&lt;/a&gt;&#39;s weblog, primarily about &lt;a href=&quot;http://factorcode.org&quot;&gt;Factor&lt;/a&gt;.' property='og:description'/>
+<title>Factor: a practical stack language: May 2009</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Stretch Denim Light
+Designer: Darren Delaye
+URL:      www.DarrenDelaye.com
+Date:     11 Jul 2006
+-----------------------------------------------
+*/
+body {
+background: #ffffff;
+margin: 0;
+padding: 0px;
+font: x-small Verdana, Arial;
+text-align: center;
+color: #333333;
+font-size/* */:/**/small;
+font-size: /**/small;
+}
+a:link {
+color: #336699;
+}
+a:visited {
+color: #336699;
+}
+a img {
+border-width: 0;
+}
+#outer-wrapper {
+font: normal normal 100% Verdana, Arial, Sans-serif;;
+}
+/* Header
+----------------------------------------------- */
+#header-wrapper {
+margin:0;
+padding: 0;
+background-color: #c4e1ff;
+text-align: left;
+}
+#header {
+margin: 0 2%;
+background-color: #c4e1ff;
+color: #003366;
+padding: 0;
+font: normal normal 210% Verdana, Arial, Sans-serif;;
+position: relative;
+}
+h1.title {
+padding-top: 38px;
+margin: 0 1% .1em;
+line-height: 1.2em;
+font-size: 100%;
+}
+h1.title a, h1.title a:visited {
+color: #003366;
+text-decoration: none;
+}
+#header .description {
+display: block;
+margin: 0 1%;
+padding: 0 0 40px;
+line-height: 1.4em;
+font-size: 50%;
+}
+/* Content
+----------------------------------------------- */
+.clear {
+clear: both;
+}
+#content-wrapper {
+margin: 0 2%;
+padding: 0 0 15px;
+text-align: left;
+background-color: #ffffff;
+border: 1px solid #ffffff;
+border-top: 0;
+}
+#main-wrapper {
+margin-left: 1%;
+width: 64%;
+float: left;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+margin-right: 1%;
+width: 29%;
+float: right;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2, h3 {
+margin: 0;
+}
+/* Posts
+----------------------------------------------- */
+.date-header {
+margin: 1.5em 0 0;
+font-weight: normal;
+color: #999999;
+font-size: 100%;
+}
+.post {
+margin: 0 0 1.5em;
+padding-bottom: 1.5em;
+}
+.post-title {
+margin: 0;
+padding: 0;
+font-size: 125%;
+font-weight: bold;
+line-height: 1.1em;
+}
+.post-title a, .post-title a:visited, .post-title strong {
+text-decoration: none;
+color: #333333;
+font-weight: bold;
+}
+.post div {
+margin: 0 0 .75em;
+line-height: 1.3em;
+}
+.post-footer {
+margin: -.25em 0 0;
+color: #333333;
+font-size: 87%;
+}
+.post-footer .span {
+margin-right: .3em;
+}
+.post img, table.tr-caption-container {
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin: 1em 20px;
+}
+.post blockquote p {
+margin: .75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin: 1em 0;
+color: #999999;
+}
+#comments h4 strong {
+font-size: 110%;
+}
+#comments-block {
+margin: 1em 0 1.5em;
+line-height: 1.3em;
+}
+#comments-block dt {
+margin: .5em 0;
+}
+#comments-block dd {
+margin: .25em 0 0;
+}
+#comments-block dd.comment-footer {
+margin: -.25em 0 2em;
+line-height: 1.4em;
+font-size: 78%;
+}
+#comments-block dd p {
+margin: 0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar h2 {
+margin: 1.6em 0 .5em;
+padding: 4px 5px;
+background-color: #ffffff;
+font-size: 100%;
+color: #333333;
+}
+.sidebar ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.sidebar li {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: .5em;
+padding-left: 15px;
+text-indent: -15px;
+line-height: 1.5em;
+}
+.sidebar {
+color: #333333;
+line-height:1.3em;
+}
+.sidebar .widget {
+margin-bottom: 1em;
+}
+.sidebar .widget-content {
+margin: 0 5px;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font-weight: bold;
+line-height: 1.6em;
+font-size: 78%;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+clear: both;
+text-align: center;
+color: #333333;
+}
+#footer .widget {
+margin:.5em;
+padding-top: 20px;
+font-size: 85%;
+line-height: 1.5em;
+text-align: left;
+}
+/** Page structure tweaks for layout editor wireframe */
+body#layout #header {
+width: 750px;
+}
+
+--></style>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' rel='stylesheet'/></noscript>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body>
+<div class='navbar section' id='navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d17087850\x26blogName\x3dFactor:+a+practical+stack+language\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dBLUE\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://factor-language.blogspot.com/search\x26blogLocale\x3den_US\x26v\x3d2\x26homepageUrl\x3dhttp://factor-language.blogspot.com/\x26vt\x3d1910212838315471456',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id='outer-wrapper'><div id='wrap2'>
+<!-- skip links for text browsers -->
+<span id='skiplinks' style='display:none;'>
+<a href='index.html#main'>skip to main </a> |
+      <a href='index.html#sidebar'>skip to sidebar</a>
+</span>
+<div id='header-wrapper'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='../../index.html'>
+Factor: a practical stack language
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span><a href="http://factorcode.org/slava">Slava Pestov</a>'s weblog, primarily about <a href="http://factorcode.org">Factor</a>.</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id='content-wrapper'>
+<div id='crosscol-wrapper' style='text-align:center'>
+<div class='crosscol no-items section' id='crosscol'></div>
+</div>
+<div id='main-wrapper'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Tuesday, May 26, 2009</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='7353105402885558994' itemprop='postId'/>
+<a name='7353105402885558994'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='factors-implementation-of-polymorphic.html'>Factor's implementation of polymorphic inline caching</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-7353105402885558994' itemprop='description articleBody'>
+Polymorphic inline caching is a technique to speed up method dispatch by generating custom code at method call sites that checks the receiver against only those classes that have come up at that call site. If the receiver's class does not appear in the polymorphic inline cache (this case is known as a "cache miss"), then a new call stub is generated, which checks the receiver's class in addition to the classes already in the stub. This proceeds until the stub reaches a maximum size, after which point further cache misses rewrite the caller to call a general "megamorphic" stub which performs a full method dispatch. A full description can be found in the <a href="http://research.sun.com/self/papers/ecoop91.ps.gz">original paper on the topic</a>.<br /><br />I implemented polymorphic inline caching and megamorphic caching to replace <a href="../../2008/11/further-performance-gains.html">Factor's previous method dispatch implementation</a>.<br /><br /><h3>Call sites</h3><br />A generic word's call site is in one of three states:<br /><ul><li><b>Cold state</b> - the call instruction points to a stub which looks at the class of the object being dispatched upon, generates a new PIC stub containing a single entry, updates the call site, and jumps to the right method.</li><li><b>Inline cache state</b> - the call instruction points to a generated PIC stub which has one or more class checks, followed by a jump to a method if the checks succeed. If none of the checks succeed, it jumps to the inline cache miss routine. The miss routine does one of two things:<br /><ul><li>If the PIC stub already has the maximum number of entries, it sets the call site to point to the generic word's megamorphic stub, shared by all megamorphic call sites.</li><li>If the PIC stub has less than the maximum number of entries, a new PIC stub is generated, with the same set of entries as the last one, together with a new entry for the class being dispatched on.</li></ul></li><li><b>Megamorphic state</b> - the call instruction points to the generic word's megamorphic stub. Further dispatches do not modify the call instruction.</li></ul><br />When code is loaded into the image, or a full garbage collection occurs, all call sites revert to the cold state. Loading code might define new methods or change class relationships, so caches have to be invalidated in that case to preserve correct language semantics. On a full GC, caches are reverted so that serially monomorphic code is optimized better; if a generic word is called in a long loop with one type, then in a long loop with another type, and so on, it will eventually become megamorphic. Resetting call sites once in a while (a full GC is a relatively rare event) ensures that inline caches better reflect what is going on with the code right now. After implementing PICs, I learned that the V8 JavaScript VM uses the same strategy to invalidate call sites once in a while, so it sounds like I did the right thing.<br /><br /><h3>Direct class checks versus subclass checks</h3><br />Factor supports various forms of subtyping. For example, tuple classes can inherit from other tuple classes, and also, a union class can be defined whose members are an arbitrary set of classes. When a method is defined on a class, it will apply to all subclasses as well, unless explicitly overriden. Checking if an object is an instance of a class X is a potentially expensive operation, because it is not enough to compare direct classes, superclasses and union members have to be inspected also. Polymorphic inline caching only deals with direct classes, because direct class checks are much quicker (for tuples, just compare the tuple layouts for pointer equality; for instances of built-in classes, compare tag numbers). So for example if a generic word has a single method for the <a href="http://docs.factorcode.org/content/word-sequence%2csequences.html">sequence</a> class, and a call site calls the generic with arrays and strings, then the inline cache generated there will have two checks, one for strings, and one for arrays, and both checks will point at the same method.<br /><br /><h3>Inline cache stubs</h3><br />Inline cache stubs are generated by the VM in the file <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=vm/inline_cache.cpp;hb=HEAD">inline_cache.cpp</a>. This generates machine code, but I'll use C-like pseudocode for examples instead. An inline cache stub looks like this, where <code>index</code> is the parameter number being dispatched on (generic words defined with <a href="http://docs.factorcode.org/content/word-GENERIC__colon__%2csyntax.html">GENERIC:</a> use 0, generic words defined with <a href="http://docs.factorcode.org/content/word-GENERIC%23%2csyntax.html">GENERIC#</a> can dispatch on any parameter):<br /><pre><br />void *obj = datastack[index];<br />void *class = class_of(obj);<br />if(class == cached_class_1) cached_method_1();<br />else if(class == cached_class_2) cached_methd_2();<br />...<br />else cache_miss(call_site_address,index,class,generic);<br /></pre><br />Getting the direct class of an object (what I call <code>class_of()</code> in the pseudocode) is a relatively cheap operation. I briefly discussed pointer tagging, type headers and tuple layout headers in my <a href="factor-vm-ported-to-c.html">C++ VM post</a>. In the most general case, getting the direct class looks like this, again in vague C-like pseudocode:<br /><pre>if(tag(obj) == hi_tag) return obj.header;<br />else if(tag(obj) == tuple_layout) return obj.layout;<br />else return tag(obj);</pre><br />However, if the cached classes consist only of tag classes (the 7 built-in types whose instances can be differentiated based on tag alone) then the generated stub doesn't need to do the other checks; it just compares the pointer tag against the cached classes. Similarly, if tag and tuple classes are in the cache but no hi-tag classes, one branch can be avoided. In total, the PIC generation code uses one of four stubs for getting the object's class, and the right stub to use is determined by looking at the cached classes (see the function <code>determine_inline_cache_type()</code> in <code>inline_cache.cpp</code>).<br /><br />Once the stub has been generated, it is installed at the call site and invoked. This way, a PIC miss is transparent to the caller.<br /><br /><h3>Patching call sites</h3><br />The code for getting and setting jump targets from jump and call instructions is of course CPU-specific; see the <code>get_call_target()</code> and <code>set_call_target()</code> functions, and note that on PowerPC, the instruction cache needs to be flushed manually:<br /><ul><li><a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=vm/cpu-x86.hpp;hb=HEAD">cpu-x86.hpp</a></li><li><a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=vm/cpu-ppc.hpp;hb=HEAD">cpu-ppc.hpp</a></li></ul><br /><br />Recall that there are two situations in which the PIC miss code can be invoked:<br /><ul><li>For a cold call site, to generate the initial stub</li><li>For a polymorphic call site, to add a new entry to the PIC</li></ul><br />If the call site is a non-tail call, then the return address will be pushed on the stack (x86) or stored in a link register (PowerPC). If the call site is a tail call, then Factor's code generator now moves the current instruction pointer into a register before performing the tail call. This code is generated even when tail-calling words that are not generic; it is a no-op in this case. This is only a single integer load, so other than increasing code size it really has no effect on performance, since on a modern out-of-order CPU the load and jump will execute concurrently. For example, here is how the code snippet <code>beer get length</code> compiles on x86:<br /><pre>0x000000010b8628c0: mov    $0x10b8628c0,%r8<br />0x000000010b8628ca: pushq  $0x20<br />0x000000010b8628cf: push   %r8<br />0x000000010b8628d1: sub    $0x8,%rsp<br />0x000000010b8628d5: add    $0x10,%r14<br />0x000000010b8628d9: mov    $0x10a6c8186,%rax<br />0x000000010b8628e3: mov    %rax,-0x8(%r14)<br />0x000000010b8628e7: mov    $0x100026c60,%rax<br />0x000000010b8628f1: mov    (%rax),%rcx<br />0x000000010b8628f4: mov    %rcx,(%r14)<br />0x000000010b8628f7: callq  0x10b1e0de0<br />0x000000010b8628fc: add    $0x18,%rsp<br />0x000000010b862900: mov    $0x10b86290f,%rbx<br />0x000000010b86290a: jmpq   0x10b70f4a0</pre><br />The first few instructions set up a call stack frame, then the <code>beer</code> symbol is pushed on the stack, and the (inlined) definition of <code>get</code> follows. Finally, the address of the jump instruction is loaded into the <code>rbx</code> register and a jump is performed. Initially, the jump points at the PIC miss stub, so the first time this machine code executes, the jump instruction's target will be changed to a newly-generated PIC.<br /><br />However, the <code>inline_cache_miss()</code> function in the VM takes the call site address as an input parameter, and after all, it is written in C++. Where does this input parameter actually come from? The answer is that there are short assembly stubs that sit between the actual call site and the PIC miss code in the VM. The stubs get the return address in a CPU-specific manner, and then call the VM. This code is in the <code>primitive_inline_cache_miss</code> procedure, which is again defined in several places:<br /><ul><li><a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=vm/cpu-x86.32.S;hb=HEAD">cpu-x86.32.S</a></li><li><a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=vm/cpu-x86.64.S;hb=HEAD">cpu-x86.64.S</a></li><li><a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=vm/cpu-ppc.S;hb=HEAD">cpu-ppc.S</a></li></ul><br />Note that the functions have two entry points. The first entry point is taken for non-tail call sites, the second one is taken for tail call sites.<br /><br /><h3>An optimization</h3><br />Since allocation of PICs is something that happens rather frequently, it is good to optimize this operation. I implemented segregated free lists for the code heap. Allocating lots of small code heap blocks requires less work now. Also, since every PIC is referenced from at most one call site, when a call site's PIC is regenerated with a new set of cached classes, the only PIC can be returned to the free list immediately. This reduces the frequency of full garbage collections (when the code heap fills up, a full GC must be performed; there is no generational tenuring for code blocks).<br /><br /><h3>Megamorphic caching</h3><br />If a call site is called with more than a few distinct classes of instances (the default maximum PIC size is 3 entries) then it is patched to call the megamorphic dispatch stub for that generic word. Megamorphic stubs are again generated in the VM, in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=vm/dispatch.cpp;hb=HEAD">dispatch.cpp</a> source file. The machine code that is generated, were it to be expressed in pseudo-C, looks like this:<br /><pre>void *obj = datastack[index];<br />void *class = class_of(obj);<br />if(cache[class] == class) goto cache[class + 1];<br />else megamorphic_cache_miss(class,generic,cache);</pre><br />Every generic word has a fixed-size megamorphic cache of 32-entries (this can be changed by bootstrapping a new image, but I'm not sure there's any point). It works like a hashtable, except if there is a collision, the old entry is simply evicted; there is no bucket chaining or probing strategy here. While less efficient than a polymorphic inline cache hit (which only entails a direct jump), megamorphic cache hits are still rather quick (some arithmetic and an indirect jump). There are no calls into the VM, it is all inline assembly. A megamorphic inline cache miss calls the <code>mega_cache_miss</code> primitive which computes the correct method and updates the cache.<br /><br /><h3>Performance</h3><br />I added some instrumentation code to the VM which counts the number of cache hits and misses. The majority of call sites are monomorphic or polymorphic, and megamorphic call sites are very rare. Megamorphic cache misses are rarer still.<br /><br />The performance gain for benchmark runtimes was as I expected; a 5-10% gain. The old method dispatch system was already pretty efficient, and modern CPUs have branch prediction which helped a lot with it. For compile time, the gain was a lot more drastic, however, and definitely made the effort I put into implementing PICs pay off; bootstrap is now a full minute faster than before, clocking in at around 3 minutes, and the <code>load-all</code> word, which loads and compiles all the libraries in the distribution, used to take 25 minutes and now takes 11 minutes. All timings are from my MacBook Pro.<br /><br />The compile-time gain is not a direct result of the inline caching, but rather stems from the fact that the compiler has to compile less code. With the old method dispatch implementation, every generic word was an ordinary word under the hood, with a huge, auto-generated body containing conditionals and jump tables. When a method was added or removed, the dispatcher code had to be re-generated and re-compiled, which takes a long time. With polymorphic inline caching, what happens is now the VM essentially lazily generates just those parts of the dispatch code which are actually used, and since it uses the VM's JIT code instead of the optimizing compiler, it can just glue bits of machine code together instead of building an IR and optimizing it; which yielded no benefits for the type of code that appeared in a generic word body anyway.<br /><br />Improving compile time is one of my major goals for Factor 1.0, since it improves user experience when doing interactive development, and I'm very happy with the progress so far.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2009/05/factors-implementation-of-polymorphic.html' itemprop='url'/>
+<a class='timestamp-link' href='factors-implementation-of-polymorphic.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2009-05-26T21:19:00-04:00'>9:19 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=7353105402885558994' onclick=''>
+6 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=7353105402885558994' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=7353105402885558994&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7353105402885558994&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7353105402885558994&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7353105402885558994&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7353105402885558994&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7353105402885558994&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Friday, May 22, 2009</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='122066567209030778' itemprop='postId'/>
+<a name='122066567209030778'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='live-status-display-for-factors-build.html'>Live status display for Factor's build farm, and other improvements</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-122066567209030778' itemprop='description articleBody'>
+Lately I've made a few additional improvements to the build infrastructure. First, build reports sent to the <a href="https://lists.sourceforge.net/lists/listinfo/factor-builds">Factor-builds mailing list</a> are now formatted as HTML, which makes them a bit more readable. Second, there is a Twitter feed of binary uploads: <a href="http://twitter.com/FactorBuilds">@FactorBuilds</a>. Finally, we now have a live status display for build machines. Previously if I wanted to know what a build machine was doing, I'd have to log in with ssh and poke around -- total waste of time. Now, just clicking on the OS/CPU combination on <a href="http://factorcode.org">factorcode.org</a> takes you to a status page. For example, here is the status page for <a href="http://builds.factorcode.org/download?os=macosx&cpu=x86.32">Mac OS X/x86</a>. At the time of this blog post, I see that this machine is running tests for a certain GIT revision. Each GIT revision is a link to the <a href="http://github.com/slavapestov/factor">GitHub mirror of the Factor repository</a> so you can see exactly what's going on. Finally, the latest build report can be viewed too; this has the build failures, if any, as well as benchmark timings.<br /><br />Our continuous build system is called <a href="http://docs.factorcode.org/content/vocab-mason.html">mason</a> and adds up to a total of 1196 lines of code. Eduardo Cavazos wrote the first iteration, called <code>builder</code>. I forked it and added additional features.<br /><br />It's been over a year since we started using continuous integration in the Factor project, and I can say its been an overwhelming success. The first iteration of the build system would load all libraries and run all unit tests, and send an email with the results. If everything succeeded, it would upload a binary package. Over the last year, <a href="http://downloads.factorcode.org">more than 5000 binary packages were uploaded</a>. Over time, we added more checks to the build farm. It now runs <a href="http://docs.factorcode.org/content/article-help.lint.html">help lint</a> checks which ensure that examples in documentation work and that there are no broken links, and checks for <a href="http://docs.factorcode.org/content/article-compiler-errors.html">compiler errors</a>.<br /><br />I think the code quality has definitely gone up over the last year; having a dozen machines running tests all the time does a good job of triggering obscure bugs, and the automatic upload of binaries when tests pass saves us from the hassle of making manual releases.<br /><br />I think pretty soon, we're going to start having releases again, in addition to continuous builds. I intend on making the release process semi-automatic; when I decide to do a release, I want to send some type of command to all the build machines to have them build a given GIT ID and upload the binaries to a special directory. The goal is to have regular releases until 1.0, starting from a few weeks from now. I'm not going to commit to a schedule for 1.0 yet, but having regular releases and published change logs is the first step of the process.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2009/05/live-status-display-for-factors-build.html' itemprop='url'/>
+<a class='timestamp-link' href='live-status-display-for-factors-build.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2009-05-22T19:38:00-04:00'>7:38 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=122066567209030778' onclick=''>
+No comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=122066567209030778' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=122066567209030778&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=122066567209030778&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=122066567209030778&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=122066567209030778&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=122066567209030778&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=122066567209030778&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Thursday, May 21, 2009</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='2925295840157439666' itemprop='postId'/>
+<a name='2925295840157439666'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='unboxed-tuple-arrays-in-factor.html'>Unboxed tuple arrays in Factor</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-2925295840157439666' itemprop='description articleBody'>
+One difference between high level languages and systems languages is that high level languages typically hide the notion of a pointer, and by extension, value versus reference semantics, from the programmer. Systems languages make this explicit, and the programmer can make a choice whether or not to pass an object by value or by reference.<br /><br />In particular, this level of control can lead to significant space savings for large arrays of homogeneous data. If the elements of an array are themselves not shared by other structures, then storing values directly in the array will, at the very least, save on the space usage of a pointer, together with an object header.<br /><br />I don't believe there is any reason for high-level languages to not offer more fine-grained control over heap storage. Factor is dynamically typed but it offers both <a href="../../2008/12/arrays-of-unboxed-primitive-values-and.html">arrays of unboxed numeric values</a>, and arrays of tuples, which I will describe below. In some cases, using these special-purpose data types can offer significant performance and space gains over polymorphic arrays.<br /><br />Consider a Factor tuple definition:<br /><pre>TUPLE: point x y ;</pre><br />We can find out how much space points use in memory -- this is on a x86-64 machine:<br /><pre>( scratchpad ) point new size .<br />32</pre><br />The x and y slots are as wide as a machine pointer, so together they use 16 bytes. This means that there is an additional 16-byte overhead for every instance. Indeed, Factor tuples store a header and a pointer to a layout object (shared by all instances of that class) in addition to the slot data itself. While this compares favorably to other dynamic languages (<a href="http://eigenclass.org/R2/writings/object-size-ruby-ocaml">see this blog post for instance</a>; Ruby in particular has really terrible object representation), it still adds up to a significant overhead when you have a large collection of points.<br /><br />Suppose you have an <a href="http://docs.factorcode.org/content/article-arrays.html">array</a> of N points. Each array element is a pointer (8 bytes) to a point object (32 bytes). Assuming the points are not referenced from any other collection, that's 40*N bytes for the entire collection. However, there is only 16*N bytes of real data, namely the x and y slots of every element, so we're wasting more than 50% of heap usage here, not to mention increasing GC overhead by allocating tons of small objects.<br /><br />This overhead can be avoided, however, using Factor's <a href="http://docs.factorcode.org/content/vocab-tuple-arrays.html">tuple-arrays</a> library. Tuple arrays implement the same <a href="http://docs.factorcode.org/content/article-sequence-protocol.html">sequence protocol</a> as arrays, but the semantics differ. Instead of storing references to objects, they store object slots directly within the array. There are two main restrictions that result from this:<br /><ul><li>Tuple arrays are homogeneous; all elements are of the exact same type. This rules out setting some elements to <code>f</code> to represent missing data, or having elements which are instances of different subclasses of the same base class.</li><li>Tuple arrays implement value semantics. If you get an element out, and mutate it, you have to store it back into the array to update the original value in the array.</li></ul><br />So how do tuple arrays work? The original implementation, by <a href="http://useless-factor.blogspot.com">Daniel Ehrenberg</a> defined a single <code>tuple-array</code> class where the constructor took a class word as a parameter, and reflection APIs were used to implement getting and setting elements. While this had all the space savings described above, constructing and deconstructing tuples via reflection is not the fastest thing in the world; even the most efficient possible implementation would require some indirection and type checking in order to work.<br /><br />A better approach is to generate a new sequence type for each element type. This is what the current implementation does. Because all of Factor's sequence operations are written in terms of a sequence protocol, these generated classes are for the most part transparent to the programmer, and there is no added inconvenience over the previous approach. To use it, you invoke a parsing word with the element type class you want to use:<br /><pre>TUPLE-ARRAY: point</pre><br />Assuming a class named <code>point</code> was previously defined, this generates a <code>point-array</code> class with associated methods.<br /><br />Briefly, the implementation works as follows. The underlying storage of a tuple array is an ordinary array. If the tuple class has N slots, then every group of N elements in the underlying array is a single element in the tuple array. The <code>nth</code> and <code>set-nth</code> methods, which are generated once for every tuple array, read and write a group of N elements and package them into a tuple.<br /><br />Now let's dive into the guts of the implementation. The parsing word is defined as follows:<br /><pre>SYNTAX: TUPLE-ARRAY: scan-word define-tuple-array ;</pre><br />So it delegates all the hard work to a <code>define-tuple-array</code> word. This word is a functor, so tuple arrays work the same as specialized numeric arrays. Functors are similar to C++ templates in spirit, but really they are implemented entirely as a library, and it's all just syntax sugar for parsing word machinery (which is a lot more powerful than C++ templates). They're named "functors" to annoy category theory fanboys and language purists. A functor definition begins with <code>FUNCTOR:</code>:<br /><pre>FUNCTOR: define-tuple-array ( CLASS -- )</pre><br />A functor is essentially the same as a word defined with <code>::</code>, but with additional syntax sugar. So <code>CLASS</code> here is a local variable available in the body of the functor. I use the convention of uppercase names for functor parameters. What follows <code>FUNCTOR:</code> is a list of clauses which create new words at parse time. The left hand side of each clause is a new local variable name that the generated word will be bound to, and the right hand side is an <a href="http://docs.factorcode.org/content/vocab-interpolate.html">interpolate</a> form describing what the new word should be named. The middle operator specifies whether or not the word should already exist (<code>IS</code>) or if it should be defined (<code>DEFINED</code>). So the definition of <code>define-tuple-array</code> proceeds as follows:<br /><pre>CLASS IS ${CLASS}<br /><br />CLASS-array DEFINES-CLASS ${CLASS}-array<br />CLASS-array? IS ${CLASS-array}?<br /><br />&lt;CLASS-array> DEFINES &lt;${CLASS}-array><br />>CLASS-array DEFINES >${CLASS}-array</pre><br />Next, a functor definition calls <code>WHERE</code>, which switches the parser to reading the functor body.<br /><br />After that, what follows is a series of forms which look like word definitions, but really they parse as code which defines words at the time that the functor is executed. Both the word names and bodies may reference local variables defined in the first part of the functor:<br /><pre>WHERE<br /><br />TUPLE: CLASS-array<br />{ seq array read-only }<br />{ n array-capacity read-only }<br />{ length array-capacity read-only } ;<br /><br />: &lt;CLASS-array> ( length -- tuple-array )<br />    [ \ CLASS [ tuple-prototype &lt;repetition> concat ] [ tuple-arity ] bi ] keep<br />    \ CLASS-array boa ; inline<br /><br />M: CLASS-array length length>> ;<br /><br />M: CLASS-array nth-unsafe tuple-slice \ CLASS read-tuple ;<br /><br />M: CLASS-array set-nth-unsafe tuple-slice \ CLASS write-tuple ;<br /><br />M: CLASS-array new-sequence drop &lt;CLASS-array> ;<br /><br />: >CLASS-array ( seq -- tuple-array ) 0 &lt;CLASS-array> clone-like ;<br /><br />M: CLASS-array like drop dup CLASS-array? [ >CLASS-array ] unless ;<br /><br />INSTANCE: CLASS-array sequence</pre><br />So every time someone calls <code>define-tuple-array</code> (most likely with the <code>TUPLE-ARRAY:</code> parsing word) a new class is defined, together with a constructor word and some methods.<br /><br />Finally, we end the functor with:<br /><pre>;FUNCTOR</pre><br />To illustrate, this means that the following:<br /><pre>TUPLE-ARRAY: point</pre><br />Is equivalent to the following:<br /><pre>TUPLE: point-array<br />{ seq array read-only }<br />{ n array-capacity read-only }<br />{ length array-capacity read-only } ;<br /><br />: &lt;point-array> ( length -- tuple-array )<br />    [ \ point [ tuple-prototype &lt;repetition> concat ] [ tuple-arity ] bi ] keep<br />    \ point-array boa ; inline<br /><br />M: point-array length length>> ;<br /><br />M: point-array nth-unsafe tuple-slice \ point read-tuple ;<br /><br />M: point-array set-nth-unsafe tuple-slice \ point write-tuple ;<br /><br />M: point-array new-sequence drop &lt;point-array> ;<br /><br />: >point-array ( seq -- tuple-array ) 0 &lt;point-array> clone-like ;<br /><br />M: point-array like drop dup point-array? [ >point-array ] unless ;<br /><br />INSTANCE: point-array sequence</pre><br />Now imagine writing all of the above code out every time you want a specialized tuple array; that would amount to boilerplate. Of course, at this point, it still looks like runtime reflection is happening, because we're passing the <code>point</code> class word to the <code>read-tuple</code> and <code>write-tuple</code> words. However, what actually happens is that these words get inlined, then the fact that the class parameter is a constant triggers a series of macro expansions and constant folding optimizations that boil the code down to an efficient, specialized routine for packing and unpacking points from the array. If you're interested in the gory details, take a look at the <a href="http://github.com/slavapestov/factor/blob/483c936eb335c179aec59ec6d248a7f472584e01/basis/tuple-arrays/tuple-arrays.factor">tuple arrays source code</a>.<br /><br />So the space savings are clearly nice to have, but what about performance? Here is a program that uses polymorphic arrays:<br /><pre>TUPLE: point { x float } { y float } ;<br /><br />: polymorphic-array-benchmark ( -- )<br />    5000 [ point new ] replicate<br />    1000 [<br />        [<br />            [ 1+ ] change-x<br />            [ 1- ] change-y<br />        ] map<br />    ] times drop ;</pre><br />Here is the same program using tuple arrays:<br /><pre>TUPLE: point { x float } { y float } ;<br /><br />TUPLE-ARRAY: point<br /><br />: tuple-array-benchmark ( -- )<br />    5000 &lt;point-array> <br />    1000 [<br />        [<br />            [ 1+ ] change-x<br />            [ 1- ] change-y<br />        ] map<br />    ] times drop ;</pre><br />On my MacBook Pro, the first version using polymorphic arrays runs in 0.39 seconds, the second version using tuple arrays runs in 0.91 seconds. Clearly, there is some overhead from copying the objects in and out of the array.<br /><br />Now, let's try a slightly different program. Instead of mutating the elements of the array, let's instead extract the slots, modify them, and make a new tuple. Here is a version using polymorphic arrays:<br /><pre>TUPLE: point { x float read-only } { y float read-only } ;<br /><br />: polymorphic-array-benchmark ( -- )<br />    5000 [ point new ] replicate<br />    1000 [<br />        [<br />            [ x>> 1+ ] [ y>> 1- ] bi &lt;point><br />        ] map<br />    ] times drop ;</pre><br />This version runs in 0.94 seconds; the additional object allocation induces a 3x overhead over mutating the points in place. Now, let's try the same thing with tuple arrays:<br /><pre>TUPLE: point { x float read-only } { y float read-only } ;<br /><br />TUPLE-ARRAY: point<br /><br />: tuple-array-benchmark ( -- )<br />    5000 &lt;point-array> <br />    1000 [<br />        [<br />            [ x>> 1+ ] [ y>> 1- ] bi &lt;point><br />        ] map<br />    ] times drop ;</pre><br />For this variant I'm getting runtimes of 0.59 seconds, which is faster than the same code with polymorphic arrays. The reason for the speed boost is that the Factor compiler's <a href="../../2008/08/algorithm-for-escape-analysis.html">escape analysis</a> pass kicks in, eliminating all tuple allocation from within the loop completely.<br /><br />So to summarize, in order from fastest to slowest,<br /><ul><li>Polymorphic arrays with in-place mutation</li><li>Tuple arrays with read-only tuples</li><li>Polymorphic arrays with read-only tuples</li><li>Tuple arrays with in-place mutation</li></ul><br />Finally, a note about benchmarking methodology. Because garbage collection can add an element of unpredictability to benchmarks, I force run the GC to run first:<br /><pre>( scratchpad ) gc [ tuple-array-benchmark ] time<br />== Running time ==<br /><br />0.593989 seconds</pre><br />The combination of a high-level language with efficient abstractions that the compiler knows how to optimize is very powerful. Factor occupies a middle ground between the dynamic languages and systems languages. I want Factor to be a language that you can write an entire application in, even the performance-critical parts. Often you hear that "performance doesn't matter", but outside of a few I/O-bound problem domains, this is false (and even there, you want to heavily optimize your I/O and text processing routines). Very often, people cite some variation of the "80/20 performance rule" (20% of your program runs 80% of the time; adjust percentages to suit your strawman). Of course, the idea is that you can write the 80% in a high level language, dropping down to C for the performance-critical 20%. I think this reasoning is flawed, for two reasons:<br /><ul><li>As my friend Cameron Zwarich likes to point out, very little justification is given for the 80/20 rule itself. For many programs, the performance profile is rather flat, and every indirection, every unnecessary runtime check, and every unnecessary runtime memory allocation adds up to a non-trivial amount of overhead. The "performance bottleneck" myth originated in a survey of Fortran programs which did numerical calculations. For numerics, it is indeed true that most of the runtime is spent in a handful of inner loops; whether or not this is true for ordinary programs is far less clear.</li><li>Even if runtime really is dominated by a small number of routines, chances are these routines are algorithmically complex, hard to write, and nice to experiment with interactively; precisely the domain where high-level languages with advanced abstractions shine.</li></ul><br />I think it's about time dynamic language advocates stopped citing the same old myths to justify poor implementation techniques. Their energy would be better spent researching compiler optimizations and garbage collection techniques which they can apply in their favorite language implementations instead. Hats off to the <a href="http://code.google.com/p/v8/">V8</a>, <a href="http://trac.webkit.org/wiki/SquirrelFish">SquirrelFish</a>, <a href="http://code.google.com/p/unladen-swallow/">Unladen Swallow</a> and <a href="http://sbcl.org">SBCL</a> projects for taking performance seriously.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2009/05/unboxed-tuple-arrays-in-factor.html' itemprop='url'/>
+<a class='timestamp-link' href='unboxed-tuple-arrays-in-factor.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2009-05-21T20:25:00-04:00'>8:25 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=2925295840157439666' onclick=''>
+8 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=2925295840157439666' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=2925295840157439666&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2925295840157439666&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2925295840157439666&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2925295840157439666&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2925295840157439666&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2925295840157439666&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Friday, May 08, 2009</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='504950899931887926' itemprop='postId'/>
+<a name='504950899931887926'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='factor-vm-ported-to-c.html'>Factor VM ported to C++</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-504950899931887926' itemprop='description articleBody'>
+Most of Factor is implemented in Factor (the parser, data structures, optimizing compiler, input/output, the UI toolkit, etc) however a few bits and pieces are not completely self hosting. This includes the garbage collector, non-optimizing compiler (used for bootstrap), and various runtime services. This code comprises what I call the "Factor VM". Even though it is not a Virtual Machine in the classical sense, since there's no interpreter or bytecode format, it serves a similar role to the VM of scripting languages.<br /><br />Ever since Factor lost its JVM dependency in mid-2004, the VM has been written in C with some GNU extensions. Over time, I've noticed that a few things in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=vm;hb=HEAD">VM source code</a> seem to be hard to express and error-prone in straight C. I've been thinking about switching to C++ for a long time, and now I've finally decided to bite the bullet and do it. I'm pleased with the result, and other than a longer compile time for the VM, I don't have any complaints so far.<br /><br />I started off by first getting the existing C code to compile with the GNU C++ compiler. Since C++ is almost, but not quite, a super set of C, I had to make a few changes to the source:<br /><ul><li>Renaming a few identifiers (I had local variables named <code>class</code>, <code>template</code> and <code>new</code> in some places)</li><li>Fixing some type safety issues (C will implicitly cast <code>void*</code> to any other pointer type, whereas C++ will not)</li><li>Moving global variable declarations to source files, and changing the declarations in the headers to be <code>extern</code></li><li>Making a few functions <code>extern "C"</code> since they are called from code generated by the Factor compiler</li></ul><br />Once this was done and everything was working, I started the process of refactoring my C pain points using C++ language features and idioms. This process is far from complete; at the end of the blog post I will outline what remains to be done.<br /><br /><h3>Miscellaneous improvements</h3><br />While the Factor VM is pretty small, around 13,000 lines of code right now, being able to use C++ namespaces is still nice since I've had name clashes with system C headers in the past. Now everything is wrapped in a <code>factor</code> namespace, so this should occur less in the future. Also, I changed a bunch of <code>#define</code> to inline functions and constants.<br /><br /><h3>Tagged pointers</h3><br />Factor is dynamically typed. While the optimizing compiler infers types and eliminates type checks sometimes, this generates machine code directly and mostly sidesteps the VM entirely. As far as the VM is concerned, it must be possible to determine the type of a value from its runtime representation. There are many approaches to doing this; the one I've been using from the start is "tagged pointers".<br /><br />Here is how it works: in the Factor VM, objects are always allocated on 8-byte boundaries in the data heap. This means every address is a multiple of 8, or equivalently, the least significant 3 bits of a raw address are zero. I take advantage of this to store some type information in these bits. A related trick that the Factor VM does is to reserve a tag for small integers that fit in a pointer; so a 29-bit integer (on 32-bit platforms) or a 61-bit integer (on 64-bit platforms) does not need to be heap-allocated.<br /><br />With 3 tag bits, we get a total of 8 unique tags. Factor has more than 8 data types, though, and indeed the user can define their own data types too. So there are two tags used to denote that the data type is actually stored in the object's header. One of these is used for built-in VM types that don't have a unique tag number, another one is used for user-defined <a href="http://docs.factorcode.org/content/article-tuples.html">tuple class</a> instances.<br /><br />Since C and C++ do not have native support for tagged pointers, the VM needs a mechanism to convert tagged pointers to untagged pointers, and vice versa. When converting a tagged pointer to an untagged pointer, a type check is performed.<br /><br />In the C VM, I had code like the following:<br /><pre>#define TAG_MASK 7<br />#define UNTAG(tagged) (tagged & ~TAG_MASK)<br /><br />typedef struct { ... } F_ARRAY;<br /><br />#define ARRAY_TYPE 2<br /><br />F_ARRAY *untag_array(CELL tagged)<br />{<br />    type_check(ARRAY_TYPE,tagged);<br />    return (F_ARRAY *)UNTAG(tagged);<br />}</pre><br />Here, <code>CELL</code> is typedef'd to an unsigned integer as wide as <code>void*</code>, and <code>UNTAG</code> is a macro which untags a pointer by masking off the low 3 bits (7 decimal is 111 binary).<br /><br />To convert untagged pointers to tagged form, I used code like the following:<br /><pre>#define RETAG(untagged,tag) (((CELL)(untagged) & ~TAG_MASK) | (tag))<br /><br />CELL tag_array(F_ARRAY *untagged)<br />{<br />    return RETAG(untagged,ARRAY_TYPE);<br />}</pre><br />For hi-tag types, such as strings, I used a single <code>tag_object()</code> function:<br /><pre>CELL tag_object(void *untagged)<br />{<br />    return RETAG(untagged,OBJECT_TYPE);<br />}</pre><br />The <code>OBJECT_TYPE</code> constant was misleadingly named, since everything in Factor is an object. However, in the VM it means "an object with type info in its header".<br /><br />The old C code for tagging and untagging pointers was mostly adequate, however it suffered from a few issues. First, there was a lot of boilerplate; each tag type has an untag/tag function pair, and each hi-tag type had an untag function. Furthermore, every time I changed a hi-tag type into a tag type, I had to find usages of <code>tag_object()</code> and change them appropriately. Over time I developed several preprocessor macros to clean up this type of stuff but I was never happy with it.<br /><br />In C++, the whole thing came out much cleaner. The <code>UNTAG</code> and <code>RETAG</code> macros are still around (although I may change them to inline functions at some point). However, for tagging and untagging pointers, I use a single set of template functions. To tag an untagged pointer:<br /><pre>template &lt;typename T> cell tag(T *value)<br />{<br /> return RETAG(value,tag_for(T::type_number));<br />}</pre><br />That's it; one function for all data types. It is used like so:<br /><pre>array *a = ...;<br />cell c = tag<array>(a);</pre><br />How does it work? The <code>F_ARRAY</code> struct is now the <code>array</code> class, and it has a static variable <code>type_number</code>:<br /><pre>struct array : public object<br />{<br />    static const cell type_number = 2;<br />    ...<br />}</pre><br />How do hi-tag pointers get handled? Well, their type numbers are all greater than or equal to 8. The <code>tag_for()</code> function checks for this, and returns the object tag number of it is the case. Since it is an inline function, the computation is constant-folded at compile time, and the generated code is as efficient as the old C version, only more type-safe and with less boilerplate.<br /><br />For untagging tagged pointers, I use a more complicated scheme. I have a templated "smart pointer" class representing a tagged pointer with an associated data type. Here is a simplified version of the class; this omits the type checking logic and a bunch of other utility methods; if you want the gory details, the full source is in <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=vm/tagged.hpp;hb=HEAD">tagged.hpp</a>.<br /><pre>template &lt;typename T><br />struct tagged<br />{<br />    cell value_;<br />    T *untagged() const { return (T *)(UNTAG(value_)); }<br />    T *operator->() const { return untagged(); }<br />    explicit tagged(T *untagged) : value_(factor::tag(untagged)) { }<br />}</pre><br />The overload of <code>operator-></code> means that tagged pointers can be used like ordinary pointers on some cases without needing to be untagged first. Otherwise, a pointer stored in a <code>cell</code> can be untagged like so:<br /><pre>array *a = tagged<array>(c).untagged()</pre><br />I made a utility function to encapsulate this type of thing, for when I just want to untag a value once and not pass it around as a smart pointer:<br /><pre>template <typename T> T *untag(cell value)<br />{<br /> return tagged<T>(value).untagged();<br />}</pre><br />Now I can write<br /><pre>array *a = untag&lt;array>(c)</pre><br />This compiles down to the same machine code as the C version but it is more type-safe and less verbose.<br /><br /><h3>Registration of local variables with the garbage collector</h3><br />Any object allocation can trigger a GC, and the GC must be able to identify all live values at that point. For compiled Factor code, this is pretty easy. The GC needs to scan a few globals, the data and retain stacks, as well as the call stack; call frames for Factor code have a known format. The compiler does store objects in registers, but it moves them to the stack before calling into the GC.<br /><br />However, the VM code itself uses the garbage collector to allocate its own internal state. This makes the VM code more robust since it doesn't need to worry about when to deallocate memory, but it presents a problem: if a C local variable points into the GC heap, how does the GC know that the value is live, and how does the GC know to update the pointer of the value got moved (Factor's GC is a generational <a href="http://en.wikipedia.org/wiki/Cheney's_algorithm">semi-space</a> collector so objects move around a lot). Between function calls, compiled C code saves pointers in the call frame. However, since I have no control over the machine code gcc generates, I cannot force call stack frames into a certain format that the GC can understand, like I do with compiled Factor code.<br /><br />One solution is <a href="http://en.wikipedia.org/wiki/Garbage_collection_(computer_science)">conservative garbage collection</a>. The garbage collector can just pessimistically assume that <i>any</i> integer variable on the call stack might point into the GC heap. There are two problems with this approach. The first is if you have a bit pattern that happens to look like a pointer, but is really just a random number, you might keep a value live more than it is really needed. From what I've heard, this is mostly just a theoretical concern. A more pressing issue is that since you do not know what is a real pointer and what isn't, you cannot move objects that might be referenced from the call stack. This can lead to fragmentation and more expensive allocation routines.<br /><br />The technique I've been using until now in the C VM code was to have a pair of macros, <code>REGISTER_ROOT</code> and <code>UNREGISTER_ROOT</code>. These push and pop the address of a local variable on a "GC root stack". So by traversing the GC root stack, the garbage collector knows which call stack locations refer to objects in the GC heap, and which are just integers. The disadvantage of this approach is that pairing root registration was verbose and error-prone, and forgetting to regsiter a root before calling a function which may potentially allocate memory would lead to hard-to-discover bugs that would be triggered rarely and result in memory corruption.<br /><br />Using C++ language features, I instead implemented a "smart pointer" <code>gc_root</code> class. It subclasses the <code>tagged</code> smart pointer I described above, with the additional functionality in the constructor and destructor to register and unregister a pointer to the wrapped pointer as a GC root. Together with the overloaded <code>operator-></code> this makes for much clearer and safer code. By updating existing code to use this new smart pointer I found a few places in the old C code where I had forgotten to register roots. No doubt one or two users saw Factor crash because of these. You can look at the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=vm/local_roots.hpp;h=e074d999e7f221b17066a2ed8d8661d52b7919d4;hb=HEAD">source code</a> for the GC root abstraction.<br /><br /><h3>Object-oriented abstractions</h3><br />Most functions in the VM are still top-level C-style functions, however in a few places I've found good reason to use methods and even inheritance. I've avoided virtual methods so far. One place where inheritance has really helped clean up some crufty old C code is in what I call the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=vm/jit.cpp;hb=HEAD">JIT</a>. This is a simple native code generator that the VM uses to fill in the gaps for the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/compiler;hb=HEAD">optimizing compiler</a> that's written in Factor. The JIT is used to generate machine code in the following situations:<br /><ul><li><a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=vm/quotations.cpp;hb=HEAD">The non-optimizing compiler, used during bootstrap and to evaluate listener input</a></li><li><a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=vm/inline_cache.cpp;hb=HEAD">Polymorphic inline caching</a></li><li><a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=vm/profiler.cpp;hb=HEAD">The profiler</a></li></ul><br />The old design was built out of C macros and code duplication. Now there is a <code>jit</code> class with various methods to emit machine code. Subclasses of <code>jit</code>, such as <code>quotation_jit</code> and <code>inline_cache_jit</code>, add additional functionality. The constructor and destructor take care of registering and unregistering the objects used by the JIT with the GC.<br /><br /><h3>Functionality moved out of the VM</h3><br />Since I prefer programming in Factor over low-level languages such as C and C++, I try to keep the VM small. A couple of things were in the VM for historical reasons only. The complex number and rational number data types, for instance, were defined in the VM, even though operations on them were in Factor code. This is because the number tower predated user-defined tuple types by a year or so. Nowadays there is no reason not to use tuples to define these types, so I made the change, simplifying the VM. Another piece of functionality that no longer had a good reason to be in the VM was some vestigial code for converting Factor's Unicode string type to and from Latin-1 and UCS-2 encodings. Ever since Daniel Ehrenberg implemented the <a href="http://docs.factorcode.org/content/article-io.encodings.html">io.encodings</a> library in Factor, most string encoding and decoding was done in library code, and a lot more encodings were implemented; UTF8, Shift-JIS, MacRoman, EBCDIC, etc. Only a couple of things still relied on the VM's broken built-in string encoding. They're now using the library just like everything else.<br /><br /><h3>Code heap compaction</h3><br />Factor allocates compiled machine code in their own heap, separate from the data heap. A <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=vm/code_gc.cpp;hb=HEAD">mark/sweep/compact garbage collector</a> manages the code heap. When performing a compaction, the code heap garbage collector needs to maintain an association from a code block's old address to its new address. Previously this would be stored in the code block's header, wasting 4 bytes (or 8 bytes on 64-bit platforms) per code block. Now I use <a href="http://www.codeguru.com/cpp/cpp/cpp_mfc/stl/article.php/c15303__1/">std::tr1::unordered_map</a> to do this. Of course I could've written a hashtable in C, or used an existing implementation, but using STL is more convenient.<br /><br /><h3>Future improvements</h3><br />I don't spend much time working on the Factor VM, since most of the action is in the compiler, library, and UI, which are all written in Factor and not C++. However, at some point I'm going to do more work on the garbage collector, and I will do some more cleanups at that time:<br /><ul><li>Eliminate usages of GNU C extensions. I want to be able to compile the Factor VM with other compilers, such as Microsoft's Visual Studio, and LLVM's Clang.</li><li>Eliminating global variables</li><li>Using <code>new</code>/<code>delete</code> instead of <code>malloc()</code> and <code>free()</code> for the small set of data that the VM allocates in unmanaged memory</li><li>Various other cleanups, such as making better use of method invocation and templates</li><li>There's some code duplication in the garbage collector I hope to address with C++ templates</li></ul><br /><br /><h3>Conclusion</h3><br />A lot of these cleanups and improvements could have been achieved in C, with clever design and various preprocessor macro tricks. However, I think C++ offers a better set of abstractions for the problem domain that the Factor VM lives in, and since I only use the language features that have no runtime penalty (I'm not using C++ exceptions, virtual methods, or RTTI) there's no performance decrease either. I'm very happy with how the code cleanup turned out. Making the VM easier to understand and maintain will help with implementing more advanced garbage collection algorithms, among other things.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2009/05/factor-vm-ported-to-c.html' itemprop='url'/>
+<a class='timestamp-link' href='factor-vm-ported-to-c.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2009-05-08T14:06:00-04:00'>2:06 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=504950899931887926' onclick=''>
+5 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=504950899931887926' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=504950899931887926&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=504950899931887926&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=504950899931887926&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=504950899931887926&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=504950899931887926&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=504950899931887926&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='http://factor-language.blogspot.com/search?updated-max=2009-08-29T21:44:00-04:00&amp;max-results=7&amp;reverse-paginate=true' id='Blog1_blog-pager-newer-link' title='Newer Posts'>Newer Posts</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='http://factor-language.blogspot.com/search?updated-max=2009-05-08T14:06:00-04:00&amp;max-results=7' id='Blog1_blog-pager-older-link' title='Older Posts'>Older Posts</a>
+</span>
+<a class='home-link' href='../../index.html'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='blog-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://factor-language.blogspot.com/feeds/posts/default' target='_blank' type='application/atom+xml'>Posts (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+<div id='sidebar-wrapper'>
+<div class='sidebar section' id='sidebar'><div class='widget BlogArchive' data-version='1' id='BlogArchive1'>
+<h2>Older Posts</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/index.html'>
+2010
+</a>
+<span class='post-count' dir='ltr'>(18)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../index.html'>
+2009
+</a>
+<span class='post-count' dir='ltr'>(35)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+<ul class='posts'>
+<li><a href='factors-implementation-of-polymorphic.html'>Factor&#39;s implementation of polymorphic inline caching</a></li>
+<li><a href='live-status-display-for-factors-build.html'>Live status display for Factor&#39;s build farm, and o...</a></li>
+<li><a href='unboxed-tuple-arrays-in-factor.html'>Unboxed tuple arrays in Factor</a></li>
+<li><a href='factor-vm-ported-to-c.html'>Factor VM ported to C++</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/index.html'>
+2008
+</a>
+<span class='post-count' dir='ltr'>(96)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(17)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/index.html'>
+2007
+</a>
+<span class='post-count' dir='ltr'>(141)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(10)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(21)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/index.html'>
+2006
+</a>
+<span class='post-count' dir='ltr'>(207)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(30)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(25)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(22)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(26)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/index.html'>
+2005
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div><div class='widget Feed' data-version='1' id='Feed2'>
+<h2>Recent Factor Commits</h2>
+<div class='widget-content' id='Feed2_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://gitweb.factorcode.org/gitweb.cgi?p=factor.git;a=atom'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget Feed' data-version='1' id='Feed1'>
+<h2>Planet Factor</h2>
+<div class='widget-content' id='Feed1_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://planet.factorcode.org/feed.xml'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget LinkList' data-version='1' id='LinkList1'>
+<h2>Links</h2>
+<div class='widget-content'>
+<ul>
+<li><a href='http://twitter.com/slava_pestov'>@slava_pestov</a></li>
+<li><a href='http://factorcode.org/slava/'>My home page</a></li>
+<li><a href='http://factorcode.org/'>Factor programming language</a></li>
+<li><a href='http://concatenative.org/'>Concatenative language wiki</a></li>
+<li><a href='http://planet.factorcode.org/'>Planet Factor</a></li>
+</ul>
+<div class='clear'></div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class='clear'>&#160;</div>
+</div>
+<!-- end content-wrapper -->
+<div id='footer-wrapper'>
+<div class='footer no-items section' id='footer'></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/940443484-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY7p54WDhB9uXV0bkF2XxFbDbh-RUQ:1693932699502';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d17087850','//factor-language.blogspot.com/2009/05/','17087850');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '17087850', 'title': 'Factor: a practical stack language', 'url': 'http://factor-language.blogspot.com/2009/05/', 'canonicalUrl': 'http://factor-language.blogspot.com/2009/05/', 'homepageUrl': 'http://factor-language.blogspot.com/', 'searchUrl': 'http://factor-language.blogspot.com/search', 'canonicalHomepageUrl': 'http://factor-language.blogspot.com/', 'blogspotFaviconUrl': 'http://factor-language.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en-US', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Factor: a practical stack language - RSS\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/17087850/posts/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/591781cadcbb8744', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'archive', 'pageName': 'May 2009', 'pageTitle': 'Factor: a practical stack language: May 2009'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'isResponsive': false, 'isAlternateRendering': false, 'isCustom': false}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Factor: a practical stack language', 'description': '\x3ca href\x3d\x22http://factorcode.org/slava\x22\x3eSlava Pestov\x3c/a\x3e\x27s weblog, primarily about \x3ca href\x3d\x22http://factorcode.org\x22\x3eFactor\x3c/a\x3e.', 'url': 'http://factor-language.blogspot.com/2009/05/', 'type': 'feed', 'isSingleItem': false, 'isMultipleItems': true, 'isError': false, 'isPage': false, 'isPost': false, 'isHomepage': false, 'isArchive': true, 'isLabelSearch': false, 'archive': {'year': 2009, 'month': 5, 'rangeMessage': 'Showing posts from May, 2009'}}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1333563935-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/3268905543-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed2', 'sidebar', document.getElementById('Feed2'), {'title': 'Recent Factor Commits', 'showItemDate': true, 'showItemAuthor': true, 'feedUrl': 'http://gitweb.factorcode.org/gitweb.cgi?p\x3dfactor.git;a\x3datom', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed1', 'sidebar', document.getElementById('Feed1'), {'title': 'Planet Factor', 'showItemDate': true, 'showItemAuthor': false, 'feedUrl': 'http://planet.factorcode.org/feed.xml', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList1', 'sidebar', document.getElementById('LinkList1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>
