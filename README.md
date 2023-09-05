@@ -4,7 +4,8 @@ This site is intended to archive the Blogger post of Slava Pestov.
 It contains many early ideas, technical details, and designs that 
 went into the Factor Programming Language. In order to guard 
 against Google obsolescing Blogger, this mirror was created.
-<a href="">&gt; Enter mirror of factor-language.blogspot.com &lt;</a></p>
+
+<a href="https://capitalex.codeberg.page/factor-language-blog/@pages/">&gt; Enter mirror of factor-language.blogspot.com &lt;</a></p>
 
 ## What is Factor?
 Factor is a concatenative, stack-based programming language. It includes
