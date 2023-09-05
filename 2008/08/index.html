@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html dir='ltr'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/55013136-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='../../favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='index.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Factor: a practical stack language - RSS" href="http://factor-language.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="https://www.blogger.com/feeds/17087850/posts/default" />
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<meta content='http://factor-language.blogspot.com/2008/08/' property='og:url'/>
+<meta content='Factor: a practical stack language' property='og:title'/>
+<meta content='&lt;a href=&quot;http://factorcode.org/slava&quot;&gt;Slava Pestov&lt;/a&gt;&#39;s weblog, primarily about &lt;a href=&quot;http://factorcode.org&quot;&gt;Factor&lt;/a&gt;.' property='og:description'/>
+<title>Factor: a practical stack language: August 2008</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Stretch Denim Light
+Designer: Darren Delaye
+URL:      www.DarrenDelaye.com
+Date:     11 Jul 2006
+-----------------------------------------------
+*/
+body {
+background: #ffffff;
+margin: 0;
+padding: 0px;
+font: x-small Verdana, Arial;
+text-align: center;
+color: #333333;
+font-size/* */:/**/small;
+font-size: /**/small;
+}
+a:link {
+color: #336699;
+}
+a:visited {
+color: #336699;
+}
+a img {
+border-width: 0;
+}
+#outer-wrapper {
+font: normal normal 100% Verdana, Arial, Sans-serif;;
+}
+/* Header
+----------------------------------------------- */
+#header-wrapper {
+margin:0;
+padding: 0;
+background-color: #c4e1ff;
+text-align: left;
+}
+#header {
+margin: 0 2%;
+background-color: #c4e1ff;
+color: #003366;
+padding: 0;
+font: normal normal 210% Verdana, Arial, Sans-serif;;
+position: relative;
+}
+h1.title {
+padding-top: 38px;
+margin: 0 1% .1em;
+line-height: 1.2em;
+font-size: 100%;
+}
+h1.title a, h1.title a:visited {
+color: #003366;
+text-decoration: none;
+}
+#header .description {
+display: block;
+margin: 0 1%;
+padding: 0 0 40px;
+line-height: 1.4em;
+font-size: 50%;
+}
+/* Content
+----------------------------------------------- */
+.clear {
+clear: both;
+}
+#content-wrapper {
+margin: 0 2%;
+padding: 0 0 15px;
+text-align: left;
+background-color: #ffffff;
+border: 1px solid #ffffff;
+border-top: 0;
+}
+#main-wrapper {
+margin-left: 1%;
+width: 64%;
+float: left;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+margin-right: 1%;
+width: 29%;
+float: right;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2, h3 {
+margin: 0;
+}
+/* Posts
+----------------------------------------------- */
+.date-header {
+margin: 1.5em 0 0;
+font-weight: normal;
+color: #999999;
+font-size: 100%;
+}
+.post {
+margin: 0 0 1.5em;
+padding-bottom: 1.5em;
+}
+.post-title {
+margin: 0;
+padding: 0;
+font-size: 125%;
+font-weight: bold;
+line-height: 1.1em;
+}
+.post-title a, .post-title a:visited, .post-title strong {
+text-decoration: none;
+color: #333333;
+font-weight: bold;
+}
+.post div {
+margin: 0 0 .75em;
+line-height: 1.3em;
+}
+.post-footer {
+margin: -.25em 0 0;
+color: #333333;
+font-size: 87%;
+}
+.post-footer .span {
+margin-right: .3em;
+}
+.post img, table.tr-caption-container {
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin: 1em 20px;
+}
+.post blockquote p {
+margin: .75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin: 1em 0;
+color: #999999;
+}
+#comments h4 strong {
+font-size: 110%;
+}
+#comments-block {
+margin: 1em 0 1.5em;
+line-height: 1.3em;
+}
+#comments-block dt {
+margin: .5em 0;
+}
+#comments-block dd {
+margin: .25em 0 0;
+}
+#comments-block dd.comment-footer {
+margin: -.25em 0 2em;
+line-height: 1.4em;
+font-size: 78%;
+}
+#comments-block dd p {
+margin: 0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar h2 {
+margin: 1.6em 0 .5em;
+padding: 4px 5px;
+background-color: #ffffff;
+font-size: 100%;
+color: #333333;
+}
+.sidebar ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.sidebar li {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: .5em;
+padding-left: 15px;
+text-indent: -15px;
+line-height: 1.5em;
+}
+.sidebar {
+color: #333333;
+line-height:1.3em;
+}
+.sidebar .widget {
+margin-bottom: 1em;
+}
+.sidebar .widget-content {
+margin: 0 5px;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font-weight: bold;
+line-height: 1.6em;
+font-size: 78%;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+clear: both;
+text-align: center;
+color: #333333;
+}
+#footer .widget {
+margin:.5em;
+padding-top: 20px;
+font-size: 85%;
+line-height: 1.5em;
+text-align: left;
+}
+/** Page structure tweaks for layout editor wireframe */
+body#layout #header {
+width: 750px;
+}
+
+--></style>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' rel='stylesheet'/></noscript>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body>
+<div class='navbar section' id='navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d17087850\x26blogName\x3dFactor:+a+practical+stack+language\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dBLUE\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://factor-language.blogspot.com/search\x26blogLocale\x3den_US\x26v\x3d2\x26homepageUrl\x3dhttp://factor-language.blogspot.com/\x26vt\x3d1910212838315471456',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id='outer-wrapper'><div id='wrap2'>
+<!-- skip links for text browsers -->
+<span id='skiplinks' style='display:none;'>
+<a href='index.html#main'>skip to main </a> |
+      <a href='index.html#sidebar'>skip to sidebar</a>
+</span>
+<div id='header-wrapper'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='../../index.html'>
+Factor: a practical stack language
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span><a href="http://factorcode.org/slava">Slava Pestov</a>'s weblog, primarily about <a href="http://factorcode.org">Factor</a>.</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id='content-wrapper'>
+<div id='crosscol-wrapper' style='text-align:center'>
+<div class='crosscol no-items section' id='crosscol'></div>
+</div>
+<div id='main-wrapper'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Sunday, August 31, 2008</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='1131145202766817162' itemprop='postId'/>
+<a name='1131145202766817162'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='factor-is-now-five-years-old.html'>Factor is now five years old</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-1131145202766817162' itemprop='description articleBody'>
+Time flies! It is hard to believe that <a href="../../2007/09/factor-is-now-four-years-old.html">another year has gone by</a> and it is now five years since I began to work on the project that would become <a href="http://factorcode.org">Factor</a>.<br /><h3>Community</h3><br />Really, the most important thing that has happened in the last year is that there are some new contributors around. Big shout-out to James Cash, William Schlieper, Joe Groff, Phil Dawes, Aaron Schaefer, Alfredo Beaumont and anybody else who joined the project within the last year. Along with the long-time contributors who were there from the very beginning -- Doug Coleman, Eduardo Cavazos, Chris Double, Daniel Ehrenberg, and everyone else who has helped out over the years -- you people make Factor <i>fun</i>. I'm honored to be working with such high-caliber programmers as the ones in the Factor community: they are the most interesting, intelligent and creative people I know in the software trade. I never anticipated having many people show any interest in Factor at all, but nowadays it is common to see more than 50 people in the <code>#concatenative</code> channel of <code>irc.freenode.net</code>.<br /><h3>Switch to Git</h3><br />At the end of last year, <a href="../../2007/09/factor-project-now-uses-git.html">we switched to git from darcs</a> for revision control. I'd like to think the changeover was a complete success -- git has many powerful features and the five-minute-long "darcs push" and "darcs pull" waits are a thing of the past.<br /><h3>Continuous integration</h3><br />Instead of having manual releases once in a while and keeping the repository in various states of breakage between releases, we've switched to a model of continuous builds and automatic binary packages. We have <a href="http://factorcode.org/binaries.fhtml">binary packages for 11 platforms</a>. For those that prefer to build from source, known-good automatically-updated <a href="http://factorcode.org/sources.fhtml">clean branches</a> are available. Stability has improved with continuous integration, since unit tests are being run all the time; and the days of checking out Factor from the repository only to have bootstrap fail are long gone.<br /><br />Soon we will push ahead and add even more platforms; in the near future we will be adding the missing 64-bit and PowerPC systems and the total number of supported platforms with binary packages will increase to 17. Write once, run anywhere.<br /><h3>Language changes</h3><br />Some of the language changes over the last year have helped make Factor more expressive and maintainable; idiomatic Factor from today is a huge improvement over the state of affairs a year ago. The main improvements are enumerated below, but there were countless others:<br /><ul><li>Eduardo's <a href="../02/apis-designed-around-fixed-width.html">new accessors</a></li><li>Eduardo's <a href="../03/inheritance-tuple-reshaping-cleavers.html">cleave combinators</a></li><li><a href="../04/inheritance-is-done.html">Inheritance</a></li><li><a href="../07/optional-type-declarations-for-tuple.html">Tuple slot declarations</a></li><li>Various improvements to the lexical scope and closures library, <code>locals</code></li></ul><br />While language evolution was a big focus of mine for the first few months of the year, I have taken a break from major language changes over the last six months ago to focus on libraries, the compiler, as well as stability. This focus paid off as many bugs and performance problems were fixed; very soon I will start moving forward with the language again, with multiple dispatch at the top of the list.<br /><h3>Library improvements</h3><br />Many notable new libraries were added, including:<br /><ul><li>Doug Coleman's database abstraction layer with O/R mapper and SQLite, Postgres backends</li><li>Chris Double's <a href="http://www.bluishcoder.co.nz/2008/04/factor-parsing-dsl.html">parsing expression grammars</a></li><li>Daniel Ehrenberg's <a href="http://useless-factor.blogspot.com/2008/06/second-introduction-to-unicode.html">Unicode library</a></li><li>Joe Groff's BLAS binding</li><li>The new <a href="../02/some-changes-to-threads.html">concurrency library</a> by yours truly</li><li>The new web framework by yours truly, still a work in progress</li></ul><br />The I/O system alone saw some major progress:<br /><ul><li><a href="../02/file-system-change-monitoring-on-mac-os.html">File system change monitors</a></li>An awesome process launching that beats anything I've seen in any language</li><li><a href="../05/ssltls-support-added.html">Secure sockets support</a></li></ul><br /><h3>The implementation</h3><br />Along with improvements to the language and library, we've had major progress on the low-level plumbing. Since the goal is to make Factor ready for high-load production applications, I've had to learn a lot about garbage collection and compilers over the last five years, and especially the last year alone.<br /><br />The biggest change in the last year is that Factor is no longer a dual interpreted/compiled implementation. The interpreter has been replaced with a <a href="../../2007/09/two-tier-compilation-comes-to-factor.html">non-optimizing compiler</a> and the optimizing compiler saw some major improvements (<a href="../02/some-rudimentary-control-flow-analysis.html">this</a>, <a href="../04/performance-improvements.html">this</a>, and <a href="new-optimizer.html">this</a>). There have also been countless improvements to the GC, and algorithmic tuning of the core libraries.<br /><h3>The web site</h3><br />We now have a <a href="http://planet.factorcode.org">community blog aggregator</a>, and a <a href="http://paste.factorcode.org">pastebin</a> for the IRC channel. Since we eat our own dogfood, both of those are, naturally, written in Factor and running on the Factor HTTP server, along with the main <a href="http://factorcode.org">Factor website</a>.<br /><h3>Line counts</h3><br />Every year, I've given some line number counts for the Factor codebase. Here are the latest stats:<br /><ul><li>Factor VM: 12050 lines of C, 391 lines of assembly</li><li>Factor core: 9077 lines of Factor</li><li>Factor basis library: 64311 lines of Factor</li><li>Factor extra library: 50825 lines of Factor</li><li>Unit tests: 24308 lines of Factor</li><li>Documentation: 242426 words of help markup</li></ul><br />Compared to last year,<br /><ul><li>The VM has grown by about 2000 lines of code; this isn't much considering there have been many improvements made, and the interpreter was replaced by a simple JIT</li><li>Parts of core and extra were split off and moved to a new basis library which includes useful libraries, tools, the UI, and the compiler; the code that remains in the core is really the fundamentals required to parse and execute Factor code and not much else</li><li>The amount of library code in basis and extra has increased considerably</li></ul><br />Line counts are often meaningless, but in this case we see a very good trend; the lowest levels of Factor, that is the VM and the core library, are certainly not bloating at all; on the other hand, many more libraries are being added, and more and more Factor is starting to complete with more established languages in terms of library coverage.<br /><br />Last year I made the claim that Factor 1.0 would be released this year. This was perhaps too optimistic. While slapping a "1.0" sticker onto the tree could be theoretically done at any time, I want to release a 1.0 that I and everyone else in the community is truly happy with. I remember how underwhelming Java 1.0 was; I don't want to make that mistake. With continuous builds, anyone can try out and test Factor and stability is improving all the time, so there is no need to rush forward and declare my job done prematurely. Having said that, I tentatively give myself <i>another</i> year until 1.0.<br /><br />The rate of progress over the last year has been amazing. I'm looking forward to yet another year of Factor.<br /><br />As a side note, I began <a href="http://www.jedit.org">jEdit</a> development some time in August 1998. So this month jEdit turns 10 years old! I stopped maintaining jEdit in late 2005 and <a href="http://sourceforge.net/mailarchive/message.php?msg_id=42C6DC3E.1070407%40jedit.org">passed the torch</a> to a new development team who remain active to this day; a new release was made a few weeks ago. With 2,000 downloads daily, and more than 4.5 million downloads in all, jEdit's success continues to amaze me. It is still my preferred text editor and I learned almost everything I know about software engineering from working on jEdit, with much of the rest coming from my experience working on Factor.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2008/08/factor-is-now-five-years-old.html' itemprop='url'/>
+<a class='timestamp-link' href='factor-is-now-five-years-old.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2008-08-31T04:35:00-04:00'>4:35 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=1131145202766817162' onclick=''>
+3 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=1131145202766817162' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=1131145202766817162&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1131145202766817162&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1131145202766817162&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1131145202766817162&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1131145202766817162&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1131145202766817162&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Sunday, August 24, 2008</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='7020266816900867198' itemprop='postId'/>
+<a name='7020266816900867198'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='new-optimizer.html'>New optimizer</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-7020266816900867198' itemprop='description articleBody'>
+Roughly speaking, Factor's compiler has three main components:<br /><ul><li>Front-end -- convert quotations to compiler IR</li><li>Optimizer -- remove redundancies and unnecessary dynamism from IR</li><li>Code generator -- generate machine from IR</li></ul><br />I'm finishing up with a rewrite of the first two components; this took just over a month and comprises 8200 lines of new code. I haven't pushed it yet, but I will in the next few days. I just want to test it a bit more before unleashing it on the world. A rewrite of the code generator will materialize before the year ends.<br /><h3>The new front-end</h3><br />The new front-end is faster and emits a redesigned compiler IR. The main change to the IR is that it is now a static single assignment IR, and more control flow information is recorded via "phi nodes". The additional information enables more optimizations to be performed.<br /><br />As before, the compiler IR is essentially stack code which is annotated with values, and with symbolic shuffles instead of shuffle words (for example, <code>over</code> is represented as something like <code>a b -> a b a</code>). A key property is that if we strip out all the value annotations, we again end up with stack code; I exploit this with a debugging tool which converts a quotation to IR, optimizes it, and converts it back to a quotation. This helps spot missed opportunities for optimization, as well as compiler bugs.<br /><br />Even the code generator ignores the value annotations and only looks at the stack code; so the value annotations are only used by the optimizer itself, as it tracks the stack flow of values between words; and even the optimizer could dispense of them, at the cost of some algorithmic complexity. Because of this, one can think of the optimizer as a source-to-source transform; the sophistication and accuracy of the optimizations performed is unusual for such an approach, and this is surely a testament to the interesting properties and versatility of concatenative languages.<br /><h3>The new optimizer</h3><br />The old optimizer was structured as a loop. Each iteration of the loop began by performing a series of analysis passes on the IR without actually changing the IR. Then, the actual optimization pass would run, iterating over every node in the IR. For each node, a series of optimization rules would be applied. If any nodes were changed, the main optimizer loop would run again. This way, it would iterate until all optimizations converge. This approach had several problems. First, it was inefficient; even if all optimizations were performed on the first pass, all analysis would run at least twice, and some of them were expensive. Second, it would miss optimization opportunities because it did not perform analysis concurrently with optimizations. The new optimizer is structured differently. It consists of 8 passes where each pass runs exactly once. Some passes only perform analysis, others only modify the IR based on prior analysis, others do both. Even though no pass runs more than once, the new optimizer can pick up optimization opportunities that the old one could not. It is also simpler, because each pass performs a single transformation, and faster.<br /><h3>First pass: normalization</h3><br />This pass cleans up the IR output by the front-end to make it more amenable to subsequent analysis. This pass itself consists of several smaller passes, collecting information and making changes to the IR. Here is a description of two of the things it performs.<br /><br />Suppose we are compiling this quotation:<br /><pre>[ 2 + * ]</pre><br />Upon encountering the <code>+</code>, the front-end notices that a value must be popped from the stack because <code>+</code> needs 2 inputs, and again, with <code>*</code>. The front-end records this as <code>#introduce</code> nodes in the IR. For subsequent optimizations, it is advantageous to know how many inputs are expected on the stack at the very beginning of the quotation, so the normalize pass moves all <code>#introduce</code> nodes to the beginning of the IR and combines them into a single <code>#introduce</code> node.<br /><br />Now, consider this quotation:<br /><pre>[ 0 swap [ + ] each ]</pre><br />The <code>each</code> word is declared to have stack effect <code>( seq quot -- )</code>, however in this case the quotation accesses one additional stack item -- we're using the stack as an implicit accumulator -- so this usage of <code>each</code> is really <code>( accum seq quot -- accum )</code>. Being able to use the stack as an accumulator and thus turn <code>each</code> into a fold without any extra work is a great feature of Factor, however it requires some extra work on the compiler's part. The normalize pass analyzes inline recursive combinators and rewrites them as if the accumulator was explicit.<br /><h3>Second pass: propagation</h3><br />This pass combines <a href="http://en.wikipedia.org/wiki/Sparse_conditional_constant_propagation">sparse conditional constant propagation</a>, type inference, numerical range inference, and method dispatch elimination. All of this is combined into a single pass because the result is stronger than any order or any repetition of these passes, even if iterated until fixed point. This pass uses the "optimistic assumption" methodology: it begins by assuming that all code is unreachable, and all values have the "bottom" type (the type which no value can inhabit). As evidence contradicting these assumptions is collected, they are gradually relaxed; relaxing assumptions uncovers more evidence, and so on.<br /><br />The old type inference was "pessimistic": it assumed all values had the "top type" (in Factor, <code>object</code>, meaning the type of all values) and that all code is reachable. The optimistic assumption derives stronger results than the pessimistic assumption.<br /><br />The classical optimization which demonstrates the power of combining several analysis passes into one, is SCCP. We can construct a loop where a value is only seen to be a constant if unreachable code elimination is performed, but the code in question only becomes unreachable if a certain value is known to be a constant. Here is the code in Factor:<br /><pre>0 10 [ dup 0 > [ 1 + ] when ] times</pre><br />After a quick examination of the above, it should be convincing that the value on the top of the stack will always remain 0, and the quotation <code>[ 1 + ]</code> is unreachable.<br /><br />Suppose we perform unreachable code elimination and constant propagation separately, and furthermore, suppose we assume all code is reachable initially. Then we must conclude that the value on the top of the stack after an iteration of the while loop could potentially be any positive integer, because we either return the input or we add one to the previous value. Because of this, the test <code>0 ></code> might be true or false, and the compiler would not be able to delete this branch.<br /><br />On the other hand, SCCP will detect that on the first iteration, the test <code>0 ></code> evaluates to false because the value on the stack is 0, and thus the branch is not taken, and the loop exits with <code>0</code> on the stack; thus the value is <i>always</i> zero, and the test always evaluates to <i>false</i>, and the branch is <i>never</i> taken.<br /><br />Combining optimizations works nicely with method dispatch elimination also. For example, consider this contrived program:<br /><pre>GENERIC: my-generic ( obj -- obj' )<br /><br />M: integer my-generic 1+ ;<br />M: string my-generic "!" append ;<br /><br />: my-program ( -- ) 0 10 [ my-generic ] times . ;</pre><br />Clearly, this is the same as:<br /><pre>: my-program ( -- ) 0 10 [ 1+ ] times . ;</pre><br />Factor's old optimizer did not detect this: after all, the generic word could output potentially any type of object, and so the value at the top of the stack at the beginning of a loop iteration could also be any type, and the subsequent method inlining pass thus had no information to work with.<br /><br />By combining type inference with optimistic method inlining, we see that on the first iteration, we are calling <code>my-generic</code> with an integer on the stack, and thus we can inline the method; then we know that <code>1+</code> applied to an integer yields an integer, thus the value on the stack is <i>always</i> an integer, thus the inlining decision was valid.<br /><br />Of course, not all inlining decisions are valid; because the propagation pass operates under the optimistic assumption where inferred types of values only ever widen, sometimes the widening of a value's type invalidates prior inlining decisions. For example, suppose we had this instead:<br /><pre>GENERIC: my-generic ( obj -- obj' )<br /><br />M: integer my-generic number>string ;<br />M: string my-generic "!" append ;<br /><br />: my-program ( -- ) 0 10 [ my-generic ] times . ;</pre><br />Here it is no longer valid to inline either method inside the loop, so when the propagation pass finishes, there will be no inlining in the IR.<br /><br />This underscores an important difference between optimistic and pessimistic analysis; if we stop a pessimistic analysis half-way through, all inferred type are still valid, since they are, at worst, an over-estimate. An optimistic analysis must be carried out to completion, since stopping early will possibly leave us with assumptions which are too narrow. This is not a problem with Factor's optimizer, but it might be an issue in JITs where compile time is of the utmost importance and the compiler stops certain optimization passes half-way if it detects that they have run for too long.<br /><br />The propagation pass also tracks types of immutable tuple slot values, and types of array lengths. The latter is very useful indeed, because as far as propagation is concerned, a "type" is a very rich notion, encompassing a value's class, but also a potential literal value, and if the type is a subtype of the real numbers, a potential range of values. Through a combination of type inference, method inlining, and unreachable code elimination, the propagation pass is able to eliminate the bounds check in the call to <code>first</code> in the following code, because it knows we are getting the first element of an array which is either 2 or 3 elements in length:<br /><pre>[ 2array ] [ 0 3array ] if first</pre><br />Inference of tuple slot value types is a very important enabling optimization because it enables the subsequent escape analysis and tuple unboxing optimizations to operate on nested structure.<br /><br />A more minor improvement is that while the old optimizer did not perform constant folding in this case, the new propagation pass does:<br /><pre>[ 2 2 + ] [ 4 ] if 4 *</pre><br />I believe this was an oversight on my part, since nothing in the old design prevented it from exploiting this opportunity for optimization (it would have taken several iterations until fixed point was reached though, whereas the new optimizer only takes one.)<br /><h3>Third pass: cleanup</h3><br />The propagation pass annotates IR nodes with type information, but it also modifies the IR by inlining methods and removing unreachable code. However, it cannot actually make destructive changes to the IR as it runs, because of the optimistic assumption; it may begin by assuming a certain branch of a conditional is never reached, however a subsequent discovery may lead it to reverse this assumption. Because of this, it does not make destructive changes to the IR, it only annotates the IR with assumptions which so far, have not been disproven. After propagation finishes, the assumptions which still remain are those which were shown to be valid. It is the job of the cleanup pass to finalize them; methods which are marked for inlining are actually inlined, branches which are still marked unreachable are deleted, and calls to words where the output is annotated as a constant are deleted and replaced with literals.<br /><h3>Fourth pass: loop detection</h3><br />This is a very simple pass intended to help the compiler generate better code for inline recursive combinators by finding those which can share a call stack frame with their parent word. The general strategy is the same as previously, and <a href="../02/some-rudimentary-control-flow-analysis.html">I blogged about it when I first implemented it</a>, however the algorithm itself is more efficient.<br /><h3>Fifth pass: escape analysis</h3><br />The input to this pass now hopefully has as much generic dispatch as possible removed, and as many methods as possible inlined. There are a lot more calls to primitive words, and unsafe words, than there are in ordinary Factor code written by the user. Perhaps some tuples are now allocated in the same word where they are used, without ever being returned from the word. It is the job of the escape analysis pass to detect these tuples. I have written about <a href="algorithm-for-escape-analysis.html">escape analysis</a> recently in great detail, so I won't describe the algorithm here, only how it fits in with the optimizer. Unlike the other passes, it does not modify the IR, it only collects information. Right now, there isn't a lot of code out there that is written with tuple unboxing in mind, so for the most part, escape analysis will be detecting <code>curry</code> and <code>compose</code> instances which don't really have to be constructed at runtime. Previously, this was done by the front-end, but it was fragile, messy, and not general enough.<br /><h3>Sixth pass: tuple unboxing</h3><br />This pass uses information collected by escape analysis to eliminate unnecessary tuple allocations. If a tuple is determined to not escape, we delete its allocation from the IR, and replace all occurrences of the tuple's value in stack shuffle nodes with a series of slot values. Slot accesses become stack shuffles where the input is the set of slot values, and the output is the specific value being selected.<br /><br />There is a parallel here between the propagation and cleanup passes, and the escape analysis and tuple unboxing passes. The first pass collects information and either annotates the IR (propagation) or stores it in an auxiliary structure (escape analysis). The second pass uses the collected information to rewrite the IR into something more efficient. The next two passes follow the same pattern; first we collect some information, then we rewrite the IR using this information.<br /><h3>Seventh pass: def-use chain computation</h3><br />This pass builds a hashtable where the keys are values defined in the IR, and the values are pairs; the first item in the pair is the IR node which defines this value, and the second item in the pair is a sequence of IR nodes which use this value. In the Factor IR, each value is used at least once; even if a value is computed and never needed again, it will at least be dropped from the stack and thus used by a <code>#shuffle</code> node; if a value is computed and immediately returned from the word, it is used by a <code>#return</code> node.<br /><h3>Eighth pass: dead code elimination</h3><br />This is the final pass; it uses def-use information to find values which are computed then never needed, and rewrites the code to delete them. Because each value is used at least once, this is not dead code elimination in the classical SSA sense; it is a bit more complex than that. In addition to deleting computations of unneeded values, it also has to modify stack shuffles and insert drops where appropriate. It also has to detect values which are computed, shuffled around on the stack, and then dropped far from the location where they're defined.<br /><br />Just like propagation, dead code elimination uses the optimistic assumption. It begins by assuming that all values are dead, then iterates the IR, marking values as live once it detects that they escape from the word, continuing the analysis until no more values can be shown to be live.<br /><br />The old optimizer's dead code elimination was much more simplistic (and pessimistic).<br /><br />The new optimizer can rewrite<br /><pre>[ 4 + ] [ 5 ] if drop</pre><br />into<br /><pre>[ ] [ ] if</pre><br />(Empty conditionals are not deleted right now; maybe the code generator will do this later). The old optimizer did not see this opportunity.<br /><br />The new optimizer can also rewrite<br /><pre>pop >r ... r> drop</pre><br />into<br /><pre>pop drop ...</pre><br />The old optimizer did nothing here, because <code>pop</code> has a side effect (it deletes the last element of the sequence, then pushes it on the stack), so it could not touch it or the value it produces. The new optimizer recognizes that the value does not need to travel around on the stack; since it is never needed again, we can just drop it immediately and remove it from all shuffles that it participates in, even if we cannot delete the call to the word which produces it.<br /><br />The new optimizer also does a better job of eliminating unnecessary stack shuffles in general. Consider the following code:<br /><pre>[ + ] [ drop ] 2bi /</pre><br />This type of thing is pretty common; calling cleave combinators and dropping some of the values in some of the quotations. After inlining, this gives us:<br /><pre>over over >r >r + r> r> drop /</pre><br />There is some unnecessary shuffling here, because a value is placed on the retain stack only to be dropped later. However, this value is a copy of a value which is passed to <code>+</code> and so is live; the old optimizer gave up at this point, and did not differentiate between the different copies of a value. The new optimizer does, and even if one copy of a value is live, the other copies might still be dead and optimized away, and so the above code is optimized down to the following:<br /><pre>over >r + r> /</pre><br />The code generator subsequently combines <code>over >r</code> into a single optimal instruction sequence which loads the second stack value and saves it on the retain stack.<br /><br />In the event that type inference and inlining had replaced the call to <code>+</code> with a call to an <code>fixnum+</code> or <code>float+</code>, there would be no stack traffic at all, and whether or not dead code elimination had eliminated that unnecessary retain stack shuffling would not make a difference. However, in the general case where the cleave combinator is calling non-inline words and not everything ends up in the same basic block, the optimization does make a difference.<br /><br />Another situation where the new dead code elimination helps and the old one did nothing is the following common pattern; suppose we have a word <code>do-it</code> with stack effect <code>( a b -- )</code>. Sometimes, people write<br /><pre>[ 2dup do-it ] when 2drop</pre><br />Instead of<br /><pre>[ do-it ] [ 2drop ] if</pre><br />After inlining, the former becomes<br /><pre>[ 2dup do-it ] [ ] if 2drop</pre><br />Dead code elimination will detect that two of the four outputs of <code>2dup</code> are dead, because they're subsequently dropped; it will then delete the call to <code>2dup</code> and the <code>2drop</code> it is paired with. To make the other branch correct, it inserts a call to <code>2drop</code> in the other branch, and so we end up with:<br /><pre>[ do-it ] [ 2drop ] if</pre><br />So whichever idiom you choose to use how has absolutely no effect on performance (admittedly, the difference was still negligible before, but every improvement counts.)<br /><h3>How I did it</h3><br />I developed the new front-end and optimizer over a period of one month, without replacing the old optimizer until last week when I merged the changes in. I went with this approach because I wanted to have the full power of Factor's UI tools available while working on the compiler, and because I did not want to put up with random crashes or odd bugs because the compiler compiled itself incorrectly, and so on. However, with this development methodology, good unit tests were crucial. The old compiler only had 'live fire exercise' tests; it would compile a quotation, call it, and test that the result was as we would expect. The old tests were not immediately useful to me while I was working on the new optimizer, so I wrote a whole new set of tests which instead run individual compiler passes then perform various checks on the IR. I also developed a general IR checker which checked invariants; I caught many bugs this way before I even compiled a single line of code.<br /><h3>The future</h3><br />For now, I will put the compiler aside to work on other things. I plan on revisiting the web framework, polishing the documentation, and fixing bugs for a little while. When I get bored of that, I will return to compiler hacking. The optimizer needs a little bit of extra polish; once this is done, I plan on doing some benchmarking and some tuning, and I expect some interesting results. The code generator rewrite will improve performance further. So far, I'm happy with the improvement in compile time alone; bootstrap went from 8 minutes to 6 minutes on my MacBook Pro.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2008/08/new-optimizer.html' itemprop='url'/>
+<a class='timestamp-link' href='new-optimizer.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2008-08-24T02:49:00-04:00'>2:49 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=7020266816900867198' onclick=''>
+1 comment:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=7020266816900867198' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=7020266816900867198&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7020266816900867198&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7020266816900867198&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7020266816900867198&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7020266816900867198&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7020266816900867198&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='769237341443273332' itemprop='postId'/>
+<a name='769237341443273332'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='three-language-changes.html'>Three language changes</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-769237341443273332' itemprop='description articleBody'>
+There are three language changes coming up as a result of the new high-level optimizer being merged in. All are minor, and I have already updated most code in the repository, however they're worth pointing out.<br /><h3>Recursive declarations</h3><br />Words (combinators) which are declared <code>inline</code> and recursive must also be declared <code>recursive</code>. Most combinators are not recursive, but instead are built in terms of other combinators, such as <code>curry</code>, <code>map</code>, and so on. However the fundamental ones are recursive, and they need to be declared as such. Furthermore, input parameters which are quotations must have their stack effect annotated with a nested stack effect declaration. For now, this is only a requirement for inline recursive words; in the future, Factor might require such annotations on all quotation parameters. Here is an example; the <code>loop</code> combinator calls a quotation until it returns false:<br /><pre>: loop ( pred: ( -- ? ) -- )<br />    dup slip swap [ loop ] [ drop ] if ; inline recursive</pre><br />Note the nested stack effect, and the <code>recursive</code> declaration. If you find this too verbose, then consider building your combinator from other combinators, such as <code>loop</code> and <code>while</code>, instead of using explicit recursion.<br /><br />The rationale for this change is that it simplifies the compiler front-end. Inline words which are recursive and those which are not are constructed differently in the compiler's IR, but the decision must be made before the word definition is inspected for recursive calls. The old compiler front-end would back-track and throw away the partially constructed IR upon encountering a recursive call, but this lead to poor performance for code with deeply nested calls to recursive combinators. The new approach simplifies the front-end and only requires a little bit of effort from the programmer.<br /><h3>Stricter retain stack operation checking</h3><br />Before, the compiler would tolerate code such as the following:<br /><pre>: foo ( a b -- c ) >r [ r> 1 + ] [ r> drop 0 ] if ;</pre><br />Here the retain stack usage was balanced within the entire word, but not in individual quotations. Again, this lead to complications; the compiler IR had to express not only data stack but retain stack values at control flow merge points, and with my move toward an <a href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA IR</a>, the bookkeeping became a pain. Since this type of code is harder to understand and doesn't come up very often anyway, I decided to simplify the compiler and prohibit it. Now, usages of <code>>r</code> and <code>r></code> must be balanced within every quotation, not just the entire word.<br /><h3>Old-style delegation has been removed</h3><br />I implemented <a href="../03/working-on-inheritance.html">inheritance</a> in April this year; so delegation has been deprecated for four months now, and its finally out. Most libraries have been updated to either use inheritance, or the more powerful <a href="http://useless-factor.blogspot.com/2007/12/extradelegation-annotated-vocabulary.html">delegation library</a> by Daniel Ehrenberg.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2008/08/three-language-changes.html' itemprop='url'/>
+<a class='timestamp-link' href='three-language-changes.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2008-08-24T02:29:00-04:00'>2:29 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=769237341443273332' onclick=''>
+No comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=769237341443273332' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=769237341443273332&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=769237341443273332&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=769237341443273332&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=769237341443273332&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=769237341443273332&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=769237341443273332&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Sunday, August 10, 2008</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='2790143196189474911' itemprop='postId'/>
+<a name='2790143196189474911'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='algorithm-for-escape-analysis.html'>An algorithm for escape analysis</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-2790143196189474911' itemprop='description articleBody'>
+In compiler implementation, <a href="http://en.wikipedia.org/wiki/Escape_analysis">escape analysis</a> is the process of discovering which values defined within a procedure are returned or passed down to another subroutine -- these are <i>escaping</i> values. Compound objects which are allocated inside the procedure, and which do not escape, are candidates for stack allocation. If applied in isolation, the main benefit of stack allocation is reduced GC overhead; however with generational garbage collection, this is not so important. The real payoff comes from combining stack allocation with unboxing -- if all usages of a compound object are replaced by its constituent values, further optimizations can be applied; the constituents might get <a href="http://en.wikipedia.org/wiki/Register_allocation">stored in registers</a>, or become candidates for <a href="http://en.wikipedia.org/wiki/Global_value_numbering">value numbering</a>, etc. Sometimes this optimization is referred to as <i>scalar replacement</i>.<br /><br />I implemented escape analysis in the new compiler I'm working on for Factor. Since I couldn't find a description of the algorithm with the properties I wanted in the literature, I came up with my own and documented it here.<br /><br />To start with, in Factor, almost everything is done with subroutine calls -- words are very short, and object slot access involves calling another word. And most objects pass through shuffle words on their way to their destination. So escape analysis only makes sense after inlining and type inference, and we also need to treat shuffle words specially, not as other subroutine calls. The latter is already taken care of, however; the compiler has special knowledge of shuffle words so that it can perform non-local optimizations.<br /><br />A more subtle issue is that of writable slots. At present, my escape analysis only considers tuples where all slots are declared read-only as candidates for unboxing. Writing into slots creates difficulties; aliasing must be considered, and mixing the unboxing of mutable objects together with multi-shot continuations doesn't seem to make sense either (capturing a continuation copies the stack but not the heap; so if we restore a multishot continuation several times and read a mutable slot, we can observe whether unboxing took place or not by seeing if restoring the continuation restored its old value). Technically, I could extend it to unbox tuples whose slots are never written into, not just those whose slots are forced to be read-only. I will probably make this change if it avoids complicating the code too much.<br /><br />Escape analysis is very beneficial in Factor; for example, iteration over a virtual sequence can be rewritten by the compiler to avoid allocating the virtual sequence altogether. It also enables programming idioms such as "cursors": you can represent the iteration state over a collection as an object, and have the object be unboxed at compile time, turning high-level functional code into tight loops in registers. In general, by reducing the cost of allocating temporary objects, better factoring is encouraged and cleaner code can be written.<br /><br />The idea is basically to calculate which values may be unboxed, and for each such value, we replace its allocation with a no-op, replace each slot selection with a stack shuffle, and "widen" each shuffle that it passes through to permute its slots.<br /><br />For example, suppose we define a new data type, the academic functional programmer's favorite,<br /><code>TUPLE: cons { car read-only } { cdr read-only } ;</code><br />Now if we have this code,<br /><pre>: foo-0 ( -- a b ) 1 2 cons boa dup car>> swap cdr>> ;</pre><br />We would expect the compiler to convert it to something like the following:<br /><pre>: foo-0' ( -- a b ) 1 2 2dup drop rot nip ;</pre><br />The transformation proceeds as follows:<br /><ul><li>the constructor was removed altogether</li><li>the <code>dup</code> became <code>2dup</code> because now the cons is two items on the stack</li><li>the first slot selection (<code>car>></code>) became <code>drop</code> since this drops the second slot value while retaining the first one</li><li>the <code>swap</code> became <code>rot</code> since one of the inputs was the tuple, which is now two values on the stack</li><li>the second slot selection (<code>cdr>></code>) became a <code>nip</code> since this drops the first slot value while retaining the second one</li></ul><br />The codegen would then simplify the shuffling to a no-op, and the word would become nothing more than a push of two literal values on the stack.<br /><br />To formalize the above, we need to come up with a good definition for a value which "escapes". We formulate this in terms of the inputs and outputs of the various nodes in the high-level <a href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA IR</a> of the Factor compiler. Since this is SSA, each value is defined only once, so we may identity a value with its definition; we can say that a value is the result of a specific operation, such as a memory allocation.<br /><br />First, every value has an entry in the <i>allocation map</i>. The entry is either <code>f</code>, meaning the value's definition has not been seen yet, <code>t</code>, meaning the value is allocated outside of this word, or a sequence of values, meaning that this value is a tuple allocation whose slots are from this sequence. When the analysis is done, no value has an entry of <code>f</code>, however while the analysis is in progress, we may encounter such cases, and they have to be handled -- basically, an entry of <code>f</code> means "this entry may change to anything else in the future".<br /><br />Clearly, a value which is returned from the word in question escapes -- these values are stored as the input to a <code>#return</code> node in the compiler IR. Also, values which are inputs to subroutine calls escape -- these are the <code>#call</code> nodes. One exception is that the slot selection primitive <code>slot</code>, when called with a constant integer argument, does not force its input value to escape; after all, we need to have some way of accessing slots of stack-allocated objects. Calls to this primitive appear after type inference allows slot accessors to be inlined. Finally, values which are inputs to a call of the tuple construction primitive <code>&lt;tuple-boa></code> are not considered to escape either; we would like to unbox nested (but not circular) structure.<br /><br />In the following two, the allocation escapes:<br /><pre>: foo-1 ( -- cons ) 1 2 cons boa ;</pre><br /><pre>: foo-2 ( -- ) 1 2 cons boa . ;</pre><br />Here it doesn't -- after inlining, <code>car>></code> becomes <code>3 slot</code>:<br /><pre>: foo-3 ( -- obj ) 1 2 cons boa car>> ;</pre><br />In the following, neither of the two allocations escape:<br /><pre>: foo-4 ( -- obj ) 1 2 cons boa 3 cons boa car>> car>> ;</pre><br />Now we run into our first complication. Consider the following code:<br /><pre>: foo-5 ( -- cons ) 1 2 cons boa 3 cons boa car>> ;</pre><br />The first allocation escapes, the second one does not. Now clearly the result of <code>car>></code> (<code>3 slot</code> after inlining) escapes by our above criteria; how do we link it with the output of <code>1 2 cons boa</code>? Well, we can construct an undirected graph where the vertices are values, and two vertices are linked by an edge if a sufficient and necessary condition for one of them to escape is for the other to escape. We can thus look at connected components of this graph instead of individual values -- if any member of the connected component escapes, they all do. I call this graph the "escaping values graph".<br /><br />So in the above example <code>foo-5</code>, we add an edge between the first input to the second <code>cons boa</code> call, and the output of <code>car>></code>, and when we encounter the <code>#return</code> node and see that the output of <code>car>></code> escapes, we will also know that its input escapes; hence the first allocation escapes, but the second one does not.<br /><br />A number of nodes in the IR are created when shuffle words are converted -- these are <code>#>r</code>, <code>#r></code>, and <code>#shuffle</code>. They do not make values escape, but they do define new values (this is SSA), and whether those values escape or not depends on whether their inputs escape, and vice versa.<br /><br />This allows us to catch that the following allocation escapes:<br /><pre>: foo-6 ( -- cons ) 1 2 cons boa >r "Hello world" print r> ;</pre><br />but the following doesn't:<br /><pre>: foo-7 ( -- obj ) 1 2 cons boa >r "Hello world" print r> cdr>> ;</pre><br />A related type of node is the <code>#copy</code> node, which arises as a result of other optimizations. We also add edges to the escaping values graph mapping its inputs to its outputs.<br /><br />This pretty much sums it up for straight-line code without branches or recursion. You build a value graph to track value equivalence, mark certain values as escaping when you encounter call and return nodes, then when you're done, you know that the allocations whose connected components in the graph do not contain escaping values can be safely unboxed.<br /><br />The situation with conditionals is trickier. Suppose you have a word <code>bar</code> which outputs a cons, but cannot be inlined for whatever reason, and you use the word as follows:<br /><pre>: foo-8 ( ? -- obj ) [ 1 2 cons boa ] [ bar ] if car>> ;</pre><br />Here, the first allocation does not escape -- the only place it can ever be used is the <code>car>></code>; but if we replace it with two items on the stack and change the call to <code>car>></code> into a stack shuffle, then in the event of the second branch being taken, we would get incorrect behavior; here we certainly do want the accessor to be called, and we don't expect <code>bar</code> to return two values on the stack either.<br /><br />So clearly, in the above, we have to somehow infer that the result of the allocation escapes, even though it is never an input to a call or a return. How do we do this? Well, here is the SSA form for the above, in somewhat stylized, C-like form, with <code>x</code> the top of the stack:<br /><pre>if(x)<br />    y1 = cons(1,2);<br />else<br />    y2 = bar();<br />y = phi(y1,y2);<br />z = y.car;<br />return (z);</pre><br />The problem here is the <code>#phi</code> node has two inputs, one of which has an entry in the allocation map <code>{y1,y2}</code>, and the other one has a value of <code>t</code>, since it is allocated outside of this word. Therefore, we cannot unbox <code>y1</code>, since that would mess up the <code>#phi</code> node. So we add a check for this; if the inputs to a <code>#phi</code> nodes have incompatible allocation map entries, either because of them is a sequence of values and the other is <code>t</code>, or because they are both sequences of values of different length, we mark all values as escaping, ruling out any unboxing. On the other hand, if all entries are compatible, we have to add new <code>#phi</code> nodes to unify the slots. Even if unboxing does not take place for other reasons, these <code>#phi</code> nodes are important to track relations between tuple slots.<br /><br />For example, consider this program:<br /><pre>: foo-9 ( ? -- obj ) [ 1 2 cons boa ] [ 3 4 cons boa ] if car>> ;</pre><br />The two allocations are compatible and the compiler should rewrite the above into roughly the following:<br /><pre>: foo-9' ( ? -- obj ) [ 1 ] [ 3 ] if ;</pre><br />Here is the SSA form of <code>foo-9</code>:<br /><pre>if(x)<br />{<br />    a1 = 1;<br />    b1 = 2;<br />    y1 = cons(a1,b1);<br />}<br />else<br />{<br />    a2 = 3;<br />    b2 = 4;<br />    y2 = cons(a2,b2);<br />}<br />y = phi(y1,y2);<br />z = y.car;<br />return (z);</pre><br />Escape analysis would add the following entries to the allocation map:<br /><pre>a1 => t<br />a1 => t<br />y1 => (a1,b1)<br />a2 => t<br />a3 => t<br />y2 => (a2,b2)<br /><br />a3 => t<br />b3 => t<br />y => (a3,b3)</pre><br />The last three entries are added as a result of the <code>#phi</code> node being traversed.<br /><br />As for the value graph, the slot access would link <code>z</code> with <code>a3</code> as soon as we encounter the statement <code>z = y.car;</code>.<br /><br />However, we actually need to add more edges to the value graph than just this one. Consider the following program, almost the same as <code>foo-9</code> except we return the cons cells on the stack:<br /><pre>: foo-10 ( ? -- cons ) [ 1 2 cons boa ] [ 3 4 cons boa ] if ;</pre><br />Here, we cannot unbox either value and both allocations escape. However, while we would end up marking the output of the <code>#phi</code> as an escaping value, nothing would be done to the outputs of <code>cons boa</code>, resulting in incorrect code. So what we need to do is link the inputs and outputs of a <code>phi</code> in the escaping values graph, thus if any one of them escapes, they all escape. Here is the SSA form for <code>foo-10</code>:<br /><pre>if(x)<br />{<br />    a1 = 1;<br />    b1 = 2;<br />    y1 = cons(a1,b1);<br />}<br />else<br />{<br />    a2 = 3;<br />    b2 = 4;<br />    y2 = cons(a2,b2);<br />}<br />y = phi(y1,y2);<br /><br />/* Inserted by escape analysis */<br />a3 = phi(a1,a2);<br />b3 = phi(b1,b2);<br /><br />return (y);</pre><br />Here is the allocation map:<br /><pre>a1 => t<br />a1 => t<br />y1 => (a1,b1)<br />a2 => t<br />a3 => t<br />y2 => (a2,b2)<br />a3 => t<br />b3 => t<br />y => (a3,b3)</pre><br />And here are the edges of the escaping values graph for <code>foo-10</code>:<br /><pre>a3 -- a1<br />a3 -- a2<br />b3 -- b1<br />b3 -- b2<br />y -- y1<br />y -- y2</pre><br />Because <code>y</code> escapes, none of the values in its connected component -- namely, <code>y</code>, <code>y1</code>, and <code>y2</code> -- are candidates for unboxing.<br /><br />This approach handles all other corner cases involving branches also:<br /><pre>: foo-11 ( ? -- cons ) [ 1 2 cons boa dup . ] [ 3 4 cons boa ] if car>> ;</pre><br />Here, the first allocation cannot be unboxed, and this prevents the second allocation from being unboxed since they meet at a <code>#phi</code> node.<br /><br />Here is another example:<br /><pre>: foo-12 ( ? -- cons ) [ 1 2 cons 3 cons boa ] [ bar 4 cons boa ] if car>> car>> ;</pre><br />What happens here? Well, let's look at the SSA form:<br /><pre>if(x)<br />{<br /> a1 = 1;<br /> b1 = 2;<br /> y1 = cons(a1,b1);<br /> c1 = 3;<br /> z1 = cons(y1,c1);<br />}<br />else<br />{<br /> y2 = bar();<br /> c2 = 4;<br /> z2 = cons(y2,c2);<br />}<br /><br />z = phi(z1,z2);<br /><br />/* Inserted by escape analysis */<br />y3 = phi(y1,y2);<br />c3 = phi(c1,c3);<br /><br />u = z.car;<br />v = u.car;<br /><br />return(u);</pre><br />Here is the allocation map:<br /><pre>a1 => t<br />b1 => t<br />y1 => {a1,b1}<br />c1 => t<br />z1 => {y1,c1}<br />y2 => t<br />c2 => t<br />z2 => {y2,c2}<br />y3 => t<br />c3 => t<br />z => {y3,c3}<br />u => t<br />v => t</pre><br />Here are the edges of the value graph:<br /><pre>y3 -- y1<br />y3 -- y2<br />z -- z1<br />z -- z2<br />v -- y3</pre><br />Note that while <code>y1</code> does not escape, it is in the same connected component as <code>y2</code>, which does escape, therefore <code>y1</code> cannot be unboxed. However, <code>z1</code> and <code>z2</code> can both be unboxed.<br /><br />Recursion and loops arising from usage of combinators such as <code>each</code> create <code>#phi</code> nodes where some of the inputs are defined <i>after</i> the <code>#phi</code> node in a post-order traversal of the dominator graph.<br /><br />For example,<br /><pre>10 [ . ] each</pre><br />yields the following SSA form:<br /><pre>int x0 = 0;<br />int x1 = 10;<br /><br />L: x2 = phi(x0,x3);<br />if(x2 < x1)<br />{<br />    .(x2);<br />    x3 = x2 + 1;<br />    goto L;<br />}</pre><br />Note that <code>x3</code> is defined after the <code>#phi</code> node referencing it.<br /><br />When the escape allocation encounters, some of the inputs have entries of <code>f</code> in the allocation map. These values are ignored when checking for compatibility; we optimistically assume that they will later be defined in a way which does not force the value to be escaping. After the first iteration of the analysis, all values should now have non-<code>f</code> entries in the allocation map. We repeat the analysis until the allocation map entries of the outputs of <code>#phi</code> nodes stop changing; while it is possible to construct code where this can take any number of iterations, in real examples it should terminate after one or two passes.<br /><br />For example, in the following, the allocations can be unboxed:<br /><pre>: foo-13 ( n -- obj ) 1 2 cons boa swap [ drop 3 4 cons boa ] times car>> ;</pre><br />We'd expect the compiler to convert the code into the following:<br /><pre>: foo-13' ( n -- obj ) 1 2 rot [ 2drop 3 4 ] times drop ;</pre><br />Here is the SSA form:<br /><pre>int a1 = 1;<br />int b1 = 2;<br />int y1 = cons(a1,b1);<br /><br />int x0 = 0;<br /><br />L: x2 = phi(x1,x3);<br /><br />/* Inserted by escape analysis */<br />a3 = phi(a1,a2);<br />b3 = phi(b1,b2);<br /><br />y2 = phi(y1,y3);<br />if(x2 < n)<br />{<br />    x3 = x2 + 1;<br />    a2 = 3;<br />    b2 = 4;<br />    y3 = cons(a2,b2);<br />    goto L;<br />}<br /><br />z = y2.car;<br />return(z);</pre><br />Here is the allocation map:<br /><pre>a1 => t<br />b1 => t<br />y1 => {a1,b1}<br />x0 => t<br />x2 => t<br />a3 => t<br />b3 => t<br />y2 => {a3,b3}<br />x3 => t<br />a2 => t<br />b2 => t<br />y3 => {a2,b2}<br />z => t</pre><br />And the edges of the escaping values graph:<br /><pre>a3 -- a1<br />a3 -- a2<br />x2 -- x1<br />x2 -- x3<br />b3 -- b1<br />b3 -- b2<br />y2 -- y1<br />y2 -- y3</pre><br />The only value marked as escaping is <code>z</code>, and its connected component only contains itself, so the two allocations may be unboxed.<br /><br />On the other hand, if we have<br /><pre>: foo-14 ( n -- obj ) 1 2 cons boa [ 3 cons boa ] times car>> ;</pre><br />Unboxing cannot take place. We cannot unbox the second allocation, because it builds recursive structure, and we cannot unbox the first because its result is stored inside the second allocation, which is not unboxed. Here is the SSA form:<br /><pre>int a1 = 1;<br />int b1 = 2;<br />int y1 = cons(a1,b1);<br /><br />int x0 = 0;<br /><br />L: x2 = phi(x1,x3);<br />y2 = phi(y1,y3);<br /><br />/* Inserted by escape analysis */<br />a3 = phi(y2,a1);<br />b3 = phi(b1,a2);<br /><br />if(x2 < n)<br />{<br />    x3 = x2 + 1;<br />    a2 = 3;<br />    y3 = cons(y2,a2);<br />    goto L;<br />}</pre><br />And the allocation map:<br /><pre>a1 => t<br />b1 => t<br />y1 => {a1,b1}<br />x0 => t<br />x2 => t<br />a3 => t<br />b3 => t<br />y2 => {a3,b3}<br />x3 => t<br />a2 => t<br />y3 => {y2,a2}<br />z => t</pre><br />And the edges of the escaping values graph:<br /><pre>a3 -- a1<br />a3 -- y2<br />x2 -- x1<br />x2 -- x3<br />b3 -- b1<br />b3 -- a2<br />y2 -- y1<br />y2 -- y3</pre><br />We see that <code>y2</code> and <code>y3</code> are in the same connected component as <code>a3</code>, which has an allocation map entry of <code>t</code>, therefore neither one may be unboxed.<br /><br />As far as the implementation goes, the above gives a high-level overview. The only tricky part is the implementation of the escaping values graph. I used a <a href="http://en.wikipedia.org/wiki/Union_find">disjoint set (union find)</a>; adding an edge adds equivalences, and marking a value as an escaping value makes it equivalent to a special "escaping" object. Checking if a value is in the same connected component as an escaping value then is just a check to see if the value is equivalent to "escaping". A disjoint set is a slightly exotic data structure which perform this check in what is essentially constant time.<br /><br />I implemented this algorithm; for now, you can find it in the <a href="http://factorcode.org/responder/cgi/gitweb.cgi?p=factor.git;a=tree;f=unfinished/compiler/tree/escape-analysis;hb=HEAD">unfinished/compiler/tree/escape-analysis</a> directory. The pass which actually performs the unboxing using the information collected during escape analysis is in <a href="http://factorcode.org/responder/cgi/gitweb.cgi?p=factor.git;a=tree;f=unfinished/compiler/tree/tuple-unboxing;hb=HEAD">unfinished/compiler/tree/tuple-unboxing</a>. In comparison to the analysis, the rewrite stage is pretty simple, so I won't describe the details here.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2008/08/algorithm-for-escape-analysis.html' itemprop='url'/>
+<a class='timestamp-link' href='algorithm-for-escape-analysis.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2008-08-10T03:06:00-04:00'>3:06 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=2790143196189474911' onclick=''>
+2 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=2790143196189474911' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=2790143196189474911&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2790143196189474911&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2790143196189474911&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2790143196189474911&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2790143196189474911&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2790143196189474911&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Wednesday, August 06, 2008</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='510493749367741161' itemprop='postId'/>
+<a name='510493749367741161'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='persistent-hashtables.html'>Persistent hashtables</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-510493749367741161' itemprop='description articleBody'>
+Long time no blog! I've been very busy (with Factor), and there has been a lot of activity lately. I've been working flat-out on the new compiler, which I will blog about later.<br /><br />Yesterday and today though, I worked on porting <a href="http://clojure.org">Clojure's</a> PersistentHashMap to Factor. We already had <a href="../06/persistent-vectors.html">persistent vectors</a>; the hashtables are more complex. My implementation is pretty much a direct port of the Java code, and in some parts it uses locals heavily. I plan on revisiting it at some point and using more Factor idioms. Even though the code is not idiomatic, it is still pretty easy to follow, and Factor's direct support from having multiple return values eliminated the need for a temporary 'box' object.<br /><br />My initial tests seem to indicate persistent hashtables are 2-4x slower than normal hashtables for common operations. This isn't so bad, since its only a constant time slowdown, and you gain immutability, but it is still a bit disappointing. Perhaps they can be optimized further.<br /><br />The reason I wanted to implement persistent hashtables in the first place is to use them in the new Factor compiler. Instead of cloning a large hashtable repeatedly in one place, which I suspected was leading to quadratic algorithmic complexity, I wanted to use persistent hashtables so that I could add entries in constant time while still retaining older versions for backtracking.<br /><br />It turns out I found another way to get the performance gain I wanted, and so persistent hashtables are unused in the new compiler for now.<br /><br />However they were fun to implement, and they're now part of the <code>basis</code> library; an intermediate layer between <code>core</code> and <code>extra</code>, in the <code>persistent.hashtables</code> vocabulary. They sit alongside <code>persistent.vectors</code> and <code>persistent.heaps</code>, the latter of which was implemented by <a href="http://useless-factor.blogspot.com/2008/07/persistent-heaps-in-factor.html">Daniel Ehrenberg</a>.<br /><br />The new <code>basis</code> vocabulary root will contain libraries which are not fundamentally part of the language core, and are not required for bootstrap, but those that anyone would expect a language implementation to provide. Examples include various data structures, I/O, XML parsing, database access, the GUI toolkit, the web framework, and so on. I also moved the optimizing compiler to basis, since its not required for bootstrap either. <br /><br />In order for a vocabulary to be moved to <code>basis</code>, it must implement some functionality that's frequently used required, and have high quality documentation, robust and optimized implementation, and as many unit tests as possible. Over the next few months, I hope that more vocabularies are moved to <code>basis</code> and that the code quality there only goes up.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2008/08/persistent-hashtables.html' itemprop='url'/>
+<a class='timestamp-link' href='persistent-hashtables.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2008-08-06T05:47:00-04:00'>5:47 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=510493749367741161' onclick=''>
+2 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=510493749367741161' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=510493749367741161&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=510493749367741161&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=510493749367741161&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=510493749367741161&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=510493749367741161&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=510493749367741161&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='http://factor-language.blogspot.com/search?updated-max=2008-09-20T19:02:00-04:00&amp;max-results=7&amp;reverse-paginate=true' id='Blog1_blog-pager-newer-link' title='Newer Posts'>Newer Posts</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='http://factor-language.blogspot.com/search?updated-max=2008-08-06T05:47:00-04:00&amp;max-results=7' id='Blog1_blog-pager-older-link' title='Older Posts'>Older Posts</a>
+</span>
+<a class='home-link' href='../../index.html'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='blog-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://factor-language.blogspot.com/feeds/posts/default' target='_blank' type='application/atom+xml'>Posts (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+<div id='sidebar-wrapper'>
+<div class='sidebar section' id='sidebar'><div class='widget BlogArchive' data-version='1' id='BlogArchive1'>
+<h2>Older Posts</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/index.html'>
+2010
+</a>
+<span class='post-count' dir='ltr'>(18)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/index.html'>
+2009
+</a>
+<span class='post-count' dir='ltr'>(35)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../index.html'>
+2008
+</a>
+<span class='post-count' dir='ltr'>(96)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+<ul class='posts'>
+<li><a href='factor-is-now-five-years-old.html'>Factor is now five years old</a></li>
+<li><a href='new-optimizer.html'>New optimizer</a></li>
+<li><a href='three-language-changes.html'>Three language changes</a></li>
+<li><a href='algorithm-for-escape-analysis.html'>An algorithm for escape analysis</a></li>
+<li><a href='persistent-hashtables.html'>Persistent hashtables</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(17)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/index.html'>
+2007
+</a>
+<span class='post-count' dir='ltr'>(141)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(10)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(21)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/index.html'>
+2006
+</a>
+<span class='post-count' dir='ltr'>(207)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(30)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(25)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(22)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(26)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/index.html'>
+2005
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div><div class='widget Feed' data-version='1' id='Feed2'>
+<h2>Recent Factor Commits</h2>
+<div class='widget-content' id='Feed2_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://gitweb.factorcode.org/gitweb.cgi?p=factor.git;a=atom'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget Feed' data-version='1' id='Feed1'>
+<h2>Planet Factor</h2>
+<div class='widget-content' id='Feed1_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://planet.factorcode.org/feed.xml'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget LinkList' data-version='1' id='LinkList1'>
+<h2>Links</h2>
+<div class='widget-content'>
+<ul>
+<li><a href='http://twitter.com/slava_pestov'>@slava_pestov</a></li>
+<li><a href='http://factorcode.org/slava/'>My home page</a></li>
+<li><a href='http://factorcode.org/'>Factor programming language</a></li>
+<li><a href='http://concatenative.org/'>Concatenative language wiki</a></li>
+<li><a href='http://planet.factorcode.org/'>Planet Factor</a></li>
+</ul>
+<div class='clear'></div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class='clear'>&#160;</div>
+</div>
+<!-- end content-wrapper -->
+<div id='footer-wrapper'>
+<div class='footer no-items section' id='footer'></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/940443484-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY6Nb42dP9e9BXppSYK4J7qXtbPXsQ:1693932711519';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d17087850','//factor-language.blogspot.com/2008/08/','17087850');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '17087850', 'title': 'Factor: a practical stack language', 'url': 'http://factor-language.blogspot.com/2008/08/', 'canonicalUrl': 'http://factor-language.blogspot.com/2008/08/', 'homepageUrl': 'http://factor-language.blogspot.com/', 'searchUrl': 'http://factor-language.blogspot.com/search', 'canonicalHomepageUrl': 'http://factor-language.blogspot.com/', 'blogspotFaviconUrl': 'http://factor-language.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en-US', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Factor: a practical stack language - RSS\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/17087850/posts/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/591781cadcbb8744', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'archive', 'pageName': 'August 2008', 'pageTitle': 'Factor: a practical stack language: August 2008'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'isResponsive': false, 'isAlternateRendering': false, 'isCustom': false}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Factor: a practical stack language', 'description': '\x3ca href\x3d\x22http://factorcode.org/slava\x22\x3eSlava Pestov\x3c/a\x3e\x27s weblog, primarily about \x3ca href\x3d\x22http://factorcode.org\x22\x3eFactor\x3c/a\x3e.', 'url': 'http://factor-language.blogspot.com/2008/08/', 'type': 'feed', 'isSingleItem': false, 'isMultipleItems': true, 'isError': false, 'isPage': false, 'isPost': false, 'isHomepage': false, 'isArchive': true, 'isLabelSearch': false, 'archive': {'year': 2008, 'month': 8, 'rangeMessage': 'Showing posts from August, 2008'}}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1333563935-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/3268905543-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed2', 'sidebar', document.getElementById('Feed2'), {'title': 'Recent Factor Commits', 'showItemDate': true, 'showItemAuthor': true, 'feedUrl': 'http://gitweb.factorcode.org/gitweb.cgi?p\x3dfactor.git;a\x3datom', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed1', 'sidebar', document.getElementById('Feed1'), {'title': 'Planet Factor', 'showItemDate': true, 'showItemAuthor': false, 'feedUrl': 'http://planet.factorcode.org/feed.xml', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList1', 'sidebar', document.getElementById('LinkList1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>

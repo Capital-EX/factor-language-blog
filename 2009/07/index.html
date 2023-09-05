@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html dir='ltr'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/55013136-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='../../favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='index.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Factor: a practical stack language - RSS" href="http://factor-language.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="https://www.blogger.com/feeds/17087850/posts/default" />
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<meta content='http://factor-language.blogspot.com/2009/07/' property='og:url'/>
+<meta content='Factor: a practical stack language' property='og:title'/>
+<meta content='&lt;a href=&quot;http://factorcode.org/slava&quot;&gt;Slava Pestov&lt;/a&gt;&#39;s weblog, primarily about &lt;a href=&quot;http://factorcode.org&quot;&gt;Factor&lt;/a&gt;.' property='og:description'/>
+<title>Factor: a practical stack language: July 2009</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Stretch Denim Light
+Designer: Darren Delaye
+URL:      www.DarrenDelaye.com
+Date:     11 Jul 2006
+-----------------------------------------------
+*/
+body {
+background: #ffffff;
+margin: 0;
+padding: 0px;
+font: x-small Verdana, Arial;
+text-align: center;
+color: #333333;
+font-size/* */:/**/small;
+font-size: /**/small;
+}
+a:link {
+color: #336699;
+}
+a:visited {
+color: #336699;
+}
+a img {
+border-width: 0;
+}
+#outer-wrapper {
+font: normal normal 100% Verdana, Arial, Sans-serif;;
+}
+/* Header
+----------------------------------------------- */
+#header-wrapper {
+margin:0;
+padding: 0;
+background-color: #c4e1ff;
+text-align: left;
+}
+#header {
+margin: 0 2%;
+background-color: #c4e1ff;
+color: #003366;
+padding: 0;
+font: normal normal 210% Verdana, Arial, Sans-serif;;
+position: relative;
+}
+h1.title {
+padding-top: 38px;
+margin: 0 1% .1em;
+line-height: 1.2em;
+font-size: 100%;
+}
+h1.title a, h1.title a:visited {
+color: #003366;
+text-decoration: none;
+}
+#header .description {
+display: block;
+margin: 0 1%;
+padding: 0 0 40px;
+line-height: 1.4em;
+font-size: 50%;
+}
+/* Content
+----------------------------------------------- */
+.clear {
+clear: both;
+}
+#content-wrapper {
+margin: 0 2%;
+padding: 0 0 15px;
+text-align: left;
+background-color: #ffffff;
+border: 1px solid #ffffff;
+border-top: 0;
+}
+#main-wrapper {
+margin-left: 1%;
+width: 64%;
+float: left;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+margin-right: 1%;
+width: 29%;
+float: right;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2, h3 {
+margin: 0;
+}
+/* Posts
+----------------------------------------------- */
+.date-header {
+margin: 1.5em 0 0;
+font-weight: normal;
+color: #999999;
+font-size: 100%;
+}
+.post {
+margin: 0 0 1.5em;
+padding-bottom: 1.5em;
+}
+.post-title {
+margin: 0;
+padding: 0;
+font-size: 125%;
+font-weight: bold;
+line-height: 1.1em;
+}
+.post-title a, .post-title a:visited, .post-title strong {
+text-decoration: none;
+color: #333333;
+font-weight: bold;
+}
+.post div {
+margin: 0 0 .75em;
+line-height: 1.3em;
+}
+.post-footer {
+margin: -.25em 0 0;
+color: #333333;
+font-size: 87%;
+}
+.post-footer .span {
+margin-right: .3em;
+}
+.post img, table.tr-caption-container {
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin: 1em 20px;
+}
+.post blockquote p {
+margin: .75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin: 1em 0;
+color: #999999;
+}
+#comments h4 strong {
+font-size: 110%;
+}
+#comments-block {
+margin: 1em 0 1.5em;
+line-height: 1.3em;
+}
+#comments-block dt {
+margin: .5em 0;
+}
+#comments-block dd {
+margin: .25em 0 0;
+}
+#comments-block dd.comment-footer {
+margin: -.25em 0 2em;
+line-height: 1.4em;
+font-size: 78%;
+}
+#comments-block dd p {
+margin: 0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar h2 {
+margin: 1.6em 0 .5em;
+padding: 4px 5px;
+background-color: #ffffff;
+font-size: 100%;
+color: #333333;
+}
+.sidebar ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.sidebar li {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: .5em;
+padding-left: 15px;
+text-indent: -15px;
+line-height: 1.5em;
+}
+.sidebar {
+color: #333333;
+line-height:1.3em;
+}
+.sidebar .widget {
+margin-bottom: 1em;
+}
+.sidebar .widget-content {
+margin: 0 5px;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font-weight: bold;
+line-height: 1.6em;
+font-size: 78%;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+clear: both;
+text-align: center;
+color: #333333;
+}
+#footer .widget {
+margin:.5em;
+padding-top: 20px;
+font-size: 85%;
+line-height: 1.5em;
+text-align: left;
+}
+/** Page structure tweaks for layout editor wireframe */
+body#layout #header {
+width: 750px;
+}
+
+--></style>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' rel='stylesheet'/></noscript>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body>
+<div class='navbar section' id='navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d17087850\x26blogName\x3dFactor:+a+practical+stack+language\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dBLUE\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://factor-language.blogspot.com/search\x26blogLocale\x3den_US\x26v\x3d2\x26homepageUrl\x3dhttp://factor-language.blogspot.com/\x26vt\x3d1910212838315471456',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id='outer-wrapper'><div id='wrap2'>
+<!-- skip links for text browsers -->
+<span id='skiplinks' style='display:none;'>
+<a href='index.html#main'>skip to main </a> |
+      <a href='index.html#sidebar'>skip to sidebar</a>
+</span>
+<div id='header-wrapper'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='../../index.html'>
+Factor: a practical stack language
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span><a href="http://factorcode.org/slava">Slava Pestov</a>'s weblog, primarily about <a href="http://factorcode.org">Factor</a>.</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id='content-wrapper'>
+<div id='crosscol-wrapper' style='text-align:center'>
+<div class='crosscol no-items section' id='crosscol'></div>
+</div>
+<div id='main-wrapper'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Thursday, July 30, 2009</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='http://factorcode.org/array-any-cfg.png' itemprop='image_url'/>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='7198889069604652714' itemprop='postId'/>
+<a name='7198889069604652714'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='dataflow-analysis-computing-dominance.html'>Dataflow analysis, computing dominance, and converting to and from SSA form</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-7198889069604652714' itemprop='description articleBody'>
+As I mentioned in my <a href="improved-value-numbering-branch.html">previous post</a>, I'm working on having the compiler backend take advantage of our <a href="improvements-to-factors-register.html">fancy new register allocator</a> by making better use of registers than we do now.<br /><br />As with the previous post, there are lots of links to Factor code here. Also, since much of what I implemented comes from academic papers, I've linked to the relevant literature also.<br /><br />Over the course of the last year, Factor went from a rudimentary scheme where some intermediate values are placed in registers, to local register allocation for all temporaries in a basic block, to the current system where registers can remain live between basic blocks and values are only stored on the data stack when absolutely necessary; subroutine calls, returns, and points in the procedure from where the value will not be used again.<br /><br />Before I dive in to the technical details, here is a taste of what the new code generator can do. The following Factor word,<br /><pre>: counted-loop-test ( -- ) 1000000000 [ ] times ;</pre><br />Compiles to the following x86-64 machine code:<br /><pre>000000010c73b2a0: 48bd0050d6dc01000000  mov rbp, 0x1dcd65000<br />000000010c73b2aa: 4831c0                xor rax, rax<br />000000010c73b2ad: 4983c610              add r14, 0x10<br />000000010c73b2b1: e904000000            jmp 0x10c73b2ba<br />000000010c73b2b6: 4883c008              add rax, 0x8<br />000000010c73b2ba: 4839e8                cmp rax, rbp<br />000000010c73b2bd: 0f8cf3ffffff          jl dword 0x10c73b2b6<br />000000010c73b2c3: 4983ee10              sub r14, 0x10<br />000000010c73b2c7: c3                    ret </pre><br /><br /><h3>General overview</h3><br />The general structure of the low-level optimizer still remains, along with the optimizations it performs -- alias analysis, value numbering, dead code elimination, and so on. However, what has changed in a major way is how the low-level IR is constructed, and how it is gets converted out of SSA. There are also two new abstractions used by the compiler; a dataflow analysis framework, and a meta-programming utility for renaming words.<br /><br />In the low-level IR, "peek" and "replace" instructions are used to read and write stack locations, making stack traffic explicit. Peek instructions output a virtual register, and replace instructions take a register as input. All other instructions operate on virtual registers, not stack locations.<br /><br />When building the <a href="http://en.wikipedia.org/wiki/Control_flow_graph">control flow graph</a>, the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/compiler/cfg/builder;hb=HEAD">compiler.cfg.builder</a> vocabulary used to insert "peek" and "replace" instructions at every use of a stack location, and subsequent redundancy elimination passes would get rid of the ones that are deemed redundant -- where either the relevant stack location was in a register already (peek after peek or peek after replace), or because it would be overwritten before being read again (replace after replace).<br /><br />Now, the CFG builder doesn't insert peeks and replaces at all, and simply associates with each basic block a set of stack locations that it reads, and a set of stack locations that it writes. For each stack location, there is a globally unique virtual register which is used for it; instructions which need a stack location simply refer to that fixed virtual register (or assign to it). The last step of the CFG builder runs a dataflow analysis and actually inserts peek and replace instructions on the right edges in the CFG, mostly to ensure the invariant that values are saved to the stack between subroutine calls, that all values that are needed from the stack get loaded at some point, and that everything it saved to the stack eventually before the procedure returns. The inserted peeks and replaces reference the stack location's global fixed virtual register.<br /><br />However, one thing in the above construction is that the output of the CFG builder is no longer in SSA form, like it used to be. However, the problem of converting applicative languages into SSA form is well-known, and so now I have an explicit SSA construction pass which runs after the CFG builder, before any other optimizations which operate on values. After optimizations, SSA form is eliminated by converting phi instructions into copies, at which point the result is passed on to the machine register allocator.<br /><br /><h3>Dataflow analysis</h3><br />The wikipedia page on <a href="http://en.wikipedia.org/wiki/Data-flow_analysis">dataflow analysis</a> gives a good overview of the topic. Simple dataflow analyses with a single direction of flow all look quite similar, and there are many ways to abstract out the duplication. Since my code to convert stack-based code into low-level IR requires four dataflow analysis passes, and register allocation and SSA construction perform liveness analysis, I needed to eliminate the 5x code duplication that would result from naive implementation.<br /><br />I went with an object-oriented approach, where a set of generic words are defined, together with a top-level driver word which takes an instance supporting these generic words. The generic words compute local sets, implement the join operation, and determine the direction of flow. The code is defined in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/compiler/cfg/dataflow-analysis;hb=HEAD">compiler.cfg.dataflow-analysis</a> vocabulary. In addition to the generic words, I also define a couple of parsing words which create a new instance of the dataflow analysis class, together with some supporting boilerplate for looking up basic block's in and out sets after analysis has run. The actual content of the sets propagated depends on the analysis itself; liveness deals with virtual registers, and stack analysis deals with stack locations.<br /><br />Because of this framework, adding new analyses is very easy. <a href="http://en.wikipedia.org/wiki/Liveness_analysis">Liveness analysis</a>, implemented in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/compiler/cfg/liveness;hb=HEAD">compiler.cfg.liveness</a> vocabulary, is only a few lines of code.<br /><br />The dataflow analysis framework does not take <a href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA phi instructions</a> into account, because stack analysis operates on stack locations (which are not single assignment) and liveness analysis is performed in SSA construction, when no phi instructions have been added yet, as well as register allocation, after SSA destruction.<br /><br /><h3>Renaming values</h3><br />Multiple compiler passes -- SSA construction, copy propagation, SSA destruction, and register allocation -- need to traverse over instructions and rename values. The first three replace uses of virtual registers with virtual registers, and the latter replaces virtual registers with physical registers prior to machine code generation. To avoid duplicating code, I wrote a utility which takes a hashtable of value mappings, and renames all values used in an instruction. There was a generic word with a method for each instruction. However this approach was insufficient for SSA construction, where the renaming set cannot be precomputed and instead changes at every instruction. So a better abstraction would be one that takes a quotation to apply to each value. However, dynamically calling a quotation for every slot of every instruction would be expensive, and inlining the entire renaming combinator at every use would be impractical. Instead, I used Factor's "functors" feature to write a parsing word which generates renaming logic customized to a particular use. This is defined in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/compiler/cfg/renaming/functor;hb=HEAD">compiler.cfg.renaming.functor</a> vocabulary, and one usage among many is in <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/compiler/cfg/renaming;hb=HEAD">compiler.cfg.renaming</a>, which implements the old behavior whereby a single hashtable of renamings was input. Here is how this utility is used in SSA construction for instance:<br /><pre>RENAMING: ssa-rename [ gen-name ] [ top-name ] [ ]</pre><br />This defines words <code>ssa-rename-defs</code>, <code>ssa-rename-uses</code> and <code>ssa-rename-temps</code> (the latter being a no-op). The first two apply <code>gen-name</code> and <code>top-name</code> to each value to compute the new value.<br /><br />The register allocator does something similar in <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/compiler/cfg/linear-scan/assignment;hb=HEAD">compiler.cfg.linear-scan.assignment</a>:<br /><pre>RENAMING: assign [ vreg>reg ] [ vreg>reg ] [ vreg>reg ]</pre><br />Here, words named <code>assign-defs</code>, <code>assign-uses</code> and <code>assign-temps</code> are defined, and they all perform the same operation on each instructions' defined values, used values and temporary values, respectively, by looking up the physical register assigned to each virtual register. This and other optimizations to linear scan significantly improved compile time, to the point where it has almost gone down to what it was before I started adding these fancy new optimizations.<br /><br /><h3>Computing the dominator tree</h3><br />The <a href="http://en.wikipedia.org/wiki/Dominator_(graph_theory)">dominator tree</a> is a useful concept for optimizations which need to take global control flow into account. At this point, I'm using them for SSA construction and destruction, but there are many other optimizations which depend on dominance information. The classical approach for computing dominance uses iterative dataflow analysis, but a better approach is given in the paper <a href="http://www.cs.rice.edu/~keith/EMBED/dom.pdf">A Simple, Fast Dominance Algorithm</a> by Keith D. Cooper, Timothy J. Harvey, and Ken Kennedy. I implemented the dominator tree computation described by the paper in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/compiler/cfg/dominance;hb=HEAD">compiler.cfg.dominance</a> vocabulary. The dominator tree is a tree with basic blocks as nodes; the entry block of the CFG as its root.<br /><br />There are three operations that need to be performed, and this influences the tree representation:<br /><ol><li>Getting a node's parent in the tree, often referred to as the <i>immediate dominator</i> (sometimes, a convention is used where the immediate dominator of the root node is the root node itself).</li><li>Getting a node's children.</li><li>Testing if one node is an ancestor of another node (in this case we say that the first node <i>dominates</i> the second).</li></ol><br />The algorithm in the paper computes a mapping from basic blocks to basic blocks, which gives the immediate dominator of every basic block. This lets us solve #1 in constant time. Since many algorithms need to look up children, I invert the immediate dominator mapping and turn it into a multimap (which in Factor, we just represent as an assoc from keys to sequences of values; the <a href="http://docs.factorcode.org/content/word-push-at%2cassocs.html">push-at</a> utility word is helpful for constructing these). This gives us #2. For #3, the obvious approach is to walk up the tree from the second node, checking if the node at each step is the first node. However, this takes time proportional to the height of the tree, and the worst case is straight-line code with little control flow, where the dominator tree becomes a linked list. Another approach is to compute a hashed set of dominators for each node, which gives us constant time dominance checks, but the space usage is quadratic in the worst case so that's not ideal either.<br /><br />A much better trick can be found in the paper on the SSA destruction algorithm which I will talk about below. I believe this technique goes back to the 70's and it is widely-known, but I did not learn about it until now. First, you perform a depth-first traversal of the dominator tree, incrementing a counter at each step. The first time you visit a node (on the way down), you assign the current counter value to the node's preorder value. The second time you visit a node (on the way up), you assign the current counter value to the node's maxpreorder value. What this does is number the nodes in preorder, and the maxpreorder of each node is the maximum of the preorder numbers of its children. Once these numbers have been precomputed, dominance checking can be done in constant time using the identity:<br /><pre>A dominates B iff preorder(A) >= preorder(B) &amp; preorder(A) <= maxpreorder(B)</pre><br />Of course, this works for any tree, and if you plan on doing many repeated child-of tests, it is worth precomputing the pre/maxpre numbers for each node in this manner. This addresses #3 above.<br /><br />Here is a control flow graph, with the numbers denoting <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/compiler/cfg/rpo;hb=HEAD">reverse post order</a> on basic blocks:<br /><img src="http://factorcode.org/array-any-cfg.png"><br />and here is the corresponding dominator tree:<br /><img src="http://factorcode.org/array-any-dom.png"><br />These diagrams were generated using the <a href="http://www.graphviz.org/">Graphviz</a> tool together with the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=extra/compiler/cfg/graphviz;hb=HEAD">compiler.cfg.graphviz</a> vocabulary).<br /><br />The paper also gives an efficient algorithm for computing dominance frontiers, but I do not need those, for reasons given in the next section.<br /><br /><h3>SSA construction</h3><br />The classical approach for constructing <a href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA form</a> yields what is known as <i>minimal SSA</i> involves three steps:<br /><ol><li>Computing dominance frontiers for each basic block in the control flow graph</li><li>For every value, take the set of basic blocks which have a definition of the value, compute the <i>iterated</i> dominance frontier of this set, and insert a phi instruction (with dummy inputs) in each member of the set</li><li>Walk the dominator tree, renaming definitions and usages in order to enforce single static assignment, updating phi instruction inputs along the way.</li></ol><br />This approach has two three problems:<br /><ol><li>Computing iterated dominance frontiers is expensive, and this is done for every value defined in more than one block</li><li>Too many phi instructions are inserted, and most end up being eliminated as dead code later</li><li>The renaming algorithm, as originally specified, requires too much work to be done on the walk back up the dominator tree, with each block's instructions being traversed both on the way down and on the way up</li></ol>Nevertheless, the algorithm is simple and easy to understand. It is explained in the original paper on SSA form, <a href="http://citeseer.ist.psu.edu/cytron91efficiently.html">Efficiently computing static single assignment form and the control dependence graph</a>; straightforward pseudocode can be found in these <a href="http://llvm.cs.uiuc.edu/~vadve/CS526/public_html/Notes/4ssa.4up.pdf">lecture notes</a>.<br /><br />The so-called "pruned SSA form" addresses the issue of too many phi instructions being inserted. It is a minor modification of minimal SSA construction. Prior to inserting phi instructions, liveness information is computed for each block. Then, a phi instruction is only inserted for a value if the value is live into the block. Computing liveness is somewhat expensive, and the so-called "semi-pruned SSA form" uses a simple heuristic to approximate liveness; phi nodes are only inserted for values which are used in blocks other than those they are defined in.<br /><br />An algorithm for computing iterated dominance frontiers which does not require dominance frontiers to be computed first was described in the paper <a href="http://portal.acm.org/citation.cfm?id=1065887.1065890">A Practical and Fast Iterative Algorithm for Phi-Function Computation Using DJ Graphs</a> by <br />Dibyendu Das and U. Ramakrishna.<br /><br />Finally, the paper introducing semi-pruned SSA form, titled <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.49.9683">Practical Improvements to the Construction and Destruction of Static Single Assignment Form</a>, proposes a slightly more efficient renaming algorithm.<br /><br />So the SSA construction algorithm I implemented in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/compiler/cfg/ssa/construction;hb=HEAD">compiler.cfg.ssa.construction</a> vocabulary is a combination of these three papers. First, I compute merge sets using the DJ-Graph algorithm, then, I use liveness information for placing phi instructions, and finally, I use the improved renaming algorithm.<br /><br /><h3>SSA destruction</h3><br />To get out of SSA form and back to imperative code which can be executed by a machine, phi instructions must be eliminated. The approach originally described by Cytron et al gives incorrect results in many cases; the correct algorithm is well-known now but it introduces many additional copy instructions. The classical approach for eliminating copies ("copy coalescing") is to do it as part of register allocation; if two values are related by a copy but do not otherwise interfere, they can be assigned to the same physical register, and the copy can be deleted from the program. This works for a graph-coloring approach, but with linear scan, you're limited in how much global knowledge you can have while performing register allocation, and accurate interference information is difficult to obtain.<br /><br />Factor's register allocation performs some basic coalescing, mostly to eliminate copies arising from conversion to two-operand form on x86. However, phi nodes introduce copies with more complex interferences and my approach didn't work there, so even though stack analysis eliminated many memory to register and register to memory moves, the generated code had a large number of register to register moves, which is a bottleneck for instruction decoding, not to mention wastes valuable cache space.<br /><br />Instead of attempting to coalesce copies arising from phi instructions in the register allocator, a more modern approach is to do this as part of SSA destruction -- instead of converting phi instructions to copies, the goal is to avoid inserting as many copies as possible in the first place.<br /><br />A nice algorithm for SSA destruction with coalescing is detailed in the paper <a href="http://portal.acm.org/citation.cfm?id=512529.512534">Fast copy coalescing and live-range identification</a>, by Zoran Budimlic et al. The algorithm is very clever -- the two key results are a constant-time interference test between SSA values using dominance and live range information, and a linear-time interference test in a set of variables using "dominance forests", which are easy to construct and enable you to rule out most pairs of values for interference tests altogether.<br /><br />This algorithm is implemented in <a href="http://llvm.org">LLVM</a> (<code>lib/CodeGen/StrongPHIElimination.cpp</code>) and I essentially ported the C++ code to Factor. You can find the code in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/compiler/cfg/ssa/destruction;hb=HEAD">compiler.cfg.ssa.destruction</a> vocabulary.<br /><br />I tweaked the algorithm a little -- instead of inserting sequential copies, I insert parallel copies, as detailed in the paper <a href="http://hal.archives-ouvertes.fr/docs/00/34/99/25/PDF/OutSSA-RR.pdf">Revisiting Out-of-SSA Translation for Correctness, Code Quality and Efficiency</a> by Benoit Boissinot et al. The parallel copy algorithm is implemented in <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/compiler/cfg/parallel-copy;hb=HEAD">compiler.cfg.parallel-copy</a>. I used it not only in SSA destruction, but also to clean up some hackish approximations of the same problem in global stack analysis and the linear scan register allocator's <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/compiler/cfg/linear-scan/resolve;hb=HEAD">resolve pass</a>. I didn't implement the rest of the paper, because I found it hard to follow; it claims to provide a better algorithm than Budimlic et al, but the latter is good enough for now, and having a working implementation in the form of the LLVM pass was very valuable in implementing it in Factor.<br /><br />This pass was very effective in eliminating copy instructions; it generates 75% of copies than the old phi elimination pass, which simply used the naive algorithm.<br /><br /><h3>Loop head rotation</h3><br />The last optimization I added eliminates an unconditional branch in some loops. Consider the following CFG:<br /><img src="http://factorcode.org/fixnum-fast-times-cfg.png"><br />A valid way to linearize the basic blocks is in reverse post order, that is 0, 1, 2, 3, 4, 5. However, with this linearization, block 3 has an unconditional branch back to block 2, and block 2 has a conditional which either falls through to 3 or jumps to 4. So on every loop iteration, two jumps are executed (the conditional jump at 2 and the unconditional jump at 3). If, instead, the CFG was linearized as 0, 1, 3, 2, 4, 5, then while 1 would have an unconditional jump to 2, 2 would have a conditional jump back to 3 and 3 would fall through to 2. So upon entry to the loop, an extra unconditional jump (from 1 to 3) executes, but on each iteration, there is just the single conditional backward jump at 2. This improves performance slightly and is easy to implement; the code is in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/compiler/cfg/linearization/order;hb=HEAD">compiler.cfg.linearization.order</a> vocabulary, and I borrowed the algorithm from <a href="http://sbcl.org">SBCL</a>'s <a href="http://sbcl.cvs.sourceforge.net/viewvc/sbcl/sbcl/src/compiler/control.lisp?revision=1.11&view=markup">src/compiler/control.lisp</a>.<br /><br /><h3>Conclusion</h3><br />There are some performance regressions I need to work out, because global stack analysis introduces too many partial redundancies for some types of code, and inline GC checks are currently disabled because of an unrelated issue I need to fix. It will take a few more days of tweaking to sort things out, and then I will post some benchmarks. Early results are already very promising on benchmarks with loops; not just the trivial counted loop example above.<br /><br />Next steps are global float unboxing, unboxed 32-bit and 64-bit integer arithmetic, and SSE intrinsics. To help with the latter, <a href="http://duriansoftware.com">Joe Groff</a> was kind enough to add support for all SSE1/2/3/4 instructions to <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/cpu/x86/assembler;hb=HEAD">Factor's x86 assembler</a>. Finally, thanks to Cameron Zwarich for pointing me at some of the papers I linked to above.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2009/07/dataflow-analysis-computing-dominance.html' itemprop='url'/>
+<a class='timestamp-link' href='dataflow-analysis-computing-dominance.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2009-07-30T03:24:00-04:00'>3:24 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=7198889069604652714' onclick=''>
+No comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=7198889069604652714' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=7198889069604652714&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7198889069604652714&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7198889069604652714&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7198889069604652714&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7198889069604652714&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7198889069604652714&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Friday, July 17, 2009</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='http://factorcode.org/cfg-before-splitting.png' itemprop='image_url'/>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='3775441976278425459' itemprop='postId'/>
+<a name='3775441976278425459'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='improved-value-numbering-branch.html'>Improved value numbering, branch splitting, and faster overflow checks</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-3775441976278425459' itemprop='description articleBody'>
+Hot on the heels on the <a href="improvements-to-factors-register.html">improved register allocator</a>, I've added some new optimizations to the <a href="../../2008/11/new-low-level-optimizer-and-code.html">low-level optimizer</a> and made existing optimizations stronger.<br /><br /><h3>Improved value numbering</h3><br />Local value numbering now detects more congruences along values computed by <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/instructions/instructions.factor;hb=HEAD">low level IR instructions</a>. All the changes were either in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/value-numbering/rewrite/rewrite.factor;hb=HEAD">rewrite</a> or <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/value-numbering/simplify/simplify.factor;hb=HEAD">simplify</a> steps.<br /><ul><li>Some additional arithmetic identities. For instance, the result of adding or subtracting 0 to a value is congruent to the value itself. The high-level optimizer implements the same optimization on Factor's generic arithmetic words, but sometimes low-level optimizations introduce additional redundancies.</li><li>A <code>##add</code> instruction where one of the two operands is the result of a <code>##load-immediate</code> is now converted into a <code>##add-imm</code>, saving a register. A similar identity holds for other commutative operations, such as <code>##mul</code>, <code>##and</code>, <code>##or</code>, <code>##xor</code>, and <code>##compare</code> with a condition code of <code>cc=</code>.</li><li>Constant folding. Arithmetic instructions where both operands are constants are replaced by a <code>##load-immediate</code> containing the result. A special case is a subtraction where both operands are congruent; this is replaced by a load of 0. Again, the high-level optimizer performs constant folding also, but low-level optimizations sometimes introduce redundancies or expose opportunities for optimization which were not apparent in high-level IR.</li><li>Reassociation. If an <code>##add-imm</code> instruction's first input is the result of another <code>##add-imm</code>, then a new <code>##add-imm</code> is made which computes the same result with a single addition. Algebraically, this corresponds to the identity <code>(x + a) + b = x + (a + b)</code>, where <code>a</code> and <code>b</code> are known at compile-time. Similar transformations are made for other associative operations, such as <code>##sub</code>, <code>##mul</code>, <code>##and</code>, <code>##or</code> and <code>##xor</code>.</li><li>Constant branch folding. If both inputs to a <code>##compare</code> or <code>##compare-branch</code> are constant, or if both are congruent to the same value, then the result of the comparison can be computed at compile-time, and one of the two successor blocks can be deleted.</li></ul><br />While the high-level optimizer performs constant folding and unreachable code elimination as part of the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/tree/propagation/propagation.factor;hb=HEAD">SCCP</a> pass, low-level optimizations which are done before value numbering can expose optimization opportunities which were invisible in high-level IR. For example, consider the following code:<br /><code>[ { vector } declare [ length ] [ length ] bi &lt; ]</code><br />Using the <code>optimized.</code> word, we can see what the high-level optimizer transforms this into:<br /><pre>[ dup >R 3 slot R> 3 slot fixnum&lt; ]</pre><br />The high-level optimizer only attempts to reason about immutable slots, but a vector's length is mutable since a vector may have elements added to it, and so the high-level optimizer cannot detect that the two inputs to <code>fixnum&lt;</code> are equal. A conversion into low-level IR, the code becomes the following sequence of <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/instructions/instructions.factor;hb=HEAD">SSA instructions</a>:<br /><pre>_label 0 f <br />##prologue f <br />_label 1 f <br />##peek V int-regs 1 D 0 f <br />##copy V int-regs 4 V int-regs 1 f <br />##slot-imm V int-regs 5 V int-regs 4 3 7 f <br />##copy V int-regs 8 V int-regs 1 f <br />##slot-imm V int-regs 9 V int-regs 8 3 7 f <br />##copy V int-regs 10 V int-regs 5 f <br />##copy V int-regs 11 V int-regs 9 f <br />##compare V int-regs 12 V int-regs 10 V int-regs 11 cc&lt; V int-regs 13 f <br />##replace V int-regs 12 D 0 f <br />##epilogue f <br />##return f <br />_spill-counts f f</pre><br />Now, the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/alias-analysis/alias-analysis.factor;hb=HEAD">low-level alias analysis optimization</a> is able to detect that the second <code>##slot-imm</code> is redundant, and it transforms the code into the following:<br /><pre>_label 0 f <br />##prologue f <br />_label 1 f <br />##peek V int-regs 1 D 0 f <br />##copy V int-regs 4 V int-regs 1 f <br />##slot-imm V int-regs 5 V int-regs 4 3 7 f <br />##copy V int-regs 9 V int-regs 5 f <br />##copy V int-regs 10 V int-regs 5 f <br />##copy V int-regs 11 V int-regs 9 f <br />##compare V int-regs 12 V int-regs 10 V int-regs 11 cc&lt; V int-regs 13 f <br />##replace V int-regs 12 D 0 f <br />##epilogue f <br />##return f <br />_spill-counts f f</pre><br />Now, notice that both inputs to the <code>##compare</code> instruction (vreg #10 and vreg #11) are copies of the same value, vreg #5. Value numbering detects this congruence since copy propagation is just a special case of value numbering; it then simplifies the comparison down to a constant load of <code>f</code>, since for any integer <code>x</code>, we have <code>x &lt; x => false</code>. After dead code elimination, the result is the following:<br /><pre>_label 0 f <br />##prologue f <br />_label 1 f <br />##load-immediate V int-regs 12 5 f <br />##replace V int-regs 12 D 0 f <br />##epilogue f <br />##return f <br />_spill-counts f f</pre><br />While no programmer would explicitly write such redundant code, it comes up after inlining. For example, the <a href="http://docs.factorcode.org/content/word-push%2csequences.html">push</a> word, which adds an element at the end of a sequence, is implemented as follows:<br /><pre>: push ( elt seq -- ) [ length ] [ set-nth ] bi ;<br /><br />HINTS: push { vector } { sbuf } ;</pre><br />The <a href="http://docs.factorcode.org/content/article-hints.html">hints</a> tell the compiler to compile specialized versions of this word for vectors and string buffers. While the generic versions work on any sequence, the hinted versions are used when the input types match, and the result can be better performance if generic words are inlined (in this case, <a href="http://docs.factorcode.org/content/word-length%2csequences.html">length</a> and <a href="http://docs.factorcode.org/content/word-set-nth%2csequences.html">set-nth</a>). Now, after a bunch of code is inlined, a piece of code comes up which compares the insertion index against the vector's length; however, the insertion index <i>is</i> the length in this case, and so value numbering is now able to optimize out a conditional which could not be optimized out before. Of course I could have just written a specialized version of <code>push</code> for vectors (or even built it into the VM) but I'd rather implement general optimizations and write my code in a high-level style.<br /><br />I'd like to thank <a href="http://docs.factorcode.org/content/author-Doug%20Coleman.html">Doug Coleman</a> for implementing some of the above improvements.<br /><h3>Branch splitting</h3><br />Roughly speaking, branch splitting is the following transform:<br /><pre>[ A [ B ] [ C ] if D ] => [ A [ B D ] [ C D ] if ]</pre><br />It is only run if D is a small amount of code. Branch splitting runs before value numbering, so value numbering's constant branch folding can help simplify the resulting control flow. Branch splitting is implemented in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/branch-splitting/branch-splitting.factor;hb=HEAD">compiler.cfg.branch-splitting</a> vocabulary.<br /><br />For example, suppose we have the following code:<br /><pre>[ [ t ] [ f ] if [ 1 ] [ 2 ] if ]</pre><br />The high-level optimizer is unable to simplify this further, since it does not work on a control flow graph. The low level optimizer builds a control flow graph with the following shape:<br /><img src="http://factorcode.org/cfg-before-splitting.png"><br />The basic block in the middle is a candidate for splitting since it has two predecessors, and it is short. After splitting, the result looks like so:<br /><img src="http://factorcode.org/cfg-after-splitting.png"><br />Now, at this point, the only thing that this has achieved is eliminating one unconditional jump at the expense of code size. However, after stack analysis and value numbering run, some redundant work is eliminated:<br /><img src="http://factorcode.org/cfg-after-optimization.png"><br />One example of real code that benefits from branch splitting includes code that calls the <code>=</code> word followed by a conditional. The <code>=</code> word is inlined, and it has a conditional inside of it; some branches of the conditional push constants <code>t</code> and <code>f</code>, and others call non-inline words. The result is that the branches which push a constant boolean can directly jump to the destination block without the overhead of storing and testing a boolean value.<br /><br />Once again thanks to <a href="http://docs.factorcode.org/content/author-Doug%20Coleman.html">Doug Coleman</a> for collaborating with me on the implementation of branch splitting.<br /><h3>Block joining</h3><br />Block joining is a simple optimization which merges basic blocks connected by a single control flow edge. Various low-level optimizations leave the control flow graph with a large number of empty or very small blocks with no conditional control flow between them. Block joining helps improve effectiveness of local optimizations by creating larger basic blocks.<br /><br />In the above example for branch splitting, block joining will eliminate the four empty basic blocks that remain after optimization.<br /><br />Block joining is implemented in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/block-joining/block-joining.factor;hb=HEAD">compiler.cfg.block-joining</a> vocabulary.<br /><h3>Faster overflowing integer arithmetic intrinsics</h3><br />In the lucky cases where the compiler can eliminate overflow checks, the various math operations become single instructions in the low-level IR which eventually map directly to machine instructions. In the general case, however, an overflow check has to be generated. In the event of overflow, a bignum is allocated, which may in turn involve running the garbage collector, so it is quite an expensive operation compared to a single machine arithmetic operation.<br /><br />Previously, the overflowing fixnum operations were represented in low-level IR as single, indivisible units, and just like subroutine calls and returns, they were "sync points" which meant that all values in registers had to be saved to the data and retain stacks before, and reloaded after. This is because of how these operations were implemented; they would perform the arithmetic, do an overflow check, and in the event of overflow, they would invoke a subroutine which handled the overflow. Keeping registers live across this operation was not sound in the event of overflow, since the subroutine call would clobber them.<br /><br />No longer. Now, an overflowing fixnum operation breaks down into several nodes in the control flow graph, and the arithmetic part, the overflow check and the bignum allocation are represented separately. In particular, the code to save registers to the stack and reload them after is only generated in the overflow case, so in the event of no overflow, which happens much more frequently, execution can "fall through" and continue using the same registers as before.<br /><br />The code that generates low-level instructions and control flow graph nodes for overflowing fixnum operations is defined in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/intrinsics/fixnum/fixnum.factor;hb=HEAD">compiler.cfg.intrinsics.fixnum</a> vocabulary.<br /><h3>Faster integer shifts</h3><br />This last optimization is a very minor one, but it made a difference on benchmarks. Previously shifts with a constant shift count and no overflow check would compile as a machine instruction, and all other forms of shifts would invoke subroutine calls. Now, machine instructions are generated in the case where the shift count is unknown, but the result is still known to be small enough not to require an overflow check.<br /><h3>Benchmark results</h3><br />Here are the results of running <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=extra/benchmark;hb=HEAD">Factor's benchmark suite</a> on a build from 31st May 2009, before I started working on the current set of low-level optimizer improvements (which includes the register allocator I blogged about previously), and from today.<br /><table> <tr><th>Benchmark</th><th>Before</th><th>After</th><tr><td>benchmark.backtrack          </td><td>1.767561         </td><td>1.330641           </td></tr> <tr><td>benchmark.base64             </td><td>1.997951         </td><td>1.738677           </td></tr> <tr><td>benchmark.beust1             </td><td>2.765257         </td><td>2.461088           </td></tr> <tr><td>benchmark.beust2             </td><td>3.584958         </td><td>1.694427           </td></tr> <tr><td>benchmark.binary-search      </td><td>1.55002          </td><td>1.574595           </td></tr> <tr><td>benchmark.binary-trees       </td><td>1.845798         </td><td>1.733355           </td></tr> <tr><td>benchmark.bootstrap1         </td><td>10.860492        </td><td>11.447687          </td></tr> <tr><td>benchmark.dawes              </td><td>0.229999         </td><td>0.161726           </td></tr> <tr><td>benchmark.dispatch1          </td><td>2.015653         </td><td>2.119268           </td></tr> <tr><td>benchmark.dispatch2          </td><td>1.817941         </td><td>1.216618           </td></tr> <tr><td>benchmark.dispatch3          </td><td>2.568987         </td><td>1.899128           </td></tr> <tr><td>benchmark.dispatch4          </td><td>2.319587         </td><td>2.032182           </td></tr> <tr><td>benchmark.dispatch5          </td><td>2.346744         </td><td>1.614045           </td></tr> <tr><td>benchmark.empty-loop-0       </td><td>0.146716         </td><td>0.12589            </td></tr> <tr><td>benchmark.empty-loop-1       </td><td>0.430314         </td><td>0.342426           </td></tr> <tr><td>benchmark.empty-loop-2       </td><td>0.429012         </td><td>0.342097           </td></tr> <tr><td>benchmark.euler150           </td><td>16.901451        </td><td>15.288867          </td></tr> <tr><td>benchmark.euler186           </td><td>8.805434999999999</td><td>7.920478           </td></tr> <tr><td>benchmark.fannkuch           </td><td>3.202698         </td><td>2.964037           </td></tr> <tr><td>benchmark.fasta              </td><td>5.52608          </td><td>4.934112           </td></tr> <tr><td>benchmark.gc0                </td><td>2.15066          </td><td>1.993158           </td></tr> <tr><td>benchmark.gc1                </td><td>4.984841         </td><td>4.961272           </td></tr> <tr><td>benchmark.gc2                </td><td>3.327706         </td><td>3.265462           </td></tr> <tr><td>benchmark.iteration          </td><td>3.736756         </td><td>3.30438            </td></tr> <tr><td>benchmark.javascript         </td><td>9.79904          </td><td>9.164517           </td></tr> <tr><td>benchmark.knucleotide        </td><td>0.282296         </td><td>0.251879           </td></tr> <tr><td>benchmark.mandel             </td><td>0.125304         </td><td>0.123945           </td></tr> <tr><td>benchmark.md5                </td><td>0.946516         </td><td>0.85062            </td></tr> <tr><td>benchmark.nbody              </td><td>3.982774         </td><td>3.349595           </td></tr> <tr><td>benchmark.nested-empty-loop-1</td><td>0.116351         </td><td>0.135936           </td></tr> <tr><td>benchmark.nested-empty-loop-2</td><td>0.692668         </td><td>0.438932           </td></tr> <tr><td>benchmark.nsieve             </td><td>0.714772         </td><td>0.698262           </td></tr> <tr><td>benchmark.nsieve-bits        </td><td>1.451828         </td><td>0.907247           </td></tr> <tr><td>benchmark.nsieve-bytes       </td><td>0.312481         </td><td>0.300053           </td></tr> <tr><td>benchmark.partial-sums       </td><td>1.205072         </td><td>1.221245           </td></tr> <tr><td>benchmark.pidigits           </td><td>16.088346        </td><td>16.159176          </td></tr> <tr><td>benchmark.random             </td><td>2.574773         </td><td>2.706893           </td></tr> <tr><td>benchmark.raytracer          </td><td>3.481714         </td><td>2.914116           </td></tr> <tr><td>benchmark.recursive          </td><td>5.964279         </td><td>3.215277           </td></tr> <tr><td>benchmark.regex-dna          </td><td>0.132406         </td><td>0.093095           </td></tr> <tr><td>benchmark.reverse-complement </td><td>3.811822         </td><td>3.257535           </td></tr> <tr><td>benchmark.ring               </td><td>1.756481         </td><td>1.79823            </td></tr> <tr><td>benchmark.sha1               </td><td>2.267648         </td><td>1.473887           </td></tr> <tr><td>benchmark.sockets            </td><td>8.794280000000001</td><td>8.783398           </td></tr> <tr><td>benchmark.sort               </td><td>0.421628         </td><td>0.363383           </td></tr> <tr><td>benchmark.spectral-norm      </td><td>3.830249         </td><td>4.036353           </td></tr> <tr><td>benchmark.stack              </td><td>2.086594         </td><td>1.014408           </td></tr> <tr><td>benchmark.sum-file           </td><td>0.528061         </td><td>0.422194           </td></tr> <tr><td>benchmark.tuple-arrays       </td><td>0.127335         </td><td>0.103421           </td></tr> <tr><td>benchmark.typecheck1         </td><td>0.876559         </td><td>0.6723440000000001 </td></tr> <tr><td>benchmark.typecheck2         </td><td>0.878561         </td><td>0.671624           </td></tr> <tr><td>benchmark.typecheck3         </td><td>0.86596          </td><td>0.670099           </td></tr> <tr><td>benchmark.ui-panes           </td><td>0.426701         </td><td>0.372301           </td></tr> <tr><td>benchmark.xml                </td><td>2.351934         </td><td>2.187999           </td></tr> </table><br />There are a couple of regressions I need to look into but for the most part the results look pretty good. I also expect further gains to come with additional optimizations that I plan on implementing.<br /><h3>Next steps</h3><br />I'm going to keep working on the code generator for another little while. First of all, compile time has increased so that needs to improve. Next, I'm going to implement better global optimization. At this point, values are stored in register between basic blocks, unlike with the old code generator. However, loop variables are still stored on the stack between iterations because the analysis does not handle back edges yet. Fixing this, and making float unboxing work globally, is my next step. After that, I plan on adding support for unboxed word-size integers (32 or 64-bits, depending on platform) and some intrinsics for SSE2 vector operations on Intel CPUs. Next, the register allocator needs improved coalescing logic, and it also needs to support fixed register assignments as found on some x86 instructions which take implicit operands. Finally, I have a few optimizations I want to add to the <a href="../../2008/08/new-optimizer.html">high level optimizer</a>.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2009/07/improved-value-numbering-branch.html' itemprop='url'/>
+<a class='timestamp-link' href='improved-value-numbering-branch.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2009-07-17T02:19:00-04:00'>2:19 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=3775441976278425459' onclick=''>
+1 comment:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=3775441976278425459' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=3775441976278425459&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3775441976278425459&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3775441976278425459&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3775441976278425459&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3775441976278425459&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3775441976278425459&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Thursday, July 09, 2009</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='6903509954500347908' itemprop='postId'/>
+<a name='6903509954500347908'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='improvements-to-factors-register.html'>Improvements to Factor's register allocator</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-6903509954500347908' itemprop='description articleBody'>
+For the last couple of months I've been working on some improvements to Factor's <a href="../../2008/11/new-low-level-optimizer-and-code.html">low-level optimizer and code generator</a>. The major new change is that the control flow graph IR is now allowed to define registers that are used in more than one basic block. Previously, all values would be loaded from the data stack at the start of a basic block and stored to the stack at the end. Register allocation in this case is called local register allocation. Now the only time when values have to be saved to the stack is for subroutine calls. The part of the compiler most affected by this is of course the register allocator, because now it needs to do global register allocation.<br /><br />I will describe the new optimizations in a future blog post and talk about global register allocation here. To help people who are learning Factor or are simply curious about what real Factor code looks like, I've inserted lots of links from this blog post to our <a href="http://gitweb.factorcode.org">online code repository browser</a>.<br /><br />Instead of rewriting the register allocator from scratch, I took a more incremental approach, gradually refactoring it to operate on the entire <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/cfg.factor;hb=HEAD">control flow graph</a> instead of a basic block at a time. Generalizing the linear scan algorithm to do this is relatively straightforward, but there are some subtleties. Once again, I used <a href="http://www.ssw.uni-linz.ac.at/Research/Papers/Wimmer04Master/">Christian Wimmer</a>'s masters thesis as a guide, however this time around I implemented almost the entire algorithm described there, instead of the simplification to the local case.<br /><br />First, recall some terminology: <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/registers/registers.factor;hb=HEAD">virtual registers</a> are an abstraction of an ideal CPUs register file: there can be arbitrarily many of them, and each one is only ever assigned to once. The register allocator's job is to rewrite the program to use physical registers instead, possibly mapping a number of virtual registers to the same physical register, and inserting spills and reloads if there are insufficient physical registers to store all temporary values used by the program.<br /><br /><h3>Linearization</h3><br />A local register allocator operates on a basic block, which is a linear list of instructions. For the global case, linear scan still requires a linear list of instructions as input, so the first step is to traverse the CFG in <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/rpo/rpo.factor;hb=HEAD">reverse post order</a> and <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/linear-scan/numbering/numbering.factor;hb=HEAD">number the instructions</a>.<br /><br /><h3>Building live intervals</h3><br />Once a linear ordering among all instructions has been stablished, the second step in linear scan register allocation is <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/linear-scan/live-intervals/live-intervals.factor;hb=HEAD">building live intervals</a>. In the local case, a virtual register is defined in the same basic block as all of its usages. Furthermore, if we assume single assignment, then there will be only a single definition, and it will precede all uses. So the set of instructions where the register is live is a single interval, which begins at the definition and ends at the last use.<br /><br />In the global case, the situation is more complicated. First of all, because the linearization chosen is essentially arbitrary, and does not reflect the actual control flow in reality, instructions are not necessarily executed in order, so if a register is defined at position A and used at position B, it does not mean that the register is live at every position between A and B. Indeed, in the global case, the live "interval" of a register may consist of a number of disjoint ranges of instructions.<br /><br />As an example, consider the following C program:<br /><pre>1: int x = ...;<br />2: if(...) {<br />3:     ... a bunch of code that does not use x<br />4: } else {<br />5:     int y = x + 1;<br />6:     ... code that doesn't use x<br />7: }<br />8: ... more code that doesn't use x<br /></pre><br />The value <code>x</code> is live at position 1, and also at position 5. The last usage of <code>x</code> is at line 5, so it is not live at any position after 5, but also, it is not live at position 3 either, since if the true branch is taken, then <code>x</code> is never used at all. We say that <code>x</code> has a <i>lifetime hole</i> at position 3.<br /><br />Another case where lifetime holes come up is virtual registers with multiple definitions. The very last step in <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/optimizer/optimizer.factor;hb=HEAD">the low level optimizer</a>, right before register allocation, is <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/phi-elimination/phi-elimination.factor;hb=HEAD">phi node elimination</a>. Essentially, phi node elimination turns this,<br /><pre>if(informal) {<br />    x1 = "hi";<br />} else {<br />    x2 = "hello";<br />}<br />x = phi(x1,x2);<br /></pre><br />into the following:<br /><pre>if(informal) {<br />    x1 = "hi";<br />    x = x1;<br />} else {<br />    x2 = "hello";<br />    x = x2;<br />}<br /></pre><br />Now, the value <code>x</code> is not live at the line <code>x2 = "hello";</code>, because it hasn't been defined yet, and the previous definition is <a href="http://en.wikipedia.org/wiki/Reaching_definition">not available</a> either. So the lifetime interval for <code>x</code> has a hole at this location.<br /><br />To represent such complex live intervals, the <code>live-interval</code> data type now contains a list of live ranges. Since basic blocks cannot contain control flow or multiple definitions, there can be at most one live range per basic block per live interval. (The only time multiple definitions come up is as a result of Phi node elimination, and since the input is in SSA form this cannot introduce multiple assignments in the same block).<br /><br />Information from <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/liveness/liveness.factor;hb=HEAD">liveness analysis</a> is used to construct live ranges. A basic block's live range contains the first definition of the register as well as the last use. If the register is in the "live in" set of the basic block, then the range begins at the block's first instruction, and if the register is in the "live out" set then the range ends at the block's last instruction. Note that even if a basic block has no usages of a register, it may appear in both the live in and live out sets; for example, the register might be defined in a predecessor block, and used in a successor block.<br /><br /><h3>Allocating physical registers to live intervals</h3><br />Once live intervals have been built, the next step is to assign physical registers to them. During this process, live intervals may be split, with register to memory, memory to register and register to register moves inserted in between; a single virtual register may be in different physical registers and memory locations during its lifetime.<br /><br />In the local case, the allocation algorithm maintains two pieces of state; the "unhandled set", which is a <a href="http://docs.factorcode.org/content/article-heaps.html">heap</a> of intervals sorted by start position, and an "active set", which is a list of intervals currently assigned to physical registers. The main algorithm removes the smallest element from the unhandled set, and then removes anything from the active set which ends before the new interval begins. The next step depends on whether or not any physical registers are free. If all physical registers are taken up in the active set, then a decision is made to spill either the new interval, or a member of the active set. Spilling will free up at least one physical register. At this point, a physical register is now free and can be assigned to the new interval, which is then added to the active set. Spilling may split intervals into smaller pieces, and add new elements to the unhandled set, but since the new split intervals are strictly smaller than the original interval, the process eventually terminates. Once the unhandled set is empty, allocation is complete.<br /><br />The global case is more complicated, primarily due to the presence of lifetime holes in live intervals. A third piece of <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/linear-scan/allocation/state/state.factor;hb=HEAD">state</a> is maintained by the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/linear-scan/allocation/allocation.factor;hb=HEAD">allocation pass</a>. This new set, the "inactive set", contains live intervals which have not ended yet, but are currently in a lifetime hole. To illustrate, suppose we have two physical registers, R1 and R2, and three virtual registers, V1, V2, and V3, with the following live intervals:<br /><pre><br />    [Program start ....... Program end]<br />V1: &lt;======>                &lt;=========><br />V2:         &lt;==============><br />V3:              &lt;================><br />                 ^<br />                 |<br />           Current position<br /></pre><br />Immediately before V3's live interval begins, the active set includes V2, and the inactive set contains V1, since V1 is not finished yet, but the current position is in a lifetime hole. Suppose that V1 was assigned to physical register R1, and V2 was assigned to physical register R2. In the local case, since the active set only includes one element, V1, we could conclude that R2 was free, and that V3 could be assigned to R2. However, this is invalid, since at a later point, V1 becomes active again, and V1 uses R2. Two overlapping live intervals cannot use the same physical register. So global linear scan also has to examine the inactive set in order to see if the new live interval can fit in an inactive interval's lifetime hole. In this case, it cannot, so we have to split V3, and insert a copy instruction in the middle:<br /><pre>      [Program start ....... Program end]<br />V1:   &lt;======>                <=========><br />V2:           &lt;==============><br />V3_1:              &lt;=========><br />V3_2:                         &lt;====><br />                   ^<br />                   |<br />             Current position</pre><br />With V3 split into V3_1 and V3_2, a valid register assignment is possible, with V3_1 stored in R1 and V3_2 stored in R2.<br /><br />In this case, a register assignment without any spilling is possible. However, sometimes, virtual registers have to be stored to memory. This is done by the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/linear-scan/allocation/spilling/spilling.factor;hb=HEAD">spilling code</a> which uses a similar algorithm to the local case. The main complication is that in order to free up a physical register for the entire lifetime of the new interval, more than one interval may need to be split; zero or one active intervals, and zero or more inactive intervals.<br /><br /><h3>Assigning physical registers to instructions</h3><br />After live intervals are split, and physical registers are assigned to live intervals, <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/linear-scan/assignment/assignment.factor;hb=HEAD">the assignment pass</a> iterates over all instructions, storing a mapping from virtual registers to physical registers in each instruction. Recall that this cannot be a global mapping, since a virtual register may reside in several different physical registers at different locations in the program.<br /><br />The algorithm here is essentially unchanged from the local case. Two additions are that at the start and end of each basic block, the assignment pass records which registers are live. This information is used by GC checks. GC checks are performed on basic block boundaries of blocks which allocate memory. Since a register may be defined in one basic block, and used in another, with a GC check in between, GC checks need to store registers which contain pointers to a special location in the call stack and pass a pointer to this location to the GC. <a href="http://sbcl.org">Some language implementations</a> use a conservative GC to get around having to do this, but I think recording accurate pointer root information is a superior approach. This liveness information is also used by the resolve pass, coming up next.<br /><br /><h3>The resolve pass</h3><br />Since linear scan does not take control flow into account, interval splitting will give incorrect results if implemented naively. Consider the following example program:<br /><pre>x = ...;<br /><br />if(...) {<br />    ...<br />    y = x + 1;<br />    ... some code with high register pressure here<br />} else {<br />    z = x + 2;<br />}<br /></pre><br />If the live interval of <code>x</code> was spilled immediately after the line <code>y = x + 1;</code> then the register allocator would rewrite it as follows -- it would be spilled after the last usage before the spill point, and reloaded before the first usage after the spill point:<br /><pre>x = ...;<br /><br />if(...) {<br />    ...<br />    y = x + 1;<br />    spill(x);<br />    ... some code with high register pressure here<br />} else {<br />    reload(x);<br />    z = x + 2;<br />}<br /></pre><br />In this case however, the spill and reload locations are in different control flow paths. However, linear scan does not take control flow into account during the main algorithm. Instead, a subsequent <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/linear-scan/resolve/resolve.factor;hb=HEAD">resolve pass</a>. The resolve pass looks at every edge in the control flow graph, and compares the physical register and spill slot assignments of all virtual registers which are both live across the edge. If they differ, moves, spills and reloads are inserted on the edge. Conceptually, this pass is simple, but it feels hackish -- it seems that a more elegant register allocator would incorporate this into the previous stages of allocation. However, all formulations of linear scan I've seen so far work this way. The only tricky part about the resolve pass is that the moves have to be performed "in parallel"; for example, suppose we have two virtual registers V1 and V2, and two physical registers R1 and R2. Block A and block B are joined by an edge. At the end of block A, V1 is in R1, and V2 is in R2. At the start of block B, V1 is in R2 and V2 is in R1. Doing the moves in any order would give the wrong result; for correct behavior, the cycle has to be broken with a third temporary location. The logic for doing this in the general case is a bit complex; <a href="http://code-factor.blogspot.com">Doug Coleman</a> helped me implement the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/linear-scan/mapping/mapping.factor;hb=HEAD">mapping code</a>.<br /><br /><h3>General observations</h3><br />While implementing the register allocator improvements, I relied heavily on unit testing as well as an informal "design by contract"; basically, making extensive use of runtime assertions in the code itself. The <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=basis/compiler/cfg/linear-scan;hb=HEAD">compiler.cfg.linear-scan</a> vocabulary weighs in at 3828 lines of code; <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/linear-scan/linear-scan-tests.factor;hb=HEAD">2484 lines of this are unit tests.</a> This is certainly a much higher test:code ratio than most other Factor code I've written, and some of the tests are not very useful or redundant. However, they represent a log of features and bugs I've implemented, and at the very least, minimize regressions.<br /><br />When testing the register allocator, I first got it working on x86-64. Here, there are enough registers that spilling almost never occurs, so I could focus on getting the primary logic correct. Then, I hacked the x86-64 backend to only use 4 physical registers, and debugged spilling.<br /><br />The whole project took a bit longer than I had hoped, but I managed to start implementing a number of additional optimizations in the meantime. When they are more complete I will blog about them.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2009/07/improvements-to-factors-register.html' itemprop='url'/>
+<a class='timestamp-link' href='improvements-to-factors-register.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2009-07-09T19:49:00-04:00'>7:49 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=6903509954500347908' onclick=''>
+4 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=6903509954500347908' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=6903509954500347908&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=6903509954500347908&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=6903509954500347908&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=6903509954500347908&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=6903509954500347908&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=6903509954500347908&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='http://factor-language.blogspot.com/search?updated-max=2009-09-30T23:52:00-04:00&amp;max-results=7&amp;reverse-paginate=true' id='Blog1_blog-pager-newer-link' title='Newer Posts'>Newer Posts</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='http://factor-language.blogspot.com/search?updated-max=2009-07-09T19:49:00-04:00&amp;max-results=7' id='Blog1_blog-pager-older-link' title='Older Posts'>Older Posts</a>
+</span>
+<a class='home-link' href='../../index.html'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='blog-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://factor-language.blogspot.com/feeds/posts/default' target='_blank' type='application/atom+xml'>Posts (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+<div id='sidebar-wrapper'>
+<div class='sidebar section' id='sidebar'><div class='widget BlogArchive' data-version='1' id='BlogArchive1'>
+<h2>Older Posts</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/index.html'>
+2010
+</a>
+<span class='post-count' dir='ltr'>(18)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../index.html'>
+2009
+</a>
+<span class='post-count' dir='ltr'>(35)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+<ul class='posts'>
+<li><a href='dataflow-analysis-computing-dominance.html'>Dataflow analysis, computing dominance, and conver...</a></li>
+<li><a href='improved-value-numbering-branch.html'>Improved value numbering, branch splitting, and fa...</a></li>
+<li><a href='improvements-to-factors-register.html'>Improvements to Factor&#39;s register allocator</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/index.html'>
+2008
+</a>
+<span class='post-count' dir='ltr'>(96)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(17)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/index.html'>
+2007
+</a>
+<span class='post-count' dir='ltr'>(141)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(10)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(21)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/index.html'>
+2006
+</a>
+<span class='post-count' dir='ltr'>(207)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(30)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(25)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(22)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(26)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/index.html'>
+2005
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div><div class='widget Feed' data-version='1' id='Feed2'>
+<h2>Recent Factor Commits</h2>
+<div class='widget-content' id='Feed2_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://gitweb.factorcode.org/gitweb.cgi?p=factor.git;a=atom'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget Feed' data-version='1' id='Feed1'>
+<h2>Planet Factor</h2>
+<div class='widget-content' id='Feed1_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://planet.factorcode.org/feed.xml'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget LinkList' data-version='1' id='LinkList1'>
+<h2>Links</h2>
+<div class='widget-content'>
+<ul>
+<li><a href='http://twitter.com/slava_pestov'>@slava_pestov</a></li>
+<li><a href='http://factorcode.org/slava/'>My home page</a></li>
+<li><a href='http://factorcode.org/'>Factor programming language</a></li>
+<li><a href='http://concatenative.org/'>Concatenative language wiki</a></li>
+<li><a href='http://planet.factorcode.org/'>Planet Factor</a></li>
+</ul>
+<div class='clear'></div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class='clear'>&#160;</div>
+</div>
+<!-- end content-wrapper -->
+<div id='footer-wrapper'>
+<div class='footer no-items section' id='footer'></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/940443484-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY7UtK4YSEPZIGQ2MA8X4qqHHAl-rQ:1693932698323';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d17087850','//factor-language.blogspot.com/2009/07/','17087850');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '17087850', 'title': 'Factor: a practical stack language', 'url': 'http://factor-language.blogspot.com/2009/07/', 'canonicalUrl': 'http://factor-language.blogspot.com/2009/07/', 'homepageUrl': 'http://factor-language.blogspot.com/', 'searchUrl': 'http://factor-language.blogspot.com/search', 'canonicalHomepageUrl': 'http://factor-language.blogspot.com/', 'blogspotFaviconUrl': 'http://factor-language.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en-US', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Factor: a practical stack language - RSS\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/17087850/posts/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/591781cadcbb8744', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'archive', 'pageName': 'July 2009', 'pageTitle': 'Factor: a practical stack language: July 2009'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'isResponsive': false, 'isAlternateRendering': false, 'isCustom': false}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Factor: a practical stack language', 'description': '\x3ca href\x3d\x22http://factorcode.org/slava\x22\x3eSlava Pestov\x3c/a\x3e\x27s weblog, primarily about \x3ca href\x3d\x22http://factorcode.org\x22\x3eFactor\x3c/a\x3e.', 'url': 'http://factor-language.blogspot.com/2009/07/', 'type': 'feed', 'isSingleItem': false, 'isMultipleItems': true, 'isError': false, 'isPage': false, 'isPost': false, 'isHomepage': false, 'isArchive': true, 'isLabelSearch': false, 'archive': {'year': 2009, 'month': 7, 'rangeMessage': 'Showing posts from July, 2009'}}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1333563935-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/3268905543-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed2', 'sidebar', document.getElementById('Feed2'), {'title': 'Recent Factor Commits', 'showItemDate': true, 'showItemAuthor': true, 'feedUrl': 'http://gitweb.factorcode.org/gitweb.cgi?p\x3dfactor.git;a\x3datom', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed1', 'sidebar', document.getElementById('Feed1'), {'title': 'Planet Factor', 'showItemDate': true, 'showItemAuthor': false, 'feedUrl': 'http://planet.factorcode.org/feed.xml', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList1', 'sidebar', document.getElementById('LinkList1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>

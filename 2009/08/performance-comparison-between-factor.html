@@ -1,0 +1,2330 @@
+<!DOCTYPE html>
+<html dir='ltr'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/55013136-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='../../favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='performance-comparison-between-factor.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Factor: a practical stack language - RSS" href="http://factor-language.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="https://www.blogger.com/feeds/17087850/posts/default" />
+
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/5777691968367622335/comments/default" />
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<meta content='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html' property='og:url'/>
+<meta content='Performance comparison between Factor and Java on a contrived benchmark' property='og:title'/>
+<meta content='Recently, Joe Groff  has been working on struct classes , with the aim of completely replacing Factor&#39;s existing support for C structure typ...' property='og:description'/>
+<title>Factor: a practical stack language: Performance comparison between Factor and Java on a contrived benchmark</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Stretch Denim Light
+Designer: Darren Delaye
+URL:      www.DarrenDelaye.com
+Date:     11 Jul 2006
+-----------------------------------------------
+*/
+body {
+background: #ffffff;
+margin: 0;
+padding: 0px;
+font: x-small Verdana, Arial;
+text-align: center;
+color: #333333;
+font-size/* */:/**/small;
+font-size: /**/small;
+}
+a:link {
+color: #336699;
+}
+a:visited {
+color: #336699;
+}
+a img {
+border-width: 0;
+}
+#outer-wrapper {
+font: normal normal 100% Verdana, Arial, Sans-serif;;
+}
+/* Header
+----------------------------------------------- */
+#header-wrapper {
+margin:0;
+padding: 0;
+background-color: #c4e1ff;
+text-align: left;
+}
+#header {
+margin: 0 2%;
+background-color: #c4e1ff;
+color: #003366;
+padding: 0;
+font: normal normal 210% Verdana, Arial, Sans-serif;;
+position: relative;
+}
+h1.title {
+padding-top: 38px;
+margin: 0 1% .1em;
+line-height: 1.2em;
+font-size: 100%;
+}
+h1.title a, h1.title a:visited {
+color: #003366;
+text-decoration: none;
+}
+#header .description {
+display: block;
+margin: 0 1%;
+padding: 0 0 40px;
+line-height: 1.4em;
+font-size: 50%;
+}
+/* Content
+----------------------------------------------- */
+.clear {
+clear: both;
+}
+#content-wrapper {
+margin: 0 2%;
+padding: 0 0 15px;
+text-align: left;
+background-color: #ffffff;
+border: 1px solid #ffffff;
+border-top: 0;
+}
+#main-wrapper {
+margin-left: 1%;
+width: 64%;
+float: left;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+margin-right: 1%;
+width: 29%;
+float: right;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2, h3 {
+margin: 0;
+}
+/* Posts
+----------------------------------------------- */
+.date-header {
+margin: 1.5em 0 0;
+font-weight: normal;
+color: #999999;
+font-size: 100%;
+}
+.post {
+margin: 0 0 1.5em;
+padding-bottom: 1.5em;
+}
+.post-title {
+margin: 0;
+padding: 0;
+font-size: 125%;
+font-weight: bold;
+line-height: 1.1em;
+}
+.post-title a, .post-title a:visited, .post-title strong {
+text-decoration: none;
+color: #333333;
+font-weight: bold;
+}
+.post div {
+margin: 0 0 .75em;
+line-height: 1.3em;
+}
+.post-footer {
+margin: -.25em 0 0;
+color: #333333;
+font-size: 87%;
+}
+.post-footer .span {
+margin-right: .3em;
+}
+.post img, table.tr-caption-container {
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin: 1em 20px;
+}
+.post blockquote p {
+margin: .75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin: 1em 0;
+color: #999999;
+}
+#comments h4 strong {
+font-size: 110%;
+}
+#comments-block {
+margin: 1em 0 1.5em;
+line-height: 1.3em;
+}
+#comments-block dt {
+margin: .5em 0;
+}
+#comments-block dd {
+margin: .25em 0 0;
+}
+#comments-block dd.comment-footer {
+margin: -.25em 0 2em;
+line-height: 1.4em;
+font-size: 78%;
+}
+#comments-block dd p {
+margin: 0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar h2 {
+margin: 1.6em 0 .5em;
+padding: 4px 5px;
+background-color: #ffffff;
+font-size: 100%;
+color: #333333;
+}
+.sidebar ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.sidebar li {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: .5em;
+padding-left: 15px;
+text-indent: -15px;
+line-height: 1.5em;
+}
+.sidebar {
+color: #333333;
+line-height:1.3em;
+}
+.sidebar .widget {
+margin-bottom: 1em;
+}
+.sidebar .widget-content {
+margin: 0 5px;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font-weight: bold;
+line-height: 1.6em;
+font-size: 78%;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+clear: both;
+text-align: center;
+color: #333333;
+}
+#footer .widget {
+margin:.5em;
+padding-top: 20px;
+font-size: 85%;
+line-height: 1.5em;
+text-align: left;
+}
+/** Page structure tweaks for layout editor wireframe */
+body#layout #header {
+width: 750px;
+}
+
+--></style>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' rel='stylesheet'/></noscript>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body>
+<div class='navbar section' id='navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d17087850\x26blogName\x3dFactor:+a+practical+stack+language\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dBLUE\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://factor-language.blogspot.com/search\x26blogLocale\x3den_US\x26v\x3d2\x26homepageUrl\x3dhttp://factor-language.blogspot.com/\x26targetPostID\x3d5777691968367622335\x26blogPostOrPageUrl\x3dhttp://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html\x26vt\x3d-77923165553627649',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id='outer-wrapper'><div id='wrap2'>
+<!-- skip links for text browsers -->
+<span id='skiplinks' style='display:none;'>
+<a href='performance-comparison-between-factor.html#main'>skip to main </a> |
+      <a href='performance-comparison-between-factor.html#sidebar'>skip to sidebar</a>
+</span>
+<div id='header-wrapper'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='../../index.html'>
+Factor: a practical stack language
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span><a href="http://factorcode.org/slava">Slava Pestov</a>'s weblog, primarily about <a href="http://factorcode.org">Factor</a>.</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id='content-wrapper'>
+<div id='crosscol-wrapper' style='text-align:center'>
+<div class='crosscol no-items section' id='crosscol'></div>
+</div>
+<div id='main-wrapper'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Friday, August 28, 2009</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='5777691968367622335' itemprop='postId'/>
+<a name='5777691968367622335'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+Performance comparison between Factor and Java on a contrived benchmark
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-5777691968367622335' itemprop='description articleBody'>
+Recently, <a href="http://duriansoftware.com/joe">Joe Groff</a> has been working on <a href="http://docs.factorcode.org/content/article-classes.struct.html">struct classes</a>, with the aim of completely replacing Factor's existing support for <a href="http://docs.factorcode.org/content/article-c-structs.html">C structure types.</a> The interesting thing about Joe's struct classes is that unlike the clunky old FFI struct support which operated on byte arrays, struct classes really are Factor classes; instances look and feel like Factor objects, there's literal syntax and prettyprinter support, and structure fields are accessed using accessor words that look exactly like Factor tuple slot accessors.<br /><br />So whereas the old C structure support didn't have much use outside of the FFI, the new struct classes become a useful and type-safe abstraction in themselves. Tuples are composed of dynamically-typed slots which reference Factor values, and structs are composed of scalar data stored in contiguous memory. This makes them useful in code that otherwise does not use the FFI.<br /><br />What makes struct classes even more useful in performance-sensitive code is the related <a href="http://docs.factorcode.org/content/article-struct-arrays.html">struct-arrays</a> vocabulary. This presents a sequence of struct values, stored in contiguous memory, as a <a href="http://docs.factorcode.org/content/article-sequence-protocol.html">Factor sequence</a>. This allows ordinary high-level sequence operations and combinators (map, filter, change-each, ...) to be used on scalar data with a very efficient in-memory representation.<br /><br />It is interesting that Factor's core is rather high-level and dynamically typed, but various libraries built off to the side using meta-programming facilities implement features useful for systems programming, such as specialized array types, allowing binary pointerless data to be represented and manipulated efficiently. This is unprecedented in dynamic languages, where the usual approach is to farm out performance-intensive work to another language.<br /><br />The performance difference between, say, an array of pointers to boxed floats, and a raw array of floats, cannot be understated. Further levels of structure make the difference even more dramatic: an array of pointers to objects where each one has three fields pointing to boxed floats (what a mouthful), is considerably less efficient to work with than an array of structures with three float fields each. In the former case, a great many objects are allocated and pointers traversed while working with the data; in the latter case, all data can be stored in one contiguous memory block, that appears as a simple byte array to the garbage collector.<br /><br />Dynamic languages with advanced JITs, such as the recent JavaScript implementations, hit a performance barrier imposed by their in-memory object representations. Even Java, which has a reputation of being very fast as far as managed, GC'd languages go, suffers here. While Java  can pack scalar data into a single instance (so if an object has three float fields, the float data is stored directly in the object); however it does not offer arrays of objects where the objects are stored directly in the array. This negatively impacts performance, as you will see.<br /><br />There is a buzzword that describes this approach of dealing with data: value semantics. If you find some whiny C++ programmers, soon enough one of them will mumble something about value semantics, and with good reason: because C++ offers value semantics, it often has a performance edge over other programming languages. While production-ready Java and C++ implementations both implement a similar set of optimizations, language semantics contribute to C++ being faster for a lot of code. Of course, C++ is low-level and has unsafe pointers; however, as Factor demonstrates, you can have a high-level managed language that still provides support for value semantics in a safe way.<br /><br />I decided to whip up a simple benchmark. Here is what it does:<br /><ul><li>It works on points, which are triplets of single-precision floats, (x,y,z)</li><li>First, the benchmark creates a list of 5000000 points for i=0..4999999, where the ith point is (sin(i),cos(i)*3,sin(i)*sin(i)/2).</li><li>Then, each point is normalized; the x, y, and z components are divided by sqrt(x*x+y*y+z*z).</li><li>Finally, the maximum x, y, and z components are found, for all points, and this is printed out.</li></ul><br />Note that in-place operations, and re-using temporary objects, is allowed.<br /><br />Here is the code:<br /><ul><li><a href="http://paste.factorcode.org/paste?id=837">Factor</a></li><li><a href="http://paste.factorcode.org/paste?id=838">Java</a></li></ul><br />The Factor version is both shorter, and has more blank lines.<br /><br />Note that the Factor version is intended to be run as a vocabulary from the Factor environment, using the <code>time</code> word, as follows:<br /><pre>[ "benchmark.struct-arrays" run ] time</pre><br />Run it a few of times so that the data heap can grow to a stable size.<br /><br />The Java code is self-contained; run it with<br /><pre>java -Xms512m -server silly</pre><br />The Java version runs the benchmark 8 times, and prints the best time; this gives the HotSpot Server JIT a chance to 'warm up'.<br /><br />The JVM shipped with Mac OS X 10.5 (build 1.5.0_19-b02-304) runs the benchmark in 4.6 seconds, and the Factor version ran in 2.2 seconds using a Factor build from earlier this evening. I made a couple of further improvements to the Factor compiler, bringing the runtime of the Factor version of the benchmark down to 1.4 seconds in the latest source tree:<br /><ul><li>Added intrinsics for <code>min</code> and <code>max</code> so that when they are applied to values known to be floating point at compile-time, the SSE2 instructions MINSD and MAXSD are used.</li><li>Added some optimizations to unbox intermediate <code>&lt;displaced-alien></code> values constructed by the struct array code. A displaced alien is a value representing a pointer and an offset; it is a heap-allocated object with two slots. This is how struct classes internally implement the backing store for objects which are stored 'in the middle' of a byte array.</li></ul><br />The Factor code is several layers of abstraction removed from the low-level machine code that is generated in the end. It takes the following optimizations to get good performance out of it:<br /><ul><li>All words declared <code>inline</code> are inlined, all higher-order functions are inlined.</li><li>Literal quotations (written in square brackets) are inlined at their call sites.</li><li>Macros, such as <code>sum-outputs</code> are expanded.<li>Sequence words, struct field accessors, and generic math operations are all replaced with lower-level type-specific equivalents using type inference; in many cases, these operations, such as adding floats, map directly to machine instructions</li><li>The incrementing counter for initializing points is converted into a fixed-precision integer because interval and def-use analysis determine it is safe to do so</li><li>Escape analysis determines that various temporary objects can be stack-allocated:<ul><li>closures created by various combinators, such as <code>tri-curry</code>, <code>each</code>, and so on</li><li>the struct array object created with <code>&lt;struct-array></code></li><li>the struct class instances created inside the many calls to <code>each</code></li><li>the struct created at the end to store the maximum value</li></ul></li><li>Of the remaining memory allocations, those that create small objects are completely inlined, and do not call into the VM at all</li><li>Stack analysis eliminates most of the runtime data stack manipulation in favor of keeping values in CPU registers</li><li>Representation analysis figures out that all of the intermediate float values can be unboxed and stored in floating point registers, except for this that live across the sin/cos calls</li><li>While the sin and cos functions result in calls into libc, sqrt is open-coded as an SSE2 instruction</li><li>Value numbering eliminates redundant pointer arithmetic and the boxing/unboxing of pointer values</li><li>GC checks are open-coded and inlined at every basic block which performs an allocation; the GC check compares the nursery pointer against the limit, and in the fast case, where the nursery is not full, no subroutine call is made, and no registers need to be saved and restored</li><li>The coalescing pass eliminates unnecessary register to register copy instructions that arise from SSA form, as well as ensuring that in most cases, the result of an arithmetic instruction is the same as the first operand; this helps x86 instruction selection</li><li>The register allocator assigns virtual registers to real CPU registers; in this case there is no spilling at all on x86-64</li></ul><br />So what does this say about language expressiveness? Any dynamic language that a) offers the same set of metaprogramming tools as Factor b) has a reasonably advanced JIT could do the same. On the other hand, working value semantics into something like Java is pretty much impossible. I invite you implement this benchmark in your favorite language and share your timings.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html' itemprop='url'/>
+<a class='timestamp-link' href='performance-comparison-between-factor.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2009-08-28T05:21:00-04:00'>5:21 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=5777691968367622335' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=5777691968367622335&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5777691968367622335&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5777691968367622335&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5777691968367622335&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5777691968367622335&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5777691968367622335&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+<div class='comments' id='comments'>
+<a name='comments'></a>
+<h4>34 comments:</h4>
+<div id='Blog1_comments-block-wrapper'>
+<dl class='avatar-comment-indent' id='comments-block'>
+<dt class='comment-author ' id='c1983945838178764159'>
+<a name='c1983945838178764159'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/06348916709650836506" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-1983945838178764159-06348916709650836506"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Unknown">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/06348916709650836506' rel='nofollow'>Unknown</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-1983945838178764159'>
+<p>
+I think your Java code is not completely correct. you divide by 2. But 2 is an Integer. You should use float literals instead: http://www.roseindia.net/java/language/java-literals.shtml<br />Regards,<br />Markus
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251460235777#c1983945838178764159' title='comment permalink'>
+7:50 AM
+</a>
+<span class='item-control blog-admin pid-2008090009'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=1983945838178764159' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c6266447802649401586'>
+<a name='c6266447802649401586'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-6266447802649401586'>
+<p>
+Nope, that will be converted automatilly. After all Java is statically typed, right?<br /><br />Slava: great job! It&#39;s really impressive what you did with factor in this short time (5 years?) and so few people in the core developer team.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251461617514#c6266447802649401586' title='comment permalink'>
+8:13 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=6266447802649401586' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c4266932328638560446'>
+<a name='c4266932328638560446'></a>
+<div class="avatar-image-container vcard"><span dir="ltr"><a href="https://www.blogger.com/profile/05264918260779798314" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-4266932328638560446-05264918260779798314"><img src="https://resources.blogblog.com/img/blank.gif" width="35" height="35" class="delayLoad" style="display: none;" longdesc="//blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRBLkRVaZ8O7y7pzSfeYhtNMhPtkkMWj0RxJYjYIbbzjUz7J4pvczO1CHk0EuzO8YNfoImWGHn1wN7laef9UXMEr1853oF58xQV0-qWQ5njbbDAqzht-VMT7hLk0tAzQ/s45-c/opinali2.jpg" alt="" title="Osvaldo Doederlein">
+
+<noscript><img src="http://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRBLkRVaZ8O7y7pzSfeYhtNMhPtkkMWj0RxJYjYIbbzjUz7J4pvczO1CHk0EuzO8YNfoImWGHn1wN7laef9UXMEr1853oF58xQV0-qWQ5njbbDAqzht-VMT7hLk0tAzQ/s45-c/opinali2.jpg" width="35" height="35" class="photo" alt=""></noscript></a></span></div>
+<a href='https://www.blogger.com/profile/05264918260779798314' rel='nofollow'>Osvaldo Doederlein</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-4266932328638560446'>
+<span class='deleted-comment'>This comment has been removed by the author.</span>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251462748151#c4266932328638560446' title='comment permalink'>
+8:32 AM
+</a>
+<span class='item-control blog-admin '>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=4266932328638560446' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c7514732066268022495'>
+<a name='c7514732066268022495'></a>
+<div class="avatar-image-container vcard"><span dir="ltr"><a href="https://www.blogger.com/profile/05264918260779798314" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-7514732066268022495-05264918260779798314"><img src="https://resources.blogblog.com/img/blank.gif" width="35" height="35" class="delayLoad" style="display: none;" longdesc="//blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRBLkRVaZ8O7y7pzSfeYhtNMhPtkkMWj0RxJYjYIbbzjUz7J4pvczO1CHk0EuzO8YNfoImWGHn1wN7laef9UXMEr1853oF58xQV0-qWQ5njbbDAqzht-VMT7hLk0tAzQ/s45-c/opinali2.jpg" alt="" title="Osvaldo Doederlein">
+
+<noscript><img src="http://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRBLkRVaZ8O7y7pzSfeYhtNMhPtkkMWj0RxJYjYIbbzjUz7J4pvczO1CHk0EuzO8YNfoImWGHn1wN7laef9UXMEr1853oF58xQV0-qWQ5njbbDAqzht-VMT7hLk0tAzQ/s45-c/opinali2.jpg" width="35" height="35" class="photo" alt=""></noscript></a></span></div>
+<a href='https://www.blogger.com/profile/05264918260779798314' rel='nofollow'>Osvaldo Doederlein</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-7514732066268022495'>
+<p>
+Adding value semantics to Java is definitely NOT impossible; in fact, there have been many proposals (and research implementations) for that over the years, the last attempt was John Rose&#39;s tuples proposal (http://blogs.sun.com/jrose/entry/tuples_in_the_vm) but this went to the big black hole that killed any large-scale Java language innovations for JDK 7&#39;s timeframe.<br /><br />Not impressed with Factor code being shorter, though. It&#39;s 50 lines long; if I reformat the Java code to be just like Factor (no nested class; stuffing short methods in a single line plus the declaration line; inline temp variables used only once; delete extra timing/printing code that don&#39;t exist in the Factor version) I easily make it 46 lines - Factor loses just due to its USING/IN clauses. Example:<br /><br />static void benchmark(int len)<br />{ System.out.println(maxPoints(normalizePoints(makePoints(len)))); }<br /><br />This is pretty dense and &quot;functional-looking&quot; style for most Java programmers, but it&#39;s exactly like your Factor style.<br /><br />And even if the Java code was bulkier (which is often the case - Java is definitely a verbose syntax), this is meaningless in the dynamic vs. static-typed language debate. You can have a static-typed language that&#39;s much more terse / high-level. Even Java&#39;s teenager cousin, JavaFX Script, will implement this code with much less typing due to its sequences, generators, type inference, etc. For example, makePoints() in JavaFX Script becomes:<br /><br />function makePoints(len) { for (i in [0..&lt;len]) init-point(i) }<br /><br />(Notice that the language can infer both return and parameter types [the latter in the right circumstances], there is nothing &quot;dynamic&quot; in this code.)
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251462899525#c7514732066268022495' title='comment permalink'>
+8:34 AM
+</a>
+<span class='item-control blog-admin pid-1112798620'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=7514732066268022495' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c7083424218550014111'>
+<a name='c7083424218550014111'></a>
+<div class="avatar-image-container vcard"><span dir="ltr"><a href="https://www.blogger.com/profile/17323566514229790079" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-7083424218550014111-17323566514229790079"><img src="https://resources.blogblog.com/img/blank.gif" width="35" height="35" class="delayLoad" style="display: none;" longdesc="//blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEimAVKwpjuClxmTYPSjZJOVfjWrpldSG9EO9SqShYInrCQvMTs4rJjdChS_t5n3I-FuMtv_dSRzgQIiU2C0Ri_xZQl0ipgmhrqMf35np-tkOKVHhjALLQsrCXM0Nx6gOZk/s45-c/icon.JPG" alt="" title="Daniel Spiewak">
+
+<noscript><img src="http://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEimAVKwpjuClxmTYPSjZJOVfjWrpldSG9EO9SqShYInrCQvMTs4rJjdChS_t5n3I-FuMtv_dSRzgQIiU2C0Ri_xZQl0ipgmhrqMf35np-tkOKVHhjALLQsrCXM0Nx6gOZk/s45-c/icon.JPG" width="35" height="35" class="photo" alt=""></noscript></a></span></div>
+<a href='https://www.blogger.com/profile/17323566514229790079' rel='nofollow'>Daniel Spiewak</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-7083424218550014111'>
+<p>
+I would be interested to see the results on a more modern JVM.  Apple&#39;s implementation of HotSpot (particularly in 1.5) is quite antiquated.  Try either the latest version of Apple&#39;s VM or (even better) OpenJDK (can be installed via MacPorts).  I have no doubt that Factor will still come out on top, but I think the results will be closer.<br /><br />Incidentally, my own JVM benchmarking (of other things) indicates that 8 probably isn&#39;t enough times through the benchmark to get a decent warm up.  Try 15 or 20 and then see what the results say.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251469083246#c7083424218550014111' title='comment permalink'>
+10:18 AM
+</a>
+<span class='item-control blog-admin pid-786303722'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=7083424218550014111' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c1536444527167109225'>
+<a name='c1536444527167109225'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-1536444527167109225'>
+<p>
+Latest factor (git master):<br />( scratchpad ) [ &quot;benchmark.struct-arrays&quot; run ] 20 ave-time<br />2013 ms ave run time - 36.98 SD (20 trials)<br /><br /># java -version<br />java version &quot;1.6.0_0&quot;<br />OpenJDK Runtime Environment (IcedTea6 1.5.1) (ArchLinux-1.5.1-1-x86_64)<br />OpenJDK 64-Bit Server VM (build 14.0-b15, mixed mode)<br /><br />Best time (interestingly #3 of 20, hotspot doesn&#39;t need that much time to warm up apparently): 8344 ms
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251470798993#c1536444527167109225' title='comment permalink'>
+10:46 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=1536444527167109225' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c5556939151049123458'>
+<a name='c5556939151049123458'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/12468742992535608146" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-5556939151049123458-12468742992535608146"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Zeev">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/12468742992535608146' rel='nofollow'>Zeev</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-5556939151049123458'>
+<p>
+C# has structs with value semantics, and arrays of them are consecutive in memory. They are specifically mentioned to be useful for storing coordinates.<br /><br />Can someone port the java code to C# and run on the latest CLR? That would be interesting to see.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251472450843#c5556939151049123458' title='comment permalink'>
+11:14 AM
+</a>
+<span class='item-control blog-admin pid-2057117349'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=5556939151049123458' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c5732464577380153523'>
+<a name='c5732464577380153523'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/06348916709650836506" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-5732464577380153523-06348916709650836506"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Unknown">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/06348916709650836506' rel='nofollow'>Unknown</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-5732464577380153523'>
+<p>
+Did you delete my comment?<br />You should also run this with double. You use double functions in Java, which results several times in conversion to be done to to float, which is a non-trivial operation.<br />Markus
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251472977634#c5732464577380153523' title='comment permalink'>
+11:22 AM
+</a>
+<span class='item-control blog-admin pid-2008090009'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=5732464577380153523' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c7086303132771658124'>
+<a name='c7086303132771658124'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/12468742992535608146" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-7086303132771658124-12468742992535608146"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Zeev">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/12468742992535608146' rel='nofollow'>Zeev</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-7086303132771658124'>
+<p>
+using http://paste.factorcode.org/paste?id=839<br /><br />Run #0<br />csharp.silly+Point<br />Time: 1834<br />Run #1<br />csharp.silly+Point<br />Time: 1733<br />Run #2<br />csharp.silly+Point<br />Time: 1651<br />Run #3<br />csharp.silly+Point<br />Time: 1731<br />Run #4<br />csharp.silly+Point<br />Time: 1729<br />Run #5<br />csharp.silly+Point<br />Time: 1728<br />Run #6<br />csharp.silly+Point<br />Time: 1730<br />Run #7<br />csharp.silly+Point<br />Time: 1728<br />Run #8<br />csharp.silly+Point<br />Time: 1736<br />Run #9<br />csharp.silly+Point<br />Time: 1731<br />Run #10<br />csharp.silly+Point<br />Time: 1729<br />Run #11<br />csharp.silly+Point<br />Time: 1727<br />Run #12<br />csharp.silly+Point<br />Time: 1730<br />Run #13<br />csharp.silly+Point<br />Time: 1727<br />Run #14<br />csharp.silly+Point<br />Time: 1727<br />Run #15<br />csharp.silly+Point<br />Time: 1735<br />Run #16<br />csharp.silly+Point<br />Time: 1755<br />Run #17<br />csharp.silly+Point<br />Time: 1736<br />Run #18<br />csharp.silly+Point<br />Time: 1726<br />Run #19<br />csharp.silly+Point<br />Time: 1726<br /><br />$ mono --version<br />Mono JIT compiler version 2.4.2.3 (tarball Fri Aug 28 18:52:39 IDT 2009)<br />Copyright (C) 2002-2008 Novell, Inc and Contributors. www.mono-project.com<br />        TLS:           __thread<br />        GC:            Included Boehm (with typed GC)<br />        SIGSEGV:       altstack<br />        Notifications: epoll<br />        Architecture:  amd64<br />        Disabled:      none<br /><br />on same machine,<br /><br />$ java -version<br />java version &quot;1.6.0_0&quot;<br />OpenJDK Runtime Environment (IcedTea6 1.5.1) (Gentoo)<br />OpenJDK 64-Bit Server VM (build 14.0-b15, mixed mode)<br /><br />$ java -server -Xms512m silly<br />Run #0<br />0.8944272, 1.0, 0.4472136<br />Time: 8857<br />Run #1<br />0.8944272, 1.0, 0.4472136<br />Time: 9314<br />Run #2<br />0.8944272, 1.0, 0.4472136<br />Time: 9441<br />Run #3<br />0.8944272, 1.0, 0.4472136<br />Time: 8620<br />Run #4<br />0.8944272, 1.0, 0.4472136<br />Time: 8801<br />Run #5<br />0.8944272, 1.0, 0.4472136<br />Time: 9000<br />Run #6<br />0.8944272, 1.0, 0.4472136<br />Time: 8341<br />Run #7<br />0.8944272, 1.0, 0.4472136<br />Time: 9359<br />Run #8<br />0.8944272, 1.0, 0.4472136<br />Time: 8749<br />Run #9<br />0.8944272, 1.0, 0.4472136<br />Time: 8970<br />Run #10<br />0.8944272, 1.0, 0.4472136<br />Time: 8948<br />Run #11<br />0.8944272, 1.0, 0.4472136<br />Time: 9003<br />Run #12<br />0.8944272, 1.0, 0.4472136<br />Time: 9044<br />Run #13<br />0.8944272, 1.0, 0.4472136<br />Time: 8997<br />Run #14<br />0.8944272, 1.0, 0.4472136<br />Time: 8957<br />Run #15<br />0.8944272, 1.0, 0.4472136<br />Time: 8745<br />Run #16<br />0.8944272, 1.0, 0.4472136<br />Time: 9034<br />Run #17<br />0.8944272, 1.0, 0.4472136<br />Time: 8791<br />Run #18<br />0.8944272, 1.0, 0.4472136<br />Time: 9066<br />Run #19<br />0.8944272, 1.0, 0.4472136<br />Time: 8781<br /><br />This is a Cure 2 Duo E6550 (2.33Ghz).
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251478426340#c7086303132771658124' title='comment permalink'>
+12:53 PM
+</a>
+<span class='item-control blog-admin pid-2057117349'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=7086303132771658124' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c8515256897701593346'>
+<a name='c8515256897701593346'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/12468742992535608146" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-8515256897701593346-12468742992535608146"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Zeev">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/12468742992535608146' rel='nofollow'>Zeev</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-8515256897701593346'>
+<p>
+Oops, capital T in ToString(). And &quot;override&quot;. Result is unaffected, Time: 1726
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251478665150#c8515256897701593346' title='comment permalink'>
+12:57 PM
+</a>
+<span class='item-control blog-admin pid-2057117349'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=8515256897701593346' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c6894194690682267125'>
+<a name='c6894194690682267125'></a>
+<div class="avatar-image-container vcard"><span dir="ltr"><a href="https://www.blogger.com/profile/10559947643606684495" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-6894194690682267125-10559947643606684495"><img src="https://resources.blogblog.com/img/blank.gif" width="35" height="35" class="delayLoad" style="display: none;" longdesc="//blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3e21fFMbdU2NZa4qW0IR-0Fu_rpj3N7iibfB8EAWviiVQ8RZ0IPYsf7pxc5mIo9_EZwRla6fs6JU5eHtWE5kuzANPcxZyPqflmwMT2ocaJkqiGFQLvgCq-PkyyHaMXJQ/s45-c/big-avatar-512.png" alt="" title="Barry Kelly">
+
+<noscript><img src="http://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3e21fFMbdU2NZa4qW0IR-0Fu_rpj3N7iibfB8EAWviiVQ8RZ0IPYsf7pxc5mIo9_EZwRla6fs6JU5eHtWE5kuzANPcxZyPqflmwMT2ocaJkqiGFQLvgCq-PkyyHaMXJQ/s45-c/big-avatar-512.png" width="35" height="35" class="photo" alt=""></noscript></a></span></div>
+<a href='https://www.blogger.com/profile/10559947643606684495' rel='nofollow'>Barry Kelly</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-6894194690682267125'>
+<p>
+FWIW, runtime on the CLR 2.0.50727.3082 (i.e. .NET 3.5), rather than Mono, on my machine (Q6600 @ 3.8GHz) looks roughly like this:<br /><br />Run #0<br />csharp.silly+Point<br />Time: 860<br />Run #1<br />csharp.silly+Point<br />Time: 862<br />Run #2<br />csharp.silly+Point<br />Time: 863<br />Run #3<br />csharp.silly+Point<br />Time: 860<br />Run #4<br />csharp.silly+Point<br />Time: 861<br />Run #5<br />csharp.silly+Point<br />Time: 861<br />Run #6<br />csharp.silly+Point<br />Time: 861<br />Run #7<br />csharp.silly+Point<br />Time: 862<br />Run #8<br />csharp.silly+Point<br />Time: 863<br />Run #9<br />csharp.silly+Point<br />Time: 864<br />Run #10<br />csharp.silly+Point<br />Time: 864<br />Run #11<br />csharp.silly+Point<br />Time: 864<br />Run #12<br />csharp.silly+Point<br />Time: 861<br />Run #13<br />csharp.silly+Point<br />Time: 861<br />Run #14<br />csharp.silly+Point<br />Time: 865<br />Run #15<br />csharp.silly+Point<br />Time: 863<br />Run #16<br />csharp.silly+Point<br />Time: 863<br />Run #17<br />csharp.silly+Point<br />Time: 861<br />Run #18<br />csharp.silly+Point<br />Time: 865<br />Run #19<br />csharp.silly+Point<br />Time: 864<br /><br />To compare, Java 1.6.0_14 server ran:<br /><br />Run #0<br />0.8944272, 1.0, 0.4472136<br />Time: 8500<br />Run #1<br />0.8944272, 1.0, 0.4472136<br />Time: 8375<br />Run #2<br />0.8944272, 1.0, 0.4472136<br />Time: 8922<br />Run #3<br />0.8944272, 1.0, 0.4472136<br />Time: 8844<br />Run #4<br />0.8944272, 1.0, 0.4472136<br />Time: 8687<br />Run #5<br />0.8944272, 1.0, 0.4472136<br />Time: 8860<br />Run #6<br />0.8944272, 1.0, 0.4472136<br />Time: 8812<br />Run #7<br />0.8944272, 1.0, 0.4472136<br />Time: 8688<br />Run #8<br />0.8944272, 1.0, 0.4472136<br />Time: 8812
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251480255933#c6894194690682267125' title='comment permalink'>
+1:24 PM
+</a>
+<span class='item-control blog-admin pid-688547500'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=6894194690682267125' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c26426346267063800'>
+<a name='c26426346267063800'></a>
+<div class="avatar-image-container vcard"><span dir="ltr"><a href="https://www.blogger.com/profile/10559947643606684495" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-26426346267063800-10559947643606684495"><img src="https://resources.blogblog.com/img/blank.gif" width="35" height="35" class="delayLoad" style="display: none;" longdesc="//blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3e21fFMbdU2NZa4qW0IR-0Fu_rpj3N7iibfB8EAWviiVQ8RZ0IPYsf7pxc5mIo9_EZwRla6fs6JU5eHtWE5kuzANPcxZyPqflmwMT2ocaJkqiGFQLvgCq-PkyyHaMXJQ/s45-c/big-avatar-512.png" alt="" title="Barry Kelly">
+
+<noscript><img src="http://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3e21fFMbdU2NZa4qW0IR-0Fu_rpj3N7iibfB8EAWviiVQ8RZ0IPYsf7pxc5mIo9_EZwRla6fs6JU5eHtWE5kuzANPcxZyPqflmwMT2ocaJkqiGFQLvgCq-PkyyHaMXJQ/s45-c/big-avatar-512.png" width="35" height="35" class="photo" alt=""></noscript></a></span></div>
+<a href='https://www.blogger.com/profile/10559947643606684495' rel='nofollow'>Barry Kelly</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-26426346267063800'>
+<p>
+It&#39;s an impressive result for Factor, but I couldn&#39;t countenance programming in an explicitly stack-oriented language for long - I&#39;d be driven up the walls. If I were forced to write in Factor, the first thing I&#39;d do is write a compiler that targeted Factor.<br /><br />And that&#39;s actually where I find this result most interesting - Factor as a target language for compilers.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251480741277#c26426346267063800' title='comment permalink'>
+1:32 PM
+</a>
+<span class='item-control blog-admin pid-688547500'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=26426346267063800' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c6870664281740363155'>
+<a name='c6870664281740363155'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-6870664281740363155'>
+<p>
+Pretty impressive results for factor.<br /><br />I tried it in OCaml in a functional style and I beat java naively.<br /><br />Times of 6.5s to 8.8s<br /><br />Unfortunately for ocaml if I ran more than 1 benchmark after another it slowed down due to GC issues. Oh well.<br /><br />Here&#39;s the code<br />http://paste.factorcode.org/paste?id=840
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251501270807#c6870664281740363155' title='comment permalink'>
+7:14 PM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=6870664281740363155' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c5976169682693168081'>
+<a name='c5976169682693168081'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/08825321365802833225" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-5976169682693168081-08825321365802833225"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Unknown">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/08825321365802833225' rel='nofollow'>Unknown</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-5976169682693168081'>
+<p>
+I&#39;ve put up a lisp version here....<br /><br />http://paste.factorcode.org/paste?id=841<br /><br />SBCL runs it in about 6 seconds which on my machine is about 3 times faster than java but this did require a bit of tuning for speed.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251504715152#c5976169682693168081' title='comment permalink'>
+8:11 PM
+</a>
+<span class='item-control blog-admin pid-274360804'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=5976169682693168081' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c4466762996612671105'>
+<a name='c4466762996612671105'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/02902123247585964087" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-4466762996612671105-02902123247585964087"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Isaac Gouy">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/02902123247585964087' rel='nofollow'>Isaac Gouy</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-4466762996612671105'>
+<p>
+Maybe it&#39;s the trig.<br /><br />The fastest time for your Java program -<br /><br />Run #6<br />0.8944272, 1.0, 0.4472136<br />Time: 8242<br /><br />but if I take the <strong>reduce the angle to be within the range of +45 to -45 degrees</strong> code from <a href="http://shootout.alioth.debian.org/gp4/benchmark.php?test=partialsums&amp;lang=java&amp;id=4" rel="nofollow">the old partial-sums program</a> then the fastest time is -<br /><br />Run #3<br />0.8944272, 1.0, 0.4472136<br />Time: 4473
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251509024057#c4466762996612671105' title='comment permalink'>
+9:23 PM
+</a>
+<span class='item-control blog-admin pid-1776980855'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=4466762996612671105' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c6593819788301074364'>
+<a name='c6593819788301074364'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/03216769907355487867" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-6593819788301074364-03216769907355487867"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Unknown">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/03216769907355487867' rel='nofollow'>Unknown</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-6593819788301074364'>
+<p>
+My crack at a <a href="http://paste.factorcode.org/paste?id=844" rel="nofollow">C version</a> which runs in about 800ms on my system.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251513772129#c6593819788301074364' title='comment permalink'>
+10:42 PM
+</a>
+<span class='item-control blog-admin pid-520979778'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=6593819788301074364' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c2172272647286449849'>
+<a name='c2172272647286449849'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/06527352519775026268" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-2172272647286449849-06527352519775026268"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Paulo Silveira">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/06527352519775026268' rel='nofollow'>Paulo Silveira</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-2172272647286449849'>
+<p>
+if you check out the output with -verbose:gc, you will see that HALF of the time is being consumed by the GC, freeing memory. <br /><br />as I ve read before, the JVM JIT compiler can thread some objects as structs some times,  allocating them on the stack instead of the heap. I can bet that this will make the JVM run as fast as factor, or even faster. <br /><br />@Osvaldo, how could we change the cold so the JIT would do this?
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251517669855#c2172272647286449849' title='comment permalink'>
+11:47 PM
+</a>
+<span class='item-control blog-admin pid-289617879'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=2172272647286449849' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c1288736299588412958'>
+<a name='c1288736299588412958'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/02902123247585964087" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-1288736299588412958-02902123247585964087"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Isaac Gouy">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/02902123247585964087' rel='nofollow'>Isaac Gouy</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-1288736299588412958'>
+<p>
+Java 1.6.0_13 on x64 Ubuntu takes 90% of the time just to get the trig values used in Point constructor.<br /><br />static void benchmark(int len)<br />{<br />   for(int n = 0; n &lt; len; n++){<br />      float x = (float)Math.sin(n);<br />      float y = (float)Math.cos(n) * 3;<br />      double s = Math.sin(n);<br />      float z = (float)((s * s) / 2);<br />   }<br />}<br /><br />Run #5<br />Time: 7402
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251521824533#c1288736299588412958' title='comment permalink'>
+12:57 AM
+</a>
+<span class='item-control blog-admin pid-1776980855'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=1288736299588412958' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c9120714581706408985'>
+<a name='c9120714581706408985'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://www.xclu.com" target="" rel="nofollow" onclick=""><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Justin Sher">
+
+</a></span></div>
+<a href='http://www.xclu.com' rel='nofollow'>Justin Sher</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-9120714581706408985'>
+<p>
+Here&#39;s my Scala version rewritten in a functional style.<br /><br />http://paste.factorcode.org/paste?id=845<br /><br />It runs slightly faster than Java:<br /><br />java -Xmx512m -server  -cp ./target/test-classes/:./target/work/webapp/WEB-INF/lib/scala-library-2.7.3.jar bench.factor.Silly<br />Run #0<br />Point(0.8944272,1.0,0.4472136)<br />Time: 7059<br />Run #1<br />Point(0.8944272,1.0,0.4472136)<br />Time: 6968<br />Run #2<br />Point(0.8944272,1.0,0.4472136)<br />Time: 7023<br />Run #3<br />Point(0.8944272,1.0,0.4472136)<br />Time: 7045<br />Run #4<br />Point(0.8944272,1.0,0.4472136)<br />Time: 6997<br />Run #5<br />Point(0.8944272,1.0,0.4472136)<br />Time: 7018<br />Run #6<br />Point(0.8944272,1.0,0.4472136)<br />Time: 7013<br />Run #7<br />Point(0.8944272,1.0,0.4472136)<br />Time: 7013<br />Run #8<br />Point(0.8944272,1.0,0.4472136)<br />Time: 7008<br /><br /><br />java -Xmx512m -server  -cp ./target/test-classes/ bench.factor.SillyJava<br />Run #0<br />0.8944272, 1.0, 0.4472136<br />Time: 8709<br />Run #1<br />0.8944272, 1.0, 0.4472136<br />Time: 7791<br />Run #2<br />0.8944272, 1.0, 0.4472136<br />Time: 7999<br />Run #3<br />0.8944272, 1.0, 0.4472136<br />Time: 7786<br />Run #4<br />0.8944272, 1.0, 0.4472136<br />Time: 7871<br />Run #5<br />0.8944272, 1.0, 0.4472136<br />Time: 7526<br />Run #6<br />0.8944272, 1.0, 0.4472136<br />Time: 8088<br />Run #7<br />0.8944272, 1.0, 0.4472136<br />Time: 7212<br />java -Xmx512m -server  -cp ./target/test-classes/ bench.factor.SillyJava<br />Run #0<br />0.8944272, 1.0, 0.4472136<br />Time: 8709<br />Run #1<br />0.8944272, 1.0, 0.4472136<br />Time: 7791<br />Run #2<br />0.8944272, 1.0, 0.4472136<br />Time: 7999<br />Run #3<br />0.8944272, 1.0, 0.4472136<br />Time: 7786<br />Run #4<br />0.8944272, 1.0, 0.4472136<br />Time: 7871<br />Run #5<br />0.8944272, 1.0, 0.4472136<br />Time: 7526<br />Run #6<br />0.8944272, 1.0, 0.4472136<br />Time: 8088<br />Run #7<br />0.8944272, 1.0, 0.4472136<br />Time: 7212
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251532245647#c9120714581706408985' title='comment permalink'>
+3:50 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=9120714581706408985' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c3094162696522439328'>
+<a name='c3094162696522439328'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-3094162696522439328'>
+<p>
+91% of the time of your Java example is spent in one function: the makePoints() function, or more specifically, the Point constructor.  Nearly all of that time is spent in calling sin and cos.  Why didn&#39;t you bother to check to see if Java&#39;s compiler wasn&#39;t doing a good job optimizing that?  A quick hand optimization:  <br /><br />                final static double HALFPI = Math.PI / 2;<br />                Point(int n)<br />                {<br />                        double s = Math.sin(n);<br />                        this.x = (float)s;<br />                        /*Math.cos(n) = Math.sin(Pi/2 - n) */<br />                        this.y = (float)((HALFPI - n)  * 3);<br />                        this.z = (float)((s * s) / 2);<br />                }<br /><br />... and BOOM, the Java example runs at three times its previous speed. All I did was reduce the sin and cos calls to 1.<br /><br />This is pretty trivial stuff, geez.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251535013163#c3094162696522439328' title='comment permalink'>
+4:36 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=3094162696522439328' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c1129505836044717544'>
+<a name='c1129505836044717544'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/06295961645811499445" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-1129505836044717544-06295961645811499445"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="RonnyPfannschmidt">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/06295961645811499445' rel='nofollow'>RonnyPfannschmidt</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-1129505836044717544'>
+<p>
+if a language implementation needs weird stupid idioms instead of nice code that goes the way of the language to be fast, there is something seriously wrong
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251552184658#c1129505836044717544' title='comment permalink'>
+9:23 AM
+</a>
+<span class='item-control blog-admin pid-406276243'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=1129505836044717544' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c6792799379416429238'>
+<a name='c6792799379416429238'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://eigenclass.org/R2" target="" rel="nofollow" onclick=""><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="mfp">
+
+</a></span></div>
+<a href='http://eigenclass.org/R2' rel='nofollow'>mfp</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-6792799379416429238'>
+<p>
+anonymous(abez): an idiomatic OCaml version with records will be over 2X faster, since floats are unboxed, see <br /><br />  http://paste.factorcode.org/paste?id=846<br /><br />Here, this functional OCaml version runs in 3.1 seconds, compared to 8.3s with Java 1.6.0_04-b12 (which should be better than the 1.5 JVM used by Slava).
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251559730358#c6792799379416429238' title='comment permalink'>
+11:28 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=6792799379416429238' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c7668152214505797307'>
+<a name='c7668152214505797307'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://eigenclass.org/R2" target="" rel="nofollow" onclick=""><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="mfp">
+
+</a></span></div>
+<a href='http://eigenclass.org/R2' rel='nofollow'>mfp</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-7668152214505797307'>
+<p>
+And here&#39;s the straightforward OCaml version of abez&#39; original one with mutation, over 4X faster than the Java one on my box (2.0s with OCaml 3.11.1 vs. 8.3s with Java  1.6.0_04-b12):<br /><br /><a href="http://paste.factorcode.org/paste?id=847" rel="nofollow">http://paste.factorcode.org/paste?id=847</a>
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251561284005#c7668152214505797307' title='comment permalink'>
+11:54 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=7668152214505797307' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c5840694431485138849'>
+<a name='c5840694431485138849'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/02902123247585964087" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-5840694431485138849-02902123247585964087"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Isaac Gouy">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/02902123247585964087' rel='nofollow'>Isaac Gouy</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-5840694431485138849'>
+<span class='deleted-comment'>This comment has been removed by the author.</span>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251565144549#c5840694431485138849' title='comment permalink'>
+12:59 PM
+</a>
+<span class='item-control blog-admin '>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=5840694431485138849' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c5281241552793697381'>
+<a name='c5281241552793697381'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://www.xclu.com" target="" rel="nofollow" onclick=""><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Justin Sher">
+
+</a></span></div>
+<a href='http://www.xclu.com' rel='nofollow'>Justin Sher</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-5281241552793697381'>
+<p>
+Sun is aware that trig functions are slow because they don&#39;t use the CPU&#39;s Floating Point Instructions.  They chose not to use them because of cross platform issues and the Intel instructions return wildly inaccurate results in some corner cases:<br /><br />http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4857011<br /><br />Some people work around this by using native math implementations<br /><br />http://forums.sun.com/thread.jspa?threadID=5296773
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251593320839#c5281241552793697381' title='comment permalink'>
+8:48 PM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=5281241552793697381' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c3723907006492954151'>
+<a name='c3723907006492954151'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="LazyDude">
+
+</span></div>
+LazyDude
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-3723907006492954151'>
+<p>
+The obvious Haskell version of this benchmark will be even shorter and probably as fast as the Factor-version but with the difference that it will consume about 1 MB memory. It Lazy is. Me like.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251654031840#c3723907006492954151' title='comment permalink'>
+1:40 PM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=3723907006492954151' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c5331113248697966786'>
+<a name='c5331113248697966786'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-5331113248697966786'>
+<p>
+Justin Sheer is correct.<br />Which is why the Java and Factor version give different outputs. I&#39;ve converted the java version to use doubles for comparison purposes.<br /><br />Java version:<br />0.8944271909997111, 1.0, 0.44721359549984097<br /><br />Factor version:<br />0.8944272994995117, 1.0, 0.4472135007381439<br /><br />They differ in the X value (7th decimal) and Z value (8th decimal).<br /><br />Speed is good, but I&#39;d rather have my programs be correct than fast.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251784908537#c5331113248697966786' title='comment permalink'>
+2:01 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=5331113248697966786' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c2341355502247284614'>
+<a name='c2341355502247284614'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-2341355502247284614'>
+<p>
+I thiknk you should check this out, some dude went and reproiduced your benchmark in clojure: http://ideolalia.com/performance-in-clojure-and-factor<br /><br />The result is an order of magnitude better in every way
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251793808004#c2341355502247284614' title='comment permalink'>
+4:30 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=2341355502247284614' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author blog-author' id='c2501018517907322947'>
+<a name='c2501018517907322947'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/02768382790667979877" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-2501018517907322947-02768382790667979877"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Slava Pestov">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/02768382790667979877' rel='nofollow'>Slava Pestov</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-2501018517907322947'>
+<p>
+Anonymous: converting it to use doubles changes the algorithm. The Factor and Java versions of the benchmark use doubles as intermediate values but store the values into the structure as floats. However Factor prints the single floats as doubles, which is why the results print differently. However, they do give the same results as single floats.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1251827582409#c2501018517907322947' title='comment permalink'>
+1:53 PM
+</a>
+<span class='item-control blog-admin pid-561774689'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=2501018517907322947' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c8417743385718912477'>
+<a name='c8417743385718912477'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-8417743385718912477'>
+<p>
+Slava:<br />Using the original, unmodified, single-precision floating point Java code I get this result:<br />0.8944272, 1.0, 0.4472136<br /><br />Factor gives this result:<br />0.8944272994995117, 1.0, 0.4472135007381439<br /><br />If rounded correctly, this equals<br />0.8944273, 1.0, 0.4472135<br /><br />Now the discrepancy is in the 7th decimal in both the X and Z values.<br /><br />Either there&#39;s a bug in the trig implementation or the rounding code in one of the languages. In light of Justin Sheer&#39;s comment, it seems unlikely that it is in Java.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1252410465653#c8417743385718912477' title='comment permalink'>
+7:47 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=8417743385718912477' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author blog-author' id='c6057570988354193408'>
+<a name='c6057570988354193408'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/02768382790667979877" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-6057570988354193408-02768382790667979877"><img src="http://www.blogger.com/img/blogger_logo_round_35.png" width="35" height="35" alt="" title="Slava Pestov">
+
+</a></span></div>
+<a href='https://www.blogger.com/profile/02768382790667979877' rel='nofollow'>Slava Pestov</a>
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-6057570988354193408'>
+<p>
+Anonymous: I get these results from the Factor benchmark on my computer:<br /><br />0.8944271802902222, 1.0, 0.4472135901451111<br /><br />I wonder why they&#39;re different on yours. What OS/CPU are you running?
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1252432442591#c6057570988354193408' title='comment permalink'>
+1:54 PM
+</a>
+<span class='item-control blog-admin pid-561774689'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=6057570988354193408' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c5514722138591081438'>
+<a name='c5514722138591081438'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-5514722138591081438'>
+<p>
+Slava:<br />Ubuntu 9.04, 64-bit.<br />Intel Q6700.<br /><br />I&#39;m using Sun&#39;s JVM, version 6 update 16.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1252559207203#c5514722138591081438' title='comment permalink'>
+1:06 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=5514722138591081438' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c8554296663735732633'>
+<a name='c8554296663735732633'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-8554296663735732633'>
+<p>
+As mentioned, the performance difference is entirely down to java&#39;s strict (and slow) trig performance.<br /><br />However, there are many fast (if less accurate) alternatives to java.lang.Math.<br /><br />In my test, performance went from an avg of ~11500 ms to ~1650 ms using MathX instead of the standard Math.<br /><br />It seems this test is mostly benchmarking trig performance.
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1255336695262#c8554296663735732633' title='comment permalink'>
+4:38 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=8554296663735732633' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+<dt class='comment-author ' id='c7282954885078281231'>
+<a name='c7282954885078281231'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-7282954885078281231'>
+<p>
+Some further optimization improved the performance from 1650 to 1234.<br />So a 20 minute optimization session improved the performance from 11500 to 1234 on my machine.<br />That is more than 9.3 times as fast!<br /><br />Interestingly, this seems to perform better on client than server VM (where performance topped at about 1500ms on my machine).
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html?showComment=1255338078027#c7282954885078281231' title='comment permalink'>
+5:01 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=7282954885078281231' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+</dl>
+</div>
+<p class='comment-footer'>
+<a href='https://www.blogger.com/comment.g?blogID=17087850&postID=5777691968367622335' onclick=''>Post a Comment</a>
+</p>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='struct-arrays-benchmark-revisited.html' id='Blog1_blog-pager-newer-link' title='Newer Post'>Newer Post</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='new-tool-for-locating-external-resource.html' id='Blog1_blog-pager-older-link' title='Older Post'>Older Post</a>
+</span>
+<a class='home-link' href='../../index.html'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='post-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://factor-language.blogspot.com/feeds/5777691968367622335/comments/default' target='_blank' type='application/atom+xml'>Post Comments (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+<div id='sidebar-wrapper'>
+<div class='sidebar section' id='sidebar'><div class='widget BlogArchive' data-version='1' id='BlogArchive1'>
+<h2>Older Posts</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/index.html'>
+2010
+</a>
+<span class='post-count' dir='ltr'>(18)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../index.html'>
+2009
+</a>
+<span class='post-count' dir='ltr'>(35)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+<ul class='posts'>
+<li><a href='struct-arrays-benchmark-revisited.html'>Struct arrays benchmark revisited: trig function c...</a></li>
+<li><a href='performance-comparison-between-factor.html'>Performance comparison between Factor and Java on ...</a></li>
+<li><a href='new-tool-for-locating-external-resource.html'>New tool for locating external resource leaks</a></li>
+<li><a href='status-of-powerpc-port-and-snow.html'>Status of the PowerPC port, and Snow Leopard&#39;s imm...</a></li>
+<li><a href='global-float-unboxing-and-some-other.html'>Global float unboxing and some other optimizations</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/index.html'>
+2008
+</a>
+<span class='post-count' dir='ltr'>(96)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(17)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/index.html'>
+2007
+</a>
+<span class='post-count' dir='ltr'>(141)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(10)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(21)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/index.html'>
+2006
+</a>
+<span class='post-count' dir='ltr'>(207)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(30)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(25)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(22)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(26)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/index.html'>
+2005
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div><div class='widget Feed' data-version='1' id='Feed2'>
+<h2>Recent Factor Commits</h2>
+<div class='widget-content' id='Feed2_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://gitweb.factorcode.org/gitweb.cgi?p=factor.git;a=atom'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget Feed' data-version='1' id='Feed1'>
+<h2>Planet Factor</h2>
+<div class='widget-content' id='Feed1_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://planet.factorcode.org/feed.xml'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget LinkList' data-version='1' id='LinkList1'>
+<h2>Links</h2>
+<div class='widget-content'>
+<ul>
+<li><a href='http://twitter.com/slava_pestov'>@slava_pestov</a></li>
+<li><a href='http://factorcode.org/slava/'>My home page</a></li>
+<li><a href='http://factorcode.org/'>Factor programming language</a></li>
+<li><a href='http://concatenative.org/'>Concatenative language wiki</a></li>
+<li><a href='http://planet.factorcode.org/'>Planet Factor</a></li>
+</ul>
+<div class='clear'></div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class='clear'>&#160;</div>
+</div>
+<!-- end content-wrapper -->
+<div id='footer-wrapper'>
+<div class='footer no-items section' id='footer'></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/940443484-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY5r0DrcKXJg1iqSDevnLNsPotRqvg:1693932918417';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d17087850','//factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html','17087850');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '17087850', 'title': 'Factor: a practical stack language', 'url': 'http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html', 'canonicalUrl': 'http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html', 'homepageUrl': 'http://factor-language.blogspot.com/', 'searchUrl': 'http://factor-language.blogspot.com/search', 'canonicalHomepageUrl': 'http://factor-language.blogspot.com/', 'blogspotFaviconUrl': 'http://factor-language.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en-US', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Factor: a practical stack language - RSS\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/17087850/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/5777691968367622335/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/591781cadcbb8744', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'item', 'postId': '5777691968367622335', 'pageName': 'Performance comparison between Factor and Java on a contrived benchmark', 'pageTitle': 'Factor: a practical stack language: Performance comparison between Factor and Java on a contrived benchmark'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'isResponsive': false, 'isAlternateRendering': false, 'isCustom': false}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Performance comparison between Factor and Java on a contrived benchmark', 'description': 'Recently, Joe Groff  has been working on struct classes , with the aim of completely replacing Factor\x27s existing support for C structure typ...', 'url': 'http://factor-language.blogspot.com/2009/08/performance-comparison-between-factor.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 5777691968367622335}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1333563935-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/3268905543-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed2', 'sidebar', document.getElementById('Feed2'), {'title': 'Recent Factor Commits', 'showItemDate': true, 'showItemAuthor': true, 'feedUrl': 'http://gitweb.factorcode.org/gitweb.cgi?p\x3dfactor.git;a\x3datom', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed1', 'sidebar', document.getElementById('Feed1'), {'title': 'Planet Factor', 'showItemDate': true, 'showItemAuthor': false, 'feedUrl': 'http://planet.factorcode.org/feed.xml', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList1', 'sidebar', document.getElementById('LinkList1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>

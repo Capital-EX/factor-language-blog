@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<html dir='ltr'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/55013136-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='../../favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='index.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Factor: a practical stack language - RSS" href="http://factor-language.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="https://www.blogger.com/feeds/17087850/posts/default" />
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<meta content='http://factor-language.blogspot.com/2008/11/' property='og:url'/>
+<meta content='Factor: a practical stack language' property='og:title'/>
+<meta content='&lt;a href=&quot;http://factorcode.org/slava&quot;&gt;Slava Pestov&lt;/a&gt;&#39;s weblog, primarily about &lt;a href=&quot;http://factorcode.org&quot;&gt;Factor&lt;/a&gt;.' property='og:description'/>
+<title>Factor: a practical stack language: November 2008</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Stretch Denim Light
+Designer: Darren Delaye
+URL:      www.DarrenDelaye.com
+Date:     11 Jul 2006
+-----------------------------------------------
+*/
+body {
+background: #ffffff;
+margin: 0;
+padding: 0px;
+font: x-small Verdana, Arial;
+text-align: center;
+color: #333333;
+font-size/* */:/**/small;
+font-size: /**/small;
+}
+a:link {
+color: #336699;
+}
+a:visited {
+color: #336699;
+}
+a img {
+border-width: 0;
+}
+#outer-wrapper {
+font: normal normal 100% Verdana, Arial, Sans-serif;;
+}
+/* Header
+----------------------------------------------- */
+#header-wrapper {
+margin:0;
+padding: 0;
+background-color: #c4e1ff;
+text-align: left;
+}
+#header {
+margin: 0 2%;
+background-color: #c4e1ff;
+color: #003366;
+padding: 0;
+font: normal normal 210% Verdana, Arial, Sans-serif;;
+position: relative;
+}
+h1.title {
+padding-top: 38px;
+margin: 0 1% .1em;
+line-height: 1.2em;
+font-size: 100%;
+}
+h1.title a, h1.title a:visited {
+color: #003366;
+text-decoration: none;
+}
+#header .description {
+display: block;
+margin: 0 1%;
+padding: 0 0 40px;
+line-height: 1.4em;
+font-size: 50%;
+}
+/* Content
+----------------------------------------------- */
+.clear {
+clear: both;
+}
+#content-wrapper {
+margin: 0 2%;
+padding: 0 0 15px;
+text-align: left;
+background-color: #ffffff;
+border: 1px solid #ffffff;
+border-top: 0;
+}
+#main-wrapper {
+margin-left: 1%;
+width: 64%;
+float: left;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+margin-right: 1%;
+width: 29%;
+float: right;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2, h3 {
+margin: 0;
+}
+/* Posts
+----------------------------------------------- */
+.date-header {
+margin: 1.5em 0 0;
+font-weight: normal;
+color: #999999;
+font-size: 100%;
+}
+.post {
+margin: 0 0 1.5em;
+padding-bottom: 1.5em;
+}
+.post-title {
+margin: 0;
+padding: 0;
+font-size: 125%;
+font-weight: bold;
+line-height: 1.1em;
+}
+.post-title a, .post-title a:visited, .post-title strong {
+text-decoration: none;
+color: #333333;
+font-weight: bold;
+}
+.post div {
+margin: 0 0 .75em;
+line-height: 1.3em;
+}
+.post-footer {
+margin: -.25em 0 0;
+color: #333333;
+font-size: 87%;
+}
+.post-footer .span {
+margin-right: .3em;
+}
+.post img, table.tr-caption-container {
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin: 1em 20px;
+}
+.post blockquote p {
+margin: .75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin: 1em 0;
+color: #999999;
+}
+#comments h4 strong {
+font-size: 110%;
+}
+#comments-block {
+margin: 1em 0 1.5em;
+line-height: 1.3em;
+}
+#comments-block dt {
+margin: .5em 0;
+}
+#comments-block dd {
+margin: .25em 0 0;
+}
+#comments-block dd.comment-footer {
+margin: -.25em 0 2em;
+line-height: 1.4em;
+font-size: 78%;
+}
+#comments-block dd p {
+margin: 0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar h2 {
+margin: 1.6em 0 .5em;
+padding: 4px 5px;
+background-color: #ffffff;
+font-size: 100%;
+color: #333333;
+}
+.sidebar ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.sidebar li {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: .5em;
+padding-left: 15px;
+text-indent: -15px;
+line-height: 1.5em;
+}
+.sidebar {
+color: #333333;
+line-height:1.3em;
+}
+.sidebar .widget {
+margin-bottom: 1em;
+}
+.sidebar .widget-content {
+margin: 0 5px;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font-weight: bold;
+line-height: 1.6em;
+font-size: 78%;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+clear: both;
+text-align: center;
+color: #333333;
+}
+#footer .widget {
+margin:.5em;
+padding-top: 20px;
+font-size: 85%;
+line-height: 1.5em;
+text-align: left;
+}
+/** Page structure tweaks for layout editor wireframe */
+body#layout #header {
+width: 750px;
+}
+
+--></style>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' rel='stylesheet'/></noscript>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body>
+<div class='navbar section' id='navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d17087850\x26blogName\x3dFactor:+a+practical+stack+language\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dBLUE\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://factor-language.blogspot.com/search\x26blogLocale\x3den_US\x26v\x3d2\x26homepageUrl\x3dhttp://factor-language.blogspot.com/\x26vt\x3d1910212838315471456',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id='outer-wrapper'><div id='wrap2'>
+<!-- skip links for text browsers -->
+<span id='skiplinks' style='display:none;'>
+<a href='index.html#main'>skip to main </a> |
+      <a href='index.html#sidebar'>skip to sidebar</a>
+</span>
+<div id='header-wrapper'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='../../index.html'>
+Factor: a practical stack language
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span><a href="http://factorcode.org/slava">Slava Pestov</a>'s weblog, primarily about <a href="http://factorcode.org">Factor</a>.</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id='content-wrapper'>
+<div id='crosscol-wrapper' style='text-align:center'>
+<div class='crosscol no-items section' id='crosscol'></div>
+</div>
+<div id='main-wrapper'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Sunday, November 30, 2008</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='7479609845088003448' itemprop='postId'/>
+<a name='7479609845088003448'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='new-features-in-smtp-and-ssl-library.html'>New features in SMTP and SSL library allow sending e-mail through Gmail</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-7479609845088003448' itemprop='description articleBody'>
+Although I added <a href="../05/ssltls-support-added.html">SSL support</a> to Factor's I/O library recently, it was missing a feature needed by SMTP-TLS: upgrading insecure connections to secure ones. Unlike HTTPS, where the client connects to a special port number initiates a secure handshake as soon as the connection is established, SMTP uses a <code>STARTTLS</code> command, which is sent in plain-text, and handshaking only begins after this command is sent.<br /><br />To accomodate this use-case, I added two new words to the <code>io.sockets.secure</code> vocabulary: <code>send-secure-handshake</code> and <code>accept-secure-handshake</code>. They are meant to be used in a client and server respectively, wishing to upgrade the current connection to a secure connection.<br /><br />I also updated the <code>smtp</code> vocabulary to support the <code>STARTTLS</code> and <code>AUTH PLAIN</code> features of the SMTP protocol. The end result is that the SMTP vocabulary can now send e-mail through Gmail's SMTP servers. An example is shown below. The key thing to notice here is that we set the <code>smtp-auth</code> and <code>smtp-tls?</code> variables before sending the e-mail. As you can see, the SMTP library is easy to use and the code for sending an e-mail is succinct; we create an e-mail object, fill in some slots, and send it off:<br /><br /><pre><font color="#000000"><font color="#006666">&quot;</font><font color="#006666">smtp.gmail.com</font><font color="#006666">&quot;</font> <font color="#ff0000">587</font> &lt;inet&gt; smtp-server set<br />smtp-tls? on<br /><font color="#006666">&quot;</font><font color="#006666">YourUserName@gmail.com</font><font color="#006666">&quot;</font> <font color="#006666">&quot;</font><font color="#006666">YourPassword</font><font color="#006666">&quot;</font> &lt;plain-auth&gt; smtp-auth set<br /><br />&lt;email&gt;<br />    <font color="#006666">&quot;</font><font color="#006666">yourname@example.com</font><font color="#006666">&quot;</font> &gt;&gt;from<br />    <font color="#006633">{</font> <font color="#006666">&quot;</font><font color="#006666">theirname@example.com</font><font color="#006666">&quot;</font> <font color="#006633">}</font> &gt;&gt;to<br />    <font color="#006666">&quot;</font><font color="#006666">We</font><font color="#006666"> </font><font color="#006666">should</font><font color="#006666"> </font><font color="#006666">probably</font><font color="#006666"> </font><font color="#006666">beer</font><font color="#006666">&quot;</font> &gt;&gt;subject<br />    <font color="#006666">&quot;</font><font color="#006666">For</font><font color="#006666"> </font><font color="#006666">teh</font><font color="#006666"> </font><font color="#006666">win</font><font color="#006666">&quot;</font> &gt;&gt;body<br />send-email<br /></font></pre><br />The SMTP library is still missing some functionality, like support for character encodings, attachements and setting custom headers; I'll be adding those over time.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2008/11/new-features-in-smtp-and-ssl-library.html' itemprop='url'/>
+<a class='timestamp-link' href='new-features-in-smtp-and-ssl-library.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2008-11-30T14:34:00-05:00'>2:34 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=7479609845088003448' onclick=''>
+No comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=7479609845088003448' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=7479609845088003448&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7479609845088003448&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7479609845088003448&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7479609845088003448&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7479609845088003448&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7479609845088003448&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Saturday, November 29, 2008</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='4340944151645521763' itemprop='postId'/>
+<a name='4340944151645521763'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='faster-generic-arithmetic-and-integer.html'>Faster generic arithmetic and integer overflow checking</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-4340944151645521763' itemprop='description articleBody'>
+While the Factor compiler does a pretty good job of inferring types and eliminating dispatch where possible, runtime polymorphism still ends up being used a lot. Integer arithmetic presents an additional challenge. Factor supports arbitrary-precision integers, and it tries to make this support transparent. However, the flipside of this is that even if the compiler can figure out that all of the values in an expression are integers, it may not be able to eliminate the overflow check, depending on whether or not the ranges of the values are known. Because of this, making runtime polymorphism efficient is still important. In the last few days, I worked on making integer arithmetic more efficient.<br /><br />Consider a word like <code>+</code>. If compile-time type information is not available, this word has to look at the types of the top two stack items, and take appropriate action depending on whether they are fixnums, bignums, ratios, floats, or complex numbers. Until now, this dispatch was implemented by two indirect jumps. The type of the first object is used to key a dispatch table, where each entry then looks at the type of the second object and keys into a second-level dispatch table; the entries in the latter are the actual methods implementing the arithmetic operation.<br /><br />In Factor, the generic word system generates Factor code for performing method dispatch. If you look at the definition of a word such as <code>+</code> in an older build, you'll see this two-level jump table pattern, implemented with Factor's <code>dispatch</code> combinator:<br /><pre>( scratchpad ) \ + def>> .<br />[<br />    over tag {<br />        [<br />            dup tag {<br />                [ fixnum=>+ ]<br />                [ [ >bignum ] dip bignum=>+ ]<br />                [ \ + no-math-method ]<br />                [ \ + no-math-method ]<br />                [ ratio=>+ ]<br />                [ [ >float ] dip float=>+ ]<br />                [ complex=>+ ]<br />                [ \ + no-math-method ]<br />            } dispatch<br />        ]<br />        [<br />            dup tag {<br />                [ >bignum bignum=>+ ]<br />                [ bignum=>+ ]<br />                [ \ + no-math-method ]<br />                [ \ + no-math-method ]<br />                [ ratio=>+ ]<br />                [ [ >float ] dip float=>+ ]<br />                [ complex=>+ ]<br />                [ \ + no-math-method ]<br />            } dispatch<br />        ]<br />        [ \ + no-math-method ]<br />        [ \ + no-math-method ]<br />        [<br />            dup tag {<br />                [ ratio=>+ ]<br />                [ ratio=>+ ]<br />                [ \ + no-math-method ]<br />                [ \ + no-math-method ]<br />                [ ratio=>+ ]<br />                [ [ >float ] dip float=>+ ]<br />                [ complex=>+ ]<br />                [ \ + no-math-method ]<br />            } dispatch<br />        ]<br />        [<br />            dup tag {<br />                [ >float float=>+ ]<br />                [ >float float=>+ ]<br />                [ \ + no-math-method ]<br />                [ \ + no-math-method ]<br />                [ >float float=>+ ]<br />                [ float=>+ ]<br />                [ complex=>+ ]<br />                [ \ + no-math-method ]<br />            } dispatch<br />        ]<br />        [<br />            dup tag {<br />                [ complex=>+ ]<br />                [ complex=>+ ]<br />                [ \ + no-math-method ]<br />                [ \ + no-math-method ]<br />                [ complex=>+ ]<br />                [ complex=>+ ]<br />                [ complex=>+ ]<br />                [ \ + no-math-method ]<br />            } dispatch<br />        ]<br />        [ \ + no-math-method ]<br />    } dispatch<br />]</pre><br />The <code>dispatch</code> combinator compiles down to an indirect jump, and indirect jumps are expensive on modern CPUs. Also, note that this dispatch scheme did not favor any single numeric type over another. However, in practice, operations on bignums and ratios will always be slow, and dispatch overhead is neglegible there; whereas code that works with floating point numbers and complex numbers can only be fast if the compiler can infer types and unbox values statically, in which case there is no runtime dispatch at all. So performance of runtime arithmetic dispatch on types other than fixnums is largely irrelevant in Factor. Indeed, the overwhelming majority of calls to generic arithmetic operations involve fixnums, so some kind of trick to avoid two indirect jumps in this common case is needed.<br /><br />There are many solutions, but the one I settled on is pretty much the simplest one. In Factor, all values are tagged pointers (except for unboxed floats and such, which the compiler uses, but they cannot be "observed" in their unboxed state from the outside). A tagged pointer is a value where the low 3 bits encode a type, and the remaining bits encode a value. If the type tag is 0, the value is interpreted as an integer; otherwise, it is a pointer. All values in the heap are aligned on 8 byte boundaries, so if we mask off the 3 tag bits, we get a valid pointer.<br /><br />So if we have two values, stored in registers <code>x</code> and <code>y</code>, then both have a tag of 0 if their inclusive bitwise or has a tag of zero. That is, we can check if both are fixnums with a single conditional.<br /><br />Here is the new Factor code generated for the dispatch performed by <code>+</code>:<br /><pre>( scratchpad ) \ + def>> .<br />[<br />    both-fixnums?<br />    [ { fixnum fixnum } declare fixnum=>+ ] [<br />        over tag {<br />            [<br />                dup tag {<br />                    [ { fixnum fixnum } declare fixnum=>+ ]<br />                    [<br />                        { fixnum bignum } declare<br />                        [ >bignum ] dip bignum=>+<br />                    ]<br />                    [<br />                        { fixnum tuple } declare<br />                        \ + no-math-method<br />                    ]<br />                    [ \ + no-math-method ]<br />                    [ { fixnum ratio } declare ratio=>+ ]<br />                    [<br />                        { fixnum float } declare [ >float ] dip<br />                        float=>+<br />                    ]<br />                    [ { fixnum complex } declare complex=>+ ]<br />                    [<br />                        { fixnum POSTPONE: f } declare<br />                        \ + no-math-method<br />                    ]<br />                } dispatch<br />            ]<br />            [<br />                dup tag {<br />                    [<br />                        { bignum fixnum } declare<br />                        >bignum bignum=>+<br />                    ]<br />                    [ { bignum bignum } declare bignum=>+ ]<br />                    [<br />                        { bignum tuple } declare<br />                        \ + no-math-method<br />                    ]<br />                    [ \ + no-math-method ]<br />                    [ { bignum ratio } declare ratio=>+ ]<br />                    [<br />                        { bignum float } declare [ >float ] dip<br />                        float=>+<br />                    ]<br />                    [ { bignum complex } declare complex=>+ ]<br />                    [<br />                        { bignum POSTPONE: f } declare<br />                        \ + no-math-method<br />                    ]<br />                } dispatch<br />            ]<br />            [ \ + no-math-method ]<br />            [ \ + no-math-method ]<br />            [<br />                dup tag {<br />                    [ { ratio fixnum } declare ratio=>+ ]<br />                    [ { ratio bignum } declare ratio=>+ ]<br />                    [<br />                        { ratio tuple } declare<br />                        \ + no-math-method<br />                    ]<br />                    [ \ + no-math-method ]<br />                    [ { ratio ratio } declare ratio=>+ ]<br />                    [<br />                        { ratio float } declare [ >float ] dip<br />                        float=>+<br />                    ]<br />                    [ { ratio complex } declare complex=>+ ]<br />                    [<br />                        { ratio POSTPONE: f } declare<br />                        \ + no-math-method<br />                    ]<br />                } dispatch<br />            ]<br />            [<br />                dup tag {<br />                    [<br />                        { float fixnum } declare<br />                        >float float=>+<br />                    ]<br />                    [<br />                        { float bignum } declare<br />                        >float float=>+<br />                    ]<br />                    [<br />                        { float tuple } declare<br />                        \ + no-math-method<br />                    ]<br />                    [ \ + no-math-method ]<br />                    [ { float ratio } declare >float float=>+ ]<br />                    [ { float float } declare float=>+ ]<br />                    [ { float complex } declare complex=>+ ]<br />                    [<br />                        { float POSTPONE: f } declare<br />                        \ + no-math-method<br />                    ]<br />                } dispatch<br />            ]<br />            [<br />                dup tag {<br />                    [ { complex fixnum } declare complex=>+ ]<br />                    [ { complex bignum } declare complex=>+ ]<br />                    [<br />                        { complex tuple } declare<br />                        \ + no-math-method<br />                    ]<br />                    [ \ + no-math-method ]<br />                    [ { complex ratio } declare complex=>+ ]<br />                    [ { complex float } declare complex=>+ ]<br />                    [ { complex complex } declare complex=>+ ]<br />                    [<br />                        { complex POSTPONE: f } declare<br />                        \ + no-math-method<br />                    ]<br />                } dispatch<br />            ]<br />            [ \ + no-math-method ]<br />        } dispatch<br />    ] if<br />]</pre><br />Notice that it is essentially the same as the old version, except the two-level jump table has been wrapped in a conditional. If <code>both-fixnums?</code> outputs true, we go directly to the fixnum case; otherwise we do the two-level dispatch.<br /><br />Since <code>both-fixnums?</code> needs to bitwise OR pointers together, I had no choice but to make it a VM primitive. The non-optimizing compiler inlines a fixed code sequence for calls of <code>both-fixnums?</code>, and the optimizing compiler expands it into a series of low-level IR operations:<br /><pre>( scratchpad ) [ both-fixnums? [ "Fixnums!" ] [ "At least one is not a fixnum" ] if ] test-mr mr.<br />=== word: ( gensym ), label: ( gensym )<br /><br />_label 0 <br />##prologue <br />_label 1 <br />##peek V int-regs 692262 D 0 <br />##peek V int-regs 692263 D 1 <br />##copy V int-regs 692264 V int-regs 692262 <br />##or V int-regs 692264 V int-regs 692264 V int-regs 692263 <br />##copy V int-regs 692265 V int-regs 692264 <br />##and-imm V int-regs 692265 V int-regs 692265 7 <br />_compare-imm-branch 3 V int-regs 692265 0 cc/= <br />_label 2 <br />##inc-d 1 <br />##load-indirect V int-regs 692269 "Fixnums!" <br />##replace V int-regs 692269 D 0 <br />##epilogue <br />##return <br />_label 3 <br />##inc-d 1 <br />##load-indirect V int-regs 692270 "At least one is not a fixnum" <br />##replace V int-regs 692270 D 0 <br />_label 4 <br />##epilogue <br />##return </pre><br />So the machine code generated for a generic arithmetic word such as <code>+</code> now begins as follows:<br /><pre>    mov    (%r14),%rax<br />    mov    -0x8(%r14),%rcx<br />    or     %rcx,%rax<br />    and    $0x7,%rax<br />    cmp    $0x0,%rax<br />    jne    slow_dispatch<br />    ... handle fixnum+fixnum here ...<br />    ret<br />slow_dispatch:<br />    ... do table dispatch here ...</pre><br />We load two values from the data stack, or them together, mask off the low 3 bits, compare with zero, and jump. Indeed, those readers who know the ways of x86 assembly will recognize that there is a shorter code sequence which can accomplish this same task:<br /><pre>    mov    (%r14),%rax<br />    mov    -0x8(%r14),%rcx<br />    or     %rcx,%rax<br />    test   $0x7,%rax<br />    jnz    slow_dispatch<br />    ... handle fixnum+fixnum here ...<br />    ret<br />slow_dispatch:<br />    ... do table dispatch here ...</pre><br />Once I figure out a nice way to incorporate the <code>test</code> instruction into my code generator and value numbering passes, I will switch things up and eliminate the unnecessary instruction there.<br /><br />This takes care of making dispatch faster. The next challenge was speeding up integer overflow handling. If the optimizing compiler's high-level optimizer can prove that a call to <code>+</code> has fixnum inputs, and in addition, the result will not overflow -- either because the ranges of the input values are constrained, or the output is passed to <code>bitand</code> -- it will replace it with a call to the <code>fixnum+fast</code> primitive. The low-level optimizer turns a call to <code>fixnum+fast</code> into a single low-level IR instruction, and this becomes a single machine instruction. Very efficient.<br /><br />However, if the high-level optimizer cannot prove that the result will not overflow, but it does know the inputs are fixnums, it replaces the call to <code>+</code> with a call to <code>fixnum+</code>. This still avoids dispatch overhead, however, until now, the low-level optimizer did not do anything special for <code>fixnum+</code>; it would compile it as a subroutine call of a VM function, which added two integers, checking for overflow, in C. This was slow, because C does not have a way to test the overflow flag of the CPU.<br /><br />I made the low-level optimizer aware of the <code>fixnum+</code> word; it converts it into a low-level instruction which can then participate in value numbering and register allocation. The CPU-specific backend is then responsible for generating an optimal machine code sequence for <code>fixnum+</code>. On x86 and PowerPC, this can use the overflow flag in the CPU, which is a more efficient than trying to simulate the same in C. If the overflow flag is set after the addition, <code>fixnum+</code> performs a subroutine call into the VM, however there is no call and the arithmetic is done inline in the common case, where there is no overflow.<br /><br />Here is an example of machine code emitted for <code>fixnum+</code>:<br /><pre>    sub    $0x8,%r14<br />    mov    (%r14),%rax<br />    mov    0x8(%r14),%rcx<br />    add    %rcx,%rax<br />    jno    no_overflow<br />    ... handle overflow ...<br />no_overflow:<br />    mov    %rax,(%r14)<br />    retq   </pre><br />I omitted the lengthy setup for the subroutine call into the VM, and register assignments will vary depending on the placement of <code>fixnum+</code> in the code.<br /><br />The results were very interesting. Some benchmarks, such as spectral-norm and mandelbrot, showed no improvement, because the compiler eliminates all the dispatch and overflow checks from the inner loops anyway. Other benchmarks showed an impressive gain. This is good because it means that I didn't waste my time with implementing the above, but it is also bad because it shows that the high-level optimizer could probably do a better job of inferring types in some of these benchmarks!<br /><br />Here are the results; I'm running each benchmark 5 times and measuring the runtime in milliseconds.<br /><table border="1"><tr><th>Benchmark</th><th>Before</th><th>After</th></tr><tr><td>fasta</td><td>9492 8985 8975 9310 9219</td><td>7841 7818 8115 7807 7777</td></tr> <tr><td>reverse-complement</td><td>5815 5611 5628 5645 5645</td><td>5176 5152 5177 5173 5289</td></tr> <tr><td>binary-trees</td><td>2911 2867 2870 2890 2894</td><td>2163 2142 2186 2168 2136</td></tr> <tr><td>fib2</td><td>113 112 114 112 112</td><td>82 83 84 85 85</td></tr> <tr><td>fib3</td><td>301 302 301 300 301</td><td>260 261 259 260 260</td></tr><tr><td>project-euler.134</td><td>427 427 427 426 424</td><td>314 313 315 318 313</td></tr></table>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2008/11/faster-generic-arithmetic-and-integer.html' itemprop='url'/>
+<a class='timestamp-link' href='faster-generic-arithmetic-and-integer.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2008-11-29T02:53:00-05:00'>2:53 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=4340944151645521763' onclick=''>
+3 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=4340944151645521763' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=4340944151645521763&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=4340944151645521763&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=4340944151645521763&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=4340944151645521763&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=4340944151645521763&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=4340944151645521763&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Wednesday, November 26, 2008</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='http://factorcode.org/render-test.png' itemprop='image_url'/>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='9024070617319711534' itemprop='postId'/>
+<a name='9024070617319711534'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='some-recent-ui-rendering-fixes.html'>Some recent UI rendering fixes</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-9024070617319711534' itemprop='description articleBody'>
+Over the last week or so I've fixed several OpenGL rendering problems in the Factor UI.<br /><br />The first problem is that on Linux, with certain ATI video cards, calling <code>glPolygonMode()</code> to disable polygon fill does not work, and as a result the UI would render with no text visible; borders around buttons would be drawn as filled rectangles and this would overwrite all of the text. I fixed this and modernized the UI rendering code to use vertex arrays at the same time.<br /><br />Then, I decided to address a long-standing issue: rectangles and lines were not rendered pixel-perfect on all systems. You see, with OpenGL, simply rendering a rectangle with integer co-ordinates doesn't give you the results you would expect. On my old Windows laptop for example, rectangles would render with the bottom-right pixel missing. Getting this to work in a cross-platform manner is surprisingly hard. It took me a lot of back-and-forth to get consistent rendering across the machines I tested on (An Intel iMac from a year ago or so, my MacBook Pro with NVidia graphics, Linux and Windows in VirtualBox, and an old Dell Laptop with Windows XP and Intel integrated graphics). For the record, the "correct" way to draw an outlined rectangle is to offset the top-left pixel by 0.5,0.5, and the bottom-right pixel by -0.3,-0.3. Similar heroics were required for line rendering. In the end, I made my job semi-automated by writing a simple program, which is in the <code>ui.render.test</code> vocabulary now, that renders some 2D shapes with OpenGL;<br /><img src="http://factorcode.org/render-test.png"><br />The vocabulary renders the shapes and then compares the results with a reference drawing. It reads the rendered pixels with <code>glReadPixels()</code> and loads the drawing with Doug's <code>graphics.bitmap</code> library.<br /><br />Of course, it turned out that vertex arrays themselves have issues on at least one OpenGL implementation. I started to receive reports of random segfaults on older MacBooks with the Intel X3100 graphics chip. Chris Double then came across a <a href="http://www.mailinglistarchive.com/mac-opengl@lists.apple.com/msg03672.html">mailing list post</a> which explained the situation. Turns out that with this driver, rendering a <code>GL_LINE_LOOP</code> vertex array causes a segfault. The workaround is to render a <code>GL_LINE_STRIP</code> where the last vertex is a copy of the first vertex.<br /><br />There are still a couple of OpenGL problems I haven't been able to resolve. A few users report random screen corruption on Windows machines with Intel graphics. There is also a problem where the Factor UI comes up black if used with Compiz on Linux, however this appears to affect any GL app -- even glxgears. The workaround is to enable indirect rendering with Compiz.<br /><br />It has been three years since I first <a href="../../2005/10/random-status-update.html">ported Factor's UI to OpenGL</a> and I'm still finding new issues in drivers that need workarounds. It's a bit disappointing, but it does seem that in recent times, OpenGL driver quality is improving. I still think OpenGL is a good way to render graphics in a cross-platform manner; it has plenty of features and even runs on mobile platforms (OpenGL ES). Our UI only needs a tiny bit of platform-specific code for each platform: opening windows, creating GL contexts, receiving events, and working with the clipboard. Rendering is cross-platform.<br /><br />A few people have suggested using Cairo instead, and while Factor has a Cairo binding now, I'm not keen on using it to render the entire UI. I worry that by switching from OpenGL to Cairo, we'll just have to replace one set of bugs and workarounds with another. Another problem is that Cairo would be another external dependency that deployed Factor applications would have to ship. It seems Cairo is quite bloated these days, so that would be unacceptable. One other alternative is to use native APIs: perhaps Cairo rendering on Linux, GDI+ on Windows, and CoreGraphics on Mac. However, this would require too much effort on my part, so its not something I'm willing to dive into at this point.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2008/11/some-recent-ui-rendering-fixes.html' itemprop='url'/>
+<a class='timestamp-link' href='some-recent-ui-rendering-fixes.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2008-11-26T02:45:00-05:00'>2:45 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=9024070617319711534' onclick=''>
+3 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=9024070617319711534' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=9024070617319711534&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=9024070617319711534&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=9024070617319711534&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=9024070617319711534&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=9024070617319711534&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=9024070617319711534&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Monday, November 24, 2008</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='1009215376997047332' itemprop='postId'/>
+<a name='1009215376997047332'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='comparing-performance-of-factor-and-v8.html'>Comparing the performance of Factor and V8</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-1009215376997047332' itemprop='description articleBody'>
+<a href="http://code.google.com/p/v8/wiki/Source?tm=4">V8</a> is, of course, Google's new, much-hyped JavaScript VM. It combines a simple JIT with inline caching, and along with <a href="http://trac.webkit.org/wiki/SquirrelFish">SquirrelFish</a>, it promises to take JavaScript performance to the next level.<br /><br />Factor does not do inline caching (although this is planned), however the language itself is more static and the compiler performs more advanced optimizations than the V8 JIT. So I thought it would be interesting to see how these two approaches to dynamic language implementation stack up.<br /><br />I compiled the V8 trunk today on my Intel Core 2 Duo. Factor is of course the latest Factor from git.<br /><br />I chose the following benchmarks from the language shootout:<br /><ul><li>spectral-norm</li> <li>binary-trees</li> <li>fasta</li> <li>nsieve</li> <li>nsieve-bits</li> <li>partial-sums</li></ul><br />Unfortunately, I couldn't get reverse-complement or a few others to work in V8, because they use the <code>readline()</code> function which does not appear to exist. It would have been interesting to compare more benchmarks.<br /><br />I got the JavaScript versions from the <a href="http://shootout.alioth.debian.org/">shootout website</a>; the Factor versions are in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=extra/benchmark;hb=HEAD">Factor repository</a>.<br /><br />I ran the V8 benchmarks from the command line, like so,<br /><code>./shell foo.js</code><br />And I ran the Factor benchmarks from within the Factor environment.<br /><br />Without further ado, and without any attempt at post-mortem or analysis, here are the results. All running times are in seconds:<br /><table border="1"> <tr><th>Benchmark:</th><th>Factor</th><th>V8</th></tr> <tr><td>binary-trees </td><td>3.1</td><td>3.8</td></tr> <tr><td>fasta        </td><td>8.9</td><td>12 </td></tr> <tr><td>nsieve       </td><td>0.6</td><td>1.3</td></tr> <tr><td>nsieve-bits  </td><td>1.5</td><td>6.9</td></tr> <tr><td>partial-sums </td><td>2.6</td><td>2.3</td></tr><tr><td>spectral-norm</td><td>29 </td><td>85 </td></tr></table>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2008/11/comparing-performance-of-factor-and-v8.html' itemprop='url'/>
+<a class='timestamp-link' href='comparing-performance-of-factor-and-v8.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2008-11-24T09:51:00-05:00'>9:51 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=1009215376997047332' onclick=''>
+6 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=1009215376997047332' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=1009215376997047332&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1009215376997047332&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1009215376997047332&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1009215376997047332&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1009215376997047332&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1009215376997047332&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Sunday, November 23, 2008</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='1268439848197124011' itemprop='postId'/>
+<a name='1268439848197124011'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='factor-presentation-at-otug.html'>Factor presentation at OTUG</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-1268439848197124011' itemprop='description articleBody'>
+I will be giving a talk about <a href="http://factorcode.org">Factor</a> at <a href="http://www.otug.org/">OTUG</a>, The Object Technology User's Group of Minneapolis/St Paul on December 16th. If you're in the Twin Cities area and are interested in Factor, come check it out! There will be free pizza afterwards.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2008/11/factor-presentation-at-otug.html' itemprop='url'/>
+<a class='timestamp-link' href='factor-presentation-at-otug.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2008-11-23T05:26:00-05:00'>5:26 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=1268439848197124011' onclick=''>
+No comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=1268439848197124011' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=1268439848197124011&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1268439848197124011&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1268439848197124011&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1268439848197124011&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1268439848197124011&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1268439848197124011&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Tuesday, November 11, 2008</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='976754095456028820' itemprop='postId'/>
+<a name='976754095456028820'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='factor-port-to-win64-in-progress.html'>Factor port to Win64 in progress</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-976754095456028820' itemprop='description articleBody'>
+A year ago <a href="../../2007/11/adventures-with-cygwin-on-64-bit.html">I tried to get a working gcc setup on 64-bit Windows with zero success</a>. This time around, I had better luck; the <a href="http://sourceforge.net/projects/mingw-w64/">MinGW-Win64</a> project has a functional gcc port out and I was able to use it to compile the Factor VM.<br /><br />The main hurdle to overcome is that Win64 uses a different calling convention from Linux/x86-64 and Mac OS X/x86-64. I got the non-optimizing compiler generating valid code, and set things up so that we now have two x86.64 boot images, <code>boot.winnt-x86.64.image</code> and <code>boot.unix-x86.64.image</code>, containing different non-optimizing compiler backends (most of the backend is shared, but some parameters are configured differently). After some messing around, I got it to load various modules, including the optimizing compiler.<br /><br />The main thing that tripped me up at this stage is that I did not have a working gdb, so certain problems were very hard to debug. For example, on my first reading of the Win64 calling conventions, I missed out that you must reserve 32 bytes in your stack frame for the callee to mess with, and if you put non-volatile data there, then calling any function will clobber your stack frame. This manifested in a most bizarre fashion, namely Factor would work if the VM was with <code>-O3</code> and crash if compiled with <code>-g</code>; usually we get the opposite, when we find gcc bugs. This time it was a bug in Factor, and the reason it would only crash with optimizations disabled is that the gcc optimizer would use registers to store values, instead of scribbling over the volatile portion of the caller's stack frame. A day of lost work later, I finally figured out the problem, and it was much smoother from thereon in.<br /><br />Next, I started updating the optimizing compiler backend. Again, the bulk of the work was with figuring out the calling convention. Win64 passes and returns structures differently from the other x86.64 platforms, so I to add some OS-specific hooks to the x86.64 optimizing compiler backend too.<br /><br />Overall, it seems like Microsoft's calling convention is simpler overall than the one used by Linux and Mac OS X, especially as far as passing structures by value is concerned. Other than the initial hurdle figuring out how the reserved scratch space in stack frame works, I was able to get things working fairly quickly.<br /><br />The tests all pass now, however testing some real C library bindings still reveals problems (hence the FFI tests are not exhaustive enough and need to be amended). I also need to do a lot of code cleanup before any of this is in a releasable state, so don't get your hopes up yet -- it will be a few more days before you can build Factor from git on Win64. Binary packages will follow soon after; this is mostly conditional on getting various external packages installed, such as PostgreSQL, SQLite, OpenSSL, and gdb. This is due to the fact that the build farm tests our most important C library bindings, and doesn't release anything if the tests fail (which is quite nice; if a bug in the C library binding prevents something important like OpenSSL from working, you really don't want users to come along and download the result).<br /><br />So while I work on finishing the port in the meantime, <a href="http://factorcode.org/win64.png">here is a screenshot</a> from when I got the FFI just far along enough to render, in a very broken fashion (no text!) the UI workspace and a couple of demos.<br /><br />Win64 seems rather neglected by the open source community; even gcc is only available in the experimental MinGW snapshots. However I think supporting it is important; moving to x86.64 can offer a performance boost from the additional registers and RIP-relative addressing mode, and the ability to address more than 4GB of RAM is going to be more and more important too. Very soon now Factor will be one of the few (or the only?) open source, natively-compiled, dynamic languages which can run on 64-bit Windows as well as 12 other platforms. Exciting times ahead.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2008/11/factor-port-to-win64-in-progress.html' itemprop='url'/>
+<a class='timestamp-link' href='factor-port-to-win64-in-progress.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2008-11-11T17:54:00-05:00'>5:54 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=976754095456028820' onclick=''>
+No comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=976754095456028820' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=976754095456028820&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=976754095456028820&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=976754095456028820&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=976754095456028820&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=976754095456028820&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=976754095456028820&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Thursday, November 06, 2008</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='3920644984248099186' itemprop='postId'/>
+<a name='3920644984248099186'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='further-performance-gains.html'>Further performance gains</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-3920644984248099186' itemprop='description articleBody'>
+One thing I've learned over the last few months is that minor improvements to performance, accumulated over time, are just as important as big architectural changes which result in big gains. With the new code generator in place, I spent some time working on a few tweaks I've been thinking about for a while.<br /><h3>Tuple dispatch overview</h3><br />First up, I sped up method dispatch on tuples by eliminating some unnecessary conditional branches and memory accesses. In Factor, the object system is implemented in the language, and so all dispatch is done by generated Factor code. This code is generated at compile time. For example, we can define a tuple,<br /><pre>TUPLE: dog name breed ;</pre><br />and look at the code generated for the <code>breed</code> accessor:<br /><pre>( scratchpad ) \ breed>> def>> .<br />[<br />    dup tag dup 2 eq? [<br />        drop dup { tuple } declare 1 slot { array } declare<br />        7 slot dup \ dog eq?<br />        [ drop { dog } declare dog=>breed>> ]<br />        [ drop object=>breed>> ] if<br />    ] [ drop object=>breed>> ] if<br />]</pre><br />As you can see above, the generated code uses various low-level primitives to accelerate dispatch. Usually you will never work with these primitives directly. The words named <code><i>class</i>=><i>generic</i></code> are not real words in the dictionary; they are word objects corresponding to methods. So methods are essentially words, except they're not part of any vocabulary. Again, this is an implementation detail and you don't need to be aware of how methods are implemented behind the scenes. In the image where I defined this tuple, I had no other tuples with a slot named <code>breed</code>, so the generic accessor only has one method, and the code generated for a generic with one method is very simple. For generics with many methods, more complex code is generated; if you have enough methods, a hashtable dispatch is generated.<br /><br />The general philosophy of method dispatch on tuples is as follows. To each tuple, we associate an integer which is the length of the superclass chain from the tuple up to the root class of tuples, <code>tuple</code>. I call this the tuple's "echelon". Every tuple instance in the heap holds a pointer to a tuple layout object in its first slot. The tuple layout object holds the echelon, the sequence of superclasses, and the tuple size.<br /><br />The tuple class methods of a generic word are sorted into echelons, and dispatch proceeds by starting at the highest echelon and going down until a suitable method is found (or an error is thrown). At each echelon, the generic word looks at the corresponding entry in the superclass list of the tuple on the stack, and performs a hashtable lookup. So dispatch runs in O(n) time, where n is the maximum echelon number of the tuple classes participating in the generic word.<br /><br />For example, suppose we have the following inheritance hierarchy -- its contrieved, because in practice you probably would not have square inherit from rectangle, but it demonstrates a point here:<br /><pre>tuple<br />  text<br />  shape<br />    polygon<br />      quad<br />        rectangle<br />          square<br />        parallelogram<br />      triangle<br />    circle</pre><br />Now, suppose we have a generic word:<br /><pre>GENERIC: draw ( shape -- )<br /><br />M: text draw ... ;<br />M: rectangle draw ... ;<br />M: square draw ... ;<br />M: parallelogram draw ... ;<br />M: circle draw ... ;<br />M: triangle draw ... ;</pre><br />Note that if we pass a square instance to <code>draw</code>, we want it to invoke the <code>M: rectangle</code> method. Here are the participating classes, sorted into echelons:<br /><pre>level 1: text<br />level 2: circle<br />level 3: triangle<br />level 4: rectangle, parallelogram</pre><br />Method dispatch proceeds as follows:<br /><ul><li>If the tuple on the stack has echelon >= 4, we get the 4th element in its superclass chain, and check if it's <code>rectangle</code> or <code>parallelogram</code>. If so, we dispatch to that method. Note that the 4th element of the superclass chain of both rectangles and squares is <code>rectangle</code>.</li><li>If the tuple on the stack has echelon >= 3, we get the 3rd element and check if it's a triangle. If so, we dispatch to that method.</li><li>If the tuple on the stack has echelon >= 2, we get the 2nd element and check if its a circle. If it is, we dispatch to that method.</li><li>If the tuple on the stack has echelon >= 1, we get the 1st element and check if it's <code>text</code>. If so, we dispatch to that method.</li></ul><br />For this generic word, a maximum of four tests must be performed because the inheritance hierarchy is very tall. This situation is rare, since for the most part inheritance is very flat.<br /><h3>Method dispatch: removing conditionals and indirection</h3><br />The first thing I realized is that every tuple has an echelon level of at least 1, since it must have itself and <code>tuple</code> in the superclass chain. So the conditional test on the final step is unnecessary. Furthermore, if all tuples have echelon 1, there is no need to even load the echelon of the tuple on the stack into a register.<br /><br />Next, I decided to put the superclass list inside the tuple layout object itself, instead of having the tuple layout object reference an array. This removes one level of indirection, which reduces CPU cache pollution.<br /><br />To illustrate these improvements, look at the code generated for the <code>call</code> word before these improvements:<br /><pre>[<br />    dup tag dup 3 eq? [<br />        drop dup 0 slot 8 fixnum-fast dup 6 eq?<br />        [ drop { quotation } declare quotation=>call ]<br />        [ drop object=>call ] if<br />    ] [<br />        dup 2 eq? [<br />            drop dup { tuple } declare 1 slot<br />            { tuple-layout } declare 5 slot dup 1 fixnum>= [<br />                drop dup { tuple } declare 1 slot<br />                { tuple-layout } declare 4 slot<br />                { array } declare 3 slot { word } declare<br />                dup \ curry eq?<br />                [ drop { curry } declare curry=>call ] [<br />                    dup \ compose eq?<br />                    [ drop { compose } declare compose=>call ]<br />                    [ drop object=>call ] if<br />                ] if<br />            ] [ drop object=>call ] if<br />        ] [ drop object=>call ] if<br />    ] if<br />]</pre><br />And after:<br /><pre>[<br />    dup tag dup 2 eq? [<br />        drop dup { tuple } declare 1 slot { array } declare<br />        7 slot dup \ compose eq?<br />        [ drop { compose } declare compose=>call ] [<br />            dup \ curry eq?<br />            [ drop { curry } declare curry=>call ]<br />            [ drop object=>call ] if<br />        ] if<br />    ] [<br />        dup 3 eq? [<br />            drop dup { hi-tag } declare 0 slot dup 14 eq?<br />            [ drop { quotation } declare quotation=>call ]<br />            [ drop object=>call ] if<br />        ] [ drop object=>call ] if<br />    ] if<br />]</pre><br /><h3>Method dispatch: faster hashcode lookup</h3><br />If a generic word has more than 4 methods at the same echelon level, a hashtable dispach is generated instead of a series of linear tests. Formerly, the generated code would indirect through the class word to look up the hashcode. Again, this is bad for locality because it pulls in the entire word object's cache line in for no good reason. So what I did was intersperse the hashcodes with the superclass chain in the tuple layout object. The tuple layout object will already be in the cache, since we just read one of the superclass chain entries, so reading the hashcode is essentially free.<br /><h3>Method dispatch: re-ordering tests</h3><br />I noticed is that the <code>>fixnum</code> generic word had conditionals in an essentially random order. The cut-off between a series of conditionals and a jump table is 4 methods, and <code>>fixnum</code>, defining methods on every subtype of the reals, is the borderline case:<br /><pre>( scratchpad ) \ >fixnum def>> .<br />[<br />    dup tag dup 5 eq?<br />    [ drop { float } declare float=>>fixnum ] [<br />        dup 4 eq?<br />        [ drop { ratio } declare ratio=>>fixnum ] [<br />            dup 0 eq?<br />            [ drop { fixnum } declare fixnum=>>fixnum ] [<br />                dup 1 eq?<br />                [ drop { bignum } declare bignum=>>fixnum ]<br />                [ drop object=>>fixnum ] if<br />            ] if<br />        ] if<br />    ] if<br />]</pre><br />For various reasons, most <code>>fixnum</code> calls are made with a fixnum on the stack. By sorting the methods by tag number before generating the generic, I was able to get it to look like this:<br /><pre>( scratchpad ) \ >fixnum def>> .<br />[<br />    dup tag dup 0 eq?<br />    [ drop { fixnum } declare fixnum=>>fixnum ] [<br />        dup 1 eq?<br />        [ drop { bignum } declare bignum=>>fixnum ] [<br />            dup 4 eq?<br />            [ drop { ratio } declare ratio=>>fixnum ] [<br />                dup 5 eq?<br />                [ drop { float } declare float=>>fixnum ]<br />                [ drop object=>>fixnum ] if<br />            ] if<br />        ] if<br />    ] if<br />]</pre><br />This reduces the number of conditionals in the common case.<br /><h3>I/O system tweaks and <code>string-nth</code> intrinsic</h3><br />I made some changes to <code>io.ports</code> and <code>io.buffers</code>; mostly adding inline declarations. I also added a hint to the <code>push</code> word for the <code>sbuf</code> class; <code>stream-readln</code> would push every character onto an sbuf, and adding this fast-path eliminated some method dispatch. Finally, I made <code>string-nth</code> a compiler intrinsic rather than a call into the VM, which means that words where the compiler infers you're operating on strings will inline the intrinsic and perform less memory loads/stores and subroutine calls than before.<br /><h3>Eliminating useless branches with value numbering</h3><br />Take a look at what the high-level optimizer does to the following quotation:<br /><pre>( scratchpad ) [ [ { + - * } member? ] contains? ] optimized.<br />[<br />    dup length swap 0 -rot \ ( gensym ) [<br />        pick pick < [<br />            swap<br />            >r 2dup<br />            >r<br />            >r nth-unsafe dup \ * eq? [ t ] [ f ] if<br />            [ drop t ] [<br />                dup \ - eq? [ t ] [ f ] if<br />                [ drop t ]<br />                [ \ + eq? [ t ] [ f ] if [ t ] [ f ] if ] if<br />            ] if r><br />            r><br />            r><br />            swap<br />            >r rot r><br />            swap<br />            [ 2drop ]<br />            [ >r >r 1 +-integer-fixnum r> r> ( gensym ) ] if<br />        ] [ 3drop f ] if<br />    ] label dup [ ] [ ] if [ t ] [ f ] if<br />]</pre><br />A lot of dispatch is eliminated and methods are inlined, but there is some pretty crappy control flow redundancy there. I extended the low-level optimizer to eliminate it when building the low-level IR.<br /><br />One of the worst offenders is the <code>=</code> word, defined as follows:<br /><pre>: = ( obj1 obj2 -- ? )<br />    2dup eq? [ 2drop t ] [ equal? ] if ; inline</pre><br />If <code>obj2</code> is a word, then <code>equal?</code> expands into <code>2drop f</code>, so we get<br /><pre>2dup eq? [ 2drop t ] [ 2drop f ] if</pre><br />Then, dead code elimination converts this to<br /><pre>eq? [ t ] [ f ] if</pre><br />Ideally, we'd get rid of <code>[ t ] [ f ] if</code> altogether. Instead of doing this in the high-level optimizer, I decided to detect this code pattern, along with its negation <code>[ f ] [ t ] if</code> (which is the inlined definition of <code>not</code>) and emit a branchless comparison, instead:<br /><pre>( scratchpad ) [ \ + = ] test-mr mr.<br />=== word: ( gensym ), label: ( gensym )<br /><br />_label 0 <br />##prologue <br />_label 1 <br />##load-indirect V int-regs 582552 + <br />##peek V int-regs 582553 D 0 <br />##compare V int-regs 582555 V int-regs 582553 V int-regs 582552 cc= <br />##replace V int-regs 582555 D 0 <br />##epilogue <br />##return </pre><br />Now, suppose you have a code sequence like <code>[ t ] [ f ] if [ 1 ] [ 2 ] if</code> after inlining. Value numbering builds up an expression chain where one comparison depends on the result of another, and it is able to collapse them down to a single comparison.<br /><br />Finally, the empty conditional, <code>[ ] [ ] if</code>, manifests in value numbering as a conditional branch instruction where both successors point to the same node. This is replaced with an unconditional branch.<br /><h3>Results</h3><br />Here are the timings, in milliseconds, for 10 runs of the reverse-complement benchmark:<br /><pre>5309 5310 5342 5297 5305 5635 5344 5313 5338 5303</pre><br />This represents a 35% improvement over <a href="new-low-level-optimizer-and-code.html">last time</a>.<br /><br />Finally, bootstrap is faster too. On my laptop it now takes around 3 minutes 45 seconds, which is about 40 seconds faster than before.<br /><br /><b>Edit:</b> some more minor optimizations improved reverse-complement runtime by another 500 milliseconds or so.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2008/11/further-performance-gains.html' itemprop='url'/>
+<a class='timestamp-link' href='further-performance-gains.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2008-11-06T11:41:00-05:00'>11:41 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=3920644984248099186' onclick=''>
+No comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=3920644984248099186' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=3920644984248099186&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3920644984248099186&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3920644984248099186&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3920644984248099186&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3920644984248099186&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3920644984248099186&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Monday, November 03, 2008</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='7826435523964349407' itemprop='postId'/>
+<a name='7826435523964349407'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='new-low-level-optimizer-and-code.html'>New low-level optimizer and code generator</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-7826435523964349407' itemprop='description articleBody'>
+I have pushed the new low-level optimizer and code generator. This is the second stage of a big compiler overhaul; the first stage was <a href="../08/new-optimizer.html">the new front-end and high-level optimizer</a>. I first started working on the new code generator in July, but after spending a couple of weeks on it, put it aside because I first wanted to replace the front-end and high-level optimizer. I continued working on the code generator in early October.<br /><br />The new low-level optimizer and code generator replaces the old one-pass code generator. While the old design was relatively simple and generated decent code, it was hard to extend and its limitations were really starting to show, especially on floating point code.<br /><br />The new design is a complete departure from the old way of doing things. First of all, there is a low-level intermediate representation, consisting of a control flow graph of basic blocks. Each basic block is a list of instructions. Instructions operate on virtual registers, of which there is an unlimited supply, and each virtual register is only assigned once. This invariant, known as SSA, simplifies analysis and code generation.<br /><h3>Building low-level IR</h3><br />The low-level optimizer receives high-level compiler IR as input. The first step is to convert it to low-level IR. This is done by the <code>compiler.cfg.builder</code> vocabulary. There are two primary differences between high-level IR and low-level IR:<br /><ul><li>High-level IR represents control structures as nested trees. This explains the <code>compiler.tree</code> vocabulary name. So a piece of code like <code>[ [ 1 + ] [ 1 - ] if 2 * ]</code> becomes a list of three nodes, an <code>#if</code>, a <code>#push</code>, and a <code>#call</code>, where the <code>#if</code> has two more nodes. Low-level IR models the control flow graph directly, so a conditional becomes a node with two successors, where both successors have a common successor. Loops create actual loops in the graph.</li><li>High-level IR is stack-based; stripping out value names gives a valid stack program. Low-level IR makes all stack operations explicit; for example, a call to a primitive such as <code>eq?</code> is a single node in high-level IR, whereas in low-level IR it expands into instructions to read the top two stack items, an instruction to compare the two values in registers, and finally, instructions to store the boolean back on the stack:<br /><pre>##peek V int-regs 7 D 1 <br />##peek V int-regs 8 D 0 <br />##inc-d -2 <br />##compare V int-regs 9 V int-regs 7 V int-regs 8 cc= <br />##inc-d 1 <br />##replace V int-regs 9 D 0 </pre></li><br />By breaking down higher-level stack operations into lower-level register operations, redundancy is revealed, and subsequent optimization passes will eliminate it.</ul><br />The high-level IR to low-level IR conversion is very naive. Other than tail-call optimization, it makes no attempt to eliminate any redundancy in the resulting IR. For example, floating point primitives expand into stack loads, followed by unboxing, followed by the operation itself, and finally a boxing operation. Redundant boxing and unboxing of intermediate values is hidden in high-level IR but becomes explicit in low-level IR.<br /><h3>Useless block elimination</h3><br />Once the CFG has been built, optimization begins. There are a total of 8 optimization passes; I won't talk about all of them, only the interesting ones. The first optimization pass, <code>compiler.cfg.useless-blocks</code>, deletes basic blocks which consist solely of a jump to their successor, as well as conditional blocks where both branches jump to the same basic block. The former case occurs because the low level IR builder does not perform any optimization. The latter case occurs after some code is optimized with the high-level optimizer. For example, suppose you're using <code>contains?</code> to stop iterating early, and don't actually care for the result.<br /><pre>( scratchpad ) [ [ ] contains? drop ] optimized.<br />[<br />    dup length swap 0 -rot \ ( gensym ) [<br />        pick pick < [<br />            swap<br />            >r 2dup<br />            >r<br />            >r nth-unsafe r><br />            r><br />            r><br />            swap<br />            >r rot r><br />            swap<br />            [ 2drop ]<br />            [ >r >r 1 +-integer-fixnum r> r> ( gensym ) ] if<br />        ] [ 3drop f ] if<br />    ] label dup [ ] [ ] if [ ] [ ] if<br />]</pre><br />Note that the two empty conditionals at the end came up because of inlining and dead code elimination. The high level optimizer's dead code elimination doesn't get rid of the empty conditionals, but the low level optimizer does.<br /><br />The old code generator did not delete empty conditionals.<br /><h3>Height normalization</h3><br />After all stack operations in a basic block are expanded into low level IR, there might be a lot of redundant changes to the stack height. The <code>compiler.cfg.height</code> pass takes care of these. For example, <code>>r rot r></code> translates as follows,<br /><pre>##peek V int-regs 63 D 0 <br />##inc-d -1 <br />##inc-r 1 <br />##replace V int-regs 63 R 0 <br />##peek V int-regs 64 D 2 <br />##peek V int-regs 65 D 1 <br />##peek V int-regs 66 D 0 <br />##inc-d -3 <br />##inc-d 3 <br />##replace V int-regs 64 D 0 <br />##replace V int-regs 66 D 1 <br />##replace V int-regs 65 D 2 <br />##peek V int-regs 67 R 0 <br />##inc-r -1 <br />##inc-d 1 <br />##replace V int-regs 67 D 0 </pre><br />After height normalization,<br /><pre>##peek V int-regs 68 D 0 <br />##replace V int-regs 68 R -1 <br />##peek V int-regs 69 D 3 <br />##peek V int-regs 70 D 2 <br />##peek V int-regs 71 D 1 <br />##replace V int-regs 69 D 1 <br />##replace V int-regs 71 D 2 <br />##replace V int-regs 70 D 3 <br />##peek V int-regs 72 R -1 <br />##replace V int-regs 72 D 0 </pre><br />After the height normalization pass runs, the only height changes that remain are at the start of basic blocks, and all <code>##peek</code> and <code>##replace</code> instructions can be viewed as reads and writes of distinguished arrays.<br /><br />The old code generator performed the same optimization, except stack height changes were finalized at the end of a basic block, not at the start. This makes no difference in practice.<br /><h3>Alias analysis</h3><br />I won't attempt to give a description of <a href="http://en.wikipedia.org/wiki/Alias_analysis">alias analysis</a> here, I'll only explain how it applies to Factor. Alias analysis is implemented in <code>compiler.cfg.alias-analysis</code>. The low level IR builder expands stack operations naively, into memory loads/stores. Once stack height changes are coalesced at the start of a basic block, all stack reads and writes look just like array accesses with constant indexes. In addition to this, we of course also have reads and writes of real heap-allocated arrays and tuples. Alias analysis eliminates redundant memory operations by identifying the following patterns:<br /><ul><li>If the same location is read twice with no writes in between, the second read is replaced with a copy.</li><li>If a location is read after being written, the read is replaced with a copy of the value that was written there.</li><li>If a location is written to twice with no read in between, the first write is eliminated.</li></ul><br />After alias analysis runs, each stack location is only read or written at most once, and writes follow reads, per basic block. For array slots this is more complicated. Because two references may in general point to the same array, some optimizations are invalid (for example, if we read from one array, write to another, then read from the first array, the latter read cannot be eliminated because the result depends on whether the two arrays are equal or not). However, a freshly allocated array or tuple is known to be different from any other object, so more aggressive optimizations can be performed in this case. One situation where alias analysis really helps is with inline allocation of arrays. Consider the <code>2array</code> word. After type inference and inlining, the high-level IR looks like so:<br /><pre>( scratchpad ) \ 2array optimized.<br />[ 2 f &lt;array> tuck >r r> 3 set-slot tuck >r r> 2 set-slot ]</pre><br />The semantics of the <code>&lt;array></code> word stipulate that the new array be filled with the initial element, in this case <code>f</code>. However, the array elements are immediately overwritten with stack items. Instead of making <code>2array</code> and similar words into primitives, or adding a new unsafe constructor for an array filled with garbage, the low level IR builder expands <code>&lt;array></code> into several instructions: first a memory allocation, then an initial value fill. This makes the redundancy explicit. We get the following before alias analysis:<br /><pre>_label 0 <br />##prologue <br />_label 1 <br />_gc <br />##inc-d -1 <br />##load-immediate V int-regs 97 16 <br />##replace V int-regs 97 D -2 <br />##load-immediate V int-regs 98 7 <br />##replace V int-regs 98 D -3 <br />##peek V int-regs 99 D -3 <br />##allot V int-regs 100 16 array V int-regs 101 <br />##load-immediate V int-regs 102 16 <br />##set-slot-imm V int-regs 102 V int-regs 100 1 3 <br />##set-slot-imm V int-regs 99 V int-regs 100 2 3 <br />##set-slot-imm V int-regs 99 V int-regs 100 3 3 <br />##replace V int-regs 100 D -2 <br />##peek V int-regs 103 D -1 <br />##peek V int-regs 104 D -2 <br />##replace V int-regs 104 D -3 <br />##replace V int-regs 103 D -2 <br />##replace V int-regs 104 D -1 <br />##peek V int-regs 105 D -3 <br />##replace V int-regs 105 R -1 <br />##peek V int-regs 106 R -1 <br />##replace V int-regs 106 D -3 <br />##load-immediate V int-regs 107 24 <br />##replace V int-regs 107 D -4 <br />##peek V int-regs 108 D -2 <br />##peek V int-regs 109 D -3 <br />##set-slot-imm V int-regs 108 V int-regs 109 3 3 <br />##write-barrier V int-regs 109 V int-regs 110 V int-regs 111 <br />##peek V int-regs 112 D 0 <br />##peek V int-regs 113 D -1 <br />##replace V int-regs 113 D -2 <br />##replace V int-regs 112 D -1 <br />##replace V int-regs 113 D 0 <br />##peek V int-regs 114 D -2 <br />##replace V int-regs 114 R -1 <br />##peek V int-regs 115 R -1 <br />##replace V int-regs 115 D -2 <br />##load-immediate V int-regs 116 16 <br />##replace V int-regs 116 D -3 <br />##peek V int-regs 117 D -1 <br />##peek V int-regs 118 D -2 <br />##set-slot-imm V int-regs 117 V int-regs 118 2 3 <br />##write-barrier V int-regs 118 V int-regs 119 V int-regs 120 <br />##epilogue <br />##return </pre><br />Note the large number of <code>##peek</code> and <code>##replace</code> instructions, most of which is redundant stack traffic, as well as the multiple calls to <code>##set-slot-imm</code>, some of which are redundant. After alias analysis eliminates the unnecessary stack and array operations, we end up with:<br /><pre>_label 0 <br />##prologue <br />_label 1 <br />_gc <br />##inc-d -1 <br />##load-immediate V int-regs 121 16 <br />##load-immediate V int-regs 122 7 <br />##copy V int-regs 123 V int-regs 122 <br />##allot V int-regs 124 16 array V int-regs 125 <br />##load-immediate V int-regs 126 16 <br />##set-slot-imm V int-regs 126 V int-regs 124 1 3 <br />##peek V int-regs 127 D -1 <br />##copy V int-regs 128 V int-regs 124 <br />##copy V int-regs 129 V int-regs 124 <br />##copy V int-regs 130 V int-regs 124 <br />##load-immediate V int-regs 131 24 <br />##copy V int-regs 132 V int-regs 127 <br />##copy V int-regs 133 V int-regs 124 <br />##set-slot-imm V int-regs 132 V int-regs 133 3 3 <br />##write-barrier V int-regs 133 V int-regs 134 V int-regs 135 <br />##peek V int-regs 136 D 0 <br />##copy V int-regs 137 V int-regs 124 <br />##replace V int-regs 137 D 0 <br />##copy V int-regs 138 V int-regs 124 <br />##copy V int-regs 139 V int-regs 124 <br />##load-immediate V int-regs 140 16 <br />##copy V int-regs 141 V int-regs 136 <br />##copy V int-regs 142 V int-regs 124 <br />##set-slot-imm V int-regs 141 V int-regs 142 2 3 <br />##write-barrier V int-regs 142 V int-regs 143 V int-regs 144 <br />##epilogue <br />##return</pre><br />Note that the redundant memory operations were eliminated, but new redundancies have appeared in the form of <code>##copy</code> instructions. The next pass eliminates these.<br /><h3>Value numbering</h3><br />Value numbering is implemented in <code>compiler.cfg.value-numbering</code>. The value numbering pass identifies sets of virtual registers which always contain the same value. In each congruence class, the first virtual register computing the value is known as the leader. References to virtual registers other than the leader are replaced with the leader in subsequent instructions.<br /><br />To figure out which virtual registers always contain the same value, value numbering makes a pass over instructions and builds a <i>value graph</i>. This is a directed acyclic graph where the vertices are called <i>expressions</i>. Every instruction is considered in turn. The instruction's input virtual registers are replaced with the leaders in their value class. Next, an expression is built from the instruction. The expression is simplified using algebraic identities. If the expression does not have an associated value number, the instruction's output register becomes the leader of a new value class.<br /><br /><a href="http://en.wikipedia.org/wiki/Copy_propagation">Copy propagation</a> falls out as a special case of value numbering. Because the destination of a copy always has the same value as the source, subsequent references to the destination are replaced with the source register.<br /><br />Floating point unboxing is also a special case. Consider the following low level IR, generated by the Factor code <code>[ float+ 3.0 float* ]</code>:<br /><pre>_label 0 <br />##prologue <br />_label 1 <br />_gc <br />##inc-d -1 <br />##peek V int-regs 160 D 0 <br />##peek V int-regs 161 D -1 <br />##unbox-float V double-float-regs 162 V int-regs 160 <br />##unbox-float V double-float-regs 163 V int-regs 161 <br />##add-float V double-float-regs 164 V double-float-regs 162 V double-float-regs 163 <br />##box-float V int-regs 165 V double-float-regs 164 V int-regs 166 <br />##replace V int-regs 165 D 0 <br />##load-indirect V int-regs 167 3.0 <br />##replace V int-regs 167 D -1 <br />##peek V int-regs 168 D 0 <br />##peek V int-regs 169 D -1 <br />##unbox-float V double-float-regs 170 V int-regs 168 <br />##unbox-float V double-float-regs 171 V int-regs 169 <br />##mul-float V double-float-regs 172 V double-float-regs 170 V double-float-regs 171 <br />##box-float V int-regs 173 V double-float-regs 172 V int-regs 174 <br />##replace V int-regs 173 D 0 <br />##epilogue <br />##return</pre><br />The result of <code>float+</code> is boxed, written to the stack, then loaded from the stack and unboxed. Clearly, this is inefficient.<br /><br />After alias analysis, the redundant stack store/load is eliminated, but there is still a useless boxing and unboxing, and some useless copies:<br /><pre>_label 0 <br />##prologue <br />_label 1 <br />_gc <br />##inc-d -1 <br />##peek V int-regs 190 D 0 <br />##peek V int-regs 191 D -1 <br />##unbox-float V double-float-regs 192 V int-regs 190 <br />##unbox-float V double-float-regs 193 V int-regs 191 <br />##add-float V double-float-regs 194 V double-float-regs 192 V double-float-regs 193 <br />##box-float V int-regs 195 V double-float-regs 194 V int-regs 196 <br />##load-indirect V int-regs 197 3.0 <br />##copy V int-regs 198 V int-regs 195 <br />##copy V int-regs 199 V int-regs 197 <br />##unbox-float V double-float-regs 200 V int-regs 198 <br />##unbox-float V double-float-regs 201 V int-regs 199 <br />##mul-float V double-float-regs 202 V double-float-regs 200 V double-float-regs 201 <br />##box-float V int-regs 203 V double-float-regs 202 V int-regs 204 <br />##replace V int-regs 203 D 0 <br />##epilogue <br />##return</pre><br />Note that register 194 is boxed into register 195, which is then copied into register 198; finally, register 198 is unboxed into register 200. The value graph contains this path. The expression simplifier then realizes that register 200 always contains the same value as register 194, and thus subsequent uses of register 200 are replaced with register 194.<br /><br />In addition to eliminating unnecessary boxing and unboxing of floating point values, value numbering also optimizes conditionals. For example, <code>[ 100 [ ] times ]</code> generates the following high-level IR:<br /><pre>( scratchpad ) [ 100 [ ] times ] optimized.<br />[<br />    100 0 swap \ ( gensym ) [<br />        over over fixnum&lt;<br />        [ >r >r r> r> >r 1 fixnum+fast r> ( gensym ) ]<br />        [ 2drop ] if<br />    ] label<br />]</pre><br />Implemented naively, <code>fixnum&lt;</code> would compare two values and push a boolean, then <code>if</code> would check if the boolean is true or false. The redundancy here stems from the fact that on a real CPU, you can compare two values and then branch if the result of the comparison is a less-than; there is no need to make a boolean (which itself involves a conditional). The expression simplification machinery used by value numbering converts calls of <code>if</code> where the boolean was produced by a known primitive into more efficient code.<br /><br />Another neat simplification concerns type checks. The dispatch code generated for generic words often contains code like the following,<br /><pre>[ dup tag 2 eq? [ ... ] [ ... ] if ]</pre><br />The <code>tag</code> primitive outputs the low 3 bits of a pointer, as a fixnum. Tag #2 is used for tuple objects. Here is the low level IR generated for a call to <code>tag</code>:<br /><pre>##peek V int-regs 208 D 0 <br />##and-imm V int-regs 209 V int-regs 208 7 <br />##shl-imm V int-regs 210 V int-regs 209 3 <br />##replace V int-regs 210 D 0 </pre><br />Note that the low 3 bits of the pointer are masked, then the result is shifted to the left to make it into a fixnum. Of course, if the result of the shift is being compared against a literal fixnum, the shift is redundant; instead, we can shift the literal <i>to the right</i> by 3. Indeed, after value numbering, <code>tag 2 eq?</code> generates this low-level IR:<br /><pre>##peek V int-regs 211 D 0 <br />##and-imm V int-regs 212 V int-regs 211 7 <br />##shl-imm V int-regs 213 V int-regs 212 3 <br />##load-immediate V int-regs 214 16 <br />##copy V int-regs 215 V int-regs 213 <br />##compare-imm V int-regs 216 V int-regs 213 16 cc= <br />##replace V int-regs 216 D 0 </pre><br />Note that in the above, the <code>##shl-imm</code> instruction still remains even though its result is not used, and there is a <code>##load-immediate</code> whose result is not used either. Just like alias analysis inserts redundant copy instructions, value numbering leaves behind instructions which compute values that are never used; if an instruction computes a value that is already available in another register, subsequent uses of this instruction's output register are replaced, but the instruction still remains. The next pass eliminates such useless instructions.<br /><br />The old code generator performed some optimizations that value numbering can do, such as float unboxing and efficient generation of integer and float conditionals, but it was not as general and there were many redundancies it did not catch.<br /><h3>Dead code elimination</h3><br />Dead code elimination is an essential part of any optimizer. It is implemented in <code>compiler.cfg.dead-code</code>. Note that the high-level optimizer performs dead code elimination as well, in <code>compiler.tree.dead-code</code>. The rationale is that many optimizations are easier to implement if they can leave behind code which computes values that are never used, instead of trying to eliminate all redundancy in one pass. In the low-level optimizer, both alias analysis and value numbering can leave behind many instructions whose results are no longer used. Dead code elimination builds a graph of <i>def-use chains</i>, then takes the transitive closure starting from the registers used by instructions having side effects observable outside of the basic block, such as <code>##set-slot</code> and <code>##replace</code>; any instructions whose destination registers are not part of this closure can be eliminated, since their values are never used. This pass also eliminates <code>##replace</code> instructions which store a value to the same stack location from which it was read. This can arise if inlining produces an idempotent stack shuffle such as <code>swap swap</code>, or if value numbering reduces an operation to a no-op.<br /><br />The old code generation took a different approach: since it generated code in one pass, it had to take care not to emit dead code in the first place. This complicated things; for example, constants were not loaded into registers until absolutely necessary, and complicated state had to be maintained to ensure that no stack location was read or written redundantly.<br /><h3>Write barrier elimination</h3><br />The <code>compiler.cfg.write-barrier</code> pass attempts to speed up slot assignment. Because Factor uses a <a href="http://en.wikipedia.org/wiki/Garbage_collection_(computer_science)#Generational_GC_.28aka_Ephemeral_GC.29">generational garbage collector</a>, every store into an object slot must potentially mark the card holding the object. However, there are three cases when the write barrier can be omitted:<br /><ul><li>If the slot value is immediate -- that is, a fixnum or <code>f</code></li><li>If the object was allocated in the same basic block; new objects go in the nursery, so the object cannot be older than the slot value</li><li>If the object has already been stored to in this basic block; there is no need to generate more than one write barrier since the GC can only run at the beginning of a basic block</li></ul><br />The first case is handled by the low-level IR builder; it uses type information from the high-level IR to omit the write barrier in this case. The latter two cases are handled by a simple analysis that identifies fresh allocations and objects which are written to more than once, deleting <code>##write-barrier</code> instructions which are seen to be redundant.<br /><br />Here is the result of applying all the optimizations described so far to the <code>2array</code> word:<br /><pre>_label 0 <br />##prologue <br />_label 1 <br />_gc <br />##inc-d -1 <br />##load-immediate V int-regs 566340 16 <br />##allot V int-regs 566343 32 array V int-regs 566344 <br />##set-slot-imm V int-regs 566340 V int-regs 566343 1 3 <br />##peek V int-regs 566346 D -1 <br />##set-slot-imm V int-regs 566346 V int-regs 566343 3 3 <br />##peek V int-regs 566355 D 0 <br />##replace V int-regs 566343 D 0 <br />##set-slot-imm V int-regs 566355 V int-regs 566343 2 3 <br />##epilogue <br />##return</pre><br />This is as tight as it gets. There are no redundant memory operations at all, and at this stage recoding <code>2array</code> as a primitive in the VM would offer no benefit at all.<br /><br />Write barrier elimination is the last pass of the CFG optimizer. The old code generator performed similar optimizations for storing immediate values into slots, and for storing into freshly allocated objects. It did not eliminate the write barrier in the third case, however.<br /><br />After this point, the control flow graph is no longer needed, and the CFG is converted into another form called the machine representation. This form consists of a flat list of instructions, with branches and labels instead of control flow graph edges. Otherwise, the instructions are the same as in the CFG representation.<br /><h3>Machine representation</h3><br />The machine representation builder, or linearizer, in <code>compiler.cfg.linearization</code>, traverses the CFG in reverse post order, generating labels and jumps as appropriate. The linearizer inserts GC checks in basic blocks which allocate memory. This is done as after value numbering, since value numbering eliminates many allocations. The linearizer also performs a simple optimization concerning how conditionals are laid out in memory. Sometimes, reversing a conditional results in one less jump. For example, consider the following code: <code>[ [ 1 + ] unless 3 * ]</code>. Without any type information, the old code generator would emit the following assembly:<br /><pre>0x0000000108e577e0: mov    $0x108e577e0,%rbx<br />0x0000000108e577ea: pushq  $0x20<br />0x0000000108e577ef: push   %rbx<br />0x0000000108e577f0: sub    $0x8,%rsp<br />0x0000000108e577f4: mov    (%r14),%rax<br />0x0000000108e577f7: cmp    $0x7,%rax<br />0x0000000108e577fb: je     0x108e5780a<br />0x0000000108e57801: sub    $0x8,%r14<br />0x0000000108e57805: jmpq   0x108e5781c<br />0x0000000108e5780a: mov    $0x8,%rbx<br />0x0000000108e57814: mov    %rbx,(%r14)<br />0x0000000108e57817: callq  0x10894fc20<br />0x0000000108e5781c: mov    $0x18,%rbx<br />0x0000000108e57826: mov    %rbx,0x8(%r14)<br />0x0000000108e5782a: add    $0x8,%r14<br />0x0000000108e5782e: add    $0x18,%rsp<br />0x0000000108e57832: jmpq   0x1089663a0</pre><br />Note that if the comparison fails, the <code>je</code> branch falls through, and then we immediately jump again. Instead, the comparison can be reversed, eliminating the double jump. The new code generator produces the following assembly for the above snippet:<br /><pre>0x000000010980a0e0: mov    $0x10980a0e0,%rax<br />0x000000010980a0ea: pushq  $0x20<br />0x000000010980a0ef: push   %rax<br />0x000000010980a0f0: sub    $0x8,%rsp<br />0x000000010980a0f4: sub    $0x8,%r14<br />0x000000010980a0f8: mov    0x8(%r14),%rax<br />0x000000010980a0fc: cmp    $0x7,%rax<br />0x000000010980a100: jne    0x10980a11c<br />0x000000010980a106: add    $0x8,%r14<br />0x000000010980a10a: mov    $0x8,%rax<br />0x000000010980a114: mov    %rax,(%r14)<br />0x000000010980a117: callq  0x1092e9560<br />0x000000010980a11c: add    $0x8,%r14<br />0x000000010980a120: mov    $0x18,%rax<br />0x000000010980a12a: mov    %rax,(%r14)<br />0x000000010980a12d: add    $0x18,%rsp<br />0x000000010980a131: jmpq   0x1092ed700</pre><br />Note that the conditional was reversed into a <code>jne</code>, and now there is no control flow redundancy.<br /><h3>Two-operand conversion</h3><br />Up until this point, the CFG and machine representations are in SSA (single static assignment) form; each register is only defined once. Instructions are in "3-address" form; an addition is conceptually similar to this C code,<br /><pre>int x = y + z;</pre><br />This is a problem for x86, where all arithmetic instructions store the result in the first input; x86 is a "2-address" architecture:<br /><pre>int y = y + z;</pre><br />To be able to generate code for the x86, the <code>compiler.cfg.two-operand</code> pass rewrites<br /><pre>int x = y + z;</pre><br />into<br /><pre>int x = y; x = x + z;</pre><br />This inserts <code>##copy</code> instructions into the IR, and the resulting IR is no longer in SSA form. After this pass runs, there are many new copy instructions in the IR. Register allocation eliminates redundant copies (in the above example, the assignment of <code>y</code> to <code>x</code> would be redundant if <code>x</code> is never used again; in this case we could just destructively modify <code>y</code>.) On PowerPC, this pass is not used, since it is a 3-address architecture.<br /><br />The old code generator uses a complicated system of "intrinsics" and "templates" to select instructions. There was no low level IR, hence no SSA, instead various ad-hoc heuristics were used to ensure that registers did not get clobbered. This was error-prone, and in the more complex cases, the codegen would give up and spill all registers to the stack before reloading them again. The new approach is much better.<br /><h3>Register allocation</h3><br />The <code>compiler.cfg.linear-scan</code> vocabulary implements a register allocator. This uses the second-chance binpacking variation of linear scan, amended with a simple form of coalescing to eliminate redundant copies inserted by the two operand conversion pass. Linear scan register allocation is very clever and I will not attempt to describe it here. Two good references are:<br /><ul><li><a href="http://www.ssw.uni-linz.ac.at/Research/Papers/Wimmer04Master/">Linear Scan Register Allocation for the Java HotSpot Client Compiler</a></li><li><a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.34.8435">Quality and Speed in Linear-scan Register Allocation</a></li></ul><br />Note that the original formulation of linear scan register allocation required scratch registers to be reserved for reloading spilled values, and these scratch registers could not be used for anything else. This is unacceptable on x86, which has a serious shortage of registers. The binpacking variant of linear scan uses live interval splitting to ensure that there is always a register available for reloading spill slots.<br /><br />Linear scan seems to work quite well in practice, with very little spilling, even on x86.<br /><br />The old code generator used a very ad-hoc register assignment scheme (I don't even want to call it a "register allocator"). Basically, it would spill <i>all</i> values to the stack (and box them, if they were floats!) as soon as it ran out of registers. So for example, if on x86 it ran out of integer registers but not floating point registers, and you had some unboxed floats in the floating point registers, they would get boxed anyway, leading to terrible performance. To make matters worse, one scratch register had to be reserved because of the on-the-fly nature of the code generator. The new register allocator does not suffer from any of these problems. If you run out of registers, only a minimum number of values will be spilled, spilling floats never boxes them, and there is one additional register available for temporaries on x86.<br /><br />It's pretty embarrassing that until now, Factor's compiler did not have a real register allocator. We got pretty far with the ad-hoc approach but it was time to do things correctly.<br /><h3>Code generation</h3><br />After register allocation, machine code is generated using CPU-specific hooks. Since low-level IR instructions are a lot more fine-grained than Factor primitives, there is a corresponding reduction in the complexity of a CPU backend. Despite offering improved performance, the new code generator actually requires less CPU-specific code to be written. Other than that, there isn't much new here, except that jump tables used by generic dispatch, and loop entry blocks, are aligned on the correct boundaries for x86.<br /><h3>Some performance numbers</h3><br />Soon I'm going to do a comprehensive performance review, comparing Factor's progress over the last year. In the meantime, here are some quick performance measurements of the latest code against the Mac OS X binary from the 21st of October. The computer in question is a Mac Book Pro with a 2.4 GHz Intel Core 2 Duo. For each benchmark, I performed 10 trials, with a full GC before each trial. Times are in milliseconds.<br /><table><tr><th>Benchmark</th><th>Old codegen</th><th>New codegen</th></tr><tr><td>dawes</td><td>176 179 175 175 174 175 175 178 174 175</td><td>145 149 147 148 147 147 148 148 150 148</td></tr><tr><td>mandel</td><td>299 298 300 299 297 297 297 298 296 300</td><td>157 156 155 156 156 155 154 155 157 154</td></tr><tr><td>nsieve</td><td>996 1003 997 1009 1000 1007 1001 1008 1003 1001</td><td>996 954 956 966 961 966 961 964 962 958</td></tr><tr><td>nsieve-bits</td><td>2398 2403 2397 2412 2415 2410 2403 2397 2405 2424</td><td>1840 1838 1835 1840 1833 1833 1839 1847 1829 1833</td></tr><tr><td>nsieve-bytes</td><td>353 355 347 345 354 356 355 354 350 355</td><td>319 327 323 321 318 323 324 322 319 324</td></tr><tr><tr><td>partial-sums</td><td>3217 3209 3232 3209 3227 3237 3277 3231 3210 3209</td><td>2863 2908 2881 2880 2876 2871 2875 2861 2871 2868</td></tr><tr><td>raytracer</td><td>6536 6559 6538 6550 6545 6554 6533 6556 6508 6581</td><td>4918 4918 4936 4906 4907 4941 4935 4931 4929 4898</td></tr><tr><td>reverse-complement</td><td>9376 9229 9252 9247 9483 9224 9280 9266 9559 9347</td><td>9304 9024 9242 9163 9279 9182 9177 9024 9218 8990</td></tr><tr><td>recursive</td><td>8416 8398 8532 8397 8599 8728 8644 8675 8554 8876</td><td>9074 8880 8898 8922 8821 8770 8824 8875 8874 8801</td></tr><tr><td>spectral-norm</td><td>71282 71251 71224 71172 71184 71179 71181 71418 71268 71183</td><td>29585 30331 29927 29873 29644 29829 29905 29864 29954 29897</td></tr></table><br />Amazing speedups on mandel and spectral-norm! The mandel benchmark is now more than 10 times faster than it was before I rewrote the high-level optimizer, and raytracer is almost <a href="../09/improved-performance-on-raytracer.html">3 times faster than it was a month ago</a>.<br /><h3>Some observations</h3><br />When I first started writing the new code generator, it was a completely distinct body of code from the old one. I got as far as implementing alias analysis and value numbering, and then I decided this was too drastic. Instead took a different approach, where I incrementally refactored the old code generator and merged in the new pieces. I got the old code generator to produce low level IR instead of machine code; it would still perform all optimization in one pass. Then I got rid of he ad-hoc register allocation that it performs, and implemented linear scan. The next step was to refactor it to produce SSA code; after that, I merged in the optimization passes I had already implemented earlier. The result was that I was able to replace the entire code generator, while testing it incrementally along the way. I managed to avoid a bootstrap time regression, despite the fact that the new code generator does a lot more work than the old one, by ensuring that the code gen "pays for itself" by generating better code, and by optimizing some other things.<br /><h3>What's next</h3><br />As you can see from the benchmarks, performance has improved, especially on floating point code. There is one regression on the "recursive" benchmark, the PowerPC backend is not done, and there are a couple of bugs. Those should all be easy to fix. Longer-term, the next thing I will work on is global optimization. The new code generator, like the old one, only optimizes in basic blocks. This means that a floating point loop that keeps floats on the stack will box them on every iteration, for example; and in general, loops load and store on the stack. Solving this involves making alias analysis and value numbering smarter, and replacing linear scan register allocation with something more advanced, such as <a href="http://digbib.ubka.uni-karlsruhe.de/volltexte/documents/6532">chordal graph coloring</a>.<br /><br />There are other things I want to do as far as performance goes, other than working on the compiler itself. I'm going to investigate inline caching to speed up generic word call sites which are monomorphic, but the compiler is unable to infer this statically. I will also look into various techniques for speeding up polymorphic dispatch. Finally, I will be optimizing the garbage collector at some point.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2008/11/new-low-level-optimizer-and-code.html' itemprop='url'/>
+<a class='timestamp-link' href='new-low-level-optimizer-and-code.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2008-11-03T07:54:00-05:00'>7:54 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=7826435523964349407' onclick=''>
+No comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=7826435523964349407' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=7826435523964349407&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7826435523964349407&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7826435523964349407&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7826435523964349407&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7826435523964349407&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7826435523964349407&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Saturday, November 01, 2008</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='http://factorcode.org/HangingOutAtApple.jpg' itemprop='image_url'/>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='72605919728632126' itemprop='postId'/>
+<a name='72605919728632126'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='west-coast-trip-100-success.html'>West coast trip: 100% success</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-72605919728632126' itemprop='description articleBody'>
+I got back to Minnesota yesterday. The trip was a lot of fun.<br /><br />I gave a <a href="http://concatenative.org/wiki/view/Factor/Talks">tech talk at Google</a>. I had less than a week to prepare the talk (we decided to go on short notice) so it was a bit rough but people seemed interested anyway. There were some excellent questions at the end. We hung out in the Bay Area for a few days and met up with many cool people -- Andrew Hintz, Cameron Zwarich, Matthew Willis, <a href="http://www.falvotech.com/blog/">Samuel Falvo</a> and <a href="http://eugeneciurana.com/">Eugene Ciurana</a>.<br /><br />The VPRI talk in Glendale was even better. It was similar to the Google talk but with some things added and removed. The audience here had more of a background in these types of programming languages so I went a bit faster. Alan Kay attended the talk, which was pretty cool. There was a lot of interesting discussion afterwards with <a href="http://lukego.livejournal.com/">Luke Gorrie</a>, <a href="http://www.cs.ucla.edu/~awarth/index.html">Alessandro Warth</a>, and everyone else whose names I sadly forgot.<br /><br />At Galois in Portland I only had one hour to present so I had to cut out some of the juicy meat, but it was pretty good anyway. <a href="http://briantrice.com">Brian Rice</a> made the trip down from Seattle, and we also got to hang out with Joe Groff, a Factor contributor, and of course <a href="http://www.cse.unsw.edu.au/~dons/">Don Stewart</a> and Eric Mertens (another contributor) from Galois. Joe Groff got his friend <a href="http://leto.net/">Jonathan Leto</a> interested in Factor; after we demonstrated Factor's FFI and got some pizza going, he started working on a <a href="http://www.gnu.org/software/gsl/">GSL</a> binding. Cool stuff.<br /><br />We met lots of interesting people and generated a bit of interest in Factor; lots of new nicknames in <code>#concatenative</code> in the last few days.<br /><br />Now that I've done enough promotion for the time being, it's time for massive focused action. I'm working on a new low-level optimizer and code generator; this is why I haven't blogged much in the last 3 weeks or so. I first mentioned the new codegen in an <a href="../07/optional-type-declarations-for-tuple.html">older post</a>. Since then, I put it aside to rewrite the high-level optimizer as well; with that out of the way I went back to work on the codegen.<br /><br />I'll describe it in detail once it is done, but early results are encouraging; performance-wise, as well as the quality and simplicity of the code.<br /><br />Finally, a photo. Here the <code>#concatenative</code> crew poses in front of Cameron's employer, a somewhat obscure computer company based in Cupertino:<br /><img src="http://factorcode.org/HangingOutAtApple.jpg"><br />From left to right: Slava, Eduardo, Cameron (cpst), Matthew (yuuki), Doug (erg).
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2008/11/west-coast-trip-100-success.html' itemprop='url'/>
+<a class='timestamp-link' href='west-coast-trip-100-success.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2008-11-01T18:40:00-04:00'>6:40 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=72605919728632126' onclick=''>
+3 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=72605919728632126' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=72605919728632126&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=72605919728632126&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=72605919728632126&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=72605919728632126&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=72605919728632126&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=72605919728632126&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='http://factor-language.blogspot.com/search?updated-max=2009-01-12T19:33:00-05:00&amp;max-results=7&amp;reverse-paginate=true' id='Blog1_blog-pager-newer-link' title='Newer Posts'>Newer Posts</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='http://factor-language.blogspot.com/search?updated-max=2008-11-01T18:40:00-04:00&amp;max-results=7' id='Blog1_blog-pager-older-link' title='Older Posts'>Older Posts</a>
+</span>
+<a class='home-link' href='../../index.html'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='blog-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://factor-language.blogspot.com/feeds/posts/default' target='_blank' type='application/atom+xml'>Posts (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+<div id='sidebar-wrapper'>
+<div class='sidebar section' id='sidebar'><div class='widget BlogArchive' data-version='1' id='BlogArchive1'>
+<h2>Older Posts</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/index.html'>
+2010
+</a>
+<span class='post-count' dir='ltr'>(18)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/index.html'>
+2009
+</a>
+<span class='post-count' dir='ltr'>(35)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../index.html'>
+2008
+</a>
+<span class='post-count' dir='ltr'>(96)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+<ul class='posts'>
+<li><a href='new-features-in-smtp-and-ssl-library.html'>New features in SMTP and SSL library allow sending...</a></li>
+<li><a href='faster-generic-arithmetic-and-integer.html'>Faster generic arithmetic and integer overflow che...</a></li>
+<li><a href='some-recent-ui-rendering-fixes.html'>Some recent UI rendering fixes</a></li>
+<li><a href='comparing-performance-of-factor-and-v8.html'>Comparing the performance of Factor and V8</a></li>
+<li><a href='factor-presentation-at-otug.html'>Factor presentation at OTUG</a></li>
+<li><a href='factor-port-to-win64-in-progress.html'>Factor port to Win64 in progress</a></li>
+<li><a href='further-performance-gains.html'>Further performance gains</a></li>
+<li><a href='new-low-level-optimizer-and-code.html'>New low-level optimizer and code generator</a></li>
+<li><a href='west-coast-trip-100-success.html'>West coast trip: 100% success</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(17)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/index.html'>
+2007
+</a>
+<span class='post-count' dir='ltr'>(141)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(10)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(21)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/index.html'>
+2006
+</a>
+<span class='post-count' dir='ltr'>(207)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(30)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(25)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(22)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(26)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/index.html'>
+2005
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div><div class='widget Feed' data-version='1' id='Feed2'>
+<h2>Recent Factor Commits</h2>
+<div class='widget-content' id='Feed2_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://gitweb.factorcode.org/gitweb.cgi?p=factor.git;a=atom'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget Feed' data-version='1' id='Feed1'>
+<h2>Planet Factor</h2>
+<div class='widget-content' id='Feed1_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://planet.factorcode.org/feed.xml'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget LinkList' data-version='1' id='LinkList1'>
+<h2>Links</h2>
+<div class='widget-content'>
+<ul>
+<li><a href='http://twitter.com/slava_pestov'>@slava_pestov</a></li>
+<li><a href='http://factorcode.org/slava/'>My home page</a></li>
+<li><a href='http://factorcode.org/'>Factor programming language</a></li>
+<li><a href='http://concatenative.org/'>Concatenative language wiki</a></li>
+<li><a href='http://planet.factorcode.org/'>Planet Factor</a></li>
+</ul>
+<div class='clear'></div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class='clear'>&#160;</div>
+</div>
+<!-- end content-wrapper -->
+<div id='footer-wrapper'>
+<div class='footer no-items section' id='footer'></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/940443484-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY6r9RcDLPoOwhwEnZVGA4nndkl85A:1693932707948';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d17087850','//factor-language.blogspot.com/2008/11/','17087850');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '17087850', 'title': 'Factor: a practical stack language', 'url': 'http://factor-language.blogspot.com/2008/11/', 'canonicalUrl': 'http://factor-language.blogspot.com/2008/11/', 'homepageUrl': 'http://factor-language.blogspot.com/', 'searchUrl': 'http://factor-language.blogspot.com/search', 'canonicalHomepageUrl': 'http://factor-language.blogspot.com/', 'blogspotFaviconUrl': 'http://factor-language.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en-US', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Factor: a practical stack language - RSS\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/17087850/posts/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/591781cadcbb8744', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'archive', 'pageName': 'November 2008', 'pageTitle': 'Factor: a practical stack language: November 2008'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'isResponsive': false, 'isAlternateRendering': false, 'isCustom': false}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Factor: a practical stack language', 'description': '\x3ca href\x3d\x22http://factorcode.org/slava\x22\x3eSlava Pestov\x3c/a\x3e\x27s weblog, primarily about \x3ca href\x3d\x22http://factorcode.org\x22\x3eFactor\x3c/a\x3e.', 'url': 'http://factor-language.blogspot.com/2008/11/', 'type': 'feed', 'isSingleItem': false, 'isMultipleItems': true, 'isError': false, 'isPage': false, 'isPost': false, 'isHomepage': false, 'isArchive': true, 'isLabelSearch': false, 'archive': {'year': 2008, 'month': 11, 'rangeMessage': 'Showing posts from November, 2008'}}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1333563935-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/3268905543-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed2', 'sidebar', document.getElementById('Feed2'), {'title': 'Recent Factor Commits', 'showItemDate': true, 'showItemAuthor': true, 'feedUrl': 'http://gitweb.factorcode.org/gitweb.cgi?p\x3dfactor.git;a\x3datom', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed1', 'sidebar', document.getElementById('Feed1'), {'title': 'Planet Factor', 'showItemDate': true, 'showItemAuthor': false, 'feedUrl': 'http://planet.factorcode.org/feed.xml', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList1', 'sidebar', document.getElementById('LinkList1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>

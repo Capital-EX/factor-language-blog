@@ -1,0 +1,2190 @@
+<!DOCTYPE html>
+<html dir='ltr'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/55013136-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='../../favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='index.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Factor: a practical stack language - RSS" href="http://factor-language.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="https://www.blogger.com/feeds/17087850/posts/default" />
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<meta content='http://factor-language.blogspot.com/2007/02/' property='og:url'/>
+<meta content='Factor: a practical stack language' property='og:title'/>
+<meta content='&lt;a href=&quot;http://factorcode.org/slava&quot;&gt;Slava Pestov&lt;/a&gt;&#39;s weblog, primarily about &lt;a href=&quot;http://factorcode.org&quot;&gt;Factor&lt;/a&gt;.' property='og:description'/>
+<title>Factor: a practical stack language: February 2007</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Stretch Denim Light
+Designer: Darren Delaye
+URL:      www.DarrenDelaye.com
+Date:     11 Jul 2006
+-----------------------------------------------
+*/
+body {
+background: #ffffff;
+margin: 0;
+padding: 0px;
+font: x-small Verdana, Arial;
+text-align: center;
+color: #333333;
+font-size/* */:/**/small;
+font-size: /**/small;
+}
+a:link {
+color: #336699;
+}
+a:visited {
+color: #336699;
+}
+a img {
+border-width: 0;
+}
+#outer-wrapper {
+font: normal normal 100% Verdana, Arial, Sans-serif;;
+}
+/* Header
+----------------------------------------------- */
+#header-wrapper {
+margin:0;
+padding: 0;
+background-color: #c4e1ff;
+text-align: left;
+}
+#header {
+margin: 0 2%;
+background-color: #c4e1ff;
+color: #003366;
+padding: 0;
+font: normal normal 210% Verdana, Arial, Sans-serif;;
+position: relative;
+}
+h1.title {
+padding-top: 38px;
+margin: 0 1% .1em;
+line-height: 1.2em;
+font-size: 100%;
+}
+h1.title a, h1.title a:visited {
+color: #003366;
+text-decoration: none;
+}
+#header .description {
+display: block;
+margin: 0 1%;
+padding: 0 0 40px;
+line-height: 1.4em;
+font-size: 50%;
+}
+/* Content
+----------------------------------------------- */
+.clear {
+clear: both;
+}
+#content-wrapper {
+margin: 0 2%;
+padding: 0 0 15px;
+text-align: left;
+background-color: #ffffff;
+border: 1px solid #ffffff;
+border-top: 0;
+}
+#main-wrapper {
+margin-left: 1%;
+width: 64%;
+float: left;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+margin-right: 1%;
+width: 29%;
+float: right;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2, h3 {
+margin: 0;
+}
+/* Posts
+----------------------------------------------- */
+.date-header {
+margin: 1.5em 0 0;
+font-weight: normal;
+color: #999999;
+font-size: 100%;
+}
+.post {
+margin: 0 0 1.5em;
+padding-bottom: 1.5em;
+}
+.post-title {
+margin: 0;
+padding: 0;
+font-size: 125%;
+font-weight: bold;
+line-height: 1.1em;
+}
+.post-title a, .post-title a:visited, .post-title strong {
+text-decoration: none;
+color: #333333;
+font-weight: bold;
+}
+.post div {
+margin: 0 0 .75em;
+line-height: 1.3em;
+}
+.post-footer {
+margin: -.25em 0 0;
+color: #333333;
+font-size: 87%;
+}
+.post-footer .span {
+margin-right: .3em;
+}
+.post img, table.tr-caption-container {
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin: 1em 20px;
+}
+.post blockquote p {
+margin: .75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin: 1em 0;
+color: #999999;
+}
+#comments h4 strong {
+font-size: 110%;
+}
+#comments-block {
+margin: 1em 0 1.5em;
+line-height: 1.3em;
+}
+#comments-block dt {
+margin: .5em 0;
+}
+#comments-block dd {
+margin: .25em 0 0;
+}
+#comments-block dd.comment-footer {
+margin: -.25em 0 2em;
+line-height: 1.4em;
+font-size: 78%;
+}
+#comments-block dd p {
+margin: 0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar h2 {
+margin: 1.6em 0 .5em;
+padding: 4px 5px;
+background-color: #ffffff;
+font-size: 100%;
+color: #333333;
+}
+.sidebar ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.sidebar li {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: .5em;
+padding-left: 15px;
+text-indent: -15px;
+line-height: 1.5em;
+}
+.sidebar {
+color: #333333;
+line-height:1.3em;
+}
+.sidebar .widget {
+margin-bottom: 1em;
+}
+.sidebar .widget-content {
+margin: 0 5px;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font-weight: bold;
+line-height: 1.6em;
+font-size: 78%;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+clear: both;
+text-align: center;
+color: #333333;
+}
+#footer .widget {
+margin:.5em;
+padding-top: 20px;
+font-size: 85%;
+line-height: 1.5em;
+text-align: left;
+}
+/** Page structure tweaks for layout editor wireframe */
+body#layout #header {
+width: 750px;
+}
+
+--></style>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' rel='stylesheet'/></noscript>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body>
+<div class='navbar section' id='navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d17087850\x26blogName\x3dFactor:+a+practical+stack+language\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dBLUE\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://factor-language.blogspot.com/search\x26blogLocale\x3den_US\x26v\x3d2\x26homepageUrl\x3dhttp://factor-language.blogspot.com/\x26vt\x3d1910212838315471456',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id='outer-wrapper'><div id='wrap2'>
+<!-- skip links for text browsers -->
+<span id='skiplinks' style='display:none;'>
+<a href='index.html#main'>skip to main </a> |
+      <a href='index.html#sidebar'>skip to sidebar</a>
+</span>
+<div id='header-wrapper'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='../../index.html'>
+Factor: a practical stack language
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span><a href="http://factorcode.org/slava">Slava Pestov</a>'s weblog, primarily about <a href="http://factorcode.org">Factor</a>.</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id='content-wrapper'>
+<div id='crosscol-wrapper' style='text-align:center'>
+<div class='crosscol no-items section' id='crosscol'></div>
+</div>
+<div id='main-wrapper'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Wednesday, February 28, 2007</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='http://factorcode.org/golden-section.png' itemprop='image_url'/>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='3770398915062080639' itemprop='postId'/>
+<a name='3770398915062080639'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='factor-088-released.html'>Factor 0.88 released</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-3770398915062080639' itemprop='description articleBody'>
+Factor 0.88 is now available from the <a href="http://factorcode.org">Factor web site</a>. There is a <a href="http://factorcode.org/responder/help/show-help?topic=changes">change log</a>. And last but not least, Eduardo Cavazos has prepared a new graphical demo called the "golden section":<br /><br /><img src="http://factorcode.org/golden-section.png"><br /><br />To run it, you must first load Ed's experimental module system, which will actually become the default module system in Factor 0.89. In the UI, enter the following:<br /><pre>"libs/vocabs" require<br />USE: golden-section<br />golden-section-window</pre>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2007/02/factor-088-released.html' itemprop='url'/>
+<a class='timestamp-link' href='factor-088-released.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2007-02-28T23:24:00-05:00'>11:24 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=3770398915062080639' onclick=''>
+No comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=3770398915062080639' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=3770398915062080639&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3770398915062080639&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3770398915062080639&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3770398915062080639&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3770398915062080639&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3770398915062080639&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Tuesday, February 27, 2007</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='http://factorcode.org/maze.png' itemprop='image_url'/>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='1374169610763178752' itemprop='postId'/>
+<a name='1374169610763178752'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='random-maze-generator.html'>Random maze generator</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-1374169610763178752' itemprop='description articleBody'>
+I couldn't resist and ported another one of Jon Harrop's demos to Factor. This time it is the <a href="http://www.ffconsultancy.com/ocaml/maze/index.html">Random Maze Generator</a>.<br /><img src="http://factorcode.org/maze.png"><br />The code:<br /><pre>! From http://www.ffconsultancy.com/ocaml/maze/index.html<br />USING: sequences namespaces math opengl arrays gadgets <br />gadgets-theme kernel ;<br />IN: maze<br /><br />: line-width 8 ;<br /><br />SYMBOL: visited<br /><br />: unvisited? ( cell -- ? ) first2 visited get ?nth ?nth ;<br /><br />: ?set-nth ( elt i seq -- )<br />    2dup bounds-check? [ set-nth ] [ 3drop ] if ;<br /><br />: visit ( cell -- ) f swap first2 visited get ?nth ?set-nth ;<br /><br />: choices ( cell -- seq )<br />    { { -1 0 } { 1 0 } { 0 -1 } { 0 1 } }<br />    [ v+ ] map-with<br />    [ unvisited? ] subset ;<br /><br />: random-neighbour ( cell -- newcell ) choices random ;<br /><br />: vertex ( pair -- )<br />    first2 [ 0.5 + line-width * ] 2apply glVertex2d ;<br /><br />: (draw-maze) ( cell -- )<br />    dup vertex<br />    glEnd<br />    GL_POINTS [ dup vertex ] do-state<br />    GL_LINE_STRIP glBegin<br />    dup vertex<br />    dup visit<br />    dup random-neighbour dup [<br />        (draw-maze) (draw-maze)<br />    ] [<br />        2drop<br />        glEnd<br />        GL_LINE_STRIP glBegin<br />    ] if ;<br /><br />: draw-maze ( n -- )<br />    line-width 2 - glLineWidth<br />    line-width 2 - glPointSize<br />    1.0 1.0 1.0 1.0 glColor4d<br />    dup [ drop t &lt;array&gt; ] map-with visited set<br />    GL_LINE_STRIP glBegin<br />    { 0 0 } dup vertex (draw-maze)<br />    glEnd ;<br /><br />TUPLE: maze dlist ;<br /><br />C: maze ( -- gadget )<br />    dup delegate&gt;gadget<br />    black &lt;solid&gt; over set-gadget-interior ;<br /><br />: n ( gadget -- n ) rect-dim first2 min line-width /i ;<br /><br />: delete-maze-dlist ( maze -- )<br />    dup maze-dlist [ delete-dlist ] when*<br />    f swap set-maze-dlist ;<br /><br />: cache-maze-dlist ( maze -- dlist )<br />    dup maze-dlist [ ] [<br />        dup GL_COMPILE [ n draw-maze ] make-dlist<br />        dup rot set-maze-dlist<br />    ] ?if ;<br /><br />M: maze layout* delete-maze-dlist ;<br /><br />M: maze ungraft* delete-maze-dlist ;<br /><br />M: maze draw-gadget*<br />    origin get [ cache-maze-dlist glCallList ] with-translation ;<br /><br />M: maze pref-dim* drop { 400 400 } ;<br /><br />: maze-window &lt;maze&gt; "Maze" open-window ;<br />    <br />PROVIDE: demos/maze ;<br /><br />MAIN: demos/maze maze-window ;</pre>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2007/02/random-maze-generator.html' itemprop='url'/>
+<a class='timestamp-link' href='random-maze-generator.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2007-02-27T21:38:00-05:00'>9:38 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=1374169610763178752' onclick=''>
+2 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=1374169610763178752' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=1374169610763178752&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1374169610763178752&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1374169610763178752&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1374169610763178752&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1374169610763178752&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1374169610763178752&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='http://factorcode.org/bunny.png' itemprop='image_url'/>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='8045999427427803046' itemprop='postId'/>
+<a name='8045999427427803046'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='factor-meets-stanford-bunny.html'>Factor meets the Stanford Bunny</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-8045999427427803046' itemprop='description articleBody'>
+I ported another one of Jon D. Harrop's Ocaml demos to Factor, this time the <a href="http://www.ffconsultancy.com/ocaml/bunny/index.html">Stanford Bunny</a>. From the page: "The Stanford bunny is a 3D mesh of triangles commonly used as a benchmark for computer graphics applications."<br /><br />Screenshot:<br /><img src="http://factorcode.org/bunny.png"><br /><br />I found an FFI bug while working on this; on Mac OS X, Factor would spill floating point parameters on the C stack if there was more than 8 of them, however this is only correct for Linux. The Mac OS X PowerPC ABI stipulates that the first 13 floating point parameters are passed in registers.<br /><br />I also had a problem where the depth buffer was not working on Mac OS X. Thanks to Kevin P. Reid (kpreid on #concatenative) who asked:<br /><pre>kpreid: well, did you ask for a depth buffer? :)</pre><br />Turns out I did not ask for a depth buffer, and I had to change the code which creates the Cocoa GLView to request one. This is not a good solution since now every UI window has a depth buffer, wasting memory. And of course at some point somebody will come along and want to do something with accumulation buffers, stereo display, and other odd stuff. So eventually I'll need a portable way to configure the GL context. For now, changing the Cocoa, X11 and Windows UI backends to always request a depth buffer will suffice.<br /><br />I wanted to ship this demo with Factor, but the data file is 2.9 Mb. So what the program does is download the data file (using libs/http-client) and save it the first time it is run. Clean and elegant.<br /><br />Source code - this time it's only 4 lines longer than the Ocaml version:<br /><pre>! From http://www.ffconsultancy.com/ocaml/bunny/index.html<br />USING: alien-contrib arrays sequences math io kernel<br />matrices opengl shuffle gadgets http-client tools<br />vectors timers namespaces ;<br />IN: bunny<br /><br />: numbers ( str -- seq )<br />    " " split [ string&gt;number ] map [ ] subset ;<br /><br />: (parse-model) ( vs is -- vs is )<br />    readln [<br />        numbers {<br />            { [ dup length 5 = ] [ 3 head pick push ] }<br />            { [ dup first 3 = ] [ 1 tail over push ] }<br />            { [ t ] [ drop ] }<br />        } cond (parse-model)<br />    ] when* ;<br /><br />: parse-model ( stream -- vs is )<br />    [<br />        100000 &lt;vector&gt; 100000 &lt;vector&gt; (parse-model)<br />    ] with-stream<br />    [<br />        over length # " vertices, " %<br />        dup length # " triangles" %<br />    ] "" make print ;<br /><br />: n ( vs triple -- n )<br />    [ swap nth ] map-with<br />    dup third over first v- &gt;r dup second swap first v- r&gt; cross<br />    vneg normalize ;<br /><br />: normal ( ns vs triple -- )<br />    [ n ] keep [ rot [ v+ ] change-nth ] each-with2 ;<br /><br />: normals ( vs is -- ns )<br />    over length { 0.0 0.0 0.0 } &lt;array&gt; -rot<br />    [ &gt;r 2dup r&gt; normal ] each drop<br />    [ normalize ] map ;<br /><br />: read-model ( stream -- model )<br />    "Reading model" print flush [<br />        &lt;file-reader&gt; parse-model [ normals ] 2keep 3array<br />    ] time ;<br /><br />: model-path "demos/bunny/bun_zipper.ply" ;<br /><br />: model-url "http://factorcode.org/bun_zipper.ply" ;<br /><br />: maybe-download ( -- path )<br />    model-path resource-path dup exists? [<br />        "Downloading bunny from " write<br />        model-url dup print flush<br />        over download<br />    ] unless ;<br /><br />: draw-triangle ( ns vs triple -- )<br />    [<br />        dup roll nth first3 glNormal3d<br />        swap nth first3 glVertex3d<br />    ] each-with2 ;<br /><br />: draw-bunny ( ns vs is -- )<br />    GL_TRIANGLES [ [ draw-triangle ] each-with2 ] do-state ;<br /><br />: cache-bunny ( triple -- displaylist )<br />    GL_COMPILE [ first3 draw-bunny ] make-dlist ;<br /><br />TUPLE: bunny-gadget dlist model ;<br /><br />C: bunny-gadget ( model -- gadget )<br />    &lt;gadget&gt; over set-gadget-delegate<br />    [ set-bunny-gadget-model ] keep ;<br /><br />M: bunny-gadget graft* 10 10 add-timer ;<br /><br />M: bunny-gadget ungraft*<br />    dup remove-timer<br />    bunny-gadget-dlist [ delete-dlist ] when* ;<br /><br />M: bunny-gadget tick relayout-1 ;<br /><br />: aspect ( gadget -- x ) rect-dim first2 /f ;<br /><br />: cache-bunny-dlist ( gadget -- dlist )<br />    dup bunny-gadget-dlist [ ] [<br />        dup bunny-gadget-model cache-bunny<br />        dup rot set-bunny-gadget-dlist<br />    ] ?if ;<br /><br />M: bunny-gadget draw-gadget*<br />    GL_DEPTH_TEST glEnable<br />    GL_SCISSOR_TEST glDisable<br />    1.0 glClearDepth<br />    GL_DEPTH_BUFFER_BIT glClear<br />    0.0 0.0 0.0 1.0 glClearColor<br />    GL_COLOR_BUFFER_BIT glClear<br />    GL_PROJECTION glMatrixMode<br />    glLoadIdentity<br />    45.0 over aspect 0.1 1.0 gluPerspective<br />    0.0 0.12 -0.25  0.0 0.1 0.0  0.0 1.0 0.0 gluLookAt<br />    GL_MODELVIEW glMatrixMode<br />    glLoadIdentity<br />    GL_LEQUAL glDepthFunc<br />    GL_LIGHTING glEnable<br />    GL_LIGHT0 glEnable<br />    GL_COLOR_MATERIAL glEnable<br />    GL_LIGHT0 GL_POSITION { 1.0 -1.0 1.0 1.0 } &gt;float-array glLightfv<br />    millis 24000 mod 0.015 * 0.0 1.0 0.0 glRotated<br />    GL_FRONT_AND_BACK GL_SHININESS 100.0 glMaterialf<br />    GL_FRONT_AND_BACK GL_SPECULAR glColorMaterial<br />    GL_FRONT_AND_BACK GL_AMBIENT_AND_DIFFUSE glColorMaterial<br />    0.6 0.5 0.5 1.0 glColor4d<br />    cache-bunny-dlist glCallList ;<br /><br />M: bunny-gadget pref-dim* drop { 400 300 } ;<br /><br />: bunny-window ( -- )<br />    maybe-download read-model &lt;bunny-gadget&gt;<br />    "Bunny" open-window ;</pre>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2007/02/factor-meets-stanford-bunny.html' itemprop='url'/>
+<a class='timestamp-link' href='factor-meets-stanford-bunny.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2007-02-27T20:25:00-05:00'>8:25 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=8045999427427803046' onclick=''>
+No comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=8045999427427803046' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=8045999427427803046&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=8045999427427803046&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=8045999427427803046&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=8045999427427803046&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=8045999427427803046&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=8045999427427803046&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='2126851753602330461' itemprop='postId'/>
+<a name='2126851753602330461'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='linuxppc-support-and-assorted-ffi.html'>Linux/PPC support and assorted FFI improvements</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-2126851753602330461' itemprop='description articleBody'>
+For the last two weeks I've mostly been working on some C library interface (FFI) improvements. FFI work involves dealing with a lot of platform-specific, arcane, poorly documented details, so it is not the most fun thing to code, but it has to be done. It is not too bad, actually, because I get to learn a lot about OS and CPU architecture. So here are the recent improvements:<br /><ul><br /><li>Calling C functions returning structs by value is now supported</li><br /><li>Factor callbacks can return structs by value too</li><br /><li>Support for stdcall callbacks on Windows</li><br /><li>The Linux/ARM port now has working FFI</li><br /><li>The Linux/PPC port now has working FFI</li><br /></ul><br />Now with these out of the way, Factor 0.88 is ready for release.<br /><br />The C library interface is quite complete now. Here is what it already supports:<br /><ul><br /><li>Easy to use: no glue code has to be written in C, concise</li><br /><li>Relatively efficient</li><br /><li>Supports both stdcall and cdecl ABIs on Windows (and as of 0.88 this support is complete)</li><br /><li>Integer and floating point parameters, return values</li><br /><li>Automatic conversion for ASCII and UTF16 C string parameters, returns</li><br /><li>Declaring C struct and union types, allocating/deallocating/mutating C data</li><br /><li>Passing struct parameters by reference and value (value struct returns were missing until 0.88)</li><br /><li>Calling C functions indirectly by function pointer</li><br /><li>Callbacks from C to Factor</li><br /></ul><br />I'm quite proud of how well it works. There are only a few missing features, and I will be adding all of them in the near future:<br /><ul><br /><li>"long long" return values work on 32-bit systems, but not "long long" parameters</li><br /><li>Declaring structs and unions which contain fixed-size value arrays</li><br /><li>Passing floating point parameters on ARM</li><br /></ul><br />Apart from these I can't really think of anything else I could add to the FFI. It really does seem quite complete and portable these days.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2007/02/linuxppc-support-and-assorted-ffi.html' itemprop='url'/>
+<a class='timestamp-link' href='linuxppc-support-and-assorted-ffi.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2007-02-27T02:40:00-05:00'>2:40 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=2126851753602330461' onclick=''>
+2 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=2126851753602330461' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=2126851753602330461&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2126851753602330461&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2126851753602330461&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2126851753602330461&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2126851753602330461&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2126851753602330461&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Monday, February 26, 2007</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='2127695704453704773' itemprop='postId'/>
+<a name='2127695704453704773'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='sudoko-solver-in-factor.html'>Sudoku solver in Factor</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-2127695704453704773' itemprop='description articleBody'>
+I ported this <a href="http://www.ffconsultancy.com/ocaml/sudoku/index.html">Ocaml Sudoku solver</a> to Factor.<br /><br />The author boasts his is a "19-line (769-byte) OCaml program"; however it is actually 918 bytes. Perhaps he did not count whitespace. The Factor version is 55 lines (if one doesn't count the example at the end) and 1315 bytes. The line counts cannot be compared because I like having lots of blank lines, and short lines; but the larger byte count is a result of Factor being a bit more verbose than Ocaml for this type of stuff, and the fact that I use longer names ('board' -vs- 'm' for example) and tend to name factors instead of having long definitions.<br /><br />Also I've noticed there are a few generally reusable words showing up when I write code that works on 2D arrays, like in this sudoko solver, libs/matrices/, and libs/levenshtein/. I think at some point I will take all the common code and try to come up with a library for 2-dimensional or multi-dimensional arrays.<br /><br />Here is the code; its in <code>demos/sudoku</code> now:<br /><pre>! Based on http://www.ffconsultancy.com/ocaml/sudoku/index.html<br />USING: sequences namespaces kernel math io prettyprint ;<br />IN: sudoku<br /><br />SYMBOL: solutions<br />SYMBOL: board<br /><br />: pair+ swapd + &gt;r + r&gt; ;<br /><br />: row board get nth ;<br />: board&gt; row nth ;<br />: &gt;board row set-nth ;<br />: f&gt;board f -rot &gt;board ;<br /><br />: row-contains? ( n y -- ? ) row member? ;<br />: col-contains? ( n x -- ? ) board get swap &lt;column&gt; member? ;<br />: cell-contains? ( n x y i -- ? ) 3 /mod pair+ board&gt; = ;<br /><br />: box-contains? ( n x y -- ? )<br />    [ 3 /i 3 * ] 2apply<br />    9 [ &gt;r 3dup r&gt; cell-contains? ] contains?<br />    &gt;r 3drop r&gt; ;<br /><br />DEFER: search<br /><br />: assume ( n x y -- )<br />    [ &gt;board ] 2keep [ &gt;r 1+ r&gt; search ] 2keep f&gt;board ;<br /><br />: attempt ( n x y -- )<br />    {<br />        { [ 3dup nip row-contains? ] [ 3drop ] }<br />        { [ 3dup drop col-contains? ] [ 3drop ] }<br />        { [ 3dup box-contains? ] [ 3drop ] }<br />        { [ t ] [ assume ] }<br />    } cond ;<br /><br />: solve ( x y -- ) 9 [ 1+ pick pick attempt ] each 2drop ;<br /><br />: solution. ( -- ) solutions inc "Solution:" print board get . ;<br /><br />: search ( x y -- )<br />    {<br />        { [ over 9 = ] [ &gt;r drop 0 r&gt; 1+ search ] }<br />        { [ over 0 = over 9 = and ] [ 2drop solution. ] }<br />        { [ 2dup board&gt; ] [ &gt;r 1+ r&gt; search ] }<br />        { [ t ] [ solve ] }<br />    } cond ;<br /><br />: sudoku ( board -- )<br />    [<br />        "Puzzle:" print dup .<br /><br />        0 solutions set<br />        [ clone ] map board set<br /><br />        0 0 search<br /><br />        solutions get number&gt;string write " solutions." print<br />    ] with-scope ;<br /><br />PROVIDE: demos/sudoku ;<br /><br />MAIN: demos/sudoku<br />    {<br />        { f f 1 f f 5 3 f f }<br />        { f 5 f 4 9 f f f f }<br />        { f f f 1 f 2 f 6 4 }<br />        { f f f f f f 7 5 f }<br />        { 6 f f f f f f f 1 }<br />        { f 3 5 f f f f f f }<br />        { 4 6 f 9 f 3 f f f }<br />        { f f f f 2 4 f 9 f }<br />        { f f 3 6 f f 1 f f }<br />    } sudoku ;</pre>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2007/02/sudoko-solver-in-factor.html' itemprop='url'/>
+<a class='timestamp-link' href='sudoko-solver-in-factor.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2007-02-26T00:52:00-05:00'>12:52 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=2127695704453704773' onclick=''>
+2 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=2127695704453704773' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=2127695704453704773&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2127695704453704773&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2127695704453704773&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2127695704453704773&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2127695704453704773&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2127695704453704773&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Thursday, February 22, 2007</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='9196026582624819831' itemprop='postId'/>
+<a name='9196026582624819831'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='gram-schmidt-in-factor.html'>Gram-Schmidt in Factor</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-9196026582624819831' itemprop='description articleBody'>
+Here is the <a href="http://en.wikipedia.org/wiki/Gram-Schmidt_process">Gram-Schmidt</a> algorithm in Factor:<br /><pre>: proj ( v u -- w )<br />    [ [ v. ] keep norm-sq / ] keep n*v ;<br /><br />: (gram-schmidt) ( v seq -- newseq )<br />    dupd [ proj v- ] each-with ;<br /><br />: gram-schmidt ( seq -- orthogonal )<br />    V{ } clone [ over (gram-schmidt) over push ] reduce ;<br /><br />: norm-gram-schmidt ( seq -- orthonormal )<br />    gram-schmidt [ normalize ] map ;</pre><br />I coded this because I thought I needed this for something I'm working on, and it turns out I did not, so I made a weblog entry from it instead. :-) However if this ends up being useful, I'll re-implement the numerically-stable variant.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2007/02/gram-schmidt-in-factor.html' itemprop='url'/>
+<a class='timestamp-link' href='gram-schmidt-in-factor.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2007-02-22T06:19:00-05:00'>6:19 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=9196026582624819831' onclick=''>
+No comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=9196026582624819831' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=9196026582624819831&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=9196026582624819831&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=9196026582624819831&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=9196026582624819831&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=9196026582624819831&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=9196026582624819831&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Monday, February 19, 2007</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='4731022603021389649' itemprop='postId'/>
+<a name='4731022603021389649'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='factor-ported-to-openbsdx86.html'>Factor ported to OpenBSD/x86</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-4731022603021389649' itemprop='description articleBody'>
+Factor in darcs now runs on OpenBSD/x86. Porting to OpenBSD on top of PowerPC, ARM and other CPU architectures is trivial but not automatic: unlike Linux, the <code>ucontext_t</code> structure, used in signal handlers, is CPU-specific.<br /><br />You will need to install a gcc version more recent than 3.3 on your OpenBSD box. Upgrading gcc seems to be a non-trivial affair.<br /><br />Also, at one time we had testers for Solaris/x86 and Linux/PPC. Not anymore, unfortunately, and recent changes to the runtime and FFI lead me to believe that Factor may no longer work on these platforms. I'm going to test Factor on Linux/PPC before releasing 0.88, but I don't have the time, inclination or hardware to maintain a Solaris/x86 install. If you're interested in seeing support, please post to the mailing list or drop by <code>#concatenative</code>.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2007/02/factor-ported-to-openbsdx86.html' itemprop='url'/>
+<a class='timestamp-link' href='factor-ported-to-openbsdx86.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2007-02-19T02:47:00-05:00'>2:47 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=4731022603021389649' onclick=''>
+2 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=4731022603021389649' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=4731022603021389649&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=4731022603021389649&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=4731022603021389649&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=4731022603021389649&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=4731022603021389649&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=4731022603021389649&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Monday, February 12, 2007</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='7069904887259070666' itemprop='postId'/>
+<a name='7069904887259070666'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='mysql-bindings.html'>MySQL bindings</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-7069904887259070666' itemprop='description articleBody'>
+Berlin Brown has contributed bindings for the MySQL database client library, along with some Factorish wrappers. Support for prepared statements is in the works. The code is in the darcs repository in <code>libs/mysql</code>.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2007/02/mysql-bindings.html' itemprop='url'/>
+<a class='timestamp-link' href='mysql-bindings.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2007-02-12T22:00:00-05:00'>10:00 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=7069904887259070666' onclick=''>
+4 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=7069904887259070666' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=7069904887259070666&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7069904887259070666&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7069904887259070666&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7069904887259070666&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7069904887259070666&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=7069904887259070666&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Sunday, February 11, 2007</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='6629170447545213498' itemprop='postId'/>
+<a name='6629170447545213498'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='exciting-bug.html'>Exciting bug</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-6629170447545213498' itemprop='description articleBody'>
+I just fixed a bug in Factor which had me stumped for several hours. The problem was that on PowerPC, Factor would crash on startup if the data heap was 2 gigabytes or larger. Preliminary investigation showed that this was only a problem if the library was compiled; bootstrapping with <code>-no-compile</code> first yielded an image which worked fine with a 2gb data heap. And indeed, compiling something as simple as the <code>+</code> word would cause a crash. Now + is called a lot, so if it is miscompiled Factor doesn't survive long enough to read another line of input in the listener. So instead I used a trick to compile + but put the compiled definition in another word. Testing didn't reveal any problems, though;<br /><code>0 0 blah .<br />  3<br />1 3 blah .<br />  4<br />... etc, with various data types, everything worked<br /></code><br />However as soon as I swapped in the definition of <code>blah</code> for <code>+</code>, Factor would instantly crash. Some further investigation revealed this:<br /><code><br />  0 0 blah 0 =<br />t<br />  0 0 blah 0 > .<br />t<br />  0 0 blah class .<br />bignum</code><br />So this is why my earlier testing didn't reveal the problem. The sum of 0 with 0 became a corrupted bignum, which is apparently larger than 0. But indeed, 0 plus 0 should be a fixnum and not overflow to a bignum at all, much less a corrupted one.<br /><br />I looked at the disassembly for <code>+</code> specialized to fixnum arguments; my first suspicion was some kind of singed/unsigned integer issue in the VM, but the assembly generated was identical with a 2gb heap or a typical 64mb one:<br /><pre>0x0516d020:     lwz     r3,-4(r14)<br />0x0516d024:     lwz     r4,0(r14)<br />0x0516d028:     mtxer   r0<br />0x0516d02c:     addo.   r5,r4,r3<br />0x0516d030:     bns-    0x516d094<br />... code to handle overflow, if there is one ...<br />0x0516d094:     stw     r5,-4(r14)<br />0x0516d098:     addi    r14,r14,-4<br /></pre><br />Single-stepping through this code in gdb revealed that with a 2gb heap, the overflow branch was always taken, even if there was no overflow. The exact same code behaved correctly with the default heap size.<br /><br />Then it hit me like a ton of bricks. The intention of this instruction is to store a zero in the XER register:<br /><code>0x0516d028:     mtxer   r0</code><br />But it actually stores the value of the register r0! I'm sure I knew this when I was writing the code, but for some reason I didn't notice I had made a mistake. Well, some two years (!) later, the bug manifests itself.<br /><br />Why didn't this bug appear earlier? The reason is simple. The Factor code generator doesn't use r0 as a general purpose scratch register, because its not really general purpose; some instructions assume an operand of r0 means a literal zero (perhaps I thought mtxer behaves like this). So the code generator only ever uses r0 to store return addresses in the subroutine prologue/epilogue sequences. So when <code>+</code> was called with a pair of fixnums, some random return address was being stuffed into XER; not zero as intended! But amazingly, everything worked, until I thought to test Factor with a larger data heap. The reason it worked is also simple; the code heap is mapped in directly after the data heap, so if the code heap was mapped large enough, storing a return address into XER had the effect of enabling the overflow bit, causing the following BNS instruction to always take the branch.<br /><br />What an embarrassing bug! I hope the compiler implementation Gods can forgive me for forgetting to initialize a register.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2007/02/exciting-bug.html' itemprop='url'/>
+<a class='timestamp-link' href='exciting-bug.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2007-02-11T18:59:00-05:00'>6:59 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=6629170447545213498' onclick=''>
+1 comment:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=6629170447545213498' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=6629170447545213498&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=6629170447545213498&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=6629170447545213498&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=6629170447545213498&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=6629170447545213498&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=6629170447545213498&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Saturday, February 10, 2007</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='69938761731659293' itemprop='postId'/>
+<a name='69938761731659293'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='automatically-detecting-sse2.html'>Automatically detecting SSE2, and other stuff</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-69938761731659293' itemprop='description articleBody'>
+Bleeding edge Factor no longer has separate x86 boot images with and without SSE2 support. Instead, SSE2 is detected at the start of bootstrap. You can override this to produce an SSE2-less image on Pentium 4 chips with the <code>-no-sse2</code> switch.<br /><br />Basically we use the CPUID instruction, present on the original Pentium and above (and what if you want to run Factor on a 486? Sucks to be you! You'll need an FPU, at least, but it will work. Just pass the <code>-no-sse2</code> switch to skip detection altogether). The code for this was written by Doug, with a bit of explanation on my part regarding some (presently undocumented) compiler internals. It serves as a simple demonstration of defining a new compiler intrinsic. <a href="http://factorcode.org/repos/Factor/core/compiler/x86/cpuid.factor">Check it out</a>.<br /><br />... and what about the ARM port? There was a "day 4", but I didn't blog about it, because it was boring... all I did was fix some bugs and define some intrinsics. However I was doing all this in QEMU, because my Gumstix was borked (I corrupted the root fs). QEMU was too slow to be usable and it was quite frustrating to use, so I put the port aside. I ordered a serial daughterboard for my Gumstix, which arrived today, and I successfully reflashed it. So the porting work will continue, and in fact the only thing that remains is FFI support.<br /><br />A major core feature I implemented in the last few days is an automatically growing data heap. You can still specify a heap size larger than the default on startup, but its not necessary because it will grow as needed.<br /><br />The release of 0.88 is approaching fast. I just have to finish the ARM port and fix assorted bugs. I'm also hoping some cool upcoming libraries from contributors will be completed before the release. Chris has some mysterious uberframework which combines the Factor to JavaScript compiler with distributed concurrency and the HTTP server. Dan is working on Unicode 5.0 support. We also have AVL trees and binary heaps in the works, respectively from Alex and some other gentleman whose name escapes me right now, unfortunately.<br /><br />Lots of hacking all around.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2007/02/automatically-detecting-sse2.html' itemprop='url'/>
+<a class='timestamp-link' href='automatically-detecting-sse2.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2007-02-10T04:01:00-05:00'>4:01 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=69938761731659293' onclick=''>
+1 comment:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=69938761731659293' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=69938761731659293&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=69938761731659293&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=69938761731659293&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=69938761731659293&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=69938761731659293&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=69938761731659293&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Saturday, February 03, 2007</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='1516579829048751009' itemprop='postId'/>
+<a name='1516579829048751009'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='double-trouble.html'>Double Trouble</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-1516579829048751009' itemprop='description articleBody'>
+Chris Double is a coding machine:<br /><ul><li><a href="http://www.bluishcoder.co.nz/2007/02/lunar-rescue-emulator.html">Lunar Rescue Emulator</a></li><li><a href="http://www.bluishcoder.co.nz/2007/02/space-invaders-gets-sound.html">Space Invaders gets sound</a></li><li><a href="http://www.bluishcoder.co.nz/2007/02/openal-library-wrapper-for-factor.html">OpenAL bindings for Factor</a></li></ul>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2007/02/double-trouble.html' itemprop='url'/>
+<a class='timestamp-link' href='double-trouble.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2007-02-03T14:43:00-05:00'>2:43 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=1516579829048751009' onclick=''>
+No comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=1516579829048751009' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=1516579829048751009&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1516579829048751009&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1516579829048751009&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1516579829048751009&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1516579829048751009&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=1516579829048751009&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Thursday, February 01, 2007</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='5021279257960344399' itemprop='postId'/>
+<a name='5021279257960344399'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='arm-port-day-3.html'>ARM port day 3</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-5021279257960344399' itemprop='description articleBody'>
+The Factor compiler backend architecture has multiple tiers. There are several levels of compilation one can implement:<br /><ul><li>Basic stack shuffling, subroutine calls, branching, with most primitives being compiled as calls into C code</li><li>Intrinsics can be selectively defined to replace calls to primitives with open-coded assembly making use of register allocation and minimizing stack shuffling</li><li>C library interface and callback support</li></ul><br />The last one is not really optional since key components of Factor (non-blocking I/O, transcendental math functions, etc) depend on the C library interface. However, traditionally I have done that part last when porting Factor to a new architecture, since it usually requires the most fiddling and is easier to test if everything else works. Open-coding certain primitives such as <code>slot</code>, <code>fixnum+</code> can bring huge performance improvements because it eliminates branching and memory transfers from inner loops, but this is optional.<br /><br />Today I only got as far as the first level of support in the ARM backend. Basically, one has to implement various words which are called by the compiler to generate branches, generate calls, load stack values to registers, write registers to the stack, and so on. There is only a small number of such words. Also, one must describe the register file of the architecture for the register allocator. While the register allocator is not used much without intrinsics, it still plays a role in the compilation of stack shuffles (which never result in calls into C, they're always open-coded). So I worked on this one file for the most part:<br /><ul><li><a href="http://factorcode.org/repos/Factor/core/compiler/arm/architecture.factor">core/compiler/arm/architecture.factor</a></li></ul><br />Despite claiming to be a RISC architecture, ARM feels more like CISC, with the multiple load/store instructions (which I haven't used yet) and complex operand and addressing modes, including automatic pre- and post- increment on memory loads and stores. This makes ARM code a pleasure to write compared to say, PowerPC. I also find it nicer than x86 because it doesn't have odd limitations and bizarre legacy cruft.<br /><br />Getting relocation right was the hardest part, really. When the Factor compiler builds up a compiled code block corresponding to a word, it does not know the final address the code will be stored at; and indeed, even if it did, saving the image and restarting Factor may very well load the image at a different base address. So the compiler has to retain as much information as is needed for the VM to be able to "fix up" compiled code when the image is loaded. Relocation information is recorded in a table along with every compiled code block, and essentially consists of a list of instructions; "store the address of this word at this offset", "fix up this absolute address for the current code heap base", and so on. Since ARM instruction encoding is different from x86 and PowerPC, I had to add some new relocation instructions for updating offsets in packed ARM instruction fields.<br /><ul> <li><a href="http://factorcode.org/repos/Factor/vm/compiler.h">vm/compiler.h</a></li> <li><a href="http://factorcode.org/repos/Factor/vm/compiler.c">vm/compiler.c</a></li> <li><a href="http://factorcode.org/repos/Factor/core/compiler/generator/xt.factor">core/compiler/generator/xt.factor</a></li> </ul><br />The annoying part came when I was coding support for compiling references to literals. On x86, an immediate operand can be 32 bits; on PowerPC, only 16 bits, so a load of a 32 bit value is synthesized as a pair of instructions, a load followed by a shift-load. On ARM, only 8 bit immediates with a 4 bit rotation are supported. Constructing larger integers and addresses from 8 bit chunks is retarded; thankfully, ARM does support PC-relative addressing, so what compilers tend to do is deposit the large integers close to the compiled code (close enough for a 12 bit displacement on a load instruction), and load it via PC-relative addressing.<br /><br />A similar situation occurs when one wishes to call the C VM. Calls between compiled words are not a problem, because a PC-relative branch can have up to 26 bits displacement, which is enough for a pretty large code heap. However, there is no guarantee that the Linux kernel will map the C VM text segment close enough to the mmapped code heap for a 26 bit branch to be sufficient. Again, on PowerPC, we use a pair of instructions to synthesize a 32 bit address, then jump there. On ARM, I decided to go with a simpler approach which doesn't require relocation at all; I just put the list of primitives in a global register variable, R8. Then a call to a primitive call be done by a displaced load from R8 with the constant displacement being a primitive number.<br /><br />I also found a bug in the ARM assembler, added a unit test, and fixed it. I like being able to unit test assembly code, I only wish that I had the foresight to implement the post-0.85 assembler design from the very start, so that the x86 and PowerPC assemblers could be unit tested when I was working on them. Nowadays they are relative stable and rarely change, but at one point I might write unit tests for them anyway.<br /><br />So after 3 days work, what I have is essentially a <a href="http://en.wikipedia.org/wiki/Threaded_code#Subroutine_threading">subroutine threaded compiler</a> for ARM with minor optimizations. This is a rather trivial accomplishment in itself; however, tomorrow I will start writing intrinsics for the most critical primitives, and this will result in a noticeable performance boost, with the full force of the register allocator and dataflow optimizer coming into play.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2007/02/arm-port-day-3.html' itemprop='url'/>
+<a class='timestamp-link' href='arm-port-day-3.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2007-02-01T00:38:00-05:00'>12:38 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=5021279257960344399' onclick=''>
+No comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=5021279257960344399' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=5021279257960344399&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5021279257960344399&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5021279257960344399&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5021279257960344399&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5021279257960344399&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5021279257960344399&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='http://factor-language.blogspot.com/search?updated-max=2007-03-30T00:14:00-04:00&amp;max-results=7&amp;reverse-paginate=true' id='Blog1_blog-pager-newer-link' title='Newer Posts'>Newer Posts</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='http://factor-language.blogspot.com/search?updated-max=2007-02-01T00:38:00-05:00&amp;max-results=7' id='Blog1_blog-pager-older-link' title='Older Posts'>Older Posts</a>
+</span>
+<a class='home-link' href='../../index.html'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='blog-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://factor-language.blogspot.com/feeds/posts/default' target='_blank' type='application/atom+xml'>Posts (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+<div id='sidebar-wrapper'>
+<div class='sidebar section' id='sidebar'><div class='widget BlogArchive' data-version='1' id='BlogArchive1'>
+<h2>Older Posts</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/index.html'>
+2010
+</a>
+<span class='post-count' dir='ltr'>(18)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/index.html'>
+2009
+</a>
+<span class='post-count' dir='ltr'>(35)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2009/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/index.html'>
+2008
+</a>
+<span class='post-count' dir='ltr'>(96)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(17)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../index.html'>
+2007
+</a>
+<span class='post-count' dir='ltr'>(141)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(10)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(21)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+<ul class='posts'>
+<li><a href='factor-088-released.html'>Factor 0.88 released</a></li>
+<li><a href='random-maze-generator.html'>Random maze generator</a></li>
+<li><a href='factor-meets-stanford-bunny.html'>Factor meets the Stanford Bunny</a></li>
+<li><a href='linuxppc-support-and-assorted-ffi.html'>Linux/PPC support and assorted FFI improvements</a></li>
+<li><a href='sudoko-solver-in-factor.html'>Sudoku solver in Factor</a></li>
+<li><a href='gram-schmidt-in-factor.html'>Gram-Schmidt in Factor</a></li>
+<li><a href='factor-ported-to-openbsdx86.html'>Factor ported to OpenBSD/x86</a></li>
+<li><a href='mysql-bindings.html'>MySQL bindings</a></li>
+<li><a href='exciting-bug.html'>Exciting bug</a></li>
+<li><a href='automatically-detecting-sse2.html'>Automatically detecting SSE2, and other stuff</a></li>
+<li><a href='double-trouble.html'>Double Trouble</a></li>
+<li><a href='arm-port-day-3.html'>ARM port day 3</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/index.html'>
+2006
+</a>
+<span class='post-count' dir='ltr'>(207)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(30)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(25)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(22)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(26)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/index.html'>
+2005
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div><div class='widget Feed' data-version='1' id='Feed2'>
+<h2>Recent Factor Commits</h2>
+<div class='widget-content' id='Feed2_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://gitweb.factorcode.org/gitweb.cgi?p=factor.git;a=atom'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget Feed' data-version='1' id='Feed1'>
+<h2>Planet Factor</h2>
+<div class='widget-content' id='Feed1_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://planet.factorcode.org/feed.xml'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget LinkList' data-version='1' id='LinkList1'>
+<h2>Links</h2>
+<div class='widget-content'>
+<ul>
+<li><a href='http://twitter.com/slava_pestov'>@slava_pestov</a></li>
+<li><a href='http://factorcode.org/slava/'>My home page</a></li>
+<li><a href='http://factorcode.org/'>Factor programming language</a></li>
+<li><a href='http://concatenative.org/'>Concatenative language wiki</a></li>
+<li><a href='http://planet.factorcode.org/'>Planet Factor</a></li>
+</ul>
+<div class='clear'></div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class='clear'>&#160;</div>
+</div>
+<!-- end content-wrapper -->
+<div id='footer-wrapper'>
+<div class='footer no-items section' id='footer'></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/940443484-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY5-dvTi6-Qz14bD0XqD-MfcsmVz4w:1693932734483';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d17087850','//factor-language.blogspot.com/2007/02/','17087850');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '17087850', 'title': 'Factor: a practical stack language', 'url': 'http://factor-language.blogspot.com/2007/02/', 'canonicalUrl': 'http://factor-language.blogspot.com/2007/02/', 'homepageUrl': 'http://factor-language.blogspot.com/', 'searchUrl': 'http://factor-language.blogspot.com/search', 'canonicalHomepageUrl': 'http://factor-language.blogspot.com/', 'blogspotFaviconUrl': 'http://factor-language.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en-US', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Factor: a practical stack language - RSS\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/17087850/posts/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/591781cadcbb8744', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'archive', 'pageName': 'February 2007', 'pageTitle': 'Factor: a practical stack language: February 2007'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'isResponsive': false, 'isAlternateRendering': false, 'isCustom': false}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Factor: a practical stack language', 'description': '\x3ca href\x3d\x22http://factorcode.org/slava\x22\x3eSlava Pestov\x3c/a\x3e\x27s weblog, primarily about \x3ca href\x3d\x22http://factorcode.org\x22\x3eFactor\x3c/a\x3e.', 'url': 'http://factor-language.blogspot.com/2007/02/', 'type': 'feed', 'isSingleItem': false, 'isMultipleItems': true, 'isError': false, 'isPage': false, 'isPost': false, 'isHomepage': false, 'isArchive': true, 'isLabelSearch': false, 'archive': {'year': 2007, 'month': 2, 'rangeMessage': 'Showing posts from February, 2007'}}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1333563935-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/3268905543-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed2', 'sidebar', document.getElementById('Feed2'), {'title': 'Recent Factor Commits', 'showItemDate': true, 'showItemAuthor': true, 'feedUrl': 'http://gitweb.factorcode.org/gitweb.cgi?p\x3dfactor.git;a\x3datom', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed1', 'sidebar', document.getElementById('Feed1'), {'title': 'Planet Factor', 'showItemDate': true, 'showItemAuthor': false, 'feedUrl': 'http://planet.factorcode.org/feed.xml', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList1', 'sidebar', document.getElementById('LinkList1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>

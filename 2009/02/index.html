@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html dir='ltr'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/55013136-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='../../favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='index.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Factor: a practical stack language - RSS" href="http://factor-language.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="https://www.blogger.com/feeds/17087850/posts/default" />
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<meta content='http://factor-language.blogspot.com/2009/02/' property='og:url'/>
+<meta content='Factor: a practical stack language' property='og:title'/>
+<meta content='&lt;a href=&quot;http://factorcode.org/slava&quot;&gt;Slava Pestov&lt;/a&gt;&#39;s weblog, primarily about &lt;a href=&quot;http://factorcode.org&quot;&gt;Factor&lt;/a&gt;.' property='og:description'/>
+<title>Factor: a practical stack language: February 2009</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Stretch Denim Light
+Designer: Darren Delaye
+URL:      www.DarrenDelaye.com
+Date:     11 Jul 2006
+-----------------------------------------------
+*/
+body {
+background: #ffffff;
+margin: 0;
+padding: 0px;
+font: x-small Verdana, Arial;
+text-align: center;
+color: #333333;
+font-size/* */:/**/small;
+font-size: /**/small;
+}
+a:link {
+color: #336699;
+}
+a:visited {
+color: #336699;
+}
+a img {
+border-width: 0;
+}
+#outer-wrapper {
+font: normal normal 100% Verdana, Arial, Sans-serif;;
+}
+/* Header
+----------------------------------------------- */
+#header-wrapper {
+margin:0;
+padding: 0;
+background-color: #c4e1ff;
+text-align: left;
+}
+#header {
+margin: 0 2%;
+background-color: #c4e1ff;
+color: #003366;
+padding: 0;
+font: normal normal 210% Verdana, Arial, Sans-serif;;
+position: relative;
+}
+h1.title {
+padding-top: 38px;
+margin: 0 1% .1em;
+line-height: 1.2em;
+font-size: 100%;
+}
+h1.title a, h1.title a:visited {
+color: #003366;
+text-decoration: none;
+}
+#header .description {
+display: block;
+margin: 0 1%;
+padding: 0 0 40px;
+line-height: 1.4em;
+font-size: 50%;
+}
+/* Content
+----------------------------------------------- */
+.clear {
+clear: both;
+}
+#content-wrapper {
+margin: 0 2%;
+padding: 0 0 15px;
+text-align: left;
+background-color: #ffffff;
+border: 1px solid #ffffff;
+border-top: 0;
+}
+#main-wrapper {
+margin-left: 1%;
+width: 64%;
+float: left;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+margin-right: 1%;
+width: 29%;
+float: right;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2, h3 {
+margin: 0;
+}
+/* Posts
+----------------------------------------------- */
+.date-header {
+margin: 1.5em 0 0;
+font-weight: normal;
+color: #999999;
+font-size: 100%;
+}
+.post {
+margin: 0 0 1.5em;
+padding-bottom: 1.5em;
+}
+.post-title {
+margin: 0;
+padding: 0;
+font-size: 125%;
+font-weight: bold;
+line-height: 1.1em;
+}
+.post-title a, .post-title a:visited, .post-title strong {
+text-decoration: none;
+color: #333333;
+font-weight: bold;
+}
+.post div {
+margin: 0 0 .75em;
+line-height: 1.3em;
+}
+.post-footer {
+margin: -.25em 0 0;
+color: #333333;
+font-size: 87%;
+}
+.post-footer .span {
+margin-right: .3em;
+}
+.post img, table.tr-caption-container {
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin: 1em 20px;
+}
+.post blockquote p {
+margin: .75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin: 1em 0;
+color: #999999;
+}
+#comments h4 strong {
+font-size: 110%;
+}
+#comments-block {
+margin: 1em 0 1.5em;
+line-height: 1.3em;
+}
+#comments-block dt {
+margin: .5em 0;
+}
+#comments-block dd {
+margin: .25em 0 0;
+}
+#comments-block dd.comment-footer {
+margin: -.25em 0 2em;
+line-height: 1.4em;
+font-size: 78%;
+}
+#comments-block dd p {
+margin: 0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar h2 {
+margin: 1.6em 0 .5em;
+padding: 4px 5px;
+background-color: #ffffff;
+font-size: 100%;
+color: #333333;
+}
+.sidebar ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.sidebar li {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: .5em;
+padding-left: 15px;
+text-indent: -15px;
+line-height: 1.5em;
+}
+.sidebar {
+color: #333333;
+line-height:1.3em;
+}
+.sidebar .widget {
+margin-bottom: 1em;
+}
+.sidebar .widget-content {
+margin: 0 5px;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font-weight: bold;
+line-height: 1.6em;
+font-size: 78%;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+clear: both;
+text-align: center;
+color: #333333;
+}
+#footer .widget {
+margin:.5em;
+padding-top: 20px;
+font-size: 85%;
+line-height: 1.5em;
+text-align: left;
+}
+/** Page structure tweaks for layout editor wireframe */
+body#layout #header {
+width: 750px;
+}
+
+--></style>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' rel='stylesheet'/></noscript>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body>
+<div class='navbar section' id='navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d17087850\x26blogName\x3dFactor:+a+practical+stack+language\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dBLUE\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://factor-language.blogspot.com/search\x26blogLocale\x3den_US\x26v\x3d2\x26homepageUrl\x3dhttp://factor-language.blogspot.com/\x26vt\x3d1910212838315471456',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id='outer-wrapper'><div id='wrap2'>
+<!-- skip links for text browsers -->
+<span id='skiplinks' style='display:none;'>
+<a href='index.html#main'>skip to main </a> |
+      <a href='index.html#sidebar'>skip to sidebar</a>
+</span>
+<div id='header-wrapper'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='../../index.html'>
+Factor: a practical stack language
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span><a href="http://factorcode.org/slava">Slava Pestov</a>'s weblog, primarily about <a href="http://factorcode.org">Factor</a>.</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id='content-wrapper'>
+<div id='crosscol-wrapper' style='text-align:center'>
+<div class='crosscol no-items section' id='crosscol'></div>
+</div>
+<div id='main-wrapper'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Friday, February 20, 2009</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='http://factorcode.org/zapfino.png' itemprop='image_url'/>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='5889104754819461636' itemprop='postId'/>
+<a name='5889104754819461636'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='metric-bounds-versus-image-bounds.html'>Metric bounds versus image bounds</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-5889104754819461636' itemprop='description articleBody'>
+With some fonts, the font glyphs exceed the font metric bounds. I wasn't aware of this fact until recently, and because of this some text would be chopped off at the edges.<br /><br />The right way to do things is to compute the image bounds of the text and use that for creating the OpenGL texture, only using metric bounds to actually position the text.<br /><br />To compute image bounds with Core Text, you're meant to use <code>CTLineGetImageBounds()</code>, but this function takes a <code>CTLine</code> as well as a <code>CGContext</code>, which creates a bit of a chicken and egg problem, because I need the image bounds to create the context. The solution I came up with is to keep a dummy 1x1 pixel bitmap context around globally and use that for text measurement.<br /><br />Getting the text position right was a bit tricky; I must thank <a href="http://duriansoftware.com">Joe Groff</a> for helping me get this right.<br /><br />Now, <code>CTLineGetImageBounds()</code> returns a rectangle. The origin of the rectangle is the point at the intersection of the baseline and the caret, and the dimension is the size of the glyphs. So the texture size should be the size of the rectangle (with appropriate rounding to ensure your texture has integral dimension).<br /><br />Inside the texture, the text position should be set to the negation of the image bounds origin, by calling <code>CGContextSetTextPosition</code>. The text position is relative to the <code>CGContext</code>'s text co-ordinate system, which has the origin at the bottom-left corner by default.<br /><br />Now, once you've rendered the texture, you need to compute the texture position. Factor's UI uses a co-ordinate system where the origin is the top-left corner. Suppose you want to diplay the text such that the baseline is at <code>(0,ascent)</code> where <code>ascent</code> is the font ascent, and the image bounds are <code>im.{x,y,w,h}</code>. Then the texture quad should be positioned at <code>(im.x,ascent - im.h - im.y)</code>.<br /><br />I glossed over the details of rounding the texture dimensions and texture position to integral co-ordinates; this is important and a bit tricky to get right, but you can look at the code after I merge it in.<br /><br />After some pixel tweaking, everything works now. In the below screenshot, I've created an editor gadget that displays text with the Zapfino font, and set a one-pixel black border around it. Also note that the text selection and caret positioning doesn't mess up ligatures.<br /><img src="http://factorcode.org/zapfino.png">
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2009/02/metric-bounds-versus-image-bounds.html' itemprop='url'/>
+<a class='timestamp-link' href='metric-bounds-versus-image-bounds.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2009-02-20T21:29:00-05:00'>9:29 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=5889104754819461636' onclick=''>
+2 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=5889104754819461636' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=5889104754819461636&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5889104754819461636&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5889104754819461636&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5889104754819461636&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5889104754819461636&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=5889104754819461636&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Thursday, February 19, 2009</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='9197318761992450623' itemprop='postId'/>
+<a name='9197318761992450623'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='note-about-libdl-functions-on-netbsd.html'>A note about libdl functions on NetBSD and the "Service unavailable" error</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-9197318761992450623' itemprop='description articleBody'>
+On NetBSD, <code>dlopen()</code>, <code>dlsym()</code>, <code>dlerror()</code> and other such functions are implemented as stubs in libc, and the stubs just return an error, "Service unavailable". The ELF loader patches references to these symbols inside binaries to point at the real definitions. Trouble is, if you look up one of these symbols at runtime using <code>dlsym()</code> itself, it will return the address of the stub function and not the correct definition.<br /><br />So amusingly enough, this won't work in Factor on NetBSD:<br /><pre>FUNCTION: void* dlopen ( char* path, int flags ) ;<br />"libX11.so" dlopen .</pre><br />Of course you'd never do the above, but it can come up legitimately if you try calling <code>dlerror()</code> via FFI and expect to get a useful error message for the most recent failed dynamic linker operation. Instead, you'll always get the undescriptive "Service unavailable".
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2009/02/note-about-libdl-functions-on-netbsd.html' itemprop='url'/>
+<a class='timestamp-link' href='note-about-libdl-functions-on-netbsd.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2009-02-19T02:32:00-05:00'>2:32 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=9197318761992450623' onclick=''>
+No comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=9197318761992450623' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=9197318761992450623&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=9197318761992450623&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=9197318761992450623&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=9197318761992450623&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=9197318761992450623&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=9197318761992450623&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Tuesday, February 17, 2009</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='http://factorcode.org/bad-alignment-1.png' itemprop='image_url'/>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='4263419979652567645' itemprop='postId'/>
+<a name='4263419979652567645'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='font-metrics-and-baseline-alignment.html'>Font metrics and baseline alignment</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-4263419979652567645' itemprop='description articleBody'>
+I implemented some algorithms for horizontally positioning text and graphics within lines in an aesthetically-pleasing manner. Until now, the Factor UI did all font rendering with FreeType and only really supports a small, fixed set of fonts, all from the Bitstream Vera family, which I bundle with Factor. These fonts have similar metrics and baselines and so the UI layout issues I describe below were not as severe, but were still noticable. Now that Factor is doing native font rendering on Mac OS X with Core Text, and soon Pango on X11 and Windows, I decided to address these issues properly instead of hacking around them. Doing so involved implementing some new layout algorithms and abstractions in the Factor UI.<br /><br />This blog post is a continuation of <a href="implementing-opengl-texture-caching-and.html">my previous entry on texture caching</a>; now that the technical details of rendering are done, its time to make the result look good.<br /><br />I tried to make reasonable diagrams to illustrate some of the concepts here, but I didn't try too hard, and this is by no means an authoritative account of the topic. It is just a brain dump of my incomplete understanding of the subject.<br /><h3>Identifying the problem</h3><br />Suppose you want to position some gadgets next to each other, but they use different fonts. If you use a shelf parent with default settings, you get something like this, which looks terrible, because the text does not line up:<br /><img src="http://factorcode.org/bad-alignment-1.png"/><br />In this particular case you can change the alignment of the shelf so that gadgets are aligned relative to the bottom edge instead of the top, by setting the <code>align</code> slot to 1, instead of the default of <code>0</code>:<br /><img src="http://factorcode.org/bad-alignment-2.png"/><br />This happens to fix the above case, but now this will look stupid if one of the fonts has a bigger point size than the other:<br /><img src="http://factorcode.org/bad-baseline-3.png"/><br />Here is another example. We have two gadgets side by side, where the second one has a border around it. Notice that the two pieces of text don't look right next to each other; the second one looks a few pixels "off".<br /><img src="http://factorcode.org/bad-baseline-4.png"/><br />Clearly, a simplistic alignment strategy, where a single constant determines where each child is positioned in between the top and bottom edge, is insufficient for text. Instead, we have to look at the fonts being used and different measurements used by those fonts to make the above examples look right.<br /><h3>Font metrics</h3><br />When text is rendered, the bottom of each glyph is aligned along a <i>baseline</i>. This is like the lines on note paper, but of course it's invisible. Some letters, like lowercase "j" in most fonts, will descend below the baseline.<br /><br />In addition to the font's point size, and its height, there are a number of additional metrics which are important. They are,<br /><ul><li>The ascent, which is the distance from the baseline to the top edge of the tallest glyph.</li><li>The descent, which is the distance from the baseline to the bottom edge of the tallest glyph. Sometimes, the descent is taken to be a negative value, but I don't use this convention in Factor's code since Core Text doesn't either.</li><li>The x height, which is the height of a lower-case x.</li><li>The cap height, which is the cap height of an upper case Y.</li><li>The font height is just the sum of the ascent and descent.</li><li>The leading, which is the gap between lines of text.</li><li>The line height is ascent + descent + leading.</li><li>The em, which is the width of a lower-case m.</li><li>The en, which is half an em.</li></ul><br />Here is a diagram showing some of the above:<br /><img src="http://factorcode.org/image2449.png"/><br />To understand why the previous examples look bad, let's make the baselines and borders visible:<br /><img src="http://factorcode.org/bad-baseline-5.png"/><br />Notice that the baselines of the two gadgets don't line up. If they lined up, the result would look nice.<br /><h3>Baseline alignment</h3><br />I added support for baseline alignment to shelf gadgets; you set the <code>align</code> slot to the special symbol <code>+baseline+</code>. Setting it to a number between 0 and 1 is still supported, and setting it to <code>+baseline+</code> activates totally different logic in the implementation.<br /><br />Two things change when a shelf has baseline alignment enabled; the preferred size calculation, the layout algorithm itself.<br /><br />If a shelf does not have baseline alignment, then its preferred height is just the maximum of the preferred heights of all of its children. This no longer works with baseline alignment. For example, consider the case where two gadgets with different baselines are nested inside a shelf:<br /><img src="http://factorcode.org/good-baseline-1.png"/><br />Clearly, the preferred height of the shelf exceeds the maximum of the heights of the two gadgets. Here is a pseudo-code algorithm for computing the height:<br /><pre>For every gadget g in the shelf,<br />    set ascent[g] = b.baseline<br />    set descent[g] = g.height - g.baseline<br /><br />max_ascent = maximum(ascent)<br />max_descent = maximum(descent)<br /><br />height = max_ascent + max_descent</pre><br />The algorithm for layout is similar:<br /><pre>For every gadget g in the shelf,<br />    set ascent[g] = b.baseline<br />    set descent[g] = g.height - g.baseline<br /><br />max_ascent = maximum(ascent)<br />max_descent = maximum(descent)<br /><br />For every gadget g in the shelf,<br />    set g.y = max_ascent - g.baseline</pre><br />Note that if every gadget in the shelf has a baseline equal to its height, the descent will always be zero and the above algorithms degenerate to the standard shelf layout algorithm with <code>align = 1</code>.<br /><h3>Graphics baseline alignment</h3><br />For lines containing a mix of text and graphics, where the graphics are icons with similar height to the text, I came up with a nice trick for positioning them in a pleasing manner. Trying to use the standard alignment for icons and text doesn't work; here are three different layouts, with alignment of 0, 1/2, and 1, respectively:<br /><img src="http://factorcode.org/bad-image-alignment.png"/><br />Note that I increased the font size to make the effect more noticable, but even at smaller font sizes that are closer to the icon size, the results look less than ideal. Using baseline alignment where the baseline of the image is equal to its height doesn't produce the right results either.<br /><br />The trick with images, then, is to define a "graphics baseline" that runs horizontally at the y co-ordinate equal to half of the image's height. For text, the graphics baseline runs half-way between the cap height and baseline. Here is what it looks like:<br /><img src="http://factorcode.org/good-image-alignment.png"/><br />Generalizing the algorithm in the previous section to support a graphics baseline is easy.<br /><br />First, we allow the baseline and cap-height of a gadget to be set to some unspecified value, distinct from any number. This indicates that graphics baseline alignment should be used for this gadget.<br /><br />Then, we compute layout for the text children first, followed by the graphics children, and position the graphics children so that their graphics baseline lines up with half of the cap height from the text children.<br /><br />I can't be bothered writing out pseudocode; you can look at the Factor implementation after its checked in if you're interested.<br /><h3>Font metrics implementation</h3><br />The <code>fonts</code> vocabulary now defines a <code>metrics</code> tuple:<br /><pre><font color="#000000">TUPLE: metrics width ascent descent height leading cap-height x-height <font color="#000000"><strong>;</strong></font><br /></font></pre><br />Various words in the UI output metrics tuples:<br /><ul><li><code>font-metrics ( font -- metrics )</code></li><li><code>line-metrics ( font string -- metrics )</code></li></ul><br />The Core Text implementation of these is completely trivial, since the required information can be obtained by a series of API calls, and I expect the eventual Pango implementation to be similar.<br /><h3>Baseline alignment implementation</h3><br />The <code>ui.baseline-alignment</code> vocabulary contains all the code. To start with, it needs to be able to get the baseline and cap height for a gadget:<br /><pre><font color="#000000">GENERIC: baseline <font color="#6600cc">( </font><font color="#793b1c"><strong>gadget</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>y</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font><br /><br />M: gadget baseline drop <font color="#6600cc">f</font> <font color="#000000"><strong>;</strong></font><br /><br />GENERIC: cap-height <font color="#6600cc">( </font><font color="#793b1c"><strong>gadget</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>y</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font><br /><br />M: gadget cap-height drop <font color="#6600cc">f</font> <font color="#000000"><strong>;</strong></font><br /></font></pre><br />The default implementations return <code>f</code> for both, which means the graphics baseline will be used.<br /><br />I implemented a generalized version of this algorithm as the <code>measure-metrics</code> word in the <code>ui.baseline-alignment</code> vocabulary. It outputs the new ascent and descent, and adding them together gives the height of the shelf.<br /><br />Labels implement these generic words in the obvious way, by looking up font metrics. Borders, packs, paragraphs and other compound gadgets implement these operations by computing the baseline and cap height of their children and combining them in various ways.<br /><br />The UI tries to use baseline alignment by default in as many places as it makes sense, so in most cases you do not need to worry about the details of this.<br /><br />Here is some help text rendering demonstrating the text baseline alignment in the values table and the description paragraph:<br /><img src="http://factorcode.org/help-baseline-nice.png"><br />The astute observer will notice the table lines are missing a pixel in the bottom-right corner; this is a recent regression that I need to look into.<br /><br />Here is an example demonstrating baseline alignment of a text label with a text field next to it, as well as graphics baseline alignment, with checkboxes and radio buttons:<br /><img src="http://factorcode.org/deploy-tool-nice.png"><br /><h3>More about font metrics</h3><br />I haven't talked about line spacing yet, because this part is tricky. There's more to it than just adding the leading between each line. I'll figure it out in the near future and do a write-up most likely.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2009/02/font-metrics-and-baseline-alignment.html' itemprop='url'/>
+<a class='timestamp-link' href='font-metrics-and-baseline-alignment.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2009-02-17T16:03:00-05:00'>4:03 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=4263419979652567645' onclick=''>
+3 comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=4263419979652567645' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=4263419979652567645&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=4263419979652567645&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=4263419979652567645&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=4263419979652567645&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=4263419979652567645&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=4263419979652567645&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+          </div></div>
+        
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Sunday, February 15, 2009</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='2600705488966153349' itemprop='postId'/>
+<a name='2600705488966153349'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+<a href='implementing-opengl-texture-caching-and.html'>Implementing OpenGL texture caching and bitmap image support in the Factor UI</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-2600705488966153349' itemprop='description articleBody'>
+Last time, I talked about how I implemented <a href="../01/rendering-unicode-text-to-opengl.html">Unicode text rendering using Apple's Core Text API</a>. In this blog entry I'll discuss some implementation details I omitted last time, and I'll also talk about a new feature I added a few days ago to the <code>new_ui</code> branch: support for bitmap images.<br /><br />Note that Core Text is OS X-specific, and Factor will only use it on that platform; on other platforms, it will use Pango to render text (and maybe Uniscribe on Windows, leaving Pango for X11 only). The image support is cross-platform and indeed is entirely written in Factor.<br /><br /><h3>A general cache abstraction</h3><br />With Core Text, you never operate on strings of text directly, instead you construct a <code>CTLine</code> object and interrogate it for metrics, or ask it to render itself to a Core Graphics context. To avoid constructing <code>CTLine</code>s over and over again, and to expose a straightforward API that only involves strings, the UI caches the <code>CTLine</code> objects. Using <code>MEMO:</code> or the <code>cache</code> combinator with a hashtable is insufficient here, since I don't want to retain every <code>CTLine</code> forever. Instead, I want each <code>CTLine</code> to be disposed and removed from the cache if it is not used for a fixed period of time.<br /><br />To handle this use case, along with another one that I describe later on in this post, I implemented a simple cache abstraction.<br /><br />The new <code>cache</code> vocabulary defines a new assoc type which wraps an existing assoc, and has a single configuration parameter, <code>max-age</code>:<br /><pre><font color="#000000">TUPLE: cache-assoc assoc max-age disposed <font color="#000000"><strong>;</strong></font><br /><br /><font color="#000000"><strong>:</strong></font><font color="#000000"><strong> </strong></font><font color="#000000"><strong>&lt;cache-assoc&gt;</strong></font> <font color="#6600cc">( </font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>cache</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font><br />    H<font color="#006633">{</font> <font color="#006633">}</font> clone <font color="#ff0000">10</font> <font color="#6600cc">f</font> cache-assoc boa <font color="#000000"><strong>;</strong></font><br /><br />INSTANCE: cache-assoc assoc<br /></font></pre><br />The values in the underlying assoc are all instances of <code>cache-value</code>:<br /><pre><font color="#000000">TUPLE: cache-entry value age <font color="#000000"><strong>;</strong></font><br /><br /><font color="#000000"><strong>:</strong></font><font color="#000000"><strong> </strong></font><font color="#000000"><strong>&lt;cache-entry&gt;</strong></font> <font color="#6600cc">( </font><font color="#793b1c"><strong>value</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>entry</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font> <font color="#ff0000">0</font> cache-entry boa <font color="#000000"><strong>;</strong></font> inline<br /></font></pre><br />The age of a value starts at zero, and is incremented at fixed intervals. Whenever a key is looked up in the cache, the age is reset to zero. Because I don't want to expose the user of a cache to these <code>cache-entry</code> tuples (they're just implementation detail), the <code>cache-assoc</code> type implements <code>at*</code> to unwrap the cache entry before returning the value to the user. Also note that I reset the age here:<br /><pre><font color="#000000">M: cache-assoc at* assoc&gt;&gt; at* <font color="#006633">[</font> dup <font color="#006633">[</font> <font color="#ff0000">0</font> &gt;&gt;age value&gt;&gt; <font color="#006633">]</font> when <font color="#006633">]</font> dip <font color="#000000"><strong>;</strong></font><br /></font></pre><br />Storing an entry into the cache first checks to see if the cache has been disposed of yet or not, and then wraps the value in a cache entry before passing it down to the underlying assoc:<br /><pre><font color="#000000">M: cache-assoc set-at<br />    <font color="#006633">[</font> check-disposed <font color="#006633">]</font> keep<br />    <font color="#006633">[</font> &lt;cache-entry&gt; <font color="#006633">]</font> 2dip<br />    assoc&gt;&gt; set-at <font color="#000000"><strong>;</strong></font><br /></font></pre><br />Converting a cache to an alist unwraps each value:<br /><pre><font color="#000000">M: cache-assoc &gt;alist assoc&gt;&gt; <font color="#006633">[</font> value&gt;&gt; <font color="#006633">]</font> <font color="#006633">{</font> <font color="#006633">}</font> assoc-map-as <font color="#000000"><strong>;</strong></font><br /></font></pre><br />The remaining important assoc methods simply delegate to the underlying assoc:<br /><pre><font color="#000000">M: cache-assoc assoc-size assoc&gt;&gt; assoc-size <font color="#000000"><strong>;</strong></font><br /><br />M: cache-assoc clear-assoc assoc&gt;&gt; clear-assoc <font color="#000000"><strong>;</strong></font><br /></font></pre><br />Caches also support one additional operation: disposal. When you call <code>dispose</code> on a cache, all values in the cache are disposed and the cache cannot be used again:<br /><pre><font color="#000000">M: cache-entry dispose value&gt;&gt; dispose <font color="#000000"><strong>;</strong></font><br /><br />M: cache-assoc dispose*<br />    <font color="#006633">[</font> values dispose-each <font color="#006633">]</font> <font color="#006633">[</font> clear-assoc <font color="#006633">]</font> bi <font color="#000000"><strong>;</strong></font><br /></font></pre><br />This is the important part, that makes caches useful for managing external resources such as OpenGL textures.<br /><br />Now, here is a word which ages each entry, and deletes those entries whose age exceeds the cache's <code>max-age</code> slot value. It uses the <code>assoc-partition</code> combinator, which splits an assoc into two, sorting key/value pairs based on whether they satisfy a predicate or not.<br /><pre><font color="#000000"><font color="#000000"><strong>:</strong></font><font color="#000000"><strong> </strong></font><font color="#000000"><strong>purge-cache</strong></font> <font color="#6600cc">( </font><font color="#793b1c"><strong>cache</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font><br />    dup max-age&gt;&gt; '<font color="#006633">[</font><br />        <font color="#006633">[</font> nip <font color="#006633">[</font> 1+ <font color="#006633">]</font> change-age age&gt;&gt; _ &gt;= <font color="#006633">]</font> assoc-partition<br />        <font color="#006633">[</font> values dispose-each <font color="#006633">]</font> dip<br />    <font color="#006633">]</font> change-assoc drop <font color="#000000"><strong>;</strong></font><br /></font></pre><br />I cheat a little here; because <code>assoc-partition</code> iterates over all key/value pairs exactly once, I can perform side effects in the predicate quotation; I increment the age and then immediately check if it exceeds the maximum. Note the use of <code>'[</code> syntax with the <code>_</code> directive, which places the max-age exactly where its needed without having to pass it around on the stack explicitly. The values which exceed the maximum age -- these make up the first return value of <code>assoc-partition</code> -- are all disposed of.<br /><br />This <code>cache</code> vocabulary, which is currently in the <code>new_ui</code> branch and will be merged into the trunk soon, demonstrates the Factor equivalent of the "decorator" OO design pattern.<br /><h3>Images</h3><br /><a href="http://code-factor.blogspot.com">Doug Coleman</a> has been working on a Factor library for working with bitmap images for quite some time; you can find it in the repository, in the <code>images</code> vocabulary. Recently it received a major facelift, as well as support for TIFF images (including LZW compression) in addition to Windows BMP. All of this is written entirely in Factor, and Doug also plans on supporting PNG, GIF and JPEG images, also with pure Factor code. When complete, this library will be quite a showcase for implementing complex algorithms in a concatenative language.<br /><br />Also, <a href="http://duriansoftware.com/joe">Joe Groff</a> designed some nice icons for the Factor UI. To make use of both of these great contributions, I wrote some code which caches images in OpenGL textures and renders these textures.<br /><br />The <code>load-image</code> word in the <code>images.loader</code> vocabulary defines a data type for images:<br /><pre><font color="#000000">TUPLE: image dim component-order bitmap <strong>;</strong></font></pre><br />The <code>component-order</code> slot is one of a series of singletons,<br /><pre><font color="#000000">SINGLETONS: BGR RGB BGRA RGBA ABGR ARGB RGBX XRGB BGRX XBGR<br />R16G16B16 R32G32B32 R16G16B16A16 R32G32B32A32 <strong>;</strong></font></pre><br />the <code>dim</code> slot is a pair of integers (the width and the height) and the <code>bitmap</code> slot is a byte array with the image data, where each pixel's size and format is determined by <code>component-order</code>.<br /><h3>OpenGL textures</h3><br />In my last blog post, I showed some ad-hoc code for rendering a Core Graphics bitmap to a texture. I refactored this code to be independent of Core Graphics and Core Text, and put it in the <code>opengl.textures</code> vocabulary. There is a new <code>texture</code> data type:<br /><pre><font color="#000000">TUPLE: texture texture display-list disposed <font color="#000000"><strong>;</strong></font><br /></font></pre><br />To create a texture from an <code>image</code>, I have to pass a format and a type to OpenGL. A generic word maps component order singletons into OpenGL constants; the implementation is incomplete, but it suffices for now:<br /><pre><font color="#000000">GENERIC: component-order&gt;format <font color="#6600cc">( </font><font color="#793b1c"><strong>component</strong></font><font color="#793b1c"><strong>-</strong></font><font color="#793b1c"><strong>order</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>format</strong></font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>type</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font><br /><br />M: RGBA component-order&gt;format drop GL_RGBA GL_UNSIGNED_BYTE <font color="#000000"><strong>;</strong></font><br />M: ARGB component-order&gt;format drop GL_BGRA_EXT GL_UNSIGNED_INT_8_8_8_8_REV <font color="#000000"><strong>;</strong></font><br />M: BGRA component-order&gt;format drop GL_BGRA_EXT GL_UNSIGNED_INT_8_8_8_8 <font color="#000000"><strong>;</strong></font></font></pre><br />Using this word, I implemented a <code>&lt;texture></code> constructor word, which creates an OpenGL texture from a bitmap image, and wraps the relevant data into a tuple:<br /><pre><font color="#000000"><font color="#000000"><strong>:</strong></font><font color="#000000"><strong> </strong></font><font color="#000000"><strong>&lt;texture&gt;</strong></font> <font color="#6600cc">( </font><font color="#793b1c"><strong>image</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>texture</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font><br />    <font color="#006633">[</font><br />        <font color="#006633">[</font> dim&gt;&gt; <font color="#006633">]</font><br />        <font color="#006633">[</font> bitmap&gt;&gt; <font color="#006633">]</font><br />        <font color="#006633">[</font> component-order&gt;&gt; component-order&gt;format <font color="#006633">]</font><br />        tri make-texture<br />    <font color="#006633">]</font> <font color="#006633">[</font> dim&gt;&gt; <font color="#006633">]</font> bi<br />    over make-texture-display-list <font color="#6600cc">f</font> texture boa <font color="#000000"><strong>;</strong></font><br /></font></pre><br />The code that wraps the <code>glTexImage2D</code> call, as well as creating a display list that renders a textured quad, is very similar to what I showed in my previous post, just slightly more general, so I won't reproduce it here.<br /><br />To be useful cache keys, textures must be disposable:<br /><pre><font color="#000000">M: texture dispose*<br />    <font color="#006633">[</font> texture&gt;&gt; delete-texture <font color="#006633">]</font><br />    <font color="#006633">[</font> display-list&gt;&gt; delete-dlist <font color="#006633">]</font> bi <font color="#000000"><strong>;</strong></font></font></pre><br /><h3>High-level abstraction for images</h3><br />The <code>ui.images</code> vocabulary builds on top of the lower-level libraries: <code>images</code>, <code>images.loader</code>, <code>opengl.textures</code> and <cache> to provide an easy-to-use, simple, high-level interface for displaying icons in the UI.<br /><br />The relevant data type is an image path, which is just a string wrapped in a tuple,<br /><pre><font color="#000000">TUPLE: image-name path <font color="#000000"><strong>;</strong></font><br /><br />C: &lt;image-name&gt; image-name<br /></font></pre><br />A fundamental word takes an image path, and loads the image that it names, if it has not been loaded already:<br /><pre><font color="#000000">MEMO: cached-image <font color="#6600cc">( </font><font color="#793b1c"><strong>image</strong></font><font color="#793b1c"><strong>-</strong></font><font color="#793b1c"><strong>name</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>image</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font> path&gt;&gt; load-image <font color="#000000"><strong>;</strong></font><br /></font></pre><br />Note that I'm not using a <code>cache-assoc</code> to cache the bitmaps themselves. This is because bitmaps are objects in the Factor heap, not external resources, and so they don't have a <code>dispose</code> method, hence a simple <code>MEMO:</code> word suffices.<br /><br />The next step is implementing the image texture cache. I added a new <code>images</code> slot to world gadgets. A world is the top-level gadget inside a native OS window, and since each world has its own OpenGL context, it is natural to associate the image texture cache with a world.<br /><pre><font color="#000000">&lt;PRIVATE<br /><br /><font color="#000000"><strong>:</strong></font><font color="#000000"><strong> </strong></font><font color="#000000"><strong>image-texture-cache</strong></font> <font color="#6600cc">( </font><font color="#793b1c"><strong>world</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>texture</strong></font><font color="#793b1c"><strong>-</strong></font><font color="#793b1c"><strong>cache</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font><br />    <font color="#006633">[</font> <font color="#006633">[</font> &lt;cache-assoc&gt; <font color="#006633">]</font> unless* <font color="#006633">]</font> change-images images&gt;&gt; <font color="#000000"><strong>;</strong></font><br /><br />PRIVATE&gt;<br /></font></pre><br />The <code>image-texture-cache</code> word assumes that there is a dynamically-scoped variable named <code>world</code> holding a <code>world</code> gadget. This is the case inside the dynamic extent of the <code>draw-gadget</code> word, and so textures can only be cached and looked up while a gadget is being rendered; a reasonable restriction.<br /><br />The <code>rendered-image</code> word looks up a bitmap image texture in the cache, and adds it if its not already present:<br /><pre><font color="#000000"><font color="#000000"><strong>:</strong></font><font color="#000000"><strong> </strong></font><font color="#000000"><strong>rendered-image</strong></font> <font color="#6600cc">( </font><font color="#793b1c"><strong>path</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>texture</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font><br />    world get image-texture-cache <font color="#006633">[</font> cached-image &lt;texture&gt; <font color="#006633">]</font> cache <font color="#000000"><strong>;</strong></font><br /></font></pre><br />Note the two levels of caching here. First, it looks for an available texture associated with an image path. If there is no texture, it looks for a cached bitmap image and makes a texture from that. If there is no cached bitmap image, then <code>cached-image</code> loads it by calling <code>load-image</code> inside <code>images.loader</code>.<br /><br />Now, drawing an image named by an image path is easy; this word draws the image at the origin, and code which wants to draw it at another position can simply translate the model view matrix first:<br /><pre><font color="#000000"><font color="#000000"><strong>:</strong></font><font color="#000000"><strong> </strong></font><font color="#000000"><strong>draw-image</strong></font> <font color="#6600cc">( </font><font color="#793b1c"><strong>image</strong></font><font color="#793b1c"><strong>-</strong></font><font color="#793b1c"><strong>name</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font><br />    rendered-image display-list&gt;&gt; glCallList <font color="#000000"><strong>;</strong></font></font></pre><br />Getting cached image dimensions is easy too, and does not involve the texture cache, only the bitmap cache:<br /><pre><font color="#000000"><font color="#000000"><strong>:</strong></font><font color="#000000"><strong> </strong></font><font color="#000000"><strong>image-dim</strong></font> <font color="#6600cc">( </font><font color="#793b1c"><strong>image</strong></font><font color="#793b1c"><strong>-</strong></font><font color="#793b1c"><strong>name</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>dim</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font><br />    cached-image dim&gt;&gt; <font color="#000000"><strong>;</strong></font><br /></font></pre><br /><h3>Caching rendered Core Text lines</h3><br />In the last post, I presented the <code>with-bitmap-context</code> combinator in the <code>core-graphics</code> vocabulary which created a Core Graphics bitmap context, rendered to it by calling a quotation, and output a byte array when finished. I refactored this combinator and renamed it to <code>make-bitmap-image</code>. Instead of outputting a raw byte array, it creates an <code>image</code> tuple, which wraps the byte array together with dimensions and a component order. This means that anyone who doesn't care about portability and wishes to use the <code>core-graphics</code> vocabulary directly can do so very easily, and render graphics to an <code>image</code> object which works with a number of other Factor libraries.<br /><br />Indeed, by changing the <code>core-text</code> code to call <code>make-bitmap-image</code>, I was able to very easily hook up texture caching for rendered lines of text.<br /><pre><font color="#000000"><font color="#000000"><strong>:</strong></font><font color="#000000"><strong> </strong></font><font color="#000000"><strong>rendered-line</strong></font> <font color="#6600cc">( </font><font color="#793b1c"><strong>font</strong></font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>string</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>texture</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font><br />    world get text-handle&gt;&gt; <font color="#006633">[</font> cached-line image&gt;&gt; &lt;texture&gt; <font color="#006633">]</font> 2cache <font color="#000000"><strong>;</strong></font><br /><br />M: core-text-renderer draw-string <font color="#6600cc">( </font><font color="#793b1c"><strong>font</strong></font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>string</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font><br />    rendered-line display-list&gt;&gt; glCallList <font color="#000000"><strong>;</strong></font><br /></font></pre><br />Again, the user benefits because they don't have to concern themselves with "lines" (strings with layout) or GL textures; they just draw strings whenever and everything works out behind the scenes.<br /><h3>On code re-use</h3><br />I'm a big fan of avoiding redundant data types in the Factor library. Over the years, parts of the Factor UI which were UI-specific have been split off, cleaned up and generalized. We now have some very nice vocabularies, such as <code>colors</code>, <code>fonts</code> and <code>images</code> which do not depend on OpenGL or the UI, and are hopefully general enough that no Factor programmer will have to re-invent the concepts of fonts, colors and bitmap images again.<br /><br />Also, as much as possible of the Factor UI's rendering code is now abstracted off into sub-vocabularies of the <code>opengl</code> vocabulary; these define many utility words and types, and for instance something like <code>opengl.textures</code> can be used independently of the Factor UI, if you're doing OpenGL rendering with some other toolkit.<br /><br />The introduction of the <code>cache-assoc</code> abstraction and generalized texture caching and bitmaps has simplified the Core Text text rendering backend considerably. It is now only a couple of hundred lines of code. This will make implementing a Pango backend easier.<br /><h3>Icons for definitions</h3><br />To spruce up Factor's vocabulary browser and code completion, I cooked up a little vocabulary which, given a word or vocabulary, outputs an appropriate icon. For words, there are many types of icons corresponding to different types of words, and for vocabularies the icons distinguish loaded, unloaded and runnable vocabs.<br /><br />The <code>definitions.icons</code> vocabulary defines a generic word:<br /><pre><font color="#000000">GENERIC: definition-icon <font color="#6600cc">( </font><font color="#793b1c"><strong>definition</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>path</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font><br /></font></pre><br />Since all the icons are in a single directory, and in TIFF format, I define a utility word which takes an icon file name without the extension and outputs a full pathname:<br /><pre><font color="#000000"><font color="#000000"><strong>:</strong></font><font color="#000000"><strong> </strong></font><font color="#000000"><strong>definition-icon-path</strong></font> <font color="#6600cc">( </font><font color="#793b1c"><strong>string</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>string</strong></font><font color="#793b1c"><strong>'</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font><br />    <font color="#006666">&quot;</font><font color="#006666">resource:basis/definitions/icons/</font><font color="#006666">&quot;</font> prepend-path <font color="#006666">&quot;</font><font color="#006666">.tiff</font><font color="#006666">&quot;</font> append <font color="#000000"><strong>;</strong></font><br /></font></pre><br />Now, I'd want to define a bunch of methods,<br /><pre><font color="#000000">M: predicate-class definition-icon drop <font color="#006666">&quot;</font><font color="#006666">class-predicate-word</font><font color="#006666">&quot;</font> definition-icon-path <font color="#000000"><strong>;</strong></font><br />M: generic definition-icon drop <font color="#006666">&quot;</font><font color="#006666">generic-word</font><font color="#006666">&quot;</font> definition-icon-path <font color="#000000"><strong>;</strong></font><br />M: macro definition-icon drop <font color="#006666">&quot;</font><font color="#006666">macro-word</font><font color="#006666">&quot;</font> definition-icon-path <font color="#000000"><strong>;</strong></font><br />...<br /></font></pre><br />However this is too verbose. The only really important part of each method line is the class name, and the icon name, without quotes. Everything else is boilerplate. Well, this is Factor, and we can factor it out. There are many different ways to do this. You can write a parsing word, or you can use my "functor" hack, which is just a syntax sugar for a particularly simple class of parsing words. Here is a solution using parsing words:<br /><pre><font color="#000000">&lt;&lt;<br /><br /><font color="#000000"><strong>:</strong></font><font color="#000000"><strong> </strong></font><font color="#000000"><strong>ICON:</strong></font><br />    scan-word <font color="#000000"><strong>\</strong></font><font color="#000000"><strong> </strong></font><font color="#000000"><strong>definition-icon</strong></font> create-method<br />    scan '<font color="#006633">[</font> drop _ definition-icon-path <font color="#006633">]</font><br />    define <font color="#000000"><strong>;</strong></font> parsing<br /><br />&gt;&gt;<br /></font></pre><br />And here is a solution using functors:<br /><pre><font color="#000000">&lt;&lt;<br /><br />FUNCTOR: define-icon <font color="#6600cc">( </font><font color="#793b1c"><strong>class</strong></font><font color="#793b1c"><strong> </strong></font><font color="#793b1c"><strong>icon</strong></font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">--</font><font color="#793b1c"><strong> </strong></font><font color="#6600cc">)</font> WHERE<br />M: class definition-icon drop icon definition-icon-path <font color="#000000"><strong>;</strong></font><br />;FUNCTOR<br /><br /><font color="#000000"><strong>:</strong></font><font color="#000000"><strong> </strong></font><font color="#000000"><strong>ICON:</strong></font> scan-word scan define-icon <font color="#000000"><strong>;</strong></font> parsing<br /><br />&gt;&gt;<br /></font></pre><br />The functor actually expands into code that is very similar to the parsing word. Both are straightforward. The main difference is that the parsing word has to explicitly call the run-time equivalents of <code>M:</code>; <code>create-method</code> and <code>define</code>.<br /><br />Note that I wrap the parsing word in a compilation unit <code>&lt;&lt; ... >></code> so that it is compiled before the other words in the file. This allows the parsing word to be used in the same file where it is defined; otherwise usages of <code>ICON:</code> would attempt to call a parsing word that wasn't compiled yet, which throws an error.<br /><br />Now new icons are very easy to define,<br /><pre><font color="#000000">ICON: predicate-class class-predicate-word<br />ICON: generic generic-word<br />ICON: macro macro-word<br />ICON: parsing-word parsing-word<br />ICON: primitive primitive-word<br />ICON: symbol symbol-word<br />ICON: constant constant-word<br />ICON: word normal-word<br />ICON: vocab-link unopen-vocab</font></pre><br />For vocabularies, the situation is simpler,<br /><pre><font color="#000000">M: vocab definition-icon<br />    vocab-main <font color="#006666">&quot;</font><font color="#006666">runnable-vocab</font><font color="#006666">&quot;</font> <font color="#006666">&quot;</font><font color="#006666">open-vocab</font><font color="#006666">&quot;</font> ? definition-icon-path <font color="#000000"><strong>;</strong></font><br /></font></pre>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2009/02/implementing-opengl-texture-caching-and.html' itemprop='url'/>
+<a class='timestamp-link' href='implementing-opengl-texture-caching-and.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2009-02-15T05:34:00-05:00'>5:34 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='https://www.blogger.com/comment.g?blogID=17087850&postID=2600705488966153349' onclick=''>
+No comments:
+  </a>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=2600705488966153349' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=2600705488966153349&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2600705488966153349&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2600705488966153349&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2600705488966153349&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2600705488966153349&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=2600705488966153349&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='http://factor-language.blogspot.com/search?updated-max=2009-05-21T20:25:00-04:00&amp;max-results=7&amp;reverse-paginate=true' id='Blog1_blog-pager-newer-link' title='Newer Posts'>Newer Posts</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='http://factor-language.blogspot.com/search?updated-max=2009-02-15T05:34:00-05:00&amp;max-results=7' id='Blog1_blog-pager-older-link' title='Older Posts'>Older Posts</a>
+</span>
+<a class='home-link' href='../../index.html'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='blog-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://factor-language.blogspot.com/feeds/posts/default' target='_blank' type='application/atom+xml'>Posts (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+<div id='sidebar-wrapper'>
+<div class='sidebar section' id='sidebar'><div class='widget BlogArchive' data-version='1' id='BlogArchive1'>
+<h2>Older Posts</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/index.html'>
+2010
+</a>
+<span class='post-count' dir='ltr'>(18)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../index.html'>
+2009
+</a>
+<span class='post-count' dir='ltr'>(35)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+<ul class='posts'>
+<li><a href='metric-bounds-versus-image-bounds.html'>Metric bounds versus image bounds</a></li>
+<li><a href='note-about-libdl-functions-on-netbsd.html'>A note about libdl functions on NetBSD and the &quot;Se...</a></li>
+<li><a href='font-metrics-and-baseline-alignment.html'>Font metrics and baseline alignment</a></li>
+<li><a href='implementing-opengl-texture-caching-and.html'>Implementing OpenGL texture caching and bitmap ima...</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/index.html'>
+2008
+</a>
+<span class='post-count' dir='ltr'>(96)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(17)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/index.html'>
+2007
+</a>
+<span class='post-count' dir='ltr'>(141)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(10)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(21)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/index.html'>
+2006
+</a>
+<span class='post-count' dir='ltr'>(207)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(30)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(25)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(22)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(26)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/index.html'>
+2005
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div><div class='widget Feed' data-version='1' id='Feed2'>
+<h2>Recent Factor Commits</h2>
+<div class='widget-content' id='Feed2_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://gitweb.factorcode.org/gitweb.cgi?p=factor.git;a=atom'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget Feed' data-version='1' id='Feed1'>
+<h2>Planet Factor</h2>
+<div class='widget-content' id='Feed1_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://planet.factorcode.org/feed.xml'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget LinkList' data-version='1' id='LinkList1'>
+<h2>Links</h2>
+<div class='widget-content'>
+<ul>
+<li><a href='http://twitter.com/slava_pestov'>@slava_pestov</a></li>
+<li><a href='http://factorcode.org/slava/'>My home page</a></li>
+<li><a href='http://factorcode.org/'>Factor programming language</a></li>
+<li><a href='http://concatenative.org/'>Concatenative language wiki</a></li>
+<li><a href='http://planet.factorcode.org/'>Planet Factor</a></li>
+</ul>
+<div class='clear'></div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class='clear'>&#160;</div>
+</div>
+<!-- end content-wrapper -->
+<div id='footer-wrapper'>
+<div class='footer no-items section' id='footer'></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/940443484-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY6xPWNhv9l5pT8hnYZ-kVjMjQlHUQ:1693932703079';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d17087850','//factor-language.blogspot.com/2009/02/','17087850');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '17087850', 'title': 'Factor: a practical stack language', 'url': 'http://factor-language.blogspot.com/2009/02/', 'canonicalUrl': 'http://factor-language.blogspot.com/2009/02/', 'homepageUrl': 'http://factor-language.blogspot.com/', 'searchUrl': 'http://factor-language.blogspot.com/search', 'canonicalHomepageUrl': 'http://factor-language.blogspot.com/', 'blogspotFaviconUrl': 'http://factor-language.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en-US', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Factor: a practical stack language - RSS\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/17087850/posts/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/591781cadcbb8744', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'archive', 'pageName': 'February 2009', 'pageTitle': 'Factor: a practical stack language: February 2009'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'isResponsive': false, 'isAlternateRendering': false, 'isCustom': false}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Factor: a practical stack language', 'description': '\x3ca href\x3d\x22http://factorcode.org/slava\x22\x3eSlava Pestov\x3c/a\x3e\x27s weblog, primarily about \x3ca href\x3d\x22http://factorcode.org\x22\x3eFactor\x3c/a\x3e.', 'url': 'http://factor-language.blogspot.com/2009/02/', 'type': 'feed', 'isSingleItem': false, 'isMultipleItems': true, 'isError': false, 'isPage': false, 'isPost': false, 'isHomepage': false, 'isArchive': true, 'isLabelSearch': false, 'archive': {'year': 2009, 'month': 2, 'rangeMessage': 'Showing posts from February, 2009'}}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1333563935-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/3268905543-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed2', 'sidebar', document.getElementById('Feed2'), {'title': 'Recent Factor Commits', 'showItemDate': true, 'showItemAuthor': true, 'feedUrl': 'http://gitweb.factorcode.org/gitweb.cgi?p\x3dfactor.git;a\x3datom', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed1', 'sidebar', document.getElementById('Feed1'), {'title': 'Planet Factor', 'showItemDate': true, 'showItemAuthor': false, 'feedUrl': 'http://planet.factorcode.org/feed.xml', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList1', 'sidebar', document.getElementById('LinkList1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>

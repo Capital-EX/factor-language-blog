@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html dir='ltr'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/55013136-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='../../favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='improved-value-numbering-branch.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Factor: a practical stack language - RSS" href="http://factor-language.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="https://www.blogger.com/feeds/17087850/posts/default" />
+
+<link rel="alternate" type="application/atom+xml" title="Factor: a practical stack language - Atom" href="http://factor-language.blogspot.com/feeds/3775441976278425459/comments/default" />
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<link href='http://factorcode.org/cfg-before-splitting.png' rel='image_src'/>
+<meta content='http://factor-language.blogspot.com/2009/07/improved-value-numbering-branch.html' property='og:url'/>
+<meta content='Improved value numbering, branch splitting, and faster overflow checks' property='og:title'/>
+<meta content='Hot on the heels on the improved register allocator , I&#39;ve added some new optimizations to the low-level optimizer  and made existing optimi...' property='og:description'/>
+<meta content='https://lh3.googleusercontent.com/blogger_img_proxy/AAOd8Mz9Irtn2oVlGq91BSjIf_TAK1n-NlC-JcBv7PdkA1ajD4579Bj3gxMKPjd18E6JnLo7dH6MLwpTilZVy8INNgWjE4hS0MSUn-1tv-QFJzy8ARE=w1200-h630-p-k-no-nu' property='og:image'/>
+<title>Factor: a practical stack language: Improved value numbering, branch splitting, and faster overflow checks</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Stretch Denim Light
+Designer: Darren Delaye
+URL:      www.DarrenDelaye.com
+Date:     11 Jul 2006
+-----------------------------------------------
+*/
+body {
+background: #ffffff;
+margin: 0;
+padding: 0px;
+font: x-small Verdana, Arial;
+text-align: center;
+color: #333333;
+font-size/* */:/**/small;
+font-size: /**/small;
+}
+a:link {
+color: #336699;
+}
+a:visited {
+color: #336699;
+}
+a img {
+border-width: 0;
+}
+#outer-wrapper {
+font: normal normal 100% Verdana, Arial, Sans-serif;;
+}
+/* Header
+----------------------------------------------- */
+#header-wrapper {
+margin:0;
+padding: 0;
+background-color: #c4e1ff;
+text-align: left;
+}
+#header {
+margin: 0 2%;
+background-color: #c4e1ff;
+color: #003366;
+padding: 0;
+font: normal normal 210% Verdana, Arial, Sans-serif;;
+position: relative;
+}
+h1.title {
+padding-top: 38px;
+margin: 0 1% .1em;
+line-height: 1.2em;
+font-size: 100%;
+}
+h1.title a, h1.title a:visited {
+color: #003366;
+text-decoration: none;
+}
+#header .description {
+display: block;
+margin: 0 1%;
+padding: 0 0 40px;
+line-height: 1.4em;
+font-size: 50%;
+}
+/* Content
+----------------------------------------------- */
+.clear {
+clear: both;
+}
+#content-wrapper {
+margin: 0 2%;
+padding: 0 0 15px;
+text-align: left;
+background-color: #ffffff;
+border: 1px solid #ffffff;
+border-top: 0;
+}
+#main-wrapper {
+margin-left: 1%;
+width: 64%;
+float: left;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+margin-right: 1%;
+width: 29%;
+float: right;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2, h3 {
+margin: 0;
+}
+/* Posts
+----------------------------------------------- */
+.date-header {
+margin: 1.5em 0 0;
+font-weight: normal;
+color: #999999;
+font-size: 100%;
+}
+.post {
+margin: 0 0 1.5em;
+padding-bottom: 1.5em;
+}
+.post-title {
+margin: 0;
+padding: 0;
+font-size: 125%;
+font-weight: bold;
+line-height: 1.1em;
+}
+.post-title a, .post-title a:visited, .post-title strong {
+text-decoration: none;
+color: #333333;
+font-weight: bold;
+}
+.post div {
+margin: 0 0 .75em;
+line-height: 1.3em;
+}
+.post-footer {
+margin: -.25em 0 0;
+color: #333333;
+font-size: 87%;
+}
+.post-footer .span {
+margin-right: .3em;
+}
+.post img, table.tr-caption-container {
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin: 1em 20px;
+}
+.post blockquote p {
+margin: .75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin: 1em 0;
+color: #999999;
+}
+#comments h4 strong {
+font-size: 110%;
+}
+#comments-block {
+margin: 1em 0 1.5em;
+line-height: 1.3em;
+}
+#comments-block dt {
+margin: .5em 0;
+}
+#comments-block dd {
+margin: .25em 0 0;
+}
+#comments-block dd.comment-footer {
+margin: -.25em 0 2em;
+line-height: 1.4em;
+font-size: 78%;
+}
+#comments-block dd p {
+margin: 0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar h2 {
+margin: 1.6em 0 .5em;
+padding: 4px 5px;
+background-color: #ffffff;
+font-size: 100%;
+color: #333333;
+}
+.sidebar ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.sidebar li {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: .5em;
+padding-left: 15px;
+text-indent: -15px;
+line-height: 1.5em;
+}
+.sidebar {
+color: #333333;
+line-height:1.3em;
+}
+.sidebar .widget {
+margin-bottom: 1em;
+}
+.sidebar .widget-content {
+margin: 0 5px;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #ffffff;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font-weight: bold;
+line-height: 1.6em;
+font-size: 78%;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+clear: both;
+text-align: center;
+color: #333333;
+}
+#footer .widget {
+margin:.5em;
+padding-top: 20px;
+font-size: 85%;
+line-height: 1.5em;
+text-align: left;
+}
+/** Page structure tweaks for layout editor wireframe */
+body#layout #header {
+width: 750px;
+}
+
+--></style>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=17087850&amp;zx=107902e8-e226-40c6-bb3f-e93edf539d65' rel='stylesheet'/></noscript>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body>
+<div class='navbar section' id='navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d17087850\x26blogName\x3dFactor:+a+practical+stack+language\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dBLUE\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://factor-language.blogspot.com/search\x26blogLocale\x3den_US\x26v\x3d2\x26homepageUrl\x3dhttp://factor-language.blogspot.com/\x26targetPostID\x3d3775441976278425459\x26blogPostOrPageUrl\x3dhttp://factor-language.blogspot.com/2009/07/improved-value-numbering-branch.html\x26vt\x3d-3784711532954198201',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id='outer-wrapper'><div id='wrap2'>
+<!-- skip links for text browsers -->
+<span id='skiplinks' style='display:none;'>
+<a href='improved-value-numbering-branch.html#main'>skip to main </a> |
+      <a href='improved-value-numbering-branch.html#sidebar'>skip to sidebar</a>
+</span>
+<div id='header-wrapper'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='../../index.html'>
+Factor: a practical stack language
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span><a href="http://factorcode.org/slava">Slava Pestov</a>'s weblog, primarily about <a href="http://factorcode.org">Factor</a>.</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id='content-wrapper'>
+<div id='crosscol-wrapper' style='text-align:center'>
+<div class='crosscol no-items section' id='crosscol'></div>
+</div>
+<div id='main-wrapper'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Friday, July 17, 2009</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='http://factorcode.org/cfg-before-splitting.png' itemprop='image_url'/>
+<meta content='17087850' itemprop='blogId'/>
+<meta content='3775441976278425459' itemprop='postId'/>
+<a name='3775441976278425459'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+Improved value numbering, branch splitting, and faster overflow checks
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-3775441976278425459' itemprop='description articleBody'>
+Hot on the heels on the <a href="improvements-to-factors-register.html">improved register allocator</a>, I've added some new optimizations to the <a href="../../2008/11/new-low-level-optimizer-and-code.html">low-level optimizer</a> and made existing optimizations stronger.<br /><br /><h3>Improved value numbering</h3><br />Local value numbering now detects more congruences along values computed by <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/instructions/instructions.factor;hb=HEAD">low level IR instructions</a>. All the changes were either in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/value-numbering/rewrite/rewrite.factor;hb=HEAD">rewrite</a> or <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/value-numbering/simplify/simplify.factor;hb=HEAD">simplify</a> steps.<br /><ul><li>Some additional arithmetic identities. For instance, the result of adding or subtracting 0 to a value is congruent to the value itself. The high-level optimizer implements the same optimization on Factor's generic arithmetic words, but sometimes low-level optimizations introduce additional redundancies.</li><li>A <code>##add</code> instruction where one of the two operands is the result of a <code>##load-immediate</code> is now converted into a <code>##add-imm</code>, saving a register. A similar identity holds for other commutative operations, such as <code>##mul</code>, <code>##and</code>, <code>##or</code>, <code>##xor</code>, and <code>##compare</code> with a condition code of <code>cc=</code>.</li><li>Constant folding. Arithmetic instructions where both operands are constants are replaced by a <code>##load-immediate</code> containing the result. A special case is a subtraction where both operands are congruent; this is replaced by a load of 0. Again, the high-level optimizer performs constant folding also, but low-level optimizations sometimes introduce redundancies or expose opportunities for optimization which were not apparent in high-level IR.</li><li>Reassociation. If an <code>##add-imm</code> instruction's first input is the result of another <code>##add-imm</code>, then a new <code>##add-imm</code> is made which computes the same result with a single addition. Algebraically, this corresponds to the identity <code>(x + a) + b = x + (a + b)</code>, where <code>a</code> and <code>b</code> are known at compile-time. Similar transformations are made for other associative operations, such as <code>##sub</code>, <code>##mul</code>, <code>##and</code>, <code>##or</code> and <code>##xor</code>.</li><li>Constant branch folding. If both inputs to a <code>##compare</code> or <code>##compare-branch</code> are constant, or if both are congruent to the same value, then the result of the comparison can be computed at compile-time, and one of the two successor blocks can be deleted.</li></ul><br />While the high-level optimizer performs constant folding and unreachable code elimination as part of the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/tree/propagation/propagation.factor;hb=HEAD">SCCP</a> pass, low-level optimizations which are done before value numbering can expose optimization opportunities which were invisible in high-level IR. For example, consider the following code:<br /><code>[ { vector } declare [ length ] [ length ] bi &lt; ]</code><br />Using the <code>optimized.</code> word, we can see what the high-level optimizer transforms this into:<br /><pre>[ dup >R 3 slot R> 3 slot fixnum&lt; ]</pre><br />The high-level optimizer only attempts to reason about immutable slots, but a vector's length is mutable since a vector may have elements added to it, and so the high-level optimizer cannot detect that the two inputs to <code>fixnum&lt;</code> are equal. A conversion into low-level IR, the code becomes the following sequence of <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/instructions/instructions.factor;hb=HEAD">SSA instructions</a>:<br /><pre>_label 0 f <br />##prologue f <br />_label 1 f <br />##peek V int-regs 1 D 0 f <br />##copy V int-regs 4 V int-regs 1 f <br />##slot-imm V int-regs 5 V int-regs 4 3 7 f <br />##copy V int-regs 8 V int-regs 1 f <br />##slot-imm V int-regs 9 V int-regs 8 3 7 f <br />##copy V int-regs 10 V int-regs 5 f <br />##copy V int-regs 11 V int-regs 9 f <br />##compare V int-regs 12 V int-regs 10 V int-regs 11 cc&lt; V int-regs 13 f <br />##replace V int-regs 12 D 0 f <br />##epilogue f <br />##return f <br />_spill-counts f f</pre><br />Now, the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/alias-analysis/alias-analysis.factor;hb=HEAD">low-level alias analysis optimization</a> is able to detect that the second <code>##slot-imm</code> is redundant, and it transforms the code into the following:<br /><pre>_label 0 f <br />##prologue f <br />_label 1 f <br />##peek V int-regs 1 D 0 f <br />##copy V int-regs 4 V int-regs 1 f <br />##slot-imm V int-regs 5 V int-regs 4 3 7 f <br />##copy V int-regs 9 V int-regs 5 f <br />##copy V int-regs 10 V int-regs 5 f <br />##copy V int-regs 11 V int-regs 9 f <br />##compare V int-regs 12 V int-regs 10 V int-regs 11 cc&lt; V int-regs 13 f <br />##replace V int-regs 12 D 0 f <br />##epilogue f <br />##return f <br />_spill-counts f f</pre><br />Now, notice that both inputs to the <code>##compare</code> instruction (vreg #10 and vreg #11) are copies of the same value, vreg #5. Value numbering detects this congruence since copy propagation is just a special case of value numbering; it then simplifies the comparison down to a constant load of <code>f</code>, since for any integer <code>x</code>, we have <code>x &lt; x => false</code>. After dead code elimination, the result is the following:<br /><pre>_label 0 f <br />##prologue f <br />_label 1 f <br />##load-immediate V int-regs 12 5 f <br />##replace V int-regs 12 D 0 f <br />##epilogue f <br />##return f <br />_spill-counts f f</pre><br />While no programmer would explicitly write such redundant code, it comes up after inlining. For example, the <a href="http://docs.factorcode.org/content/word-push%2csequences.html">push</a> word, which adds an element at the end of a sequence, is implemented as follows:<br /><pre>: push ( elt seq -- ) [ length ] [ set-nth ] bi ;<br /><br />HINTS: push { vector } { sbuf } ;</pre><br />The <a href="http://docs.factorcode.org/content/article-hints.html">hints</a> tell the compiler to compile specialized versions of this word for vectors and string buffers. While the generic versions work on any sequence, the hinted versions are used when the input types match, and the result can be better performance if generic words are inlined (in this case, <a href="http://docs.factorcode.org/content/word-length%2csequences.html">length</a> and <a href="http://docs.factorcode.org/content/word-set-nth%2csequences.html">set-nth</a>). Now, after a bunch of code is inlined, a piece of code comes up which compares the insertion index against the vector's length; however, the insertion index <i>is</i> the length in this case, and so value numbering is now able to optimize out a conditional which could not be optimized out before. Of course I could have just written a specialized version of <code>push</code> for vectors (or even built it into the VM) but I'd rather implement general optimizations and write my code in a high-level style.<br /><br />I'd like to thank <a href="http://docs.factorcode.org/content/author-Doug%20Coleman.html">Doug Coleman</a> for implementing some of the above improvements.<br /><h3>Branch splitting</h3><br />Roughly speaking, branch splitting is the following transform:<br /><pre>[ A [ B ] [ C ] if D ] => [ A [ B D ] [ C D ] if ]</pre><br />It is only run if D is a small amount of code. Branch splitting runs before value numbering, so value numbering's constant branch folding can help simplify the resulting control flow. Branch splitting is implemented in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/branch-splitting/branch-splitting.factor;hb=HEAD">compiler.cfg.branch-splitting</a> vocabulary.<br /><br />For example, suppose we have the following code:<br /><pre>[ [ t ] [ f ] if [ 1 ] [ 2 ] if ]</pre><br />The high-level optimizer is unable to simplify this further, since it does not work on a control flow graph. The low level optimizer builds a control flow graph with the following shape:<br /><img src="http://factorcode.org/cfg-before-splitting.png"><br />The basic block in the middle is a candidate for splitting since it has two predecessors, and it is short. After splitting, the result looks like so:<br /><img src="http://factorcode.org/cfg-after-splitting.png"><br />Now, at this point, the only thing that this has achieved is eliminating one unconditional jump at the expense of code size. However, after stack analysis and value numbering run, some redundant work is eliminated:<br /><img src="http://factorcode.org/cfg-after-optimization.png"><br />One example of real code that benefits from branch splitting includes code that calls the <code>=</code> word followed by a conditional. The <code>=</code> word is inlined, and it has a conditional inside of it; some branches of the conditional push constants <code>t</code> and <code>f</code>, and others call non-inline words. The result is that the branches which push a constant boolean can directly jump to the destination block without the overhead of storing and testing a boolean value.<br /><br />Once again thanks to <a href="http://docs.factorcode.org/content/author-Doug%20Coleman.html">Doug Coleman</a> for collaborating with me on the implementation of branch splitting.<br /><h3>Block joining</h3><br />Block joining is a simple optimization which merges basic blocks connected by a single control flow edge. Various low-level optimizations leave the control flow graph with a large number of empty or very small blocks with no conditional control flow between them. Block joining helps improve effectiveness of local optimizations by creating larger basic blocks.<br /><br />In the above example for branch splitting, block joining will eliminate the four empty basic blocks that remain after optimization.<br /><br />Block joining is implemented in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/block-joining/block-joining.factor;hb=HEAD">compiler.cfg.block-joining</a> vocabulary.<br /><h3>Faster overflowing integer arithmetic intrinsics</h3><br />In the lucky cases where the compiler can eliminate overflow checks, the various math operations become single instructions in the low-level IR which eventually map directly to machine instructions. In the general case, however, an overflow check has to be generated. In the event of overflow, a bignum is allocated, which may in turn involve running the garbage collector, so it is quite an expensive operation compared to a single machine arithmetic operation.<br /><br />Previously, the overflowing fixnum operations were represented in low-level IR as single, indivisible units, and just like subroutine calls and returns, they were "sync points" which meant that all values in registers had to be saved to the data and retain stacks before, and reloaded after. This is because of how these operations were implemented; they would perform the arithmetic, do an overflow check, and in the event of overflow, they would invoke a subroutine which handled the overflow. Keeping registers live across this operation was not sound in the event of overflow, since the subroutine call would clobber them.<br /><br />No longer. Now, an overflowing fixnum operation breaks down into several nodes in the control flow graph, and the arithmetic part, the overflow check and the bignum allocation are represented separately. In particular, the code to save registers to the stack and reload them after is only generated in the overflow case, so in the event of no overflow, which happens much more frequently, execution can "fall through" and continue using the same registers as before.<br /><br />The code that generates low-level instructions and control flow graph nodes for overflowing fixnum operations is defined in the <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=blob;f=basis/compiler/cfg/intrinsics/fixnum/fixnum.factor;hb=HEAD">compiler.cfg.intrinsics.fixnum</a> vocabulary.<br /><h3>Faster integer shifts</h3><br />This last optimization is a very minor one, but it made a difference on benchmarks. Previously shifts with a constant shift count and no overflow check would compile as a machine instruction, and all other forms of shifts would invoke subroutine calls. Now, machine instructions are generated in the case where the shift count is unknown, but the result is still known to be small enough not to require an overflow check.<br /><h3>Benchmark results</h3><br />Here are the results of running <a href="http://gitweb.factorcode.org/gitweb.cgi?p=factor/.git;a=tree;f=extra/benchmark;hb=HEAD">Factor's benchmark suite</a> on a build from 31st May 2009, before I started working on the current set of low-level optimizer improvements (which includes the register allocator I blogged about previously), and from today.<br /><table> <tr><th>Benchmark</th><th>Before</th><th>After</th><tr><td>benchmark.backtrack          </td><td>1.767561         </td><td>1.330641           </td></tr> <tr><td>benchmark.base64             </td><td>1.997951         </td><td>1.738677           </td></tr> <tr><td>benchmark.beust1             </td><td>2.765257         </td><td>2.461088           </td></tr> <tr><td>benchmark.beust2             </td><td>3.584958         </td><td>1.694427           </td></tr> <tr><td>benchmark.binary-search      </td><td>1.55002          </td><td>1.574595           </td></tr> <tr><td>benchmark.binary-trees       </td><td>1.845798         </td><td>1.733355           </td></tr> <tr><td>benchmark.bootstrap1         </td><td>10.860492        </td><td>11.447687          </td></tr> <tr><td>benchmark.dawes              </td><td>0.229999         </td><td>0.161726           </td></tr> <tr><td>benchmark.dispatch1          </td><td>2.015653         </td><td>2.119268           </td></tr> <tr><td>benchmark.dispatch2          </td><td>1.817941         </td><td>1.216618           </td></tr> <tr><td>benchmark.dispatch3          </td><td>2.568987         </td><td>1.899128           </td></tr> <tr><td>benchmark.dispatch4          </td><td>2.319587         </td><td>2.032182           </td></tr> <tr><td>benchmark.dispatch5          </td><td>2.346744         </td><td>1.614045           </td></tr> <tr><td>benchmark.empty-loop-0       </td><td>0.146716         </td><td>0.12589            </td></tr> <tr><td>benchmark.empty-loop-1       </td><td>0.430314         </td><td>0.342426           </td></tr> <tr><td>benchmark.empty-loop-2       </td><td>0.429012         </td><td>0.342097           </td></tr> <tr><td>benchmark.euler150           </td><td>16.901451        </td><td>15.288867          </td></tr> <tr><td>benchmark.euler186           </td><td>8.805434999999999</td><td>7.920478           </td></tr> <tr><td>benchmark.fannkuch           </td><td>3.202698         </td><td>2.964037           </td></tr> <tr><td>benchmark.fasta              </td><td>5.52608          </td><td>4.934112           </td></tr> <tr><td>benchmark.gc0                </td><td>2.15066          </td><td>1.993158           </td></tr> <tr><td>benchmark.gc1                </td><td>4.984841         </td><td>4.961272           </td></tr> <tr><td>benchmark.gc2                </td><td>3.327706         </td><td>3.265462           </td></tr> <tr><td>benchmark.iteration          </td><td>3.736756         </td><td>3.30438            </td></tr> <tr><td>benchmark.javascript         </td><td>9.79904          </td><td>9.164517           </td></tr> <tr><td>benchmark.knucleotide        </td><td>0.282296         </td><td>0.251879           </td></tr> <tr><td>benchmark.mandel             </td><td>0.125304         </td><td>0.123945           </td></tr> <tr><td>benchmark.md5                </td><td>0.946516         </td><td>0.85062            </td></tr> <tr><td>benchmark.nbody              </td><td>3.982774         </td><td>3.349595           </td></tr> <tr><td>benchmark.nested-empty-loop-1</td><td>0.116351         </td><td>0.135936           </td></tr> <tr><td>benchmark.nested-empty-loop-2</td><td>0.692668         </td><td>0.438932           </td></tr> <tr><td>benchmark.nsieve             </td><td>0.714772         </td><td>0.698262           </td></tr> <tr><td>benchmark.nsieve-bits        </td><td>1.451828         </td><td>0.907247           </td></tr> <tr><td>benchmark.nsieve-bytes       </td><td>0.312481         </td><td>0.300053           </td></tr> <tr><td>benchmark.partial-sums       </td><td>1.205072         </td><td>1.221245           </td></tr> <tr><td>benchmark.pidigits           </td><td>16.088346        </td><td>16.159176          </td></tr> <tr><td>benchmark.random             </td><td>2.574773         </td><td>2.706893           </td></tr> <tr><td>benchmark.raytracer          </td><td>3.481714         </td><td>2.914116           </td></tr> <tr><td>benchmark.recursive          </td><td>5.964279         </td><td>3.215277           </td></tr> <tr><td>benchmark.regex-dna          </td><td>0.132406         </td><td>0.093095           </td></tr> <tr><td>benchmark.reverse-complement </td><td>3.811822         </td><td>3.257535           </td></tr> <tr><td>benchmark.ring               </td><td>1.756481         </td><td>1.79823            </td></tr> <tr><td>benchmark.sha1               </td><td>2.267648         </td><td>1.473887           </td></tr> <tr><td>benchmark.sockets            </td><td>8.794280000000001</td><td>8.783398           </td></tr> <tr><td>benchmark.sort               </td><td>0.421628         </td><td>0.363383           </td></tr> <tr><td>benchmark.spectral-norm      </td><td>3.830249         </td><td>4.036353           </td></tr> <tr><td>benchmark.stack              </td><td>2.086594         </td><td>1.014408           </td></tr> <tr><td>benchmark.sum-file           </td><td>0.528061         </td><td>0.422194           </td></tr> <tr><td>benchmark.tuple-arrays       </td><td>0.127335         </td><td>0.103421           </td></tr> <tr><td>benchmark.typecheck1         </td><td>0.876559         </td><td>0.6723440000000001 </td></tr> <tr><td>benchmark.typecheck2         </td><td>0.878561         </td><td>0.671624           </td></tr> <tr><td>benchmark.typecheck3         </td><td>0.86596          </td><td>0.670099           </td></tr> <tr><td>benchmark.ui-panes           </td><td>0.426701         </td><td>0.372301           </td></tr> <tr><td>benchmark.xml                </td><td>2.351934         </td><td>2.187999           </td></tr> </table><br />There are a couple of regressions I need to look into but for the most part the results look pretty good. I also expect further gains to come with additional optimizations that I plan on implementing.<br /><h3>Next steps</h3><br />I'm going to keep working on the code generator for another little while. First of all, compile time has increased so that needs to improve. Next, I'm going to implement better global optimization. At this point, values are stored in register between basic blocks, unlike with the old code generator. However, loop variables are still stored on the stack between iterations because the analysis does not handle back edges yet. Fixing this, and making float unboxing work globally, is my next step. After that, I plan on adding support for unboxed word-size integers (32 or 64-bits, depending on platform) and some intrinsics for SSE2 vector operations on Intel CPUs. Next, the register allocator needs improved coalescing logic, and it also needs to support fixed register assignments as found on some x86 instructions which take implicit operands. Finally, I have a few optimizations I want to add to the <a href="../../2008/08/new-optimizer.html">high level optimizer</a>.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://factor-language.blogspot.com/2009/07/improved-value-numbering-branch.html' itemprop='url'/>
+<a class='timestamp-link' href='improved-value-numbering-branch.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2009-07-17T02:19:00-04:00'>2:19 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=17087850&postID=3775441976278425459' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-561774689'>
+<a href='https://www.blogger.com/post-edit.g?blogID=17087850&postID=3775441976278425459&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3775441976278425459&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3775441976278425459&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3775441976278425459&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3775441976278425459&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=17087850&postID=3775441976278425459&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+<div class='comments' id='comments'>
+<a name='comments'></a>
+<h4>1 comment:</h4>
+<div id='Blog1_comments-block-wrapper'>
+<dl class='avatar-comment-indent' id='comments-block'>
+<dt class='comment-author ' id='c6441345341226572778'>
+<a name='c6441345341226572778'></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="http://resources.blogblog.com/img/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class='comment-body' id='Blog1_cmt-6441345341226572778'>
+<p>
+Interesting story you got here. I&#39;d like to read something more about this matter. Thnx for giving this information.<br />Sexy Lady<br /><a href="http://www.baccaratgirls.com" rel="nofollow">English escort</a>
+</p>
+</dd>
+<dd class='comment-footer'>
+<span class='comment-timestamp'>
+<a href='http://factor-language.blogspot.com/2009/07/improved-value-numbering-branch.html?showComment=1260443667790#c6441345341226572778' title='comment permalink'>
+6:14 AM
+</a>
+<span class='item-control blog-admin pid-772668958'>
+<a class='comment-delete' href='https://www.blogger.com/delete-comment.g?blogID=17087850&postID=6441345341226572778' title='Delete Comment'>
+<img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+</a>
+</span>
+</span>
+</dd>
+</dl>
+</div>
+<p class='comment-footer'>
+<a href='https://www.blogger.com/comment.g?blogID=17087850&postID=3775441976278425459' onclick=''>Post a Comment</a>
+</p>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='dataflow-analysis-computing-dominance.html' id='Blog1_blog-pager-newer-link' title='Newer Post'>Newer Post</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='improvements-to-factors-register.html' id='Blog1_blog-pager-older-link' title='Older Post'>Older Post</a>
+</span>
+<a class='home-link' href='../../index.html'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='post-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://factor-language.blogspot.com/feeds/3775441976278425459/comments/default' target='_blank' type='application/atom+xml'>Post Comments (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+<div id='sidebar-wrapper'>
+<div class='sidebar section' id='sidebar'><div class='widget BlogArchive' data-version='1' id='BlogArchive1'>
+<h2>Older Posts</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/index.html'>
+2010
+</a>
+<span class='post-count' dir='ltr'>(18)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2010/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../index.html'>
+2009
+</a>
+<span class='post-count' dir='ltr'>(35)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+<ul class='posts'>
+<li><a href='dataflow-analysis-computing-dominance.html'>Dataflow analysis, computing dominance, and conver...</a></li>
+<li><a href='improved-value-numbering-branch.html'>Improved value numbering, branch splitting, and fa...</a></li>
+<li><a href='improvements-to-factors-register.html'>Improvements to Factor&#39;s register allocator</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/index.html'>
+2008
+</a>
+<span class='post-count' dir='ltr'>(96)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(17)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2008/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/index.html'>
+2007
+</a>
+<span class='post-count' dir='ltr'>(141)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(10)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(21)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2007/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/index.html'>
+2006
+</a>
+<span class='post-count' dir='ltr'>(207)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(30)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(25)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(22)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/08/index.html'>
+August
+</a>
+<span class='post-count' dir='ltr'>(26)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/07/index.html'>
+July
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/06/index.html'>
+June
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/05/index.html'>
+May
+</a>
+<span class='post-count' dir='ltr'>(15)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/04/index.html'>
+April
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/03/index.html'>
+March
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/02/index.html'>
+February
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2006/01/index.html'>
+January
+</a>
+<span class='post-count' dir='ltr'>(12)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/index.html'>
+2005
+</a>
+<span class='post-count' dir='ltr'>(23)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/12/index.html'>
+December
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/11/index.html'>
+November
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/10/index.html'>
+October
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='../../2005/09/index.html'>
+September
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div><div class='widget Feed' data-version='1' id='Feed2'>
+<h2>Recent Factor Commits</h2>
+<div class='widget-content' id='Feed2_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://gitweb.factorcode.org/gitweb.cgi?p=factor.git;a=atom'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget Feed' data-version='1' id='Feed1'>
+<h2>Planet Factor</h2>
+<div class='widget-content' id='Feed1_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://planet.factorcode.org/feed.xml'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+</div><div class='widget LinkList' data-version='1' id='LinkList1'>
+<h2>Links</h2>
+<div class='widget-content'>
+<ul>
+<li><a href='http://twitter.com/slava_pestov'>@slava_pestov</a></li>
+<li><a href='http://factorcode.org/slava/'>My home page</a></li>
+<li><a href='http://factorcode.org/'>Factor programming language</a></li>
+<li><a href='http://concatenative.org/'>Concatenative language wiki</a></li>
+<li><a href='http://planet.factorcode.org/'>Planet Factor</a></li>
+</ul>
+<div class='clear'></div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class='clear'>&#160;</div>
+</div>
+<!-- end content-wrapper -->
+<div id='footer-wrapper'>
+<div class='footer no-items section' id='footer'></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/940443484-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY59qZk0Nui1HX3OMy74eykbQHRh7g:1693932895495';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d17087850','//factor-language.blogspot.com/2009/07/improved-value-numbering-branch.html','17087850');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '17087850', 'title': 'Factor: a practical stack language', 'url': 'http://factor-language.blogspot.com/2009/07/improved-value-numbering-branch.html', 'canonicalUrl': 'http://factor-language.blogspot.com/2009/07/improved-value-numbering-branch.html', 'homepageUrl': 'http://factor-language.blogspot.com/', 'searchUrl': 'http://factor-language.blogspot.com/search', 'canonicalHomepageUrl': 'http://factor-language.blogspot.com/', 'blogspotFaviconUrl': 'http://factor-language.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en-US', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Factor: a practical stack language - RSS\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/17087850/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Factor: a practical stack language - Atom\x22 href\x3d\x22http://factor-language.blogspot.com/feeds/3775441976278425459/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/591781cadcbb8744', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'item', 'postId': '3775441976278425459', 'postImageUrl': 'http://factorcode.org/cfg-before-splitting.png', 'pageName': 'Improved value numbering, branch splitting, and faster overflow checks', 'pageTitle': 'Factor: a practical stack language: Improved value numbering, branch splitting, and faster overflow checks'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'isResponsive': false, 'isAlternateRendering': false, 'isCustom': false}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Improved value numbering, branch splitting, and faster overflow checks', 'description': 'Hot on the heels on the improved register allocator , I\x27ve added some new optimizations to the low-level optimizer  and made existing optimi...', 'featuredImage': 'https://lh3.googleusercontent.com/blogger_img_proxy/AAOd8Mz9Irtn2oVlGq91BSjIf_TAK1n-NlC-JcBv7PdkA1ajD4579Bj3gxMKPjd18E6JnLo7dH6MLwpTilZVy8INNgWjE4hS0MSUn-1tv-QFJzy8ARE', 'url': 'http://factor-language.blogspot.com/2009/07/improved-value-numbering-branch.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 3775441976278425459}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1333563935-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/3268905543-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed2', 'sidebar', document.getElementById('Feed2'), {'title': 'Recent Factor Commits', 'showItemDate': true, 'showItemAuthor': true, 'feedUrl': 'http://gitweb.factorcode.org/gitweb.cgi?p\x3dfactor.git;a\x3datom', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed1', 'sidebar', document.getElementById('Feed1'), {'title': 'Planet Factor', 'showItemDate': true, 'showItemAuthor': false, 'feedUrl': 'http://planet.factorcode.org/feed.xml', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false, 'useFeedWidgetServ': 'true'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList1', 'sidebar', document.getElementById('LinkList1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>
